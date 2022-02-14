@@ -1,0 +1,81 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Dice : MonoBehaviour
+{
+
+    Rigidbody rb;
+
+    public BoardPlayer owner;
+
+    public float throwForce = 10f;
+    public float sideThrowSpread = 5f;
+    public float minRndRotation = 120f;
+    public float maxRndRotation = -60f;
+    public LayerMask detectionMask;
+    public List<Transform> sides = new List<Transform>();
+
+    private void Awake()
+    {
+        if (!TryGetComponent(out rb))
+        {
+            enabled = false;
+        }
+    }
+
+    public void Throw()
+    {
+        rb.useGravity = true;
+        rb.AddForce((Vector3.up * throwForce)
+            + (new Vector3(
+                Random.Range(-sideThrowSpread, sideThrowSpread), 
+                0f, 
+                Random.Range(-sideThrowSpread, sideThrowSpread))), 
+            ForceMode.VelocityChange);
+        rb.angularVelocity = new Vector3(
+            Random.Range(minRndRotation, maxRndRotation),
+            Random.Range(minRndRotation, maxRndRotation),
+            Random.Range(minRndRotation, maxRndRotation)
+        );
+        StartCoroutine(WaitUntilDiceStops());
+    }
+
+    private IEnumerator WaitUntilDiceStops()
+    {
+        while (rb.angularVelocity.magnitude > 0f)
+        {
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        int result = CheckResult();
+        if (result > 0)
+        {
+            owner.SetMoves(result);
+        }
+        else
+        {
+            Throw();
+        }
+    }
+
+    private int CheckResult()
+    {
+        int result = -1;
+        int i = 0;
+        while (i < sides.Count)
+        {
+            Collider[] objects = Physics.OverlapSphere(sides[i].position, 0.1f, detectionMask);
+            if (objects.Length > 0)
+            {
+                result = sides.Count - i;
+                i = sides.Count;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return result;
+    }
+}
