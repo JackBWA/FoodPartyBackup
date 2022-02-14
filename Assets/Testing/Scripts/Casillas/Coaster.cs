@@ -10,7 +10,13 @@ public class Coaster : MonoBehaviour
 
     public static Coaster initialCoaster;
 
-    public bool isInitial;
+    public bool isInitial
+    {
+        get
+        {
+            return type == CoasterType.Initial;
+        }
+    }
 
     /*
      * Que tipo de casillas hay:
@@ -101,12 +107,14 @@ public class Coaster : MonoBehaviour
     }
 
     // Almacenar ingredientes.
+    /*
     public List<Interactible> ingredients = new List<Interactible>();
     public void StoreIngredient(InteractibleIngredient ingredient)
     {
         ingredients.Add(ingredient);
         // Mostrar visualmente. (FEEDBACK VISUAL!)
     }
+    */
 
     // Poner trampas
     public List</*Replace with: Trap*/GameObject> traps = new List</*Replace with: Trap*/GameObject>();
@@ -116,7 +124,7 @@ public class Coaster : MonoBehaviour
     }
 
     // Activarse o desactivarse.
-    public bool isCoasterEnabled;
+    public bool isCoasterEnabled = true;
     public void ToggleCoasterState()
     {
         isCoasterEnabled = !isCoasterEnabled;
