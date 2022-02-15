@@ -16,6 +16,8 @@ public class Dice : MonoBehaviour
     public LayerMask detectionMask;
     public List<Transform> sides = new List<Transform>();
 
+    public bool used { get; private set; }
+
     private void Awake()
     {
         if (!TryGetComponent(out rb))
@@ -38,6 +40,9 @@ public class Dice : MonoBehaviour
             Random.Range(minRndRotation, maxRndRotation),
             Random.Range(minRndRotation, maxRndRotation)
         );
+
+        used = true;
+
         StartCoroutine(WaitUntilDiceStops());
     }
 

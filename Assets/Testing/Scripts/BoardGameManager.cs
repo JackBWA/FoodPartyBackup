@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,43 @@ using UnityEngine;
 public class BoardGameManager : MonoBehaviour
 {
 
-    public const int MAX_PLAYERS = 4;
+    //public const int MAX_PLAYERS = 4;
+
+    private int currentTurnIndex = 0;
+
+    #region Private Methods
+    /*
+    private int GetPlayerIndex(BoardPlayer player)
+    {
+        int indexResult = -1;
+        int i = 0;
+        while(i < players.Length)
+        {
+            if (players[i] == player)
+            {
+                indexResult = i;
+                i = players.Length;
+            } else
+            {
+                i++;
+            }
+        }
+        return indexResult;
+    }
+    */
+
+    private void InitializeGame()
+    {
+        foreach (BoardPlayer player in players)
+        {
+            if (player != null)
+            {
+                player.TeleportTo(Coaster.initialCoaster);
+            }
+        }
+        players[0].hasTurn = true;
+    }
+    #endregion
 
     #region Singleton
     public static BoardGameManager singleton;
@@ -22,16 +59,31 @@ public class BoardGameManager : MonoBehaviour
     }
     #endregion
 
-    /* De momento public */public BoardPlayer[] players = new BoardPlayer[MAX_PLAYERS];
+    #region Events
+    public event Action<BoardPlayer> onTurnEnd;
+    public void TurnEnd(BoardPlayer player)
+    {
+        player.hasTurn = false;
+        currentTurnIndex++;
+        if(currentTurnIndex >= players.Count)
+        {
+            currentTurnIndex = 0;
+            // Start minigame.
+            Debug.Log("Minigame starting...");
+        } else
+        {
+            players[currentTurnIndex].hasTurn = true;
+        }
+        //==========================
+        onTurnEnd?.Invoke(player);
+    }
+    #endregion
+
+    /* De momento public */
+    public List<BoardPlayer> players = new List<BoardPlayer>();
 
     private void Start()
     {
-        foreach(BoardPlayer player in players)
-        {
-            if(player != null)
-            {
-                player.TeleportTo(Coaster.initialCoaster);
-            }
-        }
+        InitializeGame();
     }
 }

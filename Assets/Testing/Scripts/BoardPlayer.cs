@@ -7,6 +7,23 @@ using UnityEngine.AI;
 public class BoardPlayer : MonoBehaviour
 {
 
+    public bool hasTurn
+    {
+        get
+        {
+            return turn;
+        }
+
+        set
+        {
+            turn = value;
+            if(turn) SpawnDice();
+        }
+    }
+
+    private bool turn;
+
+    private Dice dice;
     private int moves;
     private Coaster currentCoaster;
 
@@ -91,17 +108,38 @@ public class BoardPlayer : MonoBehaviour
         else
         {
             currentCoaster.playerStop(this);
+            BoardGameManager.singleton.TurnEnd(this);
             Debug.Log("Next turn.");
         }
     }
 
+    private void SpawnDice()
+    {
+        dice = Instantiate(
+            ((GameObject)Resources.Load("Dice")).GetComponent<Dice>());
+        dice.transform.position = transform.position + Vector3.up * 5;
+        dice.owner = this;
+    }
+
     private void ThrowDice()
     {
+        /*
         //Cambiar el spawn del dado a cuando es el turno del jugador.
         Dice dice = Instantiate(
             ((GameObject)Resources.Load("Dice")).GetComponent<Dice>(),
             transform.position + Vector3.up * 5, Quaternion.identity);
         dice.owner = this;
+        */
+        if (!turn || dice == null || dice.used)
+        {
+            return;
+        }
+
+        ObjectRotator objRot;
+        if(dice.TryGetComponent(out objRot))
+        {
+            objRot.enabled = false;
+        }
         dice.Throw();
     }
 
