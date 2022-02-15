@@ -70,7 +70,7 @@ public class Coaster : MonoBehaviour
     }
 
     // Movimiento en casillas.
-    public event Action<BoardPlayer> onPlayerEnter;
+    protected event Action<BoardPlayer> onPlayerEnter;
     public void playerEnter(BoardPlayer player)
     {
         Debug.Log("Player entered the coaster!");
@@ -80,23 +80,23 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    public event Action<BoardPlayer> onPlayerReach;
-    public void playerReach(BoardPlayer player)
+    protected event Action<BoardPlayer> onPlayerStop;
+    public void playerStop(BoardPlayer player)
     {
         Debug.Log("Player reached the coaster!");
-        if(onPlayerReach != null)
+        if(onPlayerStop != null)
         {
-            onPlayerReach(player);
+            onPlayerStop(player);
         }
     }
 
-    public event Action<BoardPlayer> onPlayerLeft;
-    public void playerLeft(BoardPlayer player)
+    protected event Action<BoardPlayer> onPlayerLeave;
+    public void playerLeave(BoardPlayer player)
     {
         Debug.Log("Player left the coaster!");
-        if (onPlayerLeft != null)
+        if (onPlayerLeave != null)
         {
-            onPlayerLeft(player);
+            onPlayerLeave(player);
         }
     }
 

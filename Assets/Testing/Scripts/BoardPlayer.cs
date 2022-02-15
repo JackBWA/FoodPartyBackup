@@ -79,9 +79,20 @@ public class BoardPlayer : MonoBehaviour
             yield return new WaitForSeconds(0.025f);
         }
         currentCoaster = target;
+
+        // En el futuro checkear si se ve forzado a parar en dicha casilla.
+        currentCoaster.playerEnter(this);
+
         moves--;
-        if (moves > 0) StartCoroutine(Move(currentCoaster.next[0]));
-        else Debug.Log("Next turn.");
+        if (moves > 0)
+        {
+            StartCoroutine(Move(currentCoaster.next[0]));
+        }
+        else
+        {
+            currentCoaster.playerStop(this);
+            Debug.Log("Next turn.");
+        }
     }
 
     private void ThrowDice()
