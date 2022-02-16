@@ -7,7 +7,7 @@ public class Dice : MonoBehaviour
 
     Rigidbody rb;
 
-    public BoardPlayer owner;
+    public BoardEntity owner;
 
     public float throwForce = 10f;
     public float sideThrowSpread = 5f;
@@ -57,6 +57,7 @@ public class Dice : MonoBehaviour
         if (result > 0)
         {
             owner.SetMoves(result);
+            Destroy(gameObject);
         }
         else
         {

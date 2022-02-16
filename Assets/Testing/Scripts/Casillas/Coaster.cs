@@ -6,7 +6,7 @@ using UnityEngine;
 public class Coaster : MonoBehaviour
 {
     public List<Coaster> next = new List<Coaster>();
-    public List<BoardPlayer> players = new List<BoardPlayer>();
+    public List<BoardEntity> players = new List<BoardEntity>();
 
     public static Coaster initialCoaster;
 
@@ -70,8 +70,8 @@ public class Coaster : MonoBehaviour
     }
 
     // Movimiento en casillas.
-    protected event Action<BoardPlayer> onPlayerEnter;
-    public void playerEnter(BoardPlayer player)
+    protected event Action<BoardEntity> onPlayerEnter;
+    public void playerEnter(BoardEntity player)
     {
         Debug.Log("Player entered the coaster!");
         if(onPlayerEnter != null)
@@ -80,8 +80,8 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    protected event Action<BoardPlayer> onPlayerStop;
-    public void playerStop(BoardPlayer player)
+    protected event Action<BoardEntity> onPlayerStop;
+    public void playerStop(BoardEntity player)
     {
         Debug.Log("Player reached the coaster!");
         if(onPlayerStop != null)
@@ -90,8 +90,8 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    protected event Action<BoardPlayer> onPlayerLeave;
-    public void playerLeave(BoardPlayer player)
+    protected event Action<BoardEntity> onPlayerLeave;
+    public void playerLeave(BoardEntity player)
     {
         Debug.Log("Player left the coaster!");
         if (onPlayerLeave != null)
@@ -101,7 +101,7 @@ public class Coaster : MonoBehaviour
     }
 
     // Forzar la detención del player.
-    public void ForceStop(BoardPlayer player)
+    public void ForceStop(BoardEntity player)
     {
         player.ForceStop();
     }

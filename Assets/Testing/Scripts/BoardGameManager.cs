@@ -11,36 +11,22 @@ public class BoardGameManager : MonoBehaviour
     private int currentTurnIndex = 0;
 
     #region Private Methods
-    /*
-    private int GetPlayerIndex(BoardPlayer player)
-    {
-        int indexResult = -1;
-        int i = 0;
-        while(i < players.Length)
-        {
-            if (players[i] == player)
-            {
-                indexResult = i;
-                i = players.Length;
-            } else
-            {
-                i++;
-            }
-        }
-        return indexResult;
-    }
-    */
-
     private void InitializeGame()
     {
-        foreach (BoardPlayer player in players)
+        if(entities.Count <= 0)
         {
-            if (player != null)
+            Debug.LogWarning("No players.");
+            return;
+        }
+
+        foreach (BoardEntity entity in entities)
+        {
+            if (entity != null)
             {
-                player.TeleportTo(Coaster.initialCoaster);
+                entity.TeleportTo(Coaster.initialCoaster);
             }
         }
-        players[0].hasTurn = true;
+        entities[0].hasTurn = true;
     }
     #endregion
 
@@ -60,19 +46,19 @@ public class BoardGameManager : MonoBehaviour
     #endregion
 
     #region Events
-    public event Action<BoardPlayer> onTurnEnd;
-    public void TurnEnd(BoardPlayer player)
+    public event Action<BoardEntity> onTurnEnd;
+    public void TurnEnd(BoardEntity player)
     {
         player.hasTurn = false;
         currentTurnIndex++;
-        if(currentTurnIndex >= players.Count)
+        if(currentTurnIndex >= entities.Count)
         {
             currentTurnIndex = 0;
             // Start minigame.
             Debug.Log("Minigame starting...");
         } else
         {
-            players[currentTurnIndex].hasTurn = true;
+            entities[currentTurnIndex].hasTurn = true;
         }
         //==========================
         onTurnEnd?.Invoke(player);
@@ -80,7 +66,7 @@ public class BoardGameManager : MonoBehaviour
     #endregion
 
     /* De momento public */
-    public List<BoardPlayer> players = new List<BoardPlayer>();
+    public List<BoardEntity> entities = new List<BoardEntity>();
 
     private void Start()
     {
