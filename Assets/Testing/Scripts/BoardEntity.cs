@@ -74,6 +74,16 @@ public class BoardEntity : MonoBehaviour
         //Debug.Log(result);
     }
 
+    public void TeleportTo(Coaster coaster, Vector3 position)
+    {
+        ReloadAgent();
+        bool success = agent.Warp(position + new Vector3(0, transform.localScale.y, 0));
+        if (success)
+        {
+            currentCoaster = coaster;
+        }
+    }
+
     public void SetMoves(int amount)
     {
         moves = amount;
@@ -83,7 +93,17 @@ public class BoardEntity : MonoBehaviour
 
     public IEnumerator Move(Coaster target)
     {
-        agent.SetDestination(target.transform.position);
+        List<Vector3> availableWaitZones = target.GetAvailableWaitZones();
+        Debug.Log(availableWaitZones);
+        if (availableWaitZones != null && availableWaitZones.Count > 0)
+        {
+            agent.SetDestination(availableWaitZones[0]);
+        } else
+        {
+            // No deberia de triggerearse.
+            agent.SetDestination(target.transform.position);
+        }
+
         yield return new WaitForSeconds(0.1f); // Funciona de momento.
         while (agent.velocity.magnitude > Vector3.kEpsilon)
         {
@@ -92,11 +112,13 @@ public class BoardEntity : MonoBehaviour
         currentCoaster = target;
 
         // En el futuro checkear si se ve forzado a parar en dicha casilla.
-        currentCoaster.playerEnter(this);
+        if(availableWaitZones != null) currentCoaster.playerEnter(this, availableWaitZones[0]);
+        else currentCoaster.playerEnter(this, currentCoaster.transform.position);
 
         moves--;
         if (moves > 0)
         {
+            currentCoaster.playerLeave(this, availableWaitZones[0]);
             StartCoroutine(Move(currentCoaster.next[0]));
         }
         else

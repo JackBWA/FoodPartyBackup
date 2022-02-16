@@ -23,6 +23,18 @@ public class BoardGameManager : MonoBehaviour
         {
             if (entity != null)
             {
+                /*
+                List<Vector3> waitZones = Coaster.initialCoaster.GetAvailableWaitZones();
+                if (waitZones != null)
+                {
+                    entity.TeleportTo(Coaster.initialCoaster, waitZones[0]);
+                    Coaster.initialCoaster.OccupeWaitZone(entity, waitZones[0]);
+                }
+                else
+                {
+                    entity.TeleportTo(Coaster.initialCoaster);
+                }
+                */
                 entity.TeleportTo(Coaster.initialCoaster);
             }
         }
@@ -42,6 +54,11 @@ public class BoardGameManager : MonoBehaviour
             return;
         }
         singleton = this;
+    }
+
+    private void Start()
+    {
+        InitializeGame();
     }
     #endregion
 
@@ -67,9 +84,4 @@ public class BoardGameManager : MonoBehaviour
 
     /* De momento public */
     public List<BoardEntity> entities = new List<BoardEntity>();
-
-    private void Start()
-    {
-        InitializeGame();
-    }
 }

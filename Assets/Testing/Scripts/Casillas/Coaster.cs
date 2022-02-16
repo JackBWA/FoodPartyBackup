@@ -7,6 +7,9 @@ public class Coaster : MonoBehaviour
 {
     public List<Coaster> next = new List<Coaster>();
     public List<BoardEntity> players = new List<BoardEntity>();
+    public GameObject[] waitZones;
+
+    private Dictionary<Vector3, BoardEntity> occupiedWaitZones = new Dictionary<Vector3, BoardEntity>();
 
     public static Coaster initialCoaster;
 
@@ -49,7 +52,8 @@ public class Coaster : MonoBehaviour
 
     public bool canForceStop;
 
-    private void Awake()
+    #region Awake/Start/Update
+    protected virtual void Awake()
     {
         if (isInitial)
         {
@@ -61,6 +65,44 @@ public class Coaster : MonoBehaviour
             }
             initialCoaster = this;
         }
+        CreateWaitZones();
+    }
+
+    protected virtual void Start()
+    {
+
+    }
+    #endregion
+
+    public void CreateWaitZones()
+    {
+        waitZones = new GameObject[BoardGameManager.singleton.entities.Count];
+        int subdivisionAngle = 360 / waitZones.Length;
+        for(int i = 0; i < waitZones.Length; i++)
+        {
+            GameObject waitZone = new GameObject("Wait Zone");
+            waitZone.transform.position = transform.position;
+            waitZone.transform.eulerAngles = new Vector3(0f, (i + 1) * subdivisionAngle, 0f);
+            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 2f);
+            waitZone.transform.parent = transform;
+            waitZones[i] = waitZone;
+            occupiedWaitZones.Add(waitZone.transform.position, null);
+        }
+    }
+
+    public List<Vector3> GetAvailableWaitZones()
+    {
+        List<Vector3> result = null;
+
+        foreach (KeyValuePair<Vector3, BoardEntity> kv in occupiedWaitZones)
+        {
+            if(kv.Value == null)
+            {
+                if (result == null) result = new List<Vector3>();
+                result.Add(kv.Key);
+            }
+        }
+        return result;
     }
 
     // Realizar su función.
@@ -70,13 +112,14 @@ public class Coaster : MonoBehaviour
     }
 
     // Movimiento en casillas.
-    protected event Action<BoardEntity> onPlayerEnter;
-    public void playerEnter(BoardEntity player)
+    protected event Action<BoardEntity, Vector3> onPlayerEnter;
+    public void playerEnter(BoardEntity player, Vector3 position)
     {
         Debug.Log("Player entered the coaster!");
+        OccupeWaitZone(player, position);
         if(onPlayerEnter != null)
         {
-            onPlayerEnter(player);
+            onPlayerEnter(player, position);
         }
     }
 
@@ -90,13 +133,14 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    protected event Action<BoardEntity> onPlayerLeave;
-    public void playerLeave(BoardEntity player)
+    protected event Action<BoardEntity, Vector3> onPlayerLeave;
+    public void playerLeave(BoardEntity entity, Vector3 position)
     {
         Debug.Log("Player left the coaster!");
+        DisoccupeWaitZone(position);
         if (onPlayerLeave != null)
         {
-            onPlayerLeave(player);
+            onPlayerLeave(entity, position);
         }
     }
 
@@ -132,6 +176,26 @@ public class Coaster : MonoBehaviour
     public void SetCoasterState(bool enabled)
     {
         isCoasterEnabled = enabled;
+    }
+
+    public bool OccupeWaitZone(BoardEntity entity, Vector3 position)
+    {
+        if (occupiedWaitZones.ContainsKey(position) || occupiedWaitZones.ContainsValue(entity)) return false;
+        else
+        {
+            occupiedWaitZones.Add(position, entity);
+            return true;
+        }
+    }
+
+    public bool DisoccupeWaitZone(Vector3 position)
+    {
+        if (occupiedWaitZones.ContainsKey(position))
+        {
+            occupiedWaitZones.Remove(position);
+            return true;
+        }
+        else return false;
     }
 
     /* Que cosas puede hacer una casilla:
