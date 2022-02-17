@@ -47,8 +47,7 @@ public class BoardEntity : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-        TryGetComponent(out agent);
-        onTurnStart += SpawnDice;
+        //TryGetComponent(out agent);
         //Debug.Log("Entity");
     }
 
@@ -57,6 +56,22 @@ public class BoardEntity : MonoBehaviour
 
     }
     #endregion
+
+    public virtual void InitializeEntity()
+    {
+        TryGetComponent(out agent);
+        BindEvents();
+    }
+
+    protected virtual void BindEvents()
+    {
+        onTurnStart += SpawnDice;
+    }
+
+    protected virtual void UnbindEvents()
+    {
+        onTurnStart -= SpawnDice;
+    }
 
     public void ForceStop()
     {
@@ -94,7 +109,16 @@ public class BoardEntity : MonoBehaviour
     public IEnumerator Move(Coaster target)
     {
         List<Vector3> availableWaitZones = target.GetAvailableWaitZones();
-        Debug.Log(availableWaitZones);
+        /*
+        Debug.Log("=========================");
+        if(availableWaitZones != null)
+        {
+            foreach(Vector3 zone in availableWaitZones)
+            {
+                Debug.Log(zone);
+            }
+        }
+        */
         if (availableWaitZones != null && availableWaitZones.Count > 0)
         {
             agent.SetDestination(availableWaitZones[0]);

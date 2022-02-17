@@ -11,10 +11,29 @@ public class BoardPlayer : BoardEntity
     protected override void Awake()
     {
         base.Awake();
-        TryGetComponent(out agent);
-        playerControls = new BoardPlayerControls();
         playerControls.Dice.Throw.performed += _ => ThrowDice();
         //Debug.Log("Player");
+    }
+
+    private void InitializeControls()
+    {
+        playerControls = new BoardPlayerControls();
+    }
+
+    public override void InitializeEntity()
+    {
+        InitializeControls();
+        base.InitializeEntity();
+    }
+
+    protected override void BindEvents()
+    {
+        base.BindEvents();
+    }
+
+    protected override void UnbindEvents()
+    {
+        base.BindEvents();
     }
 
     private void OnEnable()

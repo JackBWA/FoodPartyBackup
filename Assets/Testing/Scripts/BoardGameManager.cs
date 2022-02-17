@@ -11,7 +11,61 @@ public class BoardGameManager : MonoBehaviour
     private int currentTurnIndex = 0;
 
     #region Private Methods
-    private void InitializeGame()
+    
+    private void InitializeEntities()
+    {
+        entities.ForEach((e) =>
+        {
+            e.InitializeEntity();
+        });
+    }
+
+    private void InitializeCoasters()
+    {
+        Coaster[] coasters = FindObjectsOfType<Coaster>();
+        foreach (Coaster c in coasters)
+        {
+            c.Initialize();
+            c.CreateWaitZones();
+        }
+    }
+
+    private void RandomizeOrder()
+    {
+        /*
+        foreach (BoardEntity a in entities)
+        {
+            Debug.Log(a);
+        }
+        */
+
+        List<BoardEntity> aux = new List<BoardEntity>();
+        int count = entities.Count;
+        //Debug.Log(entities.Count);
+
+        while(entities.Count != 0)
+        {
+            BoardEntity temp = entities[UnityEngine.Random.Range(0, entities.Count)];
+            aux.Add(temp);
+            entities.Remove(temp);
+            //Debug.Log($"{aux.Count} | {entities.Count}");
+        }
+
+        entities = aux;
+        /*
+        Debug.Log(entities.Count);
+        Debug.Log("========================================");
+        */
+
+        /*
+        foreach (BoardEntity b in entities)
+        {
+            Debug.Log(b);
+        }
+        */
+    }
+
+    private void TeleportToWaitZones()
     {
         if(entities.Count <= 0)
         {
@@ -23,19 +77,18 @@ public class BoardGameManager : MonoBehaviour
         {
             if (entity != null)
             {
-                /*
                 List<Vector3> waitZones = Coaster.initialCoaster.GetAvailableWaitZones();
                 if (waitZones != null)
                 {
                     entity.TeleportTo(Coaster.initialCoaster, waitZones[0]);
                     Coaster.initialCoaster.OccupeWaitZone(entity, waitZones[0]);
                 }
+                /*
                 else
                 {
                     entity.TeleportTo(Coaster.initialCoaster);
                 }
                 */
-                entity.TeleportTo(Coaster.initialCoaster);
             }
         }
         entities[0].hasTurn = true;
@@ -54,11 +107,16 @@ public class BoardGameManager : MonoBehaviour
             return;
         }
         singleton = this;
+
+        InitializeEntities();
+        InitializeCoasters();
+        RandomizeOrder();
+        TeleportToWaitZones();
     }
 
     private void Start()
     {
-        InitializeGame();
+
     }
     #endregion
 

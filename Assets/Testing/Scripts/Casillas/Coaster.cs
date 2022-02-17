@@ -50,11 +50,13 @@ public class Coaster : MonoBehaviour
 
     public CoasterType type;
 
-    public bool canForceStop;
+    public bool canRequestStop;
+    private bool canForceStop;
 
     #region Awake/Start/Update
     protected virtual void Awake()
     {
+        /*
         if (isInitial)
         {
             if(initialCoaster != null)
@@ -66,6 +68,7 @@ public class Coaster : MonoBehaviour
             initialCoaster = this;
         }
         CreateWaitZones();
+        */
     }
 
     protected virtual void Start()
@@ -73,6 +76,20 @@ public class Coaster : MonoBehaviour
 
     }
     #endregion
+
+    public void Initialize()
+    {
+        if (isInitial)
+        {
+            if (initialCoaster != null)
+            {
+                Debug.LogWarning($"Warning. There can be only one initial coaster. {name} will now be disabled.");
+                enabled = false;
+                return;
+            }
+            initialCoaster = this;
+        }
+    }
 
     public void CreateWaitZones()
     {
@@ -108,14 +125,14 @@ public class Coaster : MonoBehaviour
     // Realizar su función.
     public virtual void Interact()
     {
-        
+        Debug.Log($"Interact base. + {type}");
     }
 
     // Movimiento en casillas.
     protected event Action<BoardEntity, Vector3> onPlayerEnter;
     public void playerEnter(BoardEntity player, Vector3 position)
     {
-        Debug.Log("Player entered the coaster!");
+        //Debug.Log("Player entered the coaster!");
         OccupeWaitZone(player, position);
         if(onPlayerEnter != null)
         {
@@ -126,7 +143,8 @@ public class Coaster : MonoBehaviour
     protected event Action<BoardEntity> onPlayerStop;
     public void playerStop(BoardEntity player)
     {
-        Debug.Log("Player reached the coaster!");
+        //Debug.Log("Player stopped on coaster!");
+        Interact();
         if(onPlayerStop != null)
         {
             onPlayerStop(player);
@@ -136,7 +154,7 @@ public class Coaster : MonoBehaviour
     protected event Action<BoardEntity, Vector3> onPlayerLeave;
     public void playerLeave(BoardEntity entity, Vector3 position)
     {
-        Debug.Log("Player left the coaster!");
+        //Debug.Log("Player left the coaster!");
         DisoccupeWaitZone(position);
         if (onPlayerLeave != null)
         {
@@ -178,24 +196,24 @@ public class Coaster : MonoBehaviour
         isCoasterEnabled = enabled;
     }
 
-    public bool OccupeWaitZone(BoardEntity entity, Vector3 position)
+    public void OccupeWaitZone(BoardEntity entity, Vector3 position)
     {
+        if (occupiedWaitZones.ContainsKey(position)) occupiedWaitZones.Remove(position);
+        occupiedWaitZones.Add(position, entity);
+        /*
         if (occupiedWaitZones.ContainsKey(position) || occupiedWaitZones.ContainsValue(entity)) return false;
         else
         {
             occupiedWaitZones.Add(position, entity);
             return true;
         }
+        */
     }
 
-    public bool DisoccupeWaitZone(Vector3 position)
+    public void DisoccupeWaitZone(Vector3 position)
     {
-        if (occupiedWaitZones.ContainsKey(position))
-        {
-            occupiedWaitZones.Remove(position);
-            return true;
-        }
-        else return false;
+        if (occupiedWaitZones.ContainsKey(position)) occupiedWaitZones.Remove(position);
+        occupiedWaitZones.Add(position, null);
     }
 
     /* Que cosas puede hacer una casilla:
