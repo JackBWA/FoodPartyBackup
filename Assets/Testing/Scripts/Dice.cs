@@ -23,6 +23,7 @@ public class Dice : MonoBehaviour
         if (!TryGetComponent(out rb))
         {
             enabled = false;
+            return;
         }
     }
 
@@ -54,6 +55,7 @@ public class Dice : MonoBehaviour
         }
 
         int result = CheckResult();
+        Debug.Log(result);
         if (result > 0)
         {
             owner.SetMoves(result);

@@ -18,6 +18,5 @@ public class NormalCoaster : Coaster
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("Normal action.");
     }
 }

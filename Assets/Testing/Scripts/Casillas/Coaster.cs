@@ -100,7 +100,7 @@ public class Coaster : MonoBehaviour
             GameObject waitZone = new GameObject("Wait Zone");
             waitZone.transform.position = transform.position;
             waitZone.transform.eulerAngles = new Vector3(0f, (i + 1) * subdivisionAngle, 0f);
-            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 2f);
+            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 2.5f);
             waitZone.transform.parent = transform;
             waitZones[i] = waitZone;
             occupiedWaitZones.Add(waitZone.transform.position, null);
@@ -125,7 +125,7 @@ public class Coaster : MonoBehaviour
     // Realizar su función.
     public virtual void Interact()
     {
-        Debug.Log($"Interact base. + {type}");
+
     }
 
     // Movimiento en casillas.

@@ -18,6 +18,5 @@ public class TeleportCoaster : Coaster
     public override void Interact()
     {
         base.Interact();
-        Debug.Log("Teleport action.");
     }
 }

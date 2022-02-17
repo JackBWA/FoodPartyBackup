@@ -269,8 +269,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   throwForce: 10
   sideThrowSpread: 5
-  minRndRotation: 120
-  maxRndRotation: -60
+  minRndRotation: 150
+  maxRndRotation: -90
   detectionMask:
     serializedVersion: 2
     m_Bits: 64
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 20
-  rotationAxis: 7
+  rotationAxis: 5
   inverted: 0
 --- !u!54 &6431229443951682233
 Rigidbody:

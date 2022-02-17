@@ -149,7 +149,7 @@ public class BoardEntity : MonoBehaviour
         {
             currentCoaster.playerStop(this);
             BoardGameManager.singleton.TurnEnd(this);
-            Debug.Log("Next turn.");
+            //Debug.Log("Next turn.");
         }
     }
 
