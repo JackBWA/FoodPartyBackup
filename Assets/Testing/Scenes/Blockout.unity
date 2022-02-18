@@ -4409,12 +4409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minigames:
-  - {fileID: 102900000, guid: 146c5df0785cdf5469a22d17dce32568, type: 3}
   - {fileID: 102900000, guid: d5375f3eb2e2ab44b85b388baa04c955, type: 3}
-  - {fileID: 102900000, guid: f361675e8255c2543858e2567626522d, type: 3}
-  - {fileID: 102900000, guid: 9332b2e73dfdef148a5f586d9a1d5f41, type: 3}
-  - {fileID: 102900000, guid: b91b2a1135d9e8b4a9b4369a1400e6b9, type: 3}
-  - {fileID: 102900000, guid: b3de82e213f34a642b3b718e84533fc4, type: 3}
   forcedNextMinigame: {fileID: 0}
 --- !u!4 &719841704
 Transform:
