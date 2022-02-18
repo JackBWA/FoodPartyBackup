@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoardGameManager : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class BoardGameManager : MonoBehaviour
     //public const int MAX_PLAYERS = 4;
 
     private int currentTurnIndex = 0;
+    public GameObject boardBackup;
 
     #region Private Methods
-    
+
     private void InitializeEntities()
     {
         entities.ForEach((e) =>
@@ -100,6 +102,8 @@ public class BoardGameManager : MonoBehaviour
 
     private void Awake()
     {
+        DontDestroyOnLoad(this);
+        //Time.timeScale = 15f; // Para ahorrar tiempo.
         if(singleton != null)
         {
             enabled = false;
@@ -131,6 +135,8 @@ public class BoardGameManager : MonoBehaviour
             currentTurnIndex = 0;
             // Start minigame.
             Debug.Log("Minigame starting...");
+            SaveCurrentState();
+            MiniGamesManager.singleton.LoadRandomMinigame();
         } else
         {
             entities[currentTurnIndex].hasTurn = true;
@@ -139,6 +145,25 @@ public class BoardGameManager : MonoBehaviour
         onTurnEnd?.Invoke(player);
     }
     #endregion
+
+    private void SaveCurrentState()
+    {
+        if (boardBackup == null)
+        {
+            boardBackup = new GameObject("Board Backup");
+            DontDestroyOnLoad(boardBackup);
+        }
+        GameObject[] objects = SceneManager.GetActiveScene().GetRootGameObjects();
+        foreach (GameObject sceneObj in objects)
+        {
+            sceneObj.transform.parent = boardBackup.transform;
+        }
+        boardBackup.SetActive(false);
+        /* No va.
+        CreateSceneParameters sceneParams = new CreateSceneParameters(LocalPhysicsMode.None);
+        Scene backUpScene = SceneManager.CreateScene("Board State", sceneParams);
+        */
+    }
 
     /* De momento public */
     public List<BoardEntity> entities = new List<BoardEntity>();
