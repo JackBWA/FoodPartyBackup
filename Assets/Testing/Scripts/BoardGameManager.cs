@@ -12,6 +12,8 @@ public class BoardGameManager : MonoBehaviour
     private int currentTurnIndex = 0;
     public GameObject boardBackup;
 
+    public Dictionary<BoardPlayer, Recipe> recipes = new Dictionary<BoardPlayer, Recipe>();
+
     #region Private Methods
 
     private void InitializeEntities()
@@ -103,7 +105,7 @@ public class BoardGameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this);
-        //Time.timeScale = 15f; // Para ahorrar tiempo.
+        Time.timeScale = 15f; // Para ahorrar tiempo.
         if(singleton != null)
         {
             enabled = false;
@@ -135,8 +137,10 @@ public class BoardGameManager : MonoBehaviour
             currentTurnIndex = 0;
             // Start minigame.
             Debug.Log("Minigame starting...");
-            SaveCurrentState();
+            /*
+            SaveState();
             MiniGamesManager.singleton.LoadRandomMinigame();
+            */
         } else
         {
             entities[currentTurnIndex].hasTurn = true;
@@ -146,7 +150,7 @@ public class BoardGameManager : MonoBehaviour
     }
     #endregion
 
-    private void SaveCurrentState()
+    public void SaveState()
     {
         if (boardBackup == null)
         {
@@ -164,6 +168,20 @@ public class BoardGameManager : MonoBehaviour
         Scene backUpScene = SceneManager.CreateScene("Board State", sceneParams);
         */
     }
+
+    /*
+    public void LoadState()
+    {
+        SceneManager.MoveGameObjectToScene(boardBackup, SceneManager.GetActiveScene());
+        boardBackup.SetActive(true);
+        foreach (Transform obj in boardBackup.transform)
+        {
+            obj.parent = null;
+        }
+        DontDestroyOnLoad(boardBackup);
+        boardBackup.SetActive(false);
+    }
+    */
 
     /* De momento public */
     public List<BoardEntity> entities = new List<BoardEntity>();

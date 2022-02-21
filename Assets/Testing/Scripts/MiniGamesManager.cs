@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MiniGamesManager : MonoBehaviour
 {
     public List<SceneAsset> minigames;
+    //[HideInInspector]
     public SceneAsset forcedNextMinigame;
 
     public static MiniGamesManager singleton;
