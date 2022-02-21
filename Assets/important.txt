@@ -1,0 +1,3 @@
+Scene essentials:
+
+Specific Input System for each scene.
