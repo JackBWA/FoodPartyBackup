@@ -20,7 +20,7 @@ public class BoardGameManager : MonoBehaviour
     {
         entities.ForEach((e) =>
         {
-            e.InitializeEntity();
+            e.Initialize();
         });
     }
 
@@ -29,8 +29,8 @@ public class BoardGameManager : MonoBehaviour
         Coaster[] coasters = FindObjectsOfType<Coaster>();
         foreach (Coaster c in coasters)
         {
-            c.Initialize();
-            c.CreateWaitZones();
+            c.Initialize(GameManager.maxPlayers);
+            //c.CreateWaitZones();
         }
     }
 

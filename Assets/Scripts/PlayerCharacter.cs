@@ -14,7 +14,7 @@ public class PlayerCharacter : MonoBehaviour
     public CharacterType characterType;
 
     // Probablemente no se use de forma compleja.
-    #region I.A Difficulty
+    #region AI Variables
     public enum AIDifficulty
     {
         Easy,
@@ -23,11 +23,23 @@ public class PlayerCharacter : MonoBehaviour
     }
     public AIDifficulty aiDifficulty;
 
+    public string[] aiNames = new string[]
+    {
+        "kazamabc",
+        "V I C E N T E",
+        "-Hideki-",
+        "G U R A S I M P",
+        "Frosiito",
+        "B of yassin",
+        "NHarmonia",
+        "Estopa",
+        "Fichi",
+        "Damn DanyL"
+    };
+
     private void LoadDifficulty(AIDifficulty difficulty)
     {
         // Do stuff.
     }
     #endregion
-
-
 }

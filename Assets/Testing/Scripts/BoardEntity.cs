@@ -57,7 +57,7 @@ public class BoardEntity : MonoBehaviour
     }
     #endregion
 
-    public virtual void InitializeEntity()
+    public virtual void Initialize()
     {
         TryGetComponent(out agent);
         BindEvents();
@@ -81,22 +81,21 @@ public class BoardEntity : MonoBehaviour
     public void TeleportTo(Coaster coaster)
     {
         ReloadAgent();
-        bool success = agent.Warp(coaster.transform.position + new Vector3(0, transform.localScale.y, 0));
-        if (success)
+        /*bool success = */agent.Warp(coaster.transform.position + new Vector3(0, transform.localScale.y, 0));
+        /*if (success)
         {
             currentCoaster = coaster;
-        }
-        //Debug.Log(result);
+        }*/
     }
 
     public void TeleportTo(Coaster coaster, Vector3 position)
     {
         ReloadAgent();
-        bool success = agent.Warp(position + new Vector3(0, transform.localScale.y, 0));
-        if (success)
+        /*bool success = */agent.Warp(position + new Vector3(0, transform.localScale.y, 0));
+        /*if (success)
         {
             currentCoaster = coaster;
-        }
+        }*/
     }
 
     public void SetMoves(int amount)

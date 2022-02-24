@@ -8,12 +8,11 @@ public class BoardAI : BoardEntity
     protected override void Awake()
     {
         base.Awake();
-        //Debug.Log("AI");
     }
 
-    public override void InitializeEntity()
+    public override void Initialize()
     {
-        base.InitializeEntity();
+        base.Initialize();
     }
 
     protected override void BindEvents()

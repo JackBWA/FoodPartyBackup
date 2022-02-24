@@ -9,6 +9,7 @@ public class CharacterManager : MonoBehaviour
     public static CharacterManager singleton;
 
     public static PlayerCharacter selectedCharacter;
+    public static List<PlayerCharacter> aiCharacters = new List<PlayerCharacter>();
 
     public List<PlayerCharacter> playableCharacters = new List<PlayerCharacter>();
     private List<PlayerCharacter> cachedCharacters = new List<PlayerCharacter>();
@@ -76,6 +77,18 @@ public class CharacterManager : MonoBehaviour
 
     public void StartGame()
     {
+        for(int i = 0; i < playableCharacters.Count; i++)
+        {
+            if(i != index)
+            {
+                PlayerCharacter aiChar = cachedCharacters[i];
+                aiChar.characterType = PlayerCharacter.CharacterType.AI;
+                aiCharacters.Add(aiChar);
+            } else
+            {
+                selectedCharacter.characterType = PlayerCharacter.CharacterType.Player;
+            }
+        }
         SceneManager.LoadScene("Board1");
     }
 }

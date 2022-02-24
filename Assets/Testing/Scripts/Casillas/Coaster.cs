@@ -77,7 +77,7 @@ public class Coaster : MonoBehaviour
     }
     #endregion
 
-    public void Initialize()
+    public void Initialize(int waitZonesAmount)
     {
         if (isInitial)
         {
@@ -89,11 +89,12 @@ public class Coaster : MonoBehaviour
             }
             initialCoaster = this;
         }
+        CreateWaitZones(waitZonesAmount);
     }
 
-    public void CreateWaitZones()
+    private void CreateWaitZones(int amount)
     {
-        waitZones = new GameObject[BoardGameManager.singleton.entities.Count];
+        waitZones = new GameObject[amount/*BoardGameManager.singleton.entities.Count*/];
         int subdivisionAngle = 360 / waitZones.Length;
         for(int i = 0; i < waitZones.Length; i++)
         {
