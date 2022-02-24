@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     public static PlayerCharacter selectedCharacter;
 
     public List<PlayerCharacter> playableCharacters = new List<PlayerCharacter>();
+    private List<PlayerCharacter> cachedCharacters = new List<PlayerCharacter>();
 
     private int index = 0;
 
@@ -37,6 +39,7 @@ public class CharacterManager : MonoBehaviour
                 PlayerCharacter _character = Instantiate(pChar).GetComponent<PlayerCharacter>();
                 _character.gameObject.SetActive(false);
                 playableCharacters.Add(_character);
+                cachedCharacters.Add(pChar);
             }
             UpdateCharacter();
         }
@@ -49,7 +52,7 @@ public class CharacterManager : MonoBehaviour
             if(i == index)
             {
                 playableCharacters[i].gameObject.SetActive(true);
-                selectedCharacter = playableCharacters[i];
+                selectedCharacter = cachedCharacters[i];
             } else
             {
                 playableCharacters[i].gameObject.SetActive(false);
@@ -71,8 +74,8 @@ public class CharacterManager : MonoBehaviour
         UpdateCharacter();
     }
 
-    private void Update()
+    public void StartGame()
     {
-        Debug.Log(selectedCharacter.name);
+        SceneManager.LoadScene("Board1");
     }
 }

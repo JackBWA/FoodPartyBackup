@@ -692,7 +692,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2122507729}
         m_TargetAssemblyTypeName: CharacterManager, Assembly-CSharp
-        m_MethodName: PreviousCharacter
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

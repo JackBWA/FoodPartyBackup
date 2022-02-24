@@ -40,7 +40,7 @@ public class MainMenuEventSystem : MonoBehaviour
     private void StartSingleplayerGame()
     {
         // Hardcoded de momento.
-        SceneManager.LoadScene("SingleplayerConfigScene");
+        SceneManager.LoadScene("SingleplayerConfig");
     }
 
     private void ShowMultiplayerMenu()
