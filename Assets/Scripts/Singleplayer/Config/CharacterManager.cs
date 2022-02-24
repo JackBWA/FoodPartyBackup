@@ -7,7 +7,9 @@ public class CharacterManager : MonoBehaviour
 
     public static CharacterManager singleton;
 
-    public List<GameObject> playableCharacters = new List<GameObject>();
+    public static PlayerCharacter selectedCharacter;
+
+    public List<PlayerCharacter> playableCharacters = new List<PlayerCharacter>();
 
     private int index = 0;
 
@@ -27,14 +29,14 @@ public class CharacterManager : MonoBehaviour
 
     private void LoadPlayableCharacters()
     {
-        Object[] characters = Resources.LoadAll("Characters/");
+        PlayerCharacter[] characters = Resources.LoadAll<PlayerCharacter>("Characters/");
         if (characters.Length > 0)
         {
-            foreach (Object o in characters)
+            foreach (PlayerCharacter pChar in characters)
             {
-                GameObject obj = (GameObject)Instantiate(o);
-                obj.SetActive(false);
-                playableCharacters.Add(obj);
+                PlayerCharacter _character = Instantiate(pChar).GetComponent<PlayerCharacter>();
+                _character.gameObject.SetActive(false);
+                playableCharacters.Add(_character);
             }
             UpdateCharacter();
         }
@@ -46,10 +48,11 @@ public class CharacterManager : MonoBehaviour
         {
             if(i == index)
             {
-                playableCharacters[i].SetActive(true);
+                playableCharacters[i].gameObject.SetActive(true);
+                selectedCharacter = playableCharacters[i];
             } else
             {
-                playableCharacters[i].SetActive(false);
+                playableCharacters[i].gameObject.SetActive(false);
             }
         }
     }
@@ -66,5 +69,10 @@ public class CharacterManager : MonoBehaviour
         index++;
         if (index >= playableCharacters.Count) index = 0;
         UpdateCharacter();
+    }
+
+    private void Update()
+    {
+        Debug.Log(selectedCharacter.name);
     }
 }
