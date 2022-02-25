@@ -27,6 +27,13 @@ public class Dice : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        Quaternion aux = transform.rotation;
+        aux.eulerAngles = new Vector3(Random.Range(-180, 180), Random.Range(-180, 180), Random.Range(-180, 180));
+        transform.rotation = aux;
+    }
+
     public void Throw()
     {
         rb.useGravity = true;
