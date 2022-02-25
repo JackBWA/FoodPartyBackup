@@ -9,11 +9,60 @@ public class GameBoardManager : MonoBehaviour
 
     public static GameBoardManager singleton;
 
+    [HideInInspector]
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
 
+    public Recipe objectiveRecipe;
+
+    public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
+    public List<Flavor> recipeFlavors = new List<Flavor>();
+    public List<Ingredient> recipeIngredients = new List<Ingredient>();
+
+    [HideInInspector]
     public int roundIndex = 0;
 
     private int turnIndex = 0;
+
+    private bool hasCache
+    {
+        get
+        {
+            return _cache;
+        }
+    }
+
+    #region Cache
+    private static bool _cache;
+    private static List<Coaster> coasterCache;
+    private static Recipe objectiveRecipeCache;
+    private static Dictionary<BoardEntity, Recipe> recipeStatesCache;
+    private static int roundCache;
+
+    public void SaveGameState()
+    {
+        _cache = true;
+        coasterCache = new List<Coaster>();
+        Coaster[] cCoasters = FindObjectsOfType<Coaster>();
+        foreach(Coaster c in cCoasters)
+        {
+            coasterCache.Add(c);
+        }
+        objectiveRecipeCache = objectiveRecipe;
+        recipeStatesCache = recipeStates;
+        roundCache = roundIndex;
+    }
+
+    public void LoadGameState()
+    {
+        _cache = false;
+
+
+
+        objectiveRecipe = objectiveRecipeCache;
+        recipeStates = recipeStatesCache;
+        roundIndex = roundCache;
+    }
+    #endregion
 
     #region Awake/Start/Update
     private void Awake()
@@ -44,6 +93,11 @@ public class GameBoardManager : MonoBehaviour
 
     private void InitializeGame()
     {
+        #region Variables Setup
+        objectiveRecipe = Recipe.CreateRecipe(2, 4, recipeFlavors, recipeIngredients); // Hardcoded for now.
+        roundIndex = 0;
+        turnIndex = 0;
+        #endregion
         #region Initialize Coasters
         Coaster[] coasters = FindObjectsOfType<Coaster>();
         foreach (Coaster c in coasters)
@@ -73,12 +127,11 @@ public class GameBoardManager : MonoBehaviour
             BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
             boardPlayer.TeleportTo(Coaster.initialCoaster);
             boardPlayers.Add(boardPlayer);
+            recipeStates.Add(boardPlayer, new Recipe());
         }
         #endregion
         RandomizeTurns();
-        roundIndex = 0;
-        turnIndex = 0;
-        TurnStart(boardPlayers[turnIndex]);
+        GameStart();
     }
 
     public void RandomizeTurns()
@@ -95,6 +148,20 @@ public class GameBoardManager : MonoBehaviour
     }
 
     #region Events
+    public event Action onGameStart;
+    public void GameStart()
+    {
+        TurnStart(boardPlayers[turnIndex]);
+        onGameStart?.Invoke();
+    }
+
+    public event Action onGameEnd;
+    public void GameEnd()
+    {
+
+        onGameEnd?.Invoke();
+    }
+
     public event Action<BoardEntity> onTurnStart;
     public void TurnStart(BoardEntity entity)
     {
@@ -115,7 +182,7 @@ public class GameBoardManager : MonoBehaviour
         {
             turnIndex = 0;
             // Cache board game state.
-
+            SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
             SceneManager.LoadScene("MainMenu");
         }

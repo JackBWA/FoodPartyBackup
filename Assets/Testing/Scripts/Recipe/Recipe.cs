@@ -58,11 +58,11 @@ public class Recipe
         return wasUpdated;
     }
 
-    public void IncreaseOrDecreaseCurrentFlavor(Flavor flavor, int amount)
+    public void SetCurrentFlavor(Flavor flavor, int newAmount)
     {
         if (currentFlavors.ContainsKey(flavor))
         {
-            currentFlavors[flavor] += amount;
+            currentFlavors[flavor] = newAmount;
         }
     }
 
@@ -90,13 +90,38 @@ public class Recipe
         return wasUpdated;
     }
 
-    public void IncreaseOrDecreaseCurrentIngredient(Ingredient ingredient, int amount)
+    public void SetCurrentIngredient(Ingredient ingredient, int newAmount)
     {
         if (currentIngredients.ContainsKey(ingredient))
         {
-            currentIngredients[ingredient] += amount;
+            currentIngredients[ingredient] = newAmount;
         }
     }
 
     #endregion
+
+    public static Recipe CreateRecipe(int flavorsAmount, int ingredientsAmount, List<Flavor> usableFlavors, List<Ingredient> usableIngredients)
+    {
+        Recipe recipe = new Recipe();
+        for(int f = 0; f < flavorsAmount; f++)
+        {
+            Flavor rnd = usableFlavors[Random.Range(0, usableFlavors.Count)];
+            while (recipe.AddRequiredFlavor(rnd, 1))
+            {
+                rnd = usableFlavors[Random.Range(0, usableFlavors.Count)];
+            }
+            recipe.SetCurrentFlavor(rnd, 0);
+        }
+
+        for(int i = 0; i < ingredientsAmount; i++)
+        {
+            Ingredient rnd = usableIngredients[Random.Range(0, usableIngredients.Count)];
+            while (recipe.AddRequiredIngredient(rnd, 5))
+            {
+                rnd = usableIngredients[Random.Range(0, usableIngredients.Count)];
+            }
+            recipe.SetCurrentIngredient(rnd, 0);
+        }
+        return recipe;
+    }
 }
