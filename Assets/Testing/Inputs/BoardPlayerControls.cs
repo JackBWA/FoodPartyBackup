@@ -34,7 +34,18 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18c1d1a6-d715-45bc-9212-07daec6e5f9e"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -52,22 +63,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
-                },
-                {
-                    ""name"": ""Select"",
-                    ""type"": ""Button"",
-                    ""id"": ""902b2e23-c934-48a9-9107-f9a4fbebb936"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Use"",
-                    ""type"": ""Button"",
-                    ""id"": ""ad762a7e-cdd4-4e20-8a72-b7a687dd900d"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -77,30 +72,19 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""a67cb75a-4c2b-4934-a43f-4a1611b7173e"",
-                    ""path"": ""<Mouse>/leftButton"",
+                    ""id"": ""dbdc68fc-35f9-4682-8bbd-a3ffe40c0584"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Select"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""96dcaaae-c5c7-44be-9425-27da77e330f6"",
-                    ""path"": ""<Keyboard>/q"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard/Mouse"",
-                    ""action"": ""Use"",
+                    ""groups"": """",
+                    ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -109,8 +93,8 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""Keyboard/Mouse"",
-            ""bindingGroup"": ""Keyboard/Mouse"",
+            ""name"": ""Keyboard&Mouse"",
+            ""bindingGroup"": ""Keyboard&Mouse"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
@@ -119,6 +103,17 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 },
                 {
                     ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
                     ""isOptional"": false,
                     ""isOR"": false
                 }
@@ -132,8 +127,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Toggle = m_Inventory.FindAction("Toggle", throwIfNotFound: true);
-        m_Inventory_Select = m_Inventory.FindAction("Select", throwIfNotFound: true);
-        m_Inventory_Use = m_Inventory.FindAction("Use", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -217,15 +210,11 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Inventory;
     private IInventoryActions m_InventoryActionsCallbackInterface;
     private readonly InputAction m_Inventory_Toggle;
-    private readonly InputAction m_Inventory_Select;
-    private readonly InputAction m_Inventory_Use;
     public struct InventoryActions
     {
         private @BoardPlayerControls m_Wrapper;
         public InventoryActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Toggle => m_Wrapper.m_Inventory_Toggle;
-        public InputAction @Select => m_Wrapper.m_Inventory_Select;
-        public InputAction @Use => m_Wrapper.m_Inventory_Use;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -238,12 +227,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
-                @Select.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSelect;
-                @Select.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSelect;
-                @Select.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnSelect;
-                @Use.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUse;
-                @Use.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUse;
-                @Use.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnUse;
             }
             m_Wrapper.m_InventoryActionsCallbackInterface = instance;
             if (instance != null)
@@ -251,12 +234,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
-                @Select.started += instance.OnSelect;
-                @Select.performed += instance.OnSelect;
-                @Select.canceled += instance.OnSelect;
-                @Use.started += instance.OnUse;
-                @Use.performed += instance.OnUse;
-                @Use.canceled += instance.OnUse;
             }
         }
     }
@@ -266,8 +243,17 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     {
         get
         {
-            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard/Mouse");
+            if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard&Mouse");
             return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+        }
+    }
+    private int m_GamepadSchemeIndex = -1;
+    public InputControlScheme GamepadScheme
+    {
+        get
+        {
+            if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+            return asset.controlSchemes[m_GamepadSchemeIndex];
         }
     }
     public interface IDiceActions
@@ -277,7 +263,5 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     public interface IInventoryActions
     {
         void OnToggle(InputAction.CallbackContext context);
-        void OnSelect(InputAction.CallbackContext context);
-        void OnUse(InputAction.CallbackContext context);
     }
 }
