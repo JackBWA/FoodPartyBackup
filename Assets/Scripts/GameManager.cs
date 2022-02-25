@@ -27,8 +27,8 @@ public class GameManager : MonoBehaviour
         #region Singleton
         if (singleton != null)
         {
-            Debug.LogWarning($"Multiple instanced of GameManager detected. Disabling {this.gameObject.name}.");
-            enabled = false;
+            Debug.LogWarning($"Multiple instances of GameManager detected. Destroying {gameObject.name}.");
+            Destroy(gameObject);
             return;
         }
         singleton = this;

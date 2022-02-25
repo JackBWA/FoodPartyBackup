@@ -1,11 +1,19 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
+using UnityEngine.SceneManagement;
 
 public class GameBoardManager : MonoBehaviour
 {
 
     public static GameBoardManager singleton;
+
+    public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
+
+    public int roundIndex = 0;
+
+    private int turnIndex = 0;
 
     #region Awake/Start/Update
     private void Awake()
@@ -47,19 +55,6 @@ public class GameBoardManager : MonoBehaviour
         // Instantiate players
         List<PlayerCharacter> players = new List<PlayerCharacter>();
         PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);
-        /*switch (player.characterType)
-        {
-            case PlayerCharacter.CharacterType.AI:
-                player.gameObject.AddComponent<BoardAI>();
-                //player.gameObject.AddComponent<BoardAI>().Initialize();
-                break;
-
-            case PlayerCharacter.CharacterType.Player:
-                player.gameObject.AddComponent<BoardPlayer>();
-                //player.gameObject.AddComponent<BoardPlayer>().Initialize();
-                break;
-        }
-        */
         BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();
         bP.Initialize();
         players.Add(player);
@@ -67,17 +62,6 @@ public class GameBoardManager : MonoBehaviour
         foreach(PlayerCharacter ai in CharacterManager.aiCharacters)
         {
             PlayerCharacter aiPlayer = Instantiate(ai);
-            /*switch (aiPlayer.characterType)
-            {
-                case PlayerCharacter.CharacterType.AI:
-                    aiPlayer.gameObject.AddComponent<BoardAI>();
-                    break;
-
-                case PlayerCharacter.CharacterType.Player:
-                    aiPlayer.gameObject.AddComponent<BoardPlayer>();
-                    break;
-            }
-            */
             BoardAI aiP = aiPlayer.gameObject.AddComponent<BoardAI>();
             aiP.Initialize();
             players.Add(aiPlayer);
@@ -86,19 +70,58 @@ public class GameBoardManager : MonoBehaviour
         // Teleport them to the coaster's waiting zones.
         foreach (PlayerCharacter p in players)
         {
-            p.GetComponent<BoardEntity>().TeleportTo(Coaster.initialCoaster, Coaster.initialCoaster.GetAvailableWaitZones()[0]);
+            BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
+            boardPlayer.TeleportTo(Coaster.initialCoaster);
+            boardPlayers.Add(boardPlayer);
         }
         #endregion
         RandomizeTurns();
-        // Start
+        roundIndex = 0;
+        turnIndex = 0;
+        TurnStart(boardPlayers[turnIndex]);
     }
 
     public void RandomizeTurns()
     {
-
+        List<BoardEntity> aux = boardPlayers;
+        boardPlayers = new List<BoardEntity>();
+        int count = aux.Count;
+        for(int i = 0; i < count; i++)
+        {
+            BoardEntity rndE = aux[UnityEngine.Random.Range(0, aux.Count)];
+            aux.Remove(rndE);
+            boardPlayers.Add(rndE);
+        }
     }
 
     #region Events
+    public event Action<BoardEntity> onTurnStart;
+    public void TurnStart(BoardEntity entity)
+    {
+        // Do stuff. (?)
+        entity.hasTurn = true;
 
+
+        // ------
+        onTurnStart?.Invoke(entity);
+    }
+
+    public event Action<BoardEntity> onTurnEnd;
+    public void TurnEnd(BoardEntity entity)
+    {
+        entity.hasTurn = false;
+        turnIndex++;
+        if (turnIndex >= boardPlayers.Count)
+        {
+            turnIndex = 0;
+            // Cache board game state.
+
+            // Start random event. (Minigame, general boost, etc.)
+            SceneManager.LoadScene("MainMenu");
+        }
+        onTurnEnd?.Invoke(entity);
+
+        TurnStart(boardPlayers[turnIndex]);
+    }
     #endregion
 }

@@ -47,19 +47,27 @@ public class BoardEntity : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-        //TryGetComponent(out agent);
-        //Debug.Log("Entity");
+        hasTurn = false; // Posibilidad que no se tenga que indicar aqui.
     }
 
     protected virtual void Start()
     {
 
     }
+
+    private void Update()
+    {
+        
+    }
     #endregion
 
     public virtual void Initialize()
     {
-        TryGetComponent(out agent);
+        if(!TryGetComponent(out agent))
+        {
+            agent = gameObject.AddComponent<NavMeshAgent>();
+        }
+        agent.enabled = false;
         BindEvents();
     }
 
@@ -80,22 +88,24 @@ public class BoardEntity : MonoBehaviour
 
     public void TeleportTo(Coaster coaster)
     {
-        ReloadAgent();
-        /*bool success = */agent.Warp(coaster.transform.position + new Vector3(0, transform.localScale.y, 0));
-        /*if (success)
+        DisableAgent();
+        List<Vector3> availableZones = coaster.GetAvailableWaitZones();
+        if (availableZones.Count <= 0)
         {
-            currentCoaster = coaster;
-        }*/
+            EnableAgent();
+            return;
+        }
+        agent.Warp(availableZones[0] + new Vector3(0f, transform.localScale.y, 0f)/*Vector3.up * transform.localScale.y*/);
+        coaster.OccupeWaitZone(this, availableZones[0]);
+        currentCoaster = coaster;
+        EnableAgent();
     }
 
-    public void TeleportTo(Coaster coaster, Vector3 position)
+    public void TeleportTo(Vector3 position)
     {
-        ReloadAgent();
-        /*bool success = */agent.Warp(position + new Vector3(0, transform.localScale.y, 0));
-        /*if (success)
-        {
-            currentCoaster = coaster;
-        }*/
+        DisableAgent();
+        agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
+        EnableAgent();
     }
 
     public void SetMoves(int amount)
@@ -147,7 +157,7 @@ public class BoardEntity : MonoBehaviour
         else
         {
             currentCoaster.playerStop(this);
-            BoardGameManager.singleton.TurnEnd(this);
+            GameBoardManager.singleton.TurnEnd(this);
             //Debug.Log("Next turn.");
         }
     }
@@ -182,10 +192,20 @@ public class BoardEntity : MonoBehaviour
         dice.Throw();
     }
 
-    // Necesario para cuando el agente se deslinkea de su navmesh.
+    // Necesario para cuando el agente se deslinkea de su navmesh. // Deprecate (?)
     protected void ReloadAgent()
     {
         agent.enabled = false;
         agent.enabled = true;
+    }
+
+    protected void EnableAgent()
+    {
+        agent.enabled = true;
+    }
+
+    protected void DisableAgent()
+    {
+        agent.enabled = false;
     }
 }
