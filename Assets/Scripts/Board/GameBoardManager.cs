@@ -14,7 +14,10 @@ public class GameBoardManager : MonoBehaviour
 
     public Recipe objectiveRecipe;
 
-    public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
+    private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
+
+    public bool randomRecipe;
+    public List<Recipe> recipesList = new List<Recipe>();
     public List<Flavor> recipeFlavors = new List<Flavor>();
     public List<Ingredient> recipeIngredients = new List<Ingredient>();
 
@@ -81,7 +84,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        
+        Time.timeScale = 15f;
     }
 
     private void Update()
@@ -94,7 +97,15 @@ public class GameBoardManager : MonoBehaviour
     private void InitializeGame()
     {
         #region Variables Setup
-        objectiveRecipe = Recipe.CreateRecipe(2, 4, recipeFlavors, recipeIngredients); // Hardcoded for now.
+        /*
+        if (randomRecipe)
+        {
+            objectiveRecipe = Recipe.CreateRandomRecipe(2, 4, recipeFlavors, recipeIngredients); // Hardcoded for now.
+        } else
+        {
+            objectiveRecipe = recipesList[UnityEngine.Random.Range(0, recipesList.Count)];
+        }
+        */
         roundIndex = 0;
         turnIndex = 0;
         #endregion

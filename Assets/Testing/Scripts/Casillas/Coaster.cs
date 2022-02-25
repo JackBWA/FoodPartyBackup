@@ -13,6 +13,9 @@ public class Coaster : MonoBehaviour
 
     public static Coaster initialCoaster;
 
+    public int coasterId { get; private set; }
+    private static int autoId = 0;
+
     public bool isInitial
     {
         get
@@ -56,24 +59,13 @@ public class Coaster : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-        /*
-        if (isInitial)
-        {
-            if(initialCoaster != null)
-            {
-                Debug.LogWarning($"Warning. There can be only one initial coaster. {name} will now be disabled.");
-                enabled = false;
-                return;
-            }
-            initialCoaster = this;
-        }
-        CreateWaitZones();
-        */
+        coasterId = autoId;
+        autoId++;
     }
 
     protected virtual void Start()
     {
-
+        if(autoId != 0) autoId = 0;
     }
     #endregion
 

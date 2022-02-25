@@ -23,7 +23,8 @@ public class PlayerCharacter : MonoBehaviour
     }
     public AIDifficulty aiDifficulty;
 
-    public string[] aiNames = new string[]
+    [HideInInspector]
+    public static string[] aiNames = new string[]
     {
         "kazamabc",
         "V I C E N T E",

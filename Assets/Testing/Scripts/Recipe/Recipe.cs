@@ -2,8 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Recipe
+[CreateAssetMenu(fileName = "New Recipe", menuName = "Cooking Party/Recipe/Empty Recipe")]
+public class Recipe : ScriptableObject
 {
+    public string title;
+
+    [TextArea]
+    public string description;
+
     public Dictionary<Flavor, int> requiredFlavors;
     public Dictionary<Ingredient, int> requiredIngredients;
 
@@ -100,7 +106,7 @@ public class Recipe
 
     #endregion
 
-    public static Recipe CreateRecipe(int flavorsAmount, int ingredientsAmount, List<Flavor> usableFlavors, List<Ingredient> usableIngredients)
+    public static Recipe CreateRandomRecipe(int flavorsAmount, int ingredientsAmount, List<Flavor> usableFlavors, List<Ingredient> usableIngredients)
     {
         Recipe recipe = new Recipe();
         for(int f = 0; f < flavorsAmount; f++)
