@@ -26,6 +26,27 @@ public class GameBoardManager : MonoBehaviour
 
     private int turnIndex = 0;
 
+    #region Save/Load
+
+    public bool isStateSaved = false;
+
+    private GameObject boardState;
+
+    public void SaveGameState()
+    {
+
+    }
+
+    public void LoadGameState()
+    {
+
+    }
+
+    #endregion
+
+    #region Cache
+
+    /*
     private bool hasCache
     {
         get
@@ -33,14 +54,17 @@ public class GameBoardManager : MonoBehaviour
             return _cache;
         }
     }
+    */
 
-    #region Cache
+    /*
     private static bool _cache;
     private static List<Coaster> coasterCache;
     private static Recipe objectiveRecipeCache;
     private static Dictionary<BoardEntity, Recipe> recipeStatesCache;
     private static int roundCache;
+    */
 
+    /*
     public void SaveGameState()
     {
         _cache = true;
@@ -54,7 +78,9 @@ public class GameBoardManager : MonoBehaviour
         recipeStatesCache = recipeStates;
         roundCache = roundIndex;
     }
+    */
 
+    /*
     public void LoadGameState()
     {
         _cache = false;
@@ -65,7 +91,8 @@ public class GameBoardManager : MonoBehaviour
         recipeStates = recipeStatesCache;
         roundIndex = roundCache;
     }
-    #endregion
+    */
+    #endregion // Not anymore xde
 
     #region Awake/Start/Update
     private void Awake()
@@ -84,7 +111,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 15f;
+        //Time.timeScale = 15f;
     }
 
     private void Update()
