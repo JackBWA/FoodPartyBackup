@@ -12,6 +12,9 @@ public class Coaster : MonoBehaviour
 
     public static Coaster initialCoaster;
 
+    public List<Vector3> waitZones = new List<Vector3>();
+    private Dictionary<Vector3, BoardEntity> waitZonesState = new Dictionary<Vector3, BoardEntity>();
+
     public int coasterId { get; private set; }
     private static int autoId = 0;
 
@@ -23,21 +26,6 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    /*
-     * Que tipo de casillas hay:
-     * 
-     * Casilla normal.
-     * Casilla de inicio.
-     * Casilla de meta.
-     * Casilla de protección.
-     * Casilla de teletransporte.
-     * Casilla de tienda.
-     * Casilla de bonus.
-     * Casilla de trampa. (Aún se está pensando).
-     * 
-     */
-
-    // Editor (tal vez se haga xd)
     public enum CoasterType
     {
         Normal,
@@ -53,7 +41,13 @@ public class Coaster : MonoBehaviour
     public CoasterType type;
 
     public bool canRequestStop;
-    private bool canForceStop;
+    private bool canForceStop
+    {
+        get
+        {
+            return true; // WIP
+        }
+    }
 
     #region Awake/Start/Update
     protected virtual void Awake()
@@ -68,7 +62,7 @@ public class Coaster : MonoBehaviour
     }
     #endregion
 
-    public void Initialize(int waitZonesAmount)
+    public void Initialize()
     {
         if (isInitial)
         {
@@ -80,6 +74,7 @@ public class Coaster : MonoBehaviour
             }
             initialCoaster = this;
         }
+        CreateWaitZones(GameManager.maxPlayers);
         GameObjectUtility.SetStaticEditorFlags(gameObject, StaticEditorFlags.NavigationStatic);
         NavMeshSurface nms = gameObject.AddComponent<NavMeshSurface>();
         nms.collectObjects = CollectObjects.Children;
@@ -89,6 +84,39 @@ public class Coaster : MonoBehaviour
     public virtual void Interact()
     {
 
+    }
+
+    private void CreateWaitZones(int amount)
+    {
+        int subdivisionAngle = 360 / amount;
+        for(int i = 0; i < amount; i++)
+        {
+            GameObject waitZone = new GameObject("Wait Zone");
+            waitZone.transform.position = transform.position;
+            waitZone.transform.eulerAngles = new Vector3(0f, (i + 1) * subdivisionAngle, 0f);
+            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 2.5f);
+            waitZone.transform.parent = transform;
+            waitZones.Add(waitZone.transform.position);
+            waitZonesState.Add(waitZone.transform.position, null);
+        }
+    }
+
+    public List<Vector3> GetAvailableWaitZones()
+    {
+        List<Vector3> result = new List<Vector3>();
+        foreach(Vector3 waitZone in waitZones)
+        {
+            if(waitZonesState.ContainsKey(waitZone) && waitZonesState[waitZone] == null)
+            {
+                result.Add(waitZone);
+            }
+        }
+        return result;
+    }
+
+    public void SetWaitZoneState(Vector3 waitZone, BoardEntity entity)
+    {
+        waitZonesState[waitZone] = entity;
     }
 
     // Movimiento en casillas.
@@ -129,29 +157,13 @@ public class Coaster : MonoBehaviour
         player.ForceStop();
     }
 
-    // Almacenar ingredientes.
-    /*
-    public List<Interactible> ingredients = new List<Interactible>();
-    public void StoreIngredient(InteractibleIngredient ingredient)
-    {
-        ingredients.Add(ingredient);
-        // Mostrar visualmente. (FEEDBACK VISUAL!)
-    }
-    */
-
-    // Poner trampas
-    public List</*Replace with: Trap*/GameObject> traps = new List</*Replace with: Trap*/GameObject>();
-    public void SetTrap(/*Trap trap*/)
-    {
-        //traps.Add(trap);
-    }
-
     // Activarse o desactivarse.
     public bool isCoasterEnabled = true;
     public void ToggleCoasterState()
     {
         isCoasterEnabled = !isCoasterEnabled;
     }
+
     public void SetCoasterState(bool enabled)
     {
         isCoasterEnabled = enabled;

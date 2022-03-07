@@ -30,12 +30,7 @@ public class BoardEntity : MonoBehaviour
     public Coaster currentCoaster;
 
     #region Components
-    /*
     protected NavMeshAgent agent;
-    */
-
-    protected CharacterController cC;
-    protected Rigidbody rB;
     #endregion
 
     #region Events
@@ -68,22 +63,12 @@ public class BoardEntity : MonoBehaviour
 
     public virtual void Initialize()
     {
-        /*
         if(!TryGetComponent(out agent))
         {
             agent = gameObject.AddComponent<NavMeshAgent>();
         }
-        agent.enabled = false;
-        */
-        if (!TryGetComponent(out cC))
-        {
-            cC = gameObject.AddComponent<CharacterController>();
-        }
-        if(!TryGetComponent(out rB))
-        {
-            rB = gameObject.AddComponent<Rigidbody>();
-        }
-        rB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+        agent.radius = 0.1f;
+        DisableAgent();
         BindEvents();
     }
 
@@ -104,12 +89,9 @@ public class BoardEntity : MonoBehaviour
 
     public void TeleportTo(Vector3 position)
     {
-
-        /*
         DisableAgent();
         agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
         EnableAgent();
-        */
     }
 
     public void SetMoves(int amount)
@@ -154,7 +136,6 @@ public class BoardEntity : MonoBehaviour
         dice.Throw();
     }
 
-    /*
     // Necesario para cuando el agente se deslinkea de su navmesh. // Deprecate (?)
     protected void ReloadAgent()
     {
@@ -164,12 +145,11 @@ public class BoardEntity : MonoBehaviour
 
     protected void EnableAgent()
     {
-        agent.enabled = true;
+        if(!agent.enabled) agent.enabled = true;
     }
 
     protected void DisableAgent()
     {
-        agent.enabled = false;
+        if(agent.enabled) agent.enabled = false;
     }
-    */
 }

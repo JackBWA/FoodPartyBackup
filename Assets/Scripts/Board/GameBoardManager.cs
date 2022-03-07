@@ -108,7 +108,7 @@ public class GameBoardManager : MonoBehaviour
         foreach (CoasterSpawner cS in coasterSpawners)
         {
             Coaster c = cS.SpawnCoaster();
-            c.Initialize(GameManager.maxPlayers);
+            c.Initialize();
             surfaces.Add(c.GetComponent<NavMeshSurface>());
             coasters.Add(c);
         }
@@ -170,11 +170,19 @@ public class GameBoardManager : MonoBehaviour
             players.Add(aiPlayer);
         }
 
-        // Teleport them to the initial coaster.
         foreach (PlayerCharacter p in players)
         {
             BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
-            boardPlayer.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
+            List<Vector3> waitZones = Coaster.initialCoaster.GetAvailableWaitZones();
+            if (waitZones.Count > 0)
+            {
+                boardPlayer.TeleportTo(waitZones[0]);
+                Coaster.initialCoaster.SetWaitZoneState(waitZones[0], boardPlayer);
+            } else
+            {
+                boardPlayer.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
+                Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, boardPlayer);
+            }
             boardPlayers.Add(boardPlayer);
         }
     }
