@@ -14,4 +14,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Board1.unity
     guid: f1f1572180189f74c8f418a5092cfcae
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_ClimbTheRamp.unity
+    guid: 146c5df0785cdf5469a22d17dce32568
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_FoodCatch.unity
+    guid: d5375f3eb2e2ab44b85b388baa04c955
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_KingOfTheHill.unity
+    guid: f361675e8255c2543858e2567626522d
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_RaceToTheTop.unity
+    guid: 9332b2e73dfdef148a5f586d9a1d5f41
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_TNTRun.unity
+    guid: b91b2a1135d9e8b4a9b4369a1400e6b9
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Minigame_TNTTag.unity
+    guid: b3de82e213f34a642b3b718e84533fc4
   m_configObjects: {}

@@ -30,7 +30,12 @@ public class BoardEntity : MonoBehaviour
     public Coaster currentCoaster;
 
     #region Components
+    /*
     protected NavMeshAgent agent;
+    */
+
+    protected CharacterController cC;
+    protected Rigidbody rB;
     #endregion
 
     #region Events
@@ -63,11 +68,22 @@ public class BoardEntity : MonoBehaviour
 
     public virtual void Initialize()
     {
+        /*
         if(!TryGetComponent(out agent))
         {
             agent = gameObject.AddComponent<NavMeshAgent>();
         }
         agent.enabled = false;
+        */
+        if (!TryGetComponent(out cC))
+        {
+            cC = gameObject.AddComponent<CharacterController>();
+        }
+        if(!TryGetComponent(out rB))
+        {
+            rB = gameObject.AddComponent<Rigidbody>();
+        }
+        rB.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         BindEvents();
     }
 
@@ -86,26 +102,14 @@ public class BoardEntity : MonoBehaviour
         moves = 0;
     }
 
-    public void TeleportTo(Coaster coaster)
-    {
-        DisableAgent();
-        List<Vector3> availableZones = coaster.GetAvailableWaitZones();
-        if (availableZones.Count <= 0)
-        {
-            EnableAgent();
-            return;
-        }
-        agent.Warp(availableZones[0] + new Vector3(0f, transform.localScale.y, 0f)/*Vector3.up * transform.localScale.y*/);
-        coaster.OccupeWaitZone(this, availableZones[0]);
-        currentCoaster = coaster;
-        EnableAgent();
-    }
-
     public void TeleportTo(Vector3 position)
     {
+
+        /*
         DisableAgent();
         agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
         EnableAgent();
+        */
     }
 
     public void SetMoves(int amount)
@@ -115,51 +119,9 @@ public class BoardEntity : MonoBehaviour
         StartCoroutine(Move(currentCoaster.next[0]));
     }
 
-    public IEnumerator Move(Coaster target)
+    public IEnumerator Move(Coaster target) // Or Vector3 targetPosition
     {
-        List<Vector3> availableWaitZones = target.GetAvailableWaitZones();
-        /*
-        Debug.Log("=========================");
-        if(availableWaitZones != null)
-        {
-            foreach(Vector3 zone in availableWaitZones)
-            {
-                Debug.Log(zone);
-            }
-        }
-        */
-        if (availableWaitZones != null && availableWaitZones.Count > 0)
-        {
-            agent.SetDestination(availableWaitZones[0]);
-        } else
-        {
-            // No deberia de triggerearse.
-            agent.SetDestination(target.transform.position);
-        }
-
-        yield return new WaitForSeconds(0.1f); // Funciona de momento.
-        while (agent.velocity.magnitude > Vector3.kEpsilon)
-        {
-            yield return new WaitForSeconds(0.025f);
-        }
-        currentCoaster = target;
-
-        // En el futuro checkear si se ve forzado a parar en dicha casilla.
-        if(availableWaitZones != null) currentCoaster.playerEnter(this, availableWaitZones[0]);
-        else currentCoaster.playerEnter(this, currentCoaster.transform.position);
-
-        moves--;
-        if (moves > 0)
-        {
-            currentCoaster.playerLeave(this, availableWaitZones[0]);
-            StartCoroutine(Move(currentCoaster.next[0]));
-        }
-        else
-        {
-            currentCoaster.playerStop(this);
-            GameBoardManager.singleton.TurnEnd(this);
-            //Debug.Log("Next turn.");
-        }
+        yield return new WaitForEndOfFrame(); // Temporal
     }
 
     protected void SpawnDice()
@@ -192,6 +154,7 @@ public class BoardEntity : MonoBehaviour
         dice.Throw();
     }
 
+    /*
     // Necesario para cuando el agente se deslinkea de su navmesh. // Deprecate (?)
     protected void ReloadAgent()
     {
@@ -208,4 +171,5 @@ public class BoardEntity : MonoBehaviour
     {
         agent.enabled = false;
     }
+    */
 }

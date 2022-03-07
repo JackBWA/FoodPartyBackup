@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-
+using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class GameBoardManager : MonoBehaviour
@@ -16,6 +17,8 @@ public class GameBoardManager : MonoBehaviour
 
     private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
+    public List<SceneAsset> minigameScenes = new List<SceneAsset>();
+
     public bool randomRecipe;
     public List<Recipe> recipesList = new List<Recipe>();
     public List<Flavor> recipeFlavors = new List<Flavor>();
@@ -28,71 +31,34 @@ public class GameBoardManager : MonoBehaviour
 
     #region Save/Load
 
-    public bool isStateSaved = false;
-
-    private GameObject boardState;
+    private GameObject persistentBoardObjects;
 
     public void SaveGameState()
     {
+        if(persistentBoardObjects == null)
+        {
+            persistentBoardObjects = new GameObject("Persistent On Board");
+            DontDestroyOnLoad(persistentBoardObjects);
+            persistentBoardObjects.SetActive(false);
+        }
 
+        foreach(Coaster c in FindObjectsOfType<Coaster>())
+        {
+            c.transform.parent = persistentBoardObjects.transform;
+        }
     }
 
     public void LoadGameState()
     {
-
+        foreach(Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())
+        {
+            Debug.Log("yes");
+            c.gameObject.transform.parent = null;
+            SceneManager.MoveGameObjectToScene(c.gameObject, SceneManager.GetActiveScene());
+        }
     }
 
     #endregion
-
-    #region Cache
-
-    /*
-    private bool hasCache
-    {
-        get
-        {
-            return _cache;
-        }
-    }
-    */
-
-    /*
-    private static bool _cache;
-    private static List<Coaster> coasterCache;
-    private static Recipe objectiveRecipeCache;
-    private static Dictionary<BoardEntity, Recipe> recipeStatesCache;
-    private static int roundCache;
-    */
-
-    /*
-    public void SaveGameState()
-    {
-        _cache = true;
-        coasterCache = new List<Coaster>();
-        Coaster[] cCoasters = FindObjectsOfType<Coaster>();
-        foreach(Coaster c in cCoasters)
-        {
-            coasterCache.Add(c);
-        }
-        objectiveRecipeCache = objectiveRecipe;
-        recipeStatesCache = recipeStates;
-        roundCache = roundIndex;
-    }
-    */
-
-    /*
-    public void LoadGameState()
-    {
-        _cache = false;
-
-
-
-        objectiveRecipe = objectiveRecipeCache;
-        recipeStates = recipeStatesCache;
-        roundIndex = roundCache;
-    }
-    */
-    #endregion // Not anymore xde
 
     #region Awake/Start/Update
     private void Awake()
@@ -104,6 +70,7 @@ public class GameBoardManager : MonoBehaviour
             return;
         }
         singleton = this;
+        //persistentBoardObjects = null; // Not necessary tho (?).
         #endregion
         DontDestroyOnLoad(this);
         InitializeGame();
@@ -111,20 +78,24 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        //Time.timeScale = 15f;
+        Time.timeScale = 15f;
     }
 
+    /*
     private void Update()
     {
         
     }
+    */
 
     #endregion
 
     private void InitializeGame()
     {
-        #region Variables Setup
+        InitializeCoasters();
+        #region Old xd
         /*
+        #region Variables Setup
         if (randomRecipe)
         {
             objectiveRecipe = Recipe.CreateRandomRecipe(2, 4, recipeFlavors, recipeIngredients); // Hardcoded for now.
@@ -132,7 +103,6 @@ public class GameBoardManager : MonoBehaviour
         {
             objectiveRecipe = recipesList[UnityEngine.Random.Range(0, recipesList.Count)];
         }
-        */
         roundIndex = 0;
         turnIndex = 0;
         #endregion
@@ -170,6 +140,48 @@ public class GameBoardManager : MonoBehaviour
         #endregion
         RandomizeTurns();
         GameStart();
+        */
+        #endregion
+    }
+
+    private void InitializeCoasters()
+    {
+        foreach (CoasterSpawner cS in FindObjectsOfType<CoasterSpawner>())
+        {
+            cS.SpawnCoaster().Initialize(GameManager.maxPlayers);
+        }
+
+        // PLAYERS WIP (MOVE & SPAWN WITH CHARACTERCONTROLLER)
+        List<PlayerCharacter> players = new List<PlayerCharacter>();
+        PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);
+        BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();
+        bP.Initialize();
+        players.Add(player);
+
+        foreach (PlayerCharacter ai in CharacterManager.aiCharacters)
+        {
+            PlayerCharacter aiPlayer = Instantiate(ai);
+            BoardAI aiP = aiPlayer.gameObject.AddComponent<BoardAI>();
+            aiP.Initialize();
+            players.Add(aiPlayer);
+        }
+
+        // Teleport them to the initial coaster.
+        foreach (PlayerCharacter p in players)
+        {
+            BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
+            boardPlayer.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
+            boardPlayers.Add(boardPlayer);
+        }
+    }
+
+    private SceneAsset GetRandomMinigame()
+    {
+        if(minigameScenes != null && minigameScenes.Count > 0)
+        {
+            return minigameScenes[UnityEngine.Random.Range(0, minigameScenes.Count)];
+        }
+        return null;
     }
 
     public void RandomizeTurns()
@@ -219,10 +231,14 @@ public class GameBoardManager : MonoBehaviour
         if (turnIndex >= boardPlayers.Count)
         {
             turnIndex = 0;
-            // Cache board game state.
             SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
-            SceneManager.LoadScene("MainMenu");
+            SceneAsset nextMinigame = GetRandomMinigame();
+            if(nextMinigame != null)
+            {
+                SceneManager.LoadScene(nextMinigame.name);
+            }
+            //SceneManager.LoadScene("MainMenu");
         }
         onTurnEnd?.Invoke(entity);
 
