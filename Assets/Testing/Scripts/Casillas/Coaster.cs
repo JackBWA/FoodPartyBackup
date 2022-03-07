@@ -16,7 +16,6 @@ public class Coaster : MonoBehaviour
     private Dictionary<Vector3, BoardEntity> waitZonesState = new Dictionary<Vector3, BoardEntity>();
 
     public int coasterId { get; private set; }
-    private static int autoId = 0;
 
     public bool isInitial
     {
@@ -52,13 +51,12 @@ public class Coaster : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-        coasterId = autoId;
-        autoId++;
+
     }
 
     protected virtual void Start()
     {
-        if(autoId != 0) autoId = 0;
+
     }
     #endregion
 
