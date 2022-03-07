@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
+using UnityEditor;
 using UnityEngine;
 
 public class Coaster : MonoBehaviour
@@ -78,6 +80,9 @@ public class Coaster : MonoBehaviour
             }
             initialCoaster = this;
         }
+        GameObjectUtility.SetStaticEditorFlags(gameObject, StaticEditorFlags.NavigationStatic);
+        NavMeshSurface nms = gameObject.AddComponent<NavMeshSurface>();
+        nms.collectObjects = CollectObjects.Children;
     }
 
     // Realizar su función.

@@ -237,6 +237,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 793719025}
+  coaster: {fileID: 0}
 --- !u!4 &29687507
 Transform:
   m_ObjectHideFlags: 0
@@ -371,6 +374,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 365056136}
+  coaster: {fileID: 0}
 --- !u!1 &311128340
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,10 +391,10 @@ GameObject:
   - component: {fileID: 311128342}
   m_Layer: 0
   m_Name: Path
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &311128341
 Transform:
@@ -825,6 +831,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   random: 0
+  next:
+  - {fileID: 1791991472}
+  coaster: {fileID: 0}
 --- !u!4 &365056139
 Transform:
   m_ObjectHideFlags: 0
@@ -2400,10 +2409,10 @@ GameObject:
   - component: {fileID: 780308607}
   m_Layer: 0
   m_Name: Path (4)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &780308606
 Transform:
@@ -2512,6 +2521,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 813874577}
+  coaster: {fileID: 0}
 --- !u!4 &793719028
 Transform:
   m_ObjectHideFlags: 0
@@ -3518,6 +3530,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 1206856039}
+  coaster: {fileID: 0}
 --- !u!4 &813874580
 Transform:
   m_ObjectHideFlags: 0
@@ -4172,10 +4187,10 @@ GameObject:
   - component: {fileID: 925598912}
   m_Layer: 0
   m_Name: Path (2)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &925598911
 Transform:
@@ -4761,6 +4776,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 124071782}
+  coaster: {fileID: 0}
 --- !u!4 &1206856042
 Transform:
   m_ObjectHideFlags: 0
@@ -5750,10 +5768,10 @@ GameObject:
   - component: {fileID: 1346147525}
   m_Layer: 0
   m_Name: Path (6)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1346147524
 Transform:
@@ -8533,6 +8551,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  next:
+  - {fileID: 29687504}
+  coaster: {fileID: 0}
 --- !u!4 &1791991475
 Transform:
   m_ObjectHideFlags: 0
@@ -9187,10 +9208,10 @@ GameObject:
   - component: {fileID: 1939136190}
   m_Layer: 0
   m_Name: Path (1)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1939136189
 Transform:
@@ -9282,10 +9303,10 @@ GameObject:
   - component: {fileID: 1944668336}
   m_Layer: 0
   m_Name: Path (3)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &1944668335
 Transform:
@@ -10018,10 +10039,10 @@ GameObject:
   - component: {fileID: 2124983192}
   m_Layer: 0
   m_Name: Path (5)
-  m_TagString: Untagged
+  m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 8
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &2124983191
 Transform:

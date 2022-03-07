@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
+using Unity.AI.Navigation;
 
 public class GameBoardManager : MonoBehaviour
 {
@@ -93,65 +93,69 @@ public class GameBoardManager : MonoBehaviour
     private void InitializeGame()
     {
         InitializeCoasters();
-        #region Old xd
-        /*
-        #region Variables Setup
-        if (randomRecipe)
-        {
-            objectiveRecipe = Recipe.CreateRandomRecipe(2, 4, recipeFlavors, recipeIngredients); // Hardcoded for now.
-        } else
-        {
-            objectiveRecipe = recipesList[UnityEngine.Random.Range(0, recipesList.Count)];
-        }
-        roundIndex = 0;
-        turnIndex = 0;
-        #endregion
-        #region Initialize Coasters
-        Coaster[] coasters = FindObjectsOfType<Coaster>();
-        foreach (Coaster c in coasters)
-        {
-            c.Initialize(GameManager.maxPlayers);
-        }
-        #endregion
-        #region Initialize Players
-        // Instantiate players
-        List<PlayerCharacter> players = new List<PlayerCharacter>();
-        PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);
-        BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();
-        bP.Initialize();
-        players.Add(player);
-
-        foreach(PlayerCharacter ai in CharacterManager.aiCharacters)
-        {
-            PlayerCharacter aiPlayer = Instantiate(ai);
-            BoardAI aiP = aiPlayer.gameObject.AddComponent<BoardAI>();
-            aiP.Initialize();
-            players.Add(aiPlayer);
-        }
-
-        // Teleport them to the coaster's waiting zones.
-        foreach (PlayerCharacter p in players)
-        {
-            BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
-            boardPlayer.TeleportTo(Coaster.initialCoaster);
-            boardPlayers.Add(boardPlayer);
-            recipeStates.Add(boardPlayer, new Recipe());
-        }
-        #endregion
-        RandomizeTurns();
-        GameStart();
-        */
-        #endregion
+        InitializePaths();
+        InitializePlayers();
     }
 
     private void InitializeCoasters()
     {
-        foreach (CoasterSpawner cS in FindObjectsOfType<CoasterSpawner>())
+        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+
+        List<Coaster> coasters = new List<Coaster>();
+
+        CoasterSpawner[] coasterSpawners = FindObjectsOfType<CoasterSpawner>();
+
+        foreach (CoasterSpawner cS in coasterSpawners)
         {
-            cS.SpawnCoaster().Initialize(GameManager.maxPlayers);
+            Coaster c = cS.SpawnCoaster();
+            c.Initialize(GameManager.maxPlayers);
+            surfaces.Add(c.GetComponent<NavMeshSurface>());
+            coasters.Add(c);
+        }
+        BuildNavMesh(surfaces);
+
+        for(int i = 0; i < coasterSpawners.Length; i++)
+        {
+            foreach(CoasterSpawner next in coasterSpawners[i].next)
+            {
+                coasters[i].next.Add(next.coaster);
+            }
         }
 
-        // PLAYERS WIP (MOVE & SPAWN WITH CHARACTERCONTROLLER)
+        /* // CoasterSpawner can be used again to change the coaster type (?)
+        foreach(CoasterSpawner cS in coasterSpawners)
+        {
+            Destroy(cS.gameObject);
+        }
+        */
+    }
+
+    private void InitializePaths()
+    {
+        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+
+        foreach (GameObject gO in GameObject.FindGameObjectsWithTag("BoardPath"))
+        {
+            NavMeshSurface nms = gO.AddComponent<NavMeshSurface>();
+            nms.collectObjects = CollectObjects.Children;
+            surfaces.Add(nms);
+        }
+        BuildNavMesh(surfaces);
+    }
+
+    private void BuildNavMesh(List<NavMeshSurface> surfaces)
+    {
+        foreach (NavMeshSurface nms in surfaces)
+        {
+            if(nms != null)
+            {
+                nms.BuildNavMesh();
+            }
+        }
+    }
+
+    private void InitializePlayers()
+    {
         List<PlayerCharacter> players = new List<PlayerCharacter>();
         PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);
         BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();

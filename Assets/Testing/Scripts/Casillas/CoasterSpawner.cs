@@ -10,6 +10,10 @@ public class CoasterSpawner : MonoBehaviour
 
     private List<string> randomIgnore = new List<string>(){ "Initial", "Finish", "Teleport" };
 
+    public List<CoasterSpawner> next = new List<CoasterSpawner>();
+
+    public Coaster coaster;
+
     public Coaster SpawnCoaster()
     {
         Coaster spawnable;
@@ -35,7 +39,7 @@ public class CoasterSpawner : MonoBehaviour
         spawnedCoaster.gameObject.name = coasterObjName;
         spawnedCoaster.transform.position = transform.position;
         spawnedCoaster.transform.parent = transform.parent;
-        Destroy(gameObject);
+        coaster = spawnedCoaster;
         return spawnedCoaster;
     }
 }
