@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 0.25
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.083333336
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: cdbed1bec6500594687df16882284ca1, type: 2}
 --- !u!1 &11807956
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,7 +394,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &311128341
 Transform:
@@ -404,7 +404,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311128340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.01, z: 3.57}
+  m_LocalPosition: {x: 0, y: -0.045, z: 3.57}
   m_LocalScale: {x: 1, y: 0.21614, z: 5.1789}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -478,7 +478,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44270
+  m_Name: pb_Mesh44176
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -642,7 +642,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44246
+  m_Name: pb_Mesh44152
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -854,7 +854,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44294
+  m_Name: pb_Mesh44200
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1388,7 +1388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44386
+  m_Name: pb_Mesh44288
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1552,7 +1552,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44188
+  m_Name: pb_Mesh44098
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1716,7 +1716,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44342
+  m_Name: pb_Mesh44244
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1880,7 +1880,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44164
+  m_Name: pb_Mesh44078
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -2412,7 +2412,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &780308606
 Transform:
@@ -2422,7 +2422,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 780308605}
   m_LocalRotation: {x: -0, y: 0.97597224, z: -0, w: -0.21789528}
-  m_LocalPosition: {x: 15.42, y: 0.010000229, z: 7.15}
+  m_LocalPosition: {x: 15.42, y: -0.045, z: 7.15}
   m_LocalScale: {x: 1, y: 0.21614, z: 6.221412}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -3341,7 +3341,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44222
+  m_Name: pb_Mesh44132
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4190,7 +4190,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &925598911
 Transform:
@@ -4200,7 +4200,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925598910}
   m_LocalRotation: {x: -0, y: 0.7190689, z: -0, w: 0.69493884}
-  m_LocalPosition: {x: 8.98, y: 0.010000229, z: 15.510001}
+  m_LocalPosition: {x: 8.98, y: -0.045, z: 15.510001}
   m_LocalScale: {x: 1, y: 0.21614, z: 6.221412}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -4587,7 +4587,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44200
+  m_Name: pb_Mesh44110
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5596,7 +5596,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44102
+  m_Name: pb_Mesh44020
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5771,7 +5771,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1346147524
 Transform:
@@ -5781,7 +5781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346147523}
   m_LocalRotation: {x: -0, y: 0.69599354, z: -0, w: -0.71804816}
-  m_LocalPosition: {x: 3.84, y: 0.01, z: -0.23}
+  m_LocalPosition: {x: 3.84, y: -0.045, z: -0.23}
   m_LocalScale: {x: 1, y: 0.21614, z: 6.221412}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -6291,7 +6291,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44318
+  m_Name: pb_Mesh44224
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8362,7 +8362,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44354
+  m_Name: pb_Mesh44256
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9211,7 +9211,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1939136189
 Transform:
@@ -9221,7 +9221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939136188}
   m_LocalRotation: {x: -0, y: 0.25599408, z: -0, w: 0.9666784}
-  m_LocalPosition: {x: 2.5176635, y: 0.010000229, z: 11.765851}
+  m_LocalPosition: {x: 2.5176635, y: -0.045, z: 11.765851}
   m_LocalScale: {x: 1, y: 0.21614, z: 7.993097}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -9306,7 +9306,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1944668335
 Transform:
@@ -9316,7 +9316,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944668334}
   m_LocalRotation: {x: -0, y: 0.9579897, z: -0, w: 0.28680283}
-  m_LocalPosition: {x: 15.39, y: 0.010000229, z: 12.96}
+  m_LocalPosition: {x: 15.39, y: -0.045, z: 12.96}
   m_LocalScale: {x: 1, y: 0.21614, z: 6.221412}
   m_Children: []
   m_Father: {fileID: 96392450}
@@ -9703,7 +9703,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44306
+  m_Name: pb_Mesh44212
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9867,7 +9867,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh44128
+  m_Name: pb_Mesh44046
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10042,7 +10042,7 @@ GameObject:
   m_TagString: BoardPath
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2124983191
 Transform:
@@ -10052,7 +10052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124983190}
   m_LocalRotation: {x: -0, y: 0.8556406, z: -0, w: -0.51757056}
-  m_LocalPosition: {x: 10.52, y: 0.01, z: 1.83}
+  m_LocalPosition: {x: 10.52, y: -0.045, z: 1.83}
   m_LocalScale: {x: 1, y: 0.21614, z: 6.221412}
   m_Children: []
   m_Father: {fileID: 96392450}

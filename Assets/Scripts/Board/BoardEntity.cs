@@ -37,10 +37,14 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnStart;
     public void TurnStart()
     {
-        if (onTurnStart != null)
-        {
-            onTurnStart();
-        }
+        onTurnStart?.Invoke();
+    }
+
+    public event Action onTurnEnd;
+    public void TurnEnd()
+    {
+        GameBoardManager.singleton.TurnEnd(this);
+        onTurnEnd?.Invoke();
     }
     #endregion
 
@@ -101,9 +105,38 @@ public class BoardEntity : MonoBehaviour
         StartCoroutine(Move(currentCoaster.next[0]));
     }
 
-    public IEnumerator Move(Coaster target) // Or Vector3 targetPosition
+    public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
     {
-        yield return new WaitForEndOfFrame(); // Temporal
+        Debug.Log(target);
+        currentCoaster.playerLeave(this, transform.position);
+        if (target != null)
+        {
+            List<Vector3> waitZones = target.GetAvailableWaitZones();
+            if(waitZones != null && waitZones.Count > 0)
+            {
+                Debug.Log(waitZones[0]);
+                agent.SetDestination(waitZones[0]);
+            }
+
+            while(Vector3.Distance(transform.position, waitZones[0]) > distanceRadius)
+            {
+                Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
+                yield return new WaitForSeconds(checkRate);
+            }
+
+            currentCoaster = target;
+            currentCoaster.playerEnter(this, waitZones[0]);
+            moves--;
+
+            if(moves > 0)
+            {
+                StartCoroutine(Move(currentCoaster));
+            } else
+            {
+                currentCoaster.playerStop(this);
+                TurnEnd();
+            }
+        }
     }
 
     protected void SpawnDice()

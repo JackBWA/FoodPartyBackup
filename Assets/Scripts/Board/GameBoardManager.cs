@@ -78,7 +78,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 15f;
+        //Time.timeScale = 15f;
     }
 
     /*
@@ -93,8 +93,10 @@ public class GameBoardManager : MonoBehaviour
     private void InitializeGame()
     {
         InitializeCoasters();
-        InitializePaths();
+        //InitializePaths();
         InitializePlayers();
+        RandomizeTurns();
+        GameStart();
     }
 
     private void InitializeCoasters()
@@ -112,26 +114,36 @@ public class GameBoardManager : MonoBehaviour
             surfaces.Add(c.GetComponent<NavMeshSurface>());
             coasters.Add(c);
         }
-        BuildNavMesh(surfaces);
 
-        for(int i = 0; i < coasterSpawners.Length; i++)
+        for(int j = 0; j < coasterSpawners.Length; j++)
         {
-            foreach(CoasterSpawner next in coasterSpawners[i].next)
+            foreach(CoasterSpawner next in coasterSpawners[j].next)
             {
-                coasters[i].next.Add(next.coaster);
+                coasters[j].next.Add(next.coaster);
             }
         }
 
-        /* // CoasterSpawner can be used again to change the coaster type (?)
-        foreach(CoasterSpawner cS in coasterSpawners)
+        // Don't destroy CoasterSpawner because can be used again to change the coaster type (?)
+
+        #region CreateLinks
+        for (int i = 0; i < coasters.Count; i++)
         {
-            Destroy(cS.gameObject);
+            GameObject gO = new GameObject("NavMeshLink");
+            gO.transform.position = coasters[i].transform.position + (coasters[i].next[0].transform.position - coasters[i].transform.position) / 2;
+            NavMeshLink nml = gO.AddComponent<NavMeshLink>();
+            nml.startPoint = coasters[i].transform.position;
+            //nml.startPoint = gO.transform.position + (coasters[i].transform.position - gO.transform.position);
+            nml.endPoint = coasters[i].next[0].transform.position;
+            //.endPoint = gO.transform.position + (coasters[i].next[0].transform.position - gO.transform.position);
         }
-        */
+        #endregion
+
+        BuildNavMesh(surfaces);
     }
 
     private void InitializePaths()
     {
+        /*
         List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("BoardPath"))
@@ -141,6 +153,7 @@ public class GameBoardManager : MonoBehaviour
             surfaces.Add(nms);
         }
         BuildNavMesh(surfaces);
+        */
     }
 
     private void BuildNavMesh(List<NavMeshSurface> surfaces)
@@ -183,6 +196,7 @@ public class GameBoardManager : MonoBehaviour
                 boardPlayer.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
                 Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, boardPlayer);
             }
+            boardPlayer.currentCoaster = Coaster.initialCoaster;
             boardPlayers.Add(boardPlayer);
         }
     }
@@ -220,7 +234,6 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameEnd;
     public void GameEnd()
     {
-
         onGameEnd?.Invoke();
     }
 
@@ -238,10 +251,12 @@ public class GameBoardManager : MonoBehaviour
     public event Action<BoardEntity> onTurnEnd;
     public void TurnEnd(BoardEntity entity)
     {
+        Debug.Log("a");
         entity.hasTurn = false;
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {
+            Debug.Log("ab");
             turnIndex = 0;
             SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
@@ -253,7 +268,7 @@ public class GameBoardManager : MonoBehaviour
             //SceneManager.LoadScene("MainMenu");
         }
         onTurnEnd?.Invoke(entity);
-
+        Debug.Log("b");
         TurnStart(boardPlayers[turnIndex]);
     }
     #endregion

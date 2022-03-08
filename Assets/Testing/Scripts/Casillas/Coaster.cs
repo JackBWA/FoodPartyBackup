@@ -122,6 +122,7 @@ public class Coaster : MonoBehaviour
     public void playerEnter(BoardEntity player, Vector3 position)
     {
         //Debug.Log("Player entered the coaster!");
+        SetWaitZoneState(position, player);
         if(onPlayerEnter != null)
         {
             onPlayerEnter(player, position);
@@ -143,6 +144,7 @@ public class Coaster : MonoBehaviour
     public void playerLeave(BoardEntity entity, Vector3 position)
     {
         //Debug.Log("Player left the coaster!");
+        SetWaitZoneState(position, null);
         if (onPlayerLeave != null)
         {
             onPlayerLeave(entity, position);

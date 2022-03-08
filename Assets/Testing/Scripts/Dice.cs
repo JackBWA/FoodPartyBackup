@@ -62,7 +62,7 @@ public class Dice : MonoBehaviour
         }
 
         int result = CheckResult();
-        Debug.Log(result);
+        //Debug.Log(result);
         if (result > 0)
         {
             owner.SetMoves(result);
