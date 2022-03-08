@@ -100,6 +100,7 @@ public class BoardEntity : MonoBehaviour
 
     public void SetMoves(int amount)
     {
+        Debug.Log($"Dice: {amount}");
         moves = amount;
         // Notify
         StartCoroutine(Move(currentCoaster.next[0]));
@@ -107,20 +108,20 @@ public class BoardEntity : MonoBehaviour
 
     public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
     {
-        Debug.Log(target);
+        //Debug.Log(target);
         currentCoaster.playerLeave(this, transform.position);
         if (target != null)
         {
             List<Vector3> waitZones = target.GetAvailableWaitZones();
             if(waitZones != null && waitZones.Count > 0)
             {
-                Debug.Log(waitZones[0]);
+                //Debug.Log(waitZones[0]);
                 agent.SetDestination(waitZones[0]);
             }
 
             while(Vector3.Distance(transform.position, waitZones[0]) > distanceRadius)
             {
-                Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
+                //Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
                 yield return new WaitForSeconds(checkRate);
             }
 
@@ -130,7 +131,7 @@ public class BoardEntity : MonoBehaviour
 
             if(moves > 0)
             {
-                StartCoroutine(Move(currentCoaster));
+                StartCoroutine(Move(currentCoaster.next[0]));
             } else
             {
                 currentCoaster.playerStop(this);

@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.AI.Navigation;
+using SplineMesh;
 
 public class GameBoardManager : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class GameBoardManager : MonoBehaviour
     private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
     public List<SceneAsset> minigameScenes = new List<SceneAsset>();
+
+    public Mesh pathMesh;
 
     public bool randomRecipe;
     public List<Recipe> recipesList = new List<Recipe>();
@@ -92,15 +95,15 @@ public class GameBoardManager : MonoBehaviour
 
     private void InitializeGame()
     {
-        InitializeCoasters();
-        //InitializePaths();
+        InitializeBoard();
         InitializePlayers();
         RandomizeTurns();
         GameStart();
     }
 
-    private void InitializeCoasters()
+    private void InitializeBoard()
     {
+        #region Coasters
         List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
         List<Coaster> coasters = new List<Coaster>();
@@ -115,34 +118,61 @@ public class GameBoardManager : MonoBehaviour
             coasters.Add(c);
         }
 
-        for(int j = 0; j < coasterSpawners.Length; j++)
+        for (int j = 0; j < coasterSpawners.Length; j++)
         {
-            foreach(CoasterSpawner next in coasterSpawners[j].next)
+            foreach (CoasterSpawner next in coasterSpawners[j].next)
             {
                 coasters[j].next.Add(next.coaster);
             }
         }
+        #endregion
 
         // Don't destroy CoasterSpawner because can be used again to change the coaster type (?)
+
+        #region Paths // Nope
+        /*
+        for(int i = 0; i < coasters.Count; i++)
+        {
+            GameObject gO = new GameObject("Path");
+            Coaster cC = coasters[i];
+            int j = i + 1;
+            if (j >= coasters.Count) j = 0;
+            Coaster nC = coasters[j];
+            Debug.Log(cC.transform.localScale);
+            gO.transform.position = cC.transform.position + cC.transform.forward * (cC.transform.localScale.x / 1.5f);
+            Spline spline = gO.AddComponent<Spline>();
+            spline.AddNode(new SplineNode(nC.transform.position + -nC.transform.forward * (nC.transform.localScale.x / 1.5f), Vector3.zero));
+            SplineMeshTiling splineMesh = gO.AddComponent<SplineMeshTiling>();
+            splineMesh.mesh = pathMesh;
+            splineMesh.mode = MeshBender.FillingMode.Repeat;
+        }
+        */
+        #endregion
+
+        BuildNavMesh(surfaces);
 
         #region CreateLinks
         for (int i = 0; i < coasters.Count; i++)
         {
+
+
+            /* // Doesn't work.
             GameObject gO = new GameObject("NavMeshLink");
             gO.transform.position = coasters[i].transform.position + (coasters[i].next[0].transform.position - coasters[i].transform.position) / 2;
             NavMeshLink nml = gO.AddComponent<NavMeshLink>();
-            nml.startPoint = coasters[i].transform.position;
+            nml.startPoint = coasters[i].transform.localPosition;
             //nml.startPoint = gO.transform.position + (coasters[i].transform.position - gO.transform.position);
-            nml.endPoint = coasters[i].next[0].transform.position;
+            nml.endPoint = coasters[i].next[0].transform.localPosition;
             //.endPoint = gO.transform.position + (coasters[i].next[0].transform.position - gO.transform.position);
+            */
         }
         #endregion
-
-        BuildNavMesh(surfaces);
     }
 
-    private void InitializePaths()
+    private void InitializePaths() // Nop
     {
+        
+
         /*
         List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
@@ -251,12 +281,10 @@ public class GameBoardManager : MonoBehaviour
     public event Action<BoardEntity> onTurnEnd;
     public void TurnEnd(BoardEntity entity)
     {
-        Debug.Log("a");
         entity.hasTurn = false;
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {
-            Debug.Log("ab");
             turnIndex = 0;
             SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
@@ -268,7 +296,6 @@ public class GameBoardManager : MonoBehaviour
             //SceneManager.LoadScene("MainMenu");
         }
         onTurnEnd?.Invoke(entity);
-        Debug.Log("b");
         TurnStart(boardPlayers[turnIndex]);
     }
     #endregion

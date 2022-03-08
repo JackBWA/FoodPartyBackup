@@ -38,6 +38,7 @@ public class CoasterSpawner : MonoBehaviour
         Coaster spawnedCoaster = Instantiate(spawnable);
         spawnedCoaster.gameObject.name = coasterObjName;
         spawnedCoaster.transform.position = transform.position;
+        spawnedCoaster.transform.rotation = transform.rotation;
         spawnedCoaster.transform.parent = transform.parent;
         coaster = spawnedCoaster;
         return spawnedCoaster;
