@@ -17,7 +17,7 @@ public class GameBoardManager : MonoBehaviour
     [HideInInspector]
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
 
-    public Recipe objectiveRecipe;
+    public Recipe recipe;
 
     private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
@@ -25,12 +25,13 @@ public class GameBoardManager : MonoBehaviour
 
     private GameObject boardInteractablesParent;
 
-    public Mesh pathMesh;
-
+    /*
     public bool randomRecipe;
     public List<Recipe> recipesList = new List<Recipe>();
-    public List<Flavor> recipeFlavors = new List<Flavor>();
-    public List<Ingredient> recipeIngredients = new List<Ingredient>();
+    */
+
+    private List<Flavor> recipeFlavors = new List<Flavor>();
+    private List<Ingredient> recipeIngredients = new List<Ingredient>();
 
     [HideInInspector]
     public int roundIndex = 0;
@@ -133,8 +134,23 @@ public class GameBoardManager : MonoBehaviour
         boardSceneName = aux.name;
         InitializeBoard();
         InitializePlayers();
+        InitializeRecipe();
         RandomizeTurns();
         GameStart();
+    }
+
+    private void InitializeRecipe()
+    {
+        Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes");
+        recipe = recipes[UnityEngine.Random.Range(0, recipes.Length)];
+        recipe.Initialize();
+        Debug.Log(recipe);
+        
+        foreach(BoardEntity player in boardPlayers)
+        {
+            Recipe recipeCopy = Instantiate(recipe);
+            recipeStates.Add(player, recipeCopy);
+        }
     }
 
     private void InitializeBoard()

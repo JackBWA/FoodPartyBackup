@@ -42,9 +42,51 @@ public class Recipe : ScriptableObject
         }
     }
 
-    public void Create()
+    public void Initialize()
     {
+        requiredFlavors = new Dictionary<Flavor, int>();
+        requiredIngredients = new Dictionary<Ingredient, int>();
 
+        currentFlavors = new Dictionary<Flavor, int>();
+        currentIngredients = new Dictionary<Ingredient, int>();
+
+        foreach (FlavorAmount flavor in flavors)
+        {
+            int amount = flavor.amount;
+            if (flavor.randomAmount)
+            {
+                amount = flavor.GetRandomAmount();
+            }
+            requiredFlavors.Add(flavor.flavor, amount);
+            currentFlavors.Add(flavor.flavor, 0);
+        }
+
+        foreach(IngredientAmount ingredient in ingredients)
+        {
+            int amount = ingredient.amount;
+            if (ingredient.randomAmount)
+            {
+                amount = ingredient.GetRandomAmount();
+            }
+            requiredIngredients.Add(ingredient.ingredient, amount);
+            currentIngredients.Add(ingredient.ingredient, 0);
+        }
+    }
+
+    public override string ToString()
+    {
+        string result = $"Recipe for {title}!\n" +
+            $"Flavors:\n";
+        foreach (KeyValuePair<Flavor, int> kv in currentFlavors)
+        {
+            result += $"     {kv.Key.name}: {kv.Value}/{requiredFlavors[kv.Key]}\n";
+        }
+        result += $"Ingredients:\n";
+        foreach (KeyValuePair<Ingredient, int> kv in currentIngredients)
+        {
+            result += $"     {kv.Key.name}: {kv.Value}/{requiredIngredients[kv.Key]}\n";
+        }
+        return result;
     }
 
     #region Flavor Methods

@@ -9,7 +9,7 @@ public class IngredientAmount
     public Ingredient ingredient;
 
     [SerializeField]
-    private bool randomAmount;
+    public bool randomAmount;
 
     [SerializeField]
     public int amount;
@@ -19,4 +19,9 @@ public class IngredientAmount
 
     [SerializeField]
     private int maxAmount;
+
+    public int GetRandomAmount()
+    {
+        return Random.Range(minAmount, maxAmount + 1);
+    }
 }

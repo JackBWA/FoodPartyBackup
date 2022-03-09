@@ -12,26 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2c743fe5a6f6c4ea9855020fceec2a, type: 3}
   m_Name: Cake
   m_EditorClassIdentifier: 
-  title: 
+  title: Cake
   flavors:
   - flavor: {fileID: 11400000, guid: 3183175991df1ff46a1eb5d7a640052b, type: 2}
-    randomAmount: 1
-    amount: 0
-    minAmount: 1
-    maxAmount: 2
+    randomAmount: 0
+    amount: 1
+    minAmount: 0
+    maxAmount: 0
+  - flavor: {fileID: 11400000, guid: 4e85a0d9f7eab8647aaeafd0d233b747, type: 2}
+    randomAmount: 0
+    amount: 1
+    minAmount: 0
+    maxAmount: 0
   ingredients:
   - ingredient: {fileID: 11400000, guid: 6f8b427b8ea1f5740a38a9e2dc0495c9, type: 2}
-    randomAmount: 0
+    randomAmount: 1
     amount: 0
-    minAmount: 0
-    maxAmount: 0
+    minAmount: 5
+    maxAmount: 10
   - ingredient: {fileID: 11400000, guid: afe0312539c596f4b9161e0d50eea91a, type: 2}
-    randomAmount: 0
+    randomAmount: 1
     amount: 0
-    minAmount: 0
-    maxAmount: 0
+    minAmount: 5
+    maxAmount: 10
   - ingredient: {fileID: 11400000, guid: 89374f745f2e89c40ba4c59e08e8a7cd, type: 2}
-    randomAmount: 0
+    randomAmount: 1
     amount: 0
-    minAmount: 0
-    maxAmount: 0
+    minAmount: 5
+    maxAmount: 10
