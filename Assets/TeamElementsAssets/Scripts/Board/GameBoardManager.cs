@@ -18,7 +18,7 @@ public class GameBoardManager : MonoBehaviour
 
     private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
-    public List<SceneAsset> minigameScenes = new List<SceneAsset>();
+    public List<string> minigameScenes = new List<string>();
 
     public Mesh pathMesh;
 
@@ -152,11 +152,12 @@ public class GameBoardManager : MonoBehaviour
         BuildNavMesh(surfaces);
 
         #region CreateLinks
+        /*
         for (int i = 0; i < coasters.Count; i++)
         {
 
 
-            /* // Doesn't work.
+             // Doesn't work.
             GameObject gO = new GameObject("NavMeshLink");
             gO.transform.position = coasters[i].transform.position + (coasters[i].next[0].transform.position - coasters[i].transform.position) / 2;
             NavMeshLink nml = gO.AddComponent<NavMeshLink>();
@@ -164,8 +165,9 @@ public class GameBoardManager : MonoBehaviour
             //nml.startPoint = gO.transform.position + (coasters[i].transform.position - gO.transform.position);
             nml.endPoint = coasters[i].next[0].transform.localPosition;
             //.endPoint = gO.transform.position + (coasters[i].next[0].transform.position - gO.transform.position);
-            */
+            
         }
+        */
         #endregion
     }
 
@@ -185,7 +187,6 @@ public class GameBoardManager : MonoBehaviour
         BuildNavMesh(surfaces);
         */
     }
-
     private void BuildNavMesh(List<NavMeshSurface> surfaces)
     {
         foreach (NavMeshSurface nms in surfaces)
@@ -231,7 +232,7 @@ public class GameBoardManager : MonoBehaviour
         }
     }
 
-    private SceneAsset GetRandomMinigame()
+    private string GetRandomMinigame()
     {
         if(minigameScenes != null && minigameScenes.Count > 0)
         {
@@ -288,10 +289,10 @@ public class GameBoardManager : MonoBehaviour
             turnIndex = 0;
             SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
-            SceneAsset nextMinigame = GetRandomMinigame();
+            string nextMinigame = GetRandomMinigame();
             if(nextMinigame != null)
             {
-                SceneManager.LoadScene(nextMinigame.name);
+                SceneManager.LoadScene(nextMinigame);
             }
             //SceneManager.LoadScene("MainMenu");
         }

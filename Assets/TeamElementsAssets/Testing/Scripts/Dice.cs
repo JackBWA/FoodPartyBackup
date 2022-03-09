@@ -65,6 +65,7 @@ public class Dice : MonoBehaviour
         //Debug.Log(result);
         if (result > 0)
         {
+            ShowResult(result);
             owner.SetMoves(result);
             Destroy(gameObject);
         }
@@ -72,6 +73,11 @@ public class Dice : MonoBehaviour
         {
             Throw();
         }
+    }
+
+    private void ShowResult(int number)
+    {
+        // Wip (weird bug lol)
     }
 
     private int CheckResult()
