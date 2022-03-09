@@ -73,7 +73,7 @@ public class Coaster : MonoBehaviour
             initialCoaster = this;
         }
         CreateWaitZones(GameManager.maxPlayers);
-        GameObjectUtility.SetStaticEditorFlags(gameObject, StaticEditorFlags.NavigationStatic);
+        //GameObjectUtility.SetStaticEditorFlags(gameObject, StaticEditorFlags.NavigationStatic);
         NavMeshSurface nms = gameObject.AddComponent<NavMeshSurface>();
         nms.collectObjects = CollectObjects.Children;
     }
@@ -101,6 +101,7 @@ public class Coaster : MonoBehaviour
 
     public List<Vector3> GetAvailableWaitZones()
     {
+        //Debug.Log("===========START FINDING WAIT ZONES============");
         List<Vector3> result = new List<Vector3>();
         foreach(Vector3 waitZone in waitZones)
         {
@@ -109,12 +110,25 @@ public class Coaster : MonoBehaviour
                 result.Add(waitZone);
             }
         }
+        /*
+        Debug.Log("Final result: Found " + result.Count);
+        Debug.Log("===========END FINDING WAIT ZONES============");
+        */
         return result;
     }
 
     public void SetWaitZoneState(Vector3 waitZone, BoardEntity entity)
     {
+        //Debug.Log("Requested zone to update: " + waitZone);
+        //Debug.Log("Entity value as parameter: " + entity);
+        //Debug.Log("Is wait zone on the dictionary? " + waitZonesState.ContainsKey(waitZone));
+        //Debug.Log("List of all value in the dictionary:");
+        foreach(KeyValuePair<Vector3, BoardEntity> kp in waitZonesState)
+        {
+            //Debug.Log("Key: " + kp.Key + " | Value: " + kp.Value);
+        }
         waitZonesState[waitZone] = entity;
+        //Debug.Log("Is wait zone still on the dictionary? " + waitZonesState.ContainsKey(waitZone));
     }
 
     // Movimiento en casillas.
@@ -140,14 +154,38 @@ public class Coaster : MonoBehaviour
         }
     }
 
-    protected event Action<BoardEntity, Vector3> onPlayerLeave;
-    public void playerLeave(BoardEntity entity, Vector3 position)
+    protected event Action<BoardEntity> onPlayerLeave;
+    public void playerLeave(BoardEntity entity)
     {
         //Debug.Log("Player left the coaster!");
-        SetWaitZoneState(position, null);
+
+        int i = 0;
+        while(i < waitZonesState.Count)
+        {
+            if(waitZonesState[waitZones[i]] == entity)
+            {
+                waitZonesState[waitZones[i]] = null;
+                i = waitZonesState.Count;
+            } else
+            {
+                i++;
+            }
+        }
+
+        /*
+        foreach(KeyValuePair<Vector3, BoardEntity> kP in waitZonesState)
+        {
+            if(kP.Value == entity)
+            {
+                waitZonesState[kP.Key] = null;
+            }
+        }
+        */
+
+        //SetWaitZoneState(position, null);
         if (onPlayerLeave != null)
         {
-            onPlayerLeave(entity, position);
+            onPlayerLeave(entity);
         }
     }
 

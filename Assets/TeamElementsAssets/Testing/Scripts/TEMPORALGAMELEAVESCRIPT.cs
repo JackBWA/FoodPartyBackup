@@ -12,8 +12,7 @@ public class TEMPORALGAMELEAVESCRIPT : MonoBehaviour
 
     public IEnumerator JustLeaveLol()
     {
-        Time.timeScale = 1f;
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("Board1");
+        yield return new WaitForSeconds(20f);
+        MiniGame.singleton.MinigameExit();
     }
 }

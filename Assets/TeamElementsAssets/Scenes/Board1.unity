@@ -315,8 +315,8 @@ GameObject:
   m_Component:
   - component: {fileID: 96392450}
   m_Layer: 7
-  m_Name: NavMesh
-  m_TagString: Untagged
+  m_Name: BoardInteractables
+  m_TagString: BoardInteractables
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1470,6 +1470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c5ef0a593b7421408add01739f25776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boardSceneName: 
   boardPlayers: []
   objectiveRecipe: {fileID: 0}
   minigameScenes:

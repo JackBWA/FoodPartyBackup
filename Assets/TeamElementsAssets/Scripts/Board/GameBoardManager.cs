@@ -5,9 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.AI.Navigation;
 using SplineMesh;
+using System.Collections;
 
 public class GameBoardManager : MonoBehaviour
 {
+
+    public string boardSceneName;
 
     public static GameBoardManager singleton;
 
@@ -19,6 +22,8 @@ public class GameBoardManager : MonoBehaviour
     private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
     public List<string> minigameScenes = new List<string>();
+
+    private GameObject boardInteractablesParent;
 
     public Mesh pathMesh;
 
@@ -49,16 +54,44 @@ public class GameBoardManager : MonoBehaviour
         {
             c.transform.parent = persistentBoardObjects.transform;
         }
+
+        foreach(BoardEntity bE in boardPlayers)
+        {
+            bE.transform.parent = persistentBoardObjects.transform;
+        }
     }
 
-    public void LoadGameState()
+    public IEnumerator LoadGameState()
     {
-        foreach(Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())
+
+        SceneManager.LoadScene(boardSceneName);
+        while (!SceneManager.GetActiveScene().name.Equals(boardSceneName))
         {
-            Debug.Log("yes");
+            yield return null;
+        }
+
+        // From here scene is loaded.
+
+        boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
+
+        foreach (Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())
+        {
             c.gameObject.transform.parent = null;
             SceneManager.MoveGameObjectToScene(c.gameObject, SceneManager.GetActiveScene());
+            c.gameObject.transform.parent = boardInteractablesParent.transform;
         }
+
+        foreach(BoardEntity bE in persistentBoardObjects.GetComponentsInChildren<BoardEntity>())
+        {
+            bE.gameObject.transform.parent = null;
+            SceneManager.MoveGameObjectToScene(bE.gameObject, SceneManager.GetActiveScene());
+            bE.gameObject.transform.parent = boardInteractablesParent.transform;
+        }
+
+        RandomizeTurns();
+        GameStart();
+
+        yield return null;
     }
 
     #endregion
@@ -69,7 +102,7 @@ public class GameBoardManager : MonoBehaviour
         #region Singleton
         if(singleton != null)
         {
-            enabled = false;
+            Destroy(gameObject);
             return;
         }
         singleton = this;
@@ -81,7 +114,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        //Time.timeScale = 15f;
+        Time.timeScale = 15f;
     }
 
     /*
@@ -95,6 +128,9 @@ public class GameBoardManager : MonoBehaviour
 
     private void InitializeGame()
     {
+        boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
+        Scene aux = SceneManager.GetActiveScene();
+        boardSceneName = aux.name;
         InitializeBoard();
         InitializePlayers();
         RandomizeTurns();
@@ -124,6 +160,7 @@ public class GameBoardManager : MonoBehaviour
             {
                 coasters[j].next.Add(next.coaster);
             }
+            coasters[j].transform.parent = boardInteractablesParent.transform;
         }
         #endregion
 
@@ -228,6 +265,7 @@ public class GameBoardManager : MonoBehaviour
                 Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, boardPlayer);
             }
             boardPlayer.currentCoaster = Coaster.initialCoaster;
+            boardPlayer.transform.parent = boardInteractablesParent.transform;
             boardPlayers.Add(boardPlayer);
         }
     }
@@ -287,6 +325,7 @@ public class GameBoardManager : MonoBehaviour
         if (turnIndex >= boardPlayers.Count)
         {
             turnIndex = 0;
+            roundIndex++;
             SaveGameState();
             // Start random event. (Minigame, general boost, etc.)
             string nextMinigame = GetRandomMinigame();
@@ -298,6 +337,12 @@ public class GameBoardManager : MonoBehaviour
         }
         onTurnEnd?.Invoke(entity);
         TurnStart(boardPlayers[turnIndex]);
+    }
+
+    public void EventEnd()
+    {
+        Debug.Log("Event Ended.");
+        StartCoroutine(LoadGameState());
     }
     #endregion
 }

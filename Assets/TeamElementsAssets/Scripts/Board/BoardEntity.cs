@@ -109,14 +109,19 @@ public class BoardEntity : MonoBehaviour
     public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
     {
         //Debug.Log(target);
-        currentCoaster.playerLeave(this, transform.position);
+        currentCoaster.playerLeave(this);
         if (target != null)
         {
+            // Aqui peta al ir a la initial.
             List<Vector3> waitZones = target.GetAvailableWaitZones();
             if(waitZones != null && waitZones.Count > 0)
             {
                 //Debug.Log(waitZones[0]);
                 agent.SetDestination(waitZones[0]);
+            } else
+            {
+                // If this triggers there's an error. (99% sure).
+                TurnEnd();
             }
 
             while(Vector3.Distance(transform.position, waitZones[0]) > distanceRadius)

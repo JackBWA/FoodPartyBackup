@@ -39,6 +39,16 @@ public class MiniGame : MonoBehaviour
     }
     #endregion
 
+    private void OnEnable()
+    {
+        onMinigameExit += GameBoardManager.singleton.EventEnd;
+    }
+
+    private void OnDisable()
+    {
+        onMinigameExit -= GameBoardManager.singleton.EventEnd;
+    }
+
     #region Awake/Start/Update
     protected virtual void Awake()
     {
@@ -55,14 +65,4 @@ public class MiniGame : MonoBehaviour
 
     }
     #endregion
-
-    /*
-    public void LoadBoardScene()
-    {
-        Scene lastMiniGameScene = SceneManager.GetActiveScene();
-        SceneManager.CreateScene("BoardGameScene");
-        SceneManager.UnloadSceneAsync(lastMiniGameScene);
-        BoardGameManager.singleton.LoadState();
-    }
-    */
 }
