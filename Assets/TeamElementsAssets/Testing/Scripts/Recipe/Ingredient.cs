@@ -7,9 +7,6 @@ public class Ingredient : ScriptableObject
 {
     public new string name;
 
-    [TextArea]
-    public string description;
-
     public Texture2D icon;
     public GameObject modelPrefab;
 }

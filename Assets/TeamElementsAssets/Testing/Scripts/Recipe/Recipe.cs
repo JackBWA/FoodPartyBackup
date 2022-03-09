@@ -7,8 +7,8 @@ public class Recipe : ScriptableObject
 {
     public string title;
 
-    [TextArea]
-    public string description;
+    public List<FlavorAmount> flavors = new List<FlavorAmount>();
+    public List<IngredientAmount> ingredients = new List<IngredientAmount>();
 
     public Dictionary<Flavor, int> requiredFlavors;
     public Dictionary<Ingredient, int> requiredIngredients;
@@ -23,7 +23,7 @@ public class Recipe : ScriptableObject
             bool result = true;
             foreach (KeyValuePair<Flavor, int> flavor in currentFlavors)
             {
-                if(flavor.Value != requiredFlavors[flavor.Key])
+                if (flavor.Value != requiredFlavors[flavor.Key])
                 {
                     result = false;
                 }
@@ -40,6 +40,11 @@ public class Recipe : ScriptableObject
             }
             return result;
         }
+    }
+
+    public void Create()
+    {
+
     }
 
     #region Flavor Methods
@@ -105,29 +110,4 @@ public class Recipe : ScriptableObject
     }
 
     #endregion
-
-    public static Recipe CreateRandomRecipe(int flavorsAmount, int ingredientsAmount, List<Flavor> usableFlavors, List<Ingredient> usableIngredients)
-    {
-        Recipe recipe = new Recipe();
-        for(int f = 0; f < flavorsAmount; f++)
-        {
-            Flavor rnd = usableFlavors[Random.Range(0, usableFlavors.Count)];
-            while (recipe.AddRequiredFlavor(rnd, 1))
-            {
-                rnd = usableFlavors[Random.Range(0, usableFlavors.Count)];
-            }
-            recipe.SetCurrentFlavor(rnd, 0);
-        }
-
-        for(int i = 0; i < ingredientsAmount; i++)
-        {
-            Ingredient rnd = usableIngredients[Random.Range(0, usableIngredients.Count)];
-            while (recipe.AddRequiredIngredient(rnd, 5))
-            {
-                rnd = usableIngredients[Random.Range(0, usableIngredients.Count)];
-            }
-            recipe.SetCurrentIngredient(rnd, 0);
-        }
-        return recipe;
-    }
 }
