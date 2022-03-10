@@ -35,7 +35,6 @@ public class MiniGame : MonoBehaviour
     public void MinigameExit()
     {
         onMinigameExit?.Invoke();
-        //LoadBoardScene();
     }
     #endregion
 

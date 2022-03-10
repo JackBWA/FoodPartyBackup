@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using Unity.AI.Navigation;
 using SplineMesh;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameBoardManager : MonoBehaviour
 {
@@ -144,13 +145,22 @@ public class GameBoardManager : MonoBehaviour
         Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes");
         recipe = recipes[UnityEngine.Random.Range(0, recipes.Length)];
         recipe.Initialize();
-        Debug.Log(recipe);
         
         foreach(BoardEntity player in boardPlayers)
         {
-            Recipe recipeCopy = Instantiate(recipe);
+            Recipe recipeCopy = ScriptableObject.CreateInstance<Recipe>();
+            recipeCopy.CopyFrom(recipe);
+
             recipeStates.Add(player, recipeCopy);
         }
+
+        /* // Test of recipe completion. (Works)
+        Debug.Log(recipe.isCompleted);
+        Debug.Log(recipe);
+        recipe.Complete();
+        Debug.Log(recipe.isCompleted);
+        Debug.Log(recipe);
+        */
     }
 
     private void InitializeBoard()

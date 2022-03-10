@@ -16,7 +16,7 @@ public class Recipe : ScriptableObject
     public Dictionary<Flavor, int> currentFlavors;
     public Dictionary<Ingredient, int> currentIngredients;
 
-    public bool IsRecipeCompleted
+    public bool isCompleted
     {
         get
         {
@@ -39,6 +39,71 @@ public class Recipe : ScriptableObject
                 }
             }
             return result;
+        }
+    }
+
+    public void CopyFrom(Recipe recipe)
+    {
+        title = recipe.title;
+
+        flavors = new List<FlavorAmount>();
+        foreach(FlavorAmount flavor in recipe.flavors)
+        {
+            flavors.Add(flavor);
+        }
+
+        ingredients = new List<IngredientAmount>();
+        foreach (IngredientAmount ingredient in recipe.ingredients)
+        {
+            ingredients.Add(ingredient);
+        }
+
+        requiredFlavors = new Dictionary<Flavor, int>();
+        foreach(KeyValuePair<Flavor, int> kV in recipe.requiredFlavors)
+        {
+            requiredFlavors.Add(kV.Key, kV.Value);
+        }
+
+        requiredIngredients = new Dictionary<Ingredient, int>();
+        foreach (KeyValuePair<Ingredient, int> kV in recipe.requiredIngredients)
+        {
+            requiredIngredients.Add(kV.Key, kV.Value);
+        }
+
+        currentFlavors = new Dictionary<Flavor, int>();
+        foreach (KeyValuePair<Flavor, int> kV in recipe.currentFlavors)
+        {
+            currentFlavors.Add(kV.Key, kV.Value);
+        }
+
+        currentIngredients = new Dictionary<Ingredient, int>();
+        foreach (KeyValuePair<Ingredient, int> kV in recipe.currentIngredients)
+        {
+            currentIngredients.Add(kV.Key, kV.Value);
+        }
+
+        /*
+        flavors = recipe.flavors;
+        ingredients = recipe.ingredients;
+
+        requiredFlavors = recipe.requiredFlavors;
+        requiredIngredients = recipe.requiredIngredients;
+
+        currentFlavors = recipe.currentFlavors;
+        currentIngredients = recipe.currentIngredients;
+        */
+    }
+
+    public void Complete()
+    {
+        foreach(KeyValuePair<Flavor, int> kV in requiredFlavors)
+        {
+            currentFlavors[kV.Key] = requiredFlavors[kV.Key];
+        }
+
+        foreach(KeyValuePair<Ingredient, int> kV in requiredIngredients)
+        {
+            currentIngredients[kV.Key] = requiredIngredients[kV.Key];
         }
     }
 
