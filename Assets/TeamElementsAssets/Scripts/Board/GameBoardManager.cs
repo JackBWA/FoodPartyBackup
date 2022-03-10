@@ -116,7 +116,6 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        RecipeManagerUI.singleton.Display(recipeStates[boardPlayers[turnIndex]]);
         GameStart();
         //Time.timeScale = 15f;
     }
