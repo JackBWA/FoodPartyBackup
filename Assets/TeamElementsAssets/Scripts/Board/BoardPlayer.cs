@@ -18,6 +18,7 @@ public class BoardPlayer : BoardEntity
     private void LoadInputs()
     {
         playerControls.Dice.Throw.performed += _ => ThrowDice();
+        playerControls.Map.Toggle.performed += _ => ToggleMapView();
     }
 
     public override void Initialize()

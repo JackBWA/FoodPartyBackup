@@ -29,6 +29,10 @@ public class BoardEntity : MonoBehaviour
 
     public Coaster currentCoaster;
 
+    public bool isViewingMap = false;
+    private Camera characterCamera;
+    private Camera mapCamera;
+
     #region Components
     protected NavMeshAgent agent;
     #endregion
@@ -100,7 +104,7 @@ public class BoardEntity : MonoBehaviour
 
     public void SetMoves(int amount)
     {
-        Debug.Log($"Dice: {amount}");
+        //Debug.Log($"Dice: {amount}");
         moves = amount;
         // Notify
         StartCoroutine(Move(currentCoaster.next[0]));
@@ -173,6 +177,18 @@ public class BoardEntity : MonoBehaviour
             objRot.enabled = false;
         }
         dice.Throw();
+    }
+
+    public void ToggleMapView()
+    {
+        isViewingMap = !isViewingMap;
+        if (isViewingMap)
+        {
+            // Change camera xd.
+        } else
+        {
+            // Change camera xd.
+        }
     }
 
     // Necesario para cuando el agente se deslinkea de su navmesh. // Deprecate (?)

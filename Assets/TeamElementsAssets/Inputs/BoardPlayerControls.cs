@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/TeamElementsAssets/Testing/Inputs/BoardPlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/TeamElementsAssets/Inputs/BoardPlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -83,7 +83,45 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Map"",
+            ""id"": ""5c7d1925-e73c-4d11-8a18-74cdeac3363c"",
+            ""actions"": [
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""14fb94b2-9c2e-4440-b0e3-4838d33f7beb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f1165057-cfab-46fe-8771-39c8f3e62148"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94a5b956-d54e-4011-b3ad-03879222b27c"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -127,6 +165,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Toggle = m_Inventory.FindAction("Toggle", throwIfNotFound: true);
+        // Map
+        m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
+        m_Map_Toggle = m_Map.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -238,6 +279,39 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         }
     }
     public InventoryActions @Inventory => new InventoryActions(this);
+
+    // Map
+    private readonly InputActionMap m_Map;
+    private IMapActions m_MapActionsCallbackInterface;
+    private readonly InputAction m_Map_Toggle;
+    public struct MapActions
+    {
+        private @BoardPlayerControls m_Wrapper;
+        public MapActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Toggle => m_Wrapper.m_Map_Toggle;
+        public InputActionMap Get() { return m_Wrapper.m_Map; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MapActions set) { return set.Get(); }
+        public void SetCallbacks(IMapActions instance)
+        {
+            if (m_Wrapper.m_MapActionsCallbackInterface != null)
+            {
+                @Toggle.started -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
+            }
+            m_Wrapper.m_MapActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
+            }
+        }
+    }
+    public MapActions @Map => new MapActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -261,6 +335,10 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         void OnThrow(InputAction.CallbackContext context);
     }
     public interface IInventoryActions
+    {
+        void OnToggle(InputAction.CallbackContext context);
+    }
+    public interface IMapActions
     {
         void OnToggle(InputAction.CallbackContext context);
     }
