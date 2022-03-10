@@ -20,7 +20,7 @@ public class GameBoardManager : MonoBehaviour
 
     public Recipe recipe;
 
-    private Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
+    public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
     public List<string> minigameScenes = new List<string>();
 
@@ -91,7 +91,7 @@ public class GameBoardManager : MonoBehaviour
         }
 
         RandomizeTurns();
-        GameStart();
+        RoundStart();
 
         yield return null;
     }
@@ -322,7 +322,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
-        TurnStart(boardPlayers[turnIndex]);
+        RoundStart();
         onGameStart?.Invoke();
     }
 
@@ -350,19 +350,32 @@ public class GameBoardManager : MonoBehaviour
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {
-            turnIndex = 0;
-            roundIndex++;
-            SaveGameState();
-            // Start random event. (Minigame, general boost, etc.)
-            string nextMinigame = GetRandomMinigame();
-            if(nextMinigame != null)
-            {
-                SceneManager.LoadScene(nextMinigame);
-            }
-            //SceneManager.LoadScene("MainMenu");
+            RoundEnd();
         }
         onTurnEnd?.Invoke(entity);
         TurnStart(boardPlayers[turnIndex]);
+    }
+
+    public event Action onRoundStart;
+    public void RoundStart()
+    {
+        TurnStart(boardPlayers[turnIndex]);
+        onRoundStart?.Invoke();
+    }
+
+    public event Action onRoundEnd;
+    public void RoundEnd()
+    {
+        turnIndex = 0;
+        roundIndex++;
+        SaveGameState();
+        // Start random event. (Minigame, general boost, etc.)
+        string nextMinigame = GetRandomMinigame();
+        if (nextMinigame != null)
+        {
+            SceneManager.LoadScene(nextMinigame);
+        }
+        onRoundEnd?.Invoke();
     }
 
     public void EventEnd()
