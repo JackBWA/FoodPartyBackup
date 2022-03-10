@@ -116,7 +116,9 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 15f;
+        RecipeManagerUI.singleton.Display(recipeStates[boardPlayers[turnIndex]]);
+        GameStart();
+        //Time.timeScale = 15f;
     }
 
     /*
@@ -137,7 +139,6 @@ public class GameBoardManager : MonoBehaviour
         InitializePlayers();
         InitializeRecipe();
         RandomizeTurns();
-        GameStart();
     }
 
     private void InitializeRecipe()
@@ -150,6 +151,14 @@ public class GameBoardManager : MonoBehaviour
         {
             Recipe recipeCopy = ScriptableObject.CreateInstance<Recipe>();
             recipeCopy.CopyFrom(recipe);
+
+            /*
+            // TEST
+            foreach (KeyValuePair<Ingredient, int> kV in recipeCopy.requiredIngredients)
+            {
+                recipeCopy.SetCurrentIngredient(kV.Key, UnityEngine.Random.Range(0, kV.Value));
+            }
+            */
 
             recipeStates.Add(player, recipeCopy);
         }
