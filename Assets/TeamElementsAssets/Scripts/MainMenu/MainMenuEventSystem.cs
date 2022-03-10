@@ -2,9 +2,15 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class MainMenuEventSystem : MonoBehaviour
 {
+
+    public void Hi()
+    {
+        Debug.Log("Hi");
+    }
 
     #region Variables
 
