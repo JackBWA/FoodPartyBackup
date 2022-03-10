@@ -2244,7 +2244,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Notlaw Recipe
+  m_text: Player Recipe
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7c65010440da3394ea7a8ef24b40532d, type: 2}
   m_sharedMaterial: {fileID: -7015712626181430119, guid: 7c65010440da3394ea7a8ef24b40532d, type: 2}
