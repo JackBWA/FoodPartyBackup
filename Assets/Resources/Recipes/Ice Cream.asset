@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2c743fe5a6f6c4ea9855020fceec2a, type: 3}
+  m_Name: Ice Cream
+  m_EditorClassIdentifier: 
+  title: 
+  flavors:
+  - flavor: {fileID: 11400000, guid: 4e85a0d9f7eab8647aaeafd0d233b747, type: 2}
+    randomAmount: 1
+    amount: 1
+    minAmount: 0
+    maxAmount: 0
+  - flavor: {fileID: 11400000, guid: 3183175991df1ff46a1eb5d7a640052b, type: 2}
+    randomAmount: 1
+    amount: 1
+    minAmount: 0
+    maxAmount: 0
+  ingredients:
+  - ingredient: {fileID: 11400000, guid: 6f8b427b8ea1f5740a38a9e2dc0495c9, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 10
+    maxAmount: 15
+  - ingredient: {fileID: 11400000, guid: 89374f745f2e89c40ba4c59e08e8a7cd, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 8
+    maxAmount: 10
+  - ingredient: {fileID: 11400000, guid: 9fc1c002a65287e4097f698e42d90de5, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 10
+    maxAmount: 15

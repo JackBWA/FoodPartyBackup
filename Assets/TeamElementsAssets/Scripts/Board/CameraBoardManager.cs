@@ -99,7 +99,7 @@ public class CameraBoardManager : MonoBehaviour
         UpdateCinemachineBrain();
     }
 
-    private static void UpdateCinemachineBrain()
+    public static void UpdateCinemachineBrain()
     {
         CinemachineBrain brain;
         if(!Camera.main.TryGetComponent(out brain))

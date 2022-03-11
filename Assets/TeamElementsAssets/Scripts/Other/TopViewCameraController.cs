@@ -11,6 +11,8 @@ public class TopViewCameraController : MonoBehaviour
 
     bool moving;
 
+    float speedMultiplier = 1f;
+
     Vector2 movementVector;
 
     Vector3 initialPosition;
@@ -20,6 +22,8 @@ public class TopViewCameraController : MonoBehaviour
         inputActions = new BoardPlayerControls();
         inputActions.Map.Move.performed += ctx => Move(ctx.ReadValue<Vector2>(), true);
         inputActions.Map.Move.canceled += ctx => Move(ctx.ReadValue<Vector2>(), false);
+        inputActions.Map.Accelerate.performed += _ => Accelerate(true);
+        inputActions.Map.Accelerate.canceled += _ => Accelerate(false);
 
         initialPosition = transform.localPosition;
     }
@@ -41,11 +45,22 @@ public class TopViewCameraController : MonoBehaviour
         movementVector = input;
     }
 
+    public void Accelerate(bool value)
+    {
+        if (value)
+        {
+            speedMultiplier = 3f;
+        } else
+        {
+            speedMultiplier = 1f;
+        }
+    }
+
     private void Update()
     {
         if (moving)
         {
-            transform.position += new Vector3(movementVector.x, 0f, movementVector.y) * (movementSpeed * Time.deltaTime);
+            transform.position += new Vector3(movementVector.x, 0f, movementVector.y) * ((movementSpeed * speedMultiplier) * Time.deltaTime);
         }
     }
 }

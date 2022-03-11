@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f366665d8f5b33a4788a2f358a3e7ab7, type: 3}
-  m_Name: Eggs
+  m_Script: {fileID: 11500000, guid: f27335cecbee2ae448c3d3b2cfa52bfc, type: 3}
+  m_Name: Salt
   m_EditorClassIdentifier: 
-  name: Eggs
+  name: Salt
   icon: {fileID: 0}
   modelPrefab: {fileID: 0}

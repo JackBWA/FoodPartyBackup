@@ -74,6 +74,8 @@ public class GameBoardManager : MonoBehaviour
 
         // From here scene is loaded.
 
+        CameraBoardManager.UpdateCinemachineBrain();
+
         boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
 
         foreach (Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())

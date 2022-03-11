@@ -109,6 +109,14 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Accelerate"",
+                    ""type"": ""Button"",
+                    ""id"": ""9e8c2304-d85c-4cd8-9436-78c1a7dab13d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -243,6 +251,17 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0477f5f9-f9db-47b5-9257-92352495f9b8"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Accelerate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -287,6 +306,7 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Toggle = m_Map.FindAction("Toggle", throwIfNotFound: true);
         m_Map_Move = m_Map.FindAction("Move", throwIfNotFound: true);
+        m_Map_Accelerate = m_Map.FindAction("Accelerate", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -404,12 +424,14 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     private IMapActions m_MapActionsCallbackInterface;
     private readonly InputAction m_Map_Toggle;
     private readonly InputAction m_Map_Move;
+    private readonly InputAction m_Map_Accelerate;
     public struct MapActions
     {
         private @BoardPlayerControls m_Wrapper;
         public MapActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Toggle => m_Wrapper.m_Map_Toggle;
         public InputAction @Move => m_Wrapper.m_Map_Move;
+        public InputAction @Accelerate => m_Wrapper.m_Map_Accelerate;
         public InputActionMap Get() { return m_Wrapper.m_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -425,6 +447,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
+                @Accelerate.started -= m_Wrapper.m_MapActionsCallbackInterface.OnAccelerate;
+                @Accelerate.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnAccelerate;
+                @Accelerate.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnAccelerate;
             }
             m_Wrapper.m_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -435,6 +460,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Accelerate.started += instance.OnAccelerate;
+                @Accelerate.performed += instance.OnAccelerate;
+                @Accelerate.canceled += instance.OnAccelerate;
             }
         }
     }
@@ -469,5 +497,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     {
         void OnToggle(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
+        void OnAccelerate(InputAction.CallbackContext context);
     }
 }
