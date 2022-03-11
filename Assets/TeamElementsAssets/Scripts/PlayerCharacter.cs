@@ -26,6 +26,9 @@ public class PlayerCharacter : MonoBehaviour
     [HideInInspector]
     public static string[] aiNames = new string[]
     {
+        "Notlaw",
+        "delus3r",
+        "Nowy",
         "kazamabc",
         "V I C E N T E",
         "-Hideki-",
