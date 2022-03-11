@@ -5,10 +5,10 @@ using UnityEngine;
 public class ObjectRotator : MonoBehaviour
 {
 
-    public float rotationSpeed = 20f;
+    public float rotationSpeed = 40f;
     public enum RotationAxis
     {
-        NONE,
+        //NONE,
         X,
         Y,
         Z,
@@ -30,8 +30,10 @@ public class ObjectRotator : MonoBehaviour
     {
         switch (rotationAxis)
         {
+            /*
             case RotationAxis.NONE:
                 break;
+            */
 
             case RotationAxis.X:
                 xRot = rotationSpeed;
