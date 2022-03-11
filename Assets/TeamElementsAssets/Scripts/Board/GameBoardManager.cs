@@ -289,6 +289,7 @@ public class GameBoardManager : MonoBehaviour
 
         foreach (PlayerCharacter p in players)
         {
+
             BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
             List<Vector3> waitZones = Coaster.initialCoaster.GetAvailableWaitZones();
             if (waitZones.Count > 0)

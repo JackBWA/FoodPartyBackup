@@ -38,6 +38,7 @@ public class CharacterManager : MonoBehaviour
             foreach (PlayerCharacter pChar in characters)
             {
                 PlayerCharacter _character = Instantiate(pChar).GetComponent<PlayerCharacter>();
+                _character.GetComponentInChildren<NickBillboard>().gameObject.SetActive(false);
                 _character.gameObject.SetActive(false);
                 playableCharacters.Add(_character);
                 cachedCharacters.Add(pChar);
@@ -77,15 +78,25 @@ public class CharacterManager : MonoBehaviour
 
     public void StartGame()
     {
+        List<string> auxNamesAI = new List<string>();
+        foreach(string name in PlayerCharacter.aiNames)
+        {
+            auxNamesAI.Add(name);
+        }
+
         for(int i = 0; i < playableCharacters.Count; i++)
         {
             if(i != index)
             {
                 PlayerCharacter aiChar = cachedCharacters[i];
+                string randomName = auxNamesAI[UnityEngine.Random.Range(0, auxNamesAI.Count)];
+                aiChar.name = $"BOT {randomName}";
+                auxNamesAI.Remove(randomName);
                 aiChar.characterType = PlayerCharacter.CharacterType.AI;
                 aiCharacters.Add(aiChar);
             } else
             {
+                selectedCharacter.name = "Player"; // Temporal.
                 selectedCharacter.characterType = PlayerCharacter.CharacterType.Player;
             }
         }

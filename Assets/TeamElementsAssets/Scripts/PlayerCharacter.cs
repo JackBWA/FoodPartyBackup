@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
-    public new string name;
+    public new string name
+    {
+        get
+        {
+            return GetComponentInChildren<NickBillboard>().nickField.text;
+        }
+        set
+        {
+            GetComponentInChildren<NickBillboard>().nickField.text = value;
+        }
+    }
 
     public enum CharacterType
     {
@@ -23,7 +33,6 @@ public class PlayerCharacter : MonoBehaviour
     }
     public AIDifficulty aiDifficulty;
 
-    [HideInInspector]
     public static string[] aiNames = new string[]
     {
         "Notlaw",
