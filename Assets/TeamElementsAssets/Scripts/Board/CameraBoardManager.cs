@@ -40,6 +40,7 @@ public class CameraBoardManager : MonoBehaviour
         if(topCamera.TryGetComponent(out entity.topCamera))
         {
             topCamera.transform.parent = entity.gameObject.transform;
+            entity.topCameraController = topCamera.gameObject.GetComponent<TopViewCameraController>();
         } else
         {
             Destroy(topCamera);

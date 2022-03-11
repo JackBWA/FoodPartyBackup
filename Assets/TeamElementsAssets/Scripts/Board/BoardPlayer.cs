@@ -36,13 +36,15 @@ public class BoardPlayer : BoardEntity
         base.BindEvents();
     }
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         playerControls.Enable();
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         playerControls.Disable();
     }
 }

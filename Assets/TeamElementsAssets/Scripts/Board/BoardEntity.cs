@@ -30,12 +30,14 @@ public class BoardEntity : MonoBehaviour
 
     public Coaster currentCoaster;
 
-    public bool isViewingMap = false;
+    public bool canToggleCameraView;
+    public bool isViewingMap;
 
     [HideInInspector]
     public CinemachineFreeLook thirdPersonCamera;
     [HideInInspector]
     public CinemachineVirtualCamera topCamera;
+    public TopViewCameraController topCameraController;
 
     #region Components
     protected NavMeshAgent agent;
@@ -55,10 +57,18 @@ public class BoardEntity : MonoBehaviour
         onTurnEnd?.Invoke();
     }
 
-    public event Action<bool> onCameraStateChange;
-    public void CameraStateChange(bool isViewingMap)
+    public event Action onStartViewMap;
+    public void StartViewMap()
     {
-        onCameraStateChange?.Invoke(isViewingMap);
+        ActivateTC();
+        onStartViewMap?.Invoke();
+    }
+
+    public event Action onStopViewMap;
+    public void StopViewMap()
+    {
+        DeactivateTC();
+        onStopViewMap?.Invoke();
     }
     #endregion
 
@@ -79,45 +89,65 @@ public class BoardEntity : MonoBehaviour
     }
     #endregion
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
-        GameBoardManager.singleton.onTurnStart += ActivateTPC;
-        GameBoardManager.singleton.onTurnEnd += DeactivateAllCameras;
+        BindEvents();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
-        GameBoardManager.singleton.onTurnStart -= ActivateTPC;
-        GameBoardManager.singleton.onTurnEnd -= DeactivateAllCameras;
-
+        UnbindEvents();
     }
 
-    public void ActivateTPC(BoardEntity entity)
+    public void DisableCanToggleCameraView()
     {
-        entity.thirdPersonCamera.enabled = true;
-        DeactivateTC(entity);
+        //Debug.Log("Disable toggle camera view.");
+        canToggleCameraView = false;
+    }
+    
+    public void EnableCanToggleCameraView()
+    {
+        //Debug.Log("Enable toggle camera view.");
+        canToggleCameraView = true;
     }
 
-    public void DeactivateTPC(BoardEntity entity)
+    public void ActivateTPC()
     {
-        entity.thirdPersonCamera.enabled = false;
+        //Debug.Log("Activate third person camera.");
+        isViewingMap = false;
+        thirdPersonCamera.enabled = true;
     }
 
-    public void ActivateTC(BoardEntity entity)
+    public void DeactivateTPC()
     {
-        entity.topCamera.enabled = true;
-        DeactivateTPC(entity);
+        //Debug.Log("Deactivate third person camera.");
+        thirdPersonCamera.enabled = false;
     }
 
-    public void DeactivateTC(BoardEntity entity)
+    public void ActivateTC()
     {
-        entity.topCamera.enabled = false;
+        //Debug.Log("Activate top camera.");
+        isViewingMap = true;
+        topCamera.enabled = true;
+        topCameraController.enabled = true;
+        DeactivateTPC();
     }
 
-    public void DeactivateAllCameras(BoardEntity entity)
+    public void DeactivateTC()
     {
-        entity.thirdPersonCamera.enabled = false;
-        entity.topCamera.enabled = false;
+        //Debug.Log("Deactivate top camera.");
+        isViewingMap = false;
+        topCamera.enabled = false;
+        topCameraController.enabled = false;
+        ActivateTPC();
+    }
+
+    public void DeactivateAllCameras()
+    {
+        //Debug.Log("Deactivate all cameras.");
+        isViewingMap = false;
+        thirdPersonCamera.enabled = false;
+        topCamera.enabled = false;
     }
 
     public virtual void Initialize()
@@ -129,7 +159,6 @@ public class BoardEntity : MonoBehaviour
         agent.radius = 0.1f;
         CreateCameras();
         DisableAgent();
-        BindEvents();
     }
 
     private void CreateCameras()
@@ -137,16 +166,29 @@ public class BoardEntity : MonoBehaviour
         CameraBoardManager.CreateEntityCameras(this);
         thirdPersonCamera.enabled = false;
         topCamera.enabled = false;
+        topCameraController.enabled = false;
     }
 
     protected virtual void BindEvents()
     {
+        //Debug.Log("Binding events. " + gameObject.name);
         onTurnStart += SpawnDice;
+        onTurnStart += ActivateTPC;
+        onTurnStart += EnableCanToggleCameraView;
+        onThrowDice += DisableCanToggleCameraView;
+        onThrowDice += DeactivateTC;
+        onTurnEnd += DeactivateAllCameras;
     }
 
     protected virtual void UnbindEvents()
     {
+        Debug.Log("Unbinding events. " + gameObject.name);
         onTurnStart -= SpawnDice;
+        onTurnStart -= ActivateTPC;
+        onTurnStart -= EnableCanToggleCameraView;
+        onThrowDice -= DisableCanToggleCameraView;
+        onThrowDice -= DeactivateTC;
+        onTurnEnd -= DeactivateAllCameras;
     }
 
     public void ForceStop()
@@ -218,6 +260,7 @@ public class BoardEntity : MonoBehaviour
         dice.owner = this;
     }
 
+    public event Action onThrowDice;
     public void ThrowDice()
     {
         /*
@@ -227,7 +270,7 @@ public class BoardEntity : MonoBehaviour
             transform.position + Vector3.up * 5, Quaternion.identity);
         dice.owner = this;
         */
-        if (!turn || dice == null || dice.used)
+        if (!hasTurn || dice == null || dice.used)
         {
             return;
         }
@@ -238,17 +281,28 @@ public class BoardEntity : MonoBehaviour
             objRot.enabled = false;
         }
         dice.Throw();
+
+        onThrowDice?.Invoke();
     }
 
     public void ToggleMapView()
     {
-        isViewingMap = !isViewingMap;
-        if (isViewingMap)
+        /*
+        Debug.Log("Can toggle camera view? " + canToggleCameraView);
+        Debug.Log("Has turn? " + hasTurn);
+        Debug.Log("Is viewing map? " + isViewingMap);
+        */
+        if (canToggleCameraView && hasTurn)
         {
-            // Change camera xd.
-        } else
-        {
-            // Change camera xd.
+            isViewingMap = !isViewingMap;
+            if (isViewingMap)
+            {
+                StartViewMap();
+            }
+            else
+            {
+                StopViewMap();
+            }
         }
     }
 

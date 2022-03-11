@@ -101,6 +101,14 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""5314403b-d7f2-4e5c-b975-3d9da5cee247"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -125,6 +133,116 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Toggle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""3eb299d0-db2d-43d3-b645-fc21e61c7dd9"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""acfdc73c-e2f9-4c24-9295-46644b08302f"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""d83ffb98-c62d-490b-8d86-86c23bf79d47"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a3edfe80-46b2-452a-a5d9-d825a7ce7565"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""7340ea09-0cf3-48f1-8990-ba7121c25094"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""57c2f56c-7957-4760-bb26-a94529b76f1c"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""82127149-5024-4348-bde8-7ba0980b69fc"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c26e8bdb-d815-48ec-9f82-7f617758160e"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""40e91e6a-4b3d-4292-a8cf-1918405935e9"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5b7763d3-42cc-4b8b-8e55-56ece7598d00"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -168,6 +286,7 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Toggle = m_Map.FindAction("Toggle", throwIfNotFound: true);
+        m_Map_Move = m_Map.FindAction("Move", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -284,11 +403,13 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Map;
     private IMapActions m_MapActionsCallbackInterface;
     private readonly InputAction m_Map_Toggle;
+    private readonly InputAction m_Map_Move;
     public struct MapActions
     {
         private @BoardPlayerControls m_Wrapper;
         public MapActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Toggle => m_Wrapper.m_Map_Toggle;
+        public InputAction @Move => m_Wrapper.m_Map_Move;
         public InputActionMap Get() { return m_Wrapper.m_Map; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -301,6 +422,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnToggle;
+                @Move.started -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_MapActionsCallbackInterface.OnMove;
             }
             m_Wrapper.m_MapActionsCallbackInterface = instance;
             if (instance != null)
@@ -308,6 +432,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
             }
         }
     }
@@ -341,5 +468,6 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     public interface IMapActions
     {
         void OnToggle(InputAction.CallbackContext context);
+        void OnMove(InputAction.CallbackContext context);
     }
 }
