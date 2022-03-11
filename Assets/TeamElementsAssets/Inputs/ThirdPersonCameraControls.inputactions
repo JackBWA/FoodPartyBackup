@@ -1,0 +1,33 @@
+{
+    "name": "ThirdPersonCameraControls",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "03abab56-c195-42a4-97fe-ac154d734a40",
+            "actions": [
+                {
+                    "name": "Look",
+                    "type": "PassThrough",
+                    "id": "a1915172-a4cd-4b14-8daa-b79ba8417127",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "99b3cce0-1aa8-4b66-9d67-ba9e37534d69",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

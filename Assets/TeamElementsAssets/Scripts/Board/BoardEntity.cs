@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,8 +31,11 @@ public class BoardEntity : MonoBehaviour
     public Coaster currentCoaster;
 
     public bool isViewingMap = false;
-    private Camera characterCamera;
-    private Camera mapCamera;
+
+    [HideInInspector]
+    public CinemachineFreeLook thirdPersonCamera;
+    [HideInInspector]
+    public CinemachineVirtualCamera topCamera;
 
     #region Components
     protected NavMeshAgent agent;
@@ -49,6 +53,12 @@ public class BoardEntity : MonoBehaviour
     {
         GameBoardManager.singleton.TurnEnd(this);
         onTurnEnd?.Invoke();
+    }
+
+    public event Action<bool> onCameraStateChange;
+    public void CameraStateChange(bool isViewingMap)
+    {
+        onCameraStateChange?.Invoke(isViewingMap);
     }
     #endregion
 
@@ -69,6 +79,47 @@ public class BoardEntity : MonoBehaviour
     }
     #endregion
 
+    private void OnEnable()
+    {
+        GameBoardManager.singleton.onTurnStart += ActivateTPC;
+        GameBoardManager.singleton.onTurnEnd += DeactivateAllCameras;
+    }
+
+    private void OnDisable()
+    {
+        GameBoardManager.singleton.onTurnStart -= ActivateTPC;
+        GameBoardManager.singleton.onTurnEnd -= DeactivateAllCameras;
+
+    }
+
+    public void ActivateTPC(BoardEntity entity)
+    {
+        entity.thirdPersonCamera.enabled = true;
+        DeactivateTC(entity);
+    }
+
+    public void DeactivateTPC(BoardEntity entity)
+    {
+        entity.thirdPersonCamera.enabled = false;
+    }
+
+    public void ActivateTC(BoardEntity entity)
+    {
+        entity.topCamera.enabled = true;
+        DeactivateTPC(entity);
+    }
+
+    public void DeactivateTC(BoardEntity entity)
+    {
+        entity.topCamera.enabled = false;
+    }
+
+    public void DeactivateAllCameras(BoardEntity entity)
+    {
+        entity.thirdPersonCamera.enabled = false;
+        entity.topCamera.enabled = false;
+    }
+
     public virtual void Initialize()
     {
         if(!TryGetComponent(out agent))
@@ -76,8 +127,16 @@ public class BoardEntity : MonoBehaviour
             agent = gameObject.AddComponent<NavMeshAgent>();
         }
         agent.radius = 0.1f;
+        CreateCameras();
         DisableAgent();
         BindEvents();
+    }
+
+    private void CreateCameras()
+    {
+        CameraBoardManager.CreateEntityCameras(this);
+        thirdPersonCamera.enabled = false;
+        topCamera.enabled = false;
     }
 
     protected virtual void BindEvents()
@@ -153,7 +212,9 @@ public class BoardEntity : MonoBehaviour
     {
         dice = Instantiate(
             ((GameObject)Resources.Load("Dice")).GetComponent<Dice>());
-        dice.transform.position = transform.position + Vector3.up * 5;
+        dice.transform.position = transform.position + Vector3.up * 3f;
+        int randomAxis = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObjectRotator.RotationAxis)).Length);
+        dice.GetComponent<ObjectRotator>().rotationAxis = (ObjectRotator.RotationAxis) randomAxis;
         dice.owner = this;
     }
 
