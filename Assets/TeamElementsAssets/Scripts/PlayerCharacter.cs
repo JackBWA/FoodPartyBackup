@@ -38,16 +38,16 @@ public class PlayerCharacter : MonoBehaviour
         "Notlaw",
         "delus3r",
         "Nowy",
-        "kazamabc",
-        "V I C E N T E",
-        "-Hideki-",
-        "G U R A S I M P",
-        "Frosiito",
-        "B of yassin",
-        "NHarmonia",
-        "Estopa",
-        "Fichi",
-        "Damn DanyL"
+        "Sans",
+        "Feniix",
+        "Itzi",
+        "Pika",
+        "Sea",
+        "Beevan",
+        "Buckfro",
+        "Milasus",
+        "Artemisa",
+        "Peppy"
     };
 
     private void LoadDifficulty(AIDifficulty difficulty)
