@@ -15,12 +15,12 @@ MonoBehaviour:
   title: 
   flavors:
   - flavor: {fileID: 11400000, guid: 4e85a0d9f7eab8647aaeafd0d233b747, type: 2}
-    randomAmount: 1
+    randomAmount: 0
     amount: 1
     minAmount: 0
     maxAmount: 0
   - flavor: {fileID: 11400000, guid: 3183175991df1ff46a1eb5d7a640052b, type: 2}
-    randomAmount: 1
+    randomAmount: 0
     amount: 1
     minAmount: 0
     maxAmount: 0

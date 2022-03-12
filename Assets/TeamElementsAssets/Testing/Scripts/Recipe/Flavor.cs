@@ -8,6 +8,6 @@ public class Flavor : ScriptableObject
 {
     public new string name;
 
-    public Image icon;
+    public Sprite icon;
     public GameObject modelPrefab;
 }

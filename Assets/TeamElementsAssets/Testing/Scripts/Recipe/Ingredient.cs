@@ -8,6 +8,6 @@ public class Ingredient : ScriptableObject
 {
     public new string name;
 
-    public Image icon;
+    public Sprite icon;
     public GameObject modelPrefab;
 }
