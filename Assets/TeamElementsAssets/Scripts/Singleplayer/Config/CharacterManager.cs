@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CharacterManager : MonoBehaviour
 
     public static PlayerCharacter selectedCharacter;
     public static List<PlayerCharacter> aiCharacters = new List<PlayerCharacter>();
+
+    public TMP_InputField nickInput;
 
     public List<PlayerCharacter> playableCharacters = new List<PlayerCharacter>();
     private List<PlayerCharacter> cachedCharacters = new List<PlayerCharacter>();
@@ -96,7 +99,8 @@ public class CharacterManager : MonoBehaviour
                 aiCharacters.Add(aiChar);
             } else
             {
-                selectedCharacter.name = "Player"; // Temporal.
+                selectedCharacter.name = nickInput.text;
+                if(string.IsNullOrEmpty(selectedCharacter.name)) selectedCharacter.name = "Player"; // Temporal.
                 selectedCharacter.characterType = PlayerCharacter.CharacterType.Player;
             }
         }
