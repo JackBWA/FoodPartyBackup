@@ -24,6 +24,21 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
+    public float baseHealth = 50f;
+    public float health
+    {
+        get
+        {
+            return _health;
+        } set
+        {
+            _health = Mathf.Clamp(value, 0f, baseHealth);
+            HealthChange(health);
+        }
+    }
+
+    private float _health;
+
     protected bool turn;
     protected Dice dice;
     protected int moves;
@@ -69,6 +84,13 @@ public class BoardEntity : MonoBehaviour
     {
         DeactivateTC();
         onStopViewMap?.Invoke();
+    }
+
+    public event Action<float> onHealthChange;
+    public void HealthChange(float health)
+    {
+        Debug.Log($"Health changed on {name}.");
+        onHealthChange?.Invoke(health);
     }
     #endregion
 
@@ -157,6 +179,7 @@ public class BoardEntity : MonoBehaviour
             agent = gameObject.AddComponent<NavMeshAgent>();
         }
         agent.radius = 0.1f;
+        health = baseHealth;
         CreateCameras();
         DisableAgent();
     }
