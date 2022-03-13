@@ -220,7 +220,7 @@ public class BoardEntity : MonoBehaviour
         ContinueMoving();
     }
 
-    public void teleportto(Vector3 position)
+    public void TeleportTo(Vector3 position)
     {
         DisableAgent();
         agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
