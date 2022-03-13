@@ -343,6 +343,7 @@ public class GameBoardManager : MonoBehaviour
         onGameEnd?.Invoke();
     }
 
+    
     public event Action<BoardEntity> onTurnStart;
     public void TurnStart(BoardEntity entity)
     {
@@ -362,6 +363,7 @@ public class GameBoardManager : MonoBehaviour
         if (turnIndex >= boardPlayers.Count)
         {
             RoundEnd();
+            return; // Return is needed? I think so.
         }
         onTurnEnd?.Invoke(entity);
         TurnStart(boardPlayers[turnIndex]);

@@ -217,9 +217,10 @@ public class BoardEntity : MonoBehaviour
     public void ForceStop()
     {
         moves = 0;
+        ContinueMoving();
     }
 
-    public void TeleportTo(Vector3 position)
+    public void teleportto(Vector3 position)
     {
         DisableAgent();
         agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
@@ -232,6 +233,25 @@ public class BoardEntity : MonoBehaviour
         moves = amount;
         // Notify
         StartCoroutine(Move(currentCoaster.next[0]));
+    }
+
+    public IEnumerator RequestStop()
+    {
+        yield return null;
+    }
+
+    public void ContinueMoving()
+    {
+        moves--;
+        if (moves > 0)
+        {
+            StartCoroutine(Move(currentCoaster.next[0]));
+        }
+        else
+        {
+            currentCoaster.playerStop(this);
+            TurnEnd();
+        }
     }
 
     public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
@@ -260,16 +280,6 @@ public class BoardEntity : MonoBehaviour
 
             currentCoaster = target;
             currentCoaster.playerEnter(this, waitZones[0]);
-            moves--;
-
-            if(moves > 0)
-            {
-                StartCoroutine(Move(currentCoaster.next[0]));
-            } else
-            {
-                currentCoaster.playerStop(this);
-                TurnEnd();
-            }
         }
     }
 

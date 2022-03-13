@@ -40,13 +40,7 @@ public class Coaster : MonoBehaviour
     public CoasterType type;
 
     public bool canRequestStop;
-    private bool canForceStop
-    {
-        get
-        {
-            return true; // WIP
-        }
-    }
+    private bool canForceStop = false;
 
     #region Awake/Start/Update
     protected virtual void Awake()
@@ -133,25 +127,66 @@ public class Coaster : MonoBehaviour
 
     // Movimiento en casillas.
     protected event Action<BoardEntity, Vector3> onPlayerEnter;
-    public void playerEnter(BoardEntity player, Vector3 position)
+    public void playerEnter(BoardEntity entity, Vector3 position)
     {
         //Debug.Log("Player entered the coaster!");
-        SetWaitZoneState(position, player);
-        if(onPlayerEnter != null)
+        SetWaitZoneState(position, entity);
+
+        /*
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
+         */
+        canForceStop = false;
+
+        if (canForceStop)
         {
-            onPlayerEnter(player, position);
+            entity.ForceStop();
+            return;
         }
+
+        if (canRequestStop)
+        {
+            entity.RequestStop();
+        } else
+        {
+            entity.ContinueMoving();
+        }
+        onPlayerEnter?.Invoke(entity, position);
     }
 
     protected event Action<BoardEntity> onPlayerStop;
-    public void playerStop(BoardEntity player)
+    public void playerStop(BoardEntity entity)
     {
         //Debug.Log("Player stopped on coaster!");
         Interact();
-        if(onPlayerStop != null)
-        {
-            onPlayerStop(player);
-        }
+        onPlayerStop?.Invoke(entity);
     }
 
     protected event Action<BoardEntity> onPlayerLeave;
@@ -183,10 +218,7 @@ public class Coaster : MonoBehaviour
         */
 
         //SetWaitZoneState(position, null);
-        if (onPlayerLeave != null)
-        {
-            onPlayerLeave(entity);
-        }
+        onPlayerLeave?.Invoke(entity);
     }
 
     // Forzar la detención del player.
