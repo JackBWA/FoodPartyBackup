@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 360256327787346126}
   - component: {fileID: 360256327787346127}
   - component: {fileID: 360256327787346112}
+  - component: {fileID: 400148227892868636}
   m_Layer: 5
   m_Name: ShopCanvas
   m_TagString: Untagged
@@ -718,6 +719,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &400148227892868636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360256327787346113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7019f41b2e2b28044a8cb471204ace22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shopDuration: 30
+  timer: {fileID: 8350488172386809812}
+  shopInteractor: {fileID: 0}
+  itemsPanel: {fileID: 360256327370500625}
+  selectedItemPanel: {fileID: 360256328370879662}
+  shopItemPrefab: {fileID: 2248269045456033521, guid: 688a73fd532969a4dabd6be8c03adf4c, type: 3}
+  shopItems: []
 --- !u!1 &360256327827769368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1532,6 @@ GameObject:
   - component: {fileID: 360256328441588316}
   - component: {fileID: 360256328441588314}
   - component: {fileID: 360256328441588315}
-  - component: {fileID: 360256328441588313}
   m_Layer: 5
   m_Name: ShopUI
   m_TagString: Untagged
@@ -1582,24 +1601,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &360256328441588313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 360256328441588317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7019f41b2e2b28044a8cb471204ace22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timer: {fileID: 8350488172386809812}
-  shopInteractor: {fileID: 0}
-  itemsPanel: {fileID: 360256327370500625}
-  selectedItemPanel: {fileID: 360256328370879662}
-  shopItemPrefab: {fileID: 2248269045456033521, guid: 688a73fd532969a4dabd6be8c03adf4c, type: 3}
-  shopItems: []
 --- !u!1 &360256328604983495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,7 +2606,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 360256328441588313}
+      - m_Target: {fileID: 400148227892868636}
         m_TargetAssemblyTypeName: Shop, Assembly-CSharp
         m_MethodName: CloseShop
         m_Mode: 1

@@ -7,6 +7,10 @@ using UnityEngine.UI;
 public class Shop : MonoBehaviour
 {
 
+    public float shopDuration;
+
+    private bool isOpen;
+
     public TextMeshProUGUI timer;
 
     [HideInInspector]
@@ -25,13 +29,31 @@ public class Shop : MonoBehaviour
         selectedItemPanel.shop = this;
         CreateItems();
         LoadItems();
+        gameObject.SetActive(false);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(RunTimer());
+    }
+
+    private IEnumerator RunTimer()
+    {
+        float counter = 0f;
+        while (counter < shopDuration && isOpen)
+        {
+            timer.text = $"{(int)(shopDuration - counter)}";
+            counter += Time.deltaTime;
+            yield return null;
+        }
+        shopInteractor.currentCoaster.EndInteract(shopInteractor);
     }
 
     private void CreateItems()
     {
         foreach(RecipeElement rE in Resources.LoadAll<RecipeElement>("Recipes/RecipeElements"))
         {
-            Debug.Log(rE.GetType());
+            //Debug.Log(rE.GetType());
             ShopElementUI sEUI = Instantiate(shopItemPrefab);
             sEUI.shop = this;
             sEUI.recipeElement = rE;
@@ -67,13 +89,14 @@ public class Shop : MonoBehaviour
     public void OpenShop(BoardEntity entity)
     {
         shopInteractor = entity;
+        isOpen = true;
         gameObject.SetActive(true);
     }
 
     public void CloseShop()
     {
-        shopInteractor.currentCoaster.EndInteract();
-        shopInteractor = null;
-        gameObject.SetActive(false);
+        //shopInteractor.currentCoaster.EndInteract(); // Moved to coroutine
+        isOpen = false;
+        //gameObject.SetActive(false);
     }
 }

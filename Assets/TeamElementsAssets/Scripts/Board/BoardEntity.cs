@@ -250,7 +250,7 @@ public class BoardEntity : MonoBehaviour
         else
         {
             currentCoaster.playerStop(this);
-            TurnEnd();
+            //TurnEnd(); // YA NO.
         }
     }
 

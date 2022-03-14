@@ -79,9 +79,10 @@ public class Coaster : MonoBehaviour
         Debug.Log("Base interact!");
     }
 
-    public virtual void EndInteract()
+    public virtual void EndInteract(BoardEntity interactor)
     {
         Debug.Log("Base end interact!");
+        interactor.TurnEnd();
     }
 
     private void CreateWaitZones(int amount)

@@ -321,8 +321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 793719025}
   coaster: {fileID: 0}
@@ -509,8 +509,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 365056136}
   coaster: {fileID: 0}
@@ -2915,8 +2915,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 813874577}
   coaster: {fileID: 0}
@@ -3924,8 +3924,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 1206856039}
   coaster: {fileID: 0}
@@ -5436,8 +5436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 124071782}
   coaster: {fileID: 0}
@@ -9730,8 +9730,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   next:
   - {fileID: 29687504}
   coaster: {fileID: 0}

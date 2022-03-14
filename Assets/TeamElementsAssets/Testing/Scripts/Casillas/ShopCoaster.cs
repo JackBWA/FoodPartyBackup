@@ -7,6 +7,8 @@ public class ShopCoaster : Coaster
 
     public Shop shopPrefab;
 
+    private Shop shopInstance;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,11 +23,24 @@ public class ShopCoaster : Coaster
     {
         base.Interact(interactor);
         Debug.Log("Shop interact!");
+        shopInstance = Instantiate(shopPrefab);
+        switch (interactor.GetComponent<PlayerCharacter>().characterType)
+        {
+            case PlayerCharacter.CharacterType.Player:
+                shopInstance.OpenShop(interactor);
+                break;
+
+            case PlayerCharacter.CharacterType.AI:
+                interactor.TurnEnd(); // TEMPORAL UNTIL AI CAN BUY XD.
+                break;
+        }
     }
 
-    public override void EndInteract()
+    public override void EndInteract(BoardEntity interactor)
     {
-        base.EndInteract();
+        base.EndInteract(interactor);
+        Debug.Log("Shop end interact!");
+        Destroy(shopInstance.gameObject);
     }
 
     public override void playerEnter(BoardEntity entity, Vector3 position)

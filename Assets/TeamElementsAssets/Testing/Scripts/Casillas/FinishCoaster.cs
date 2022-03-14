@@ -21,9 +21,9 @@ public class FinishCoaster : Coaster
         Debug.Log("Finish interact!");
     }
 
-    public override void EndInteract()
+    public override void EndInteract(BoardEntity interactor)
     {
-        base.EndInteract();
+        base.EndInteract(interactor);
     }
 
     public override void playerEnter(BoardEntity entity, Vector3 position)
