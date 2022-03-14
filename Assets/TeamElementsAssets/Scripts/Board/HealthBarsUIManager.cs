@@ -18,7 +18,7 @@ public class HealthBarsUIManager : MonoBehaviour
         foreach(BoardEntity bE in GameBoardManager.singleton.boardPlayers)
         {
             GameObject hbObj = Instantiate(elementPrefab);
-            hbObj.transform.parent = transform;
+            hbObj.transform.SetParent(transform);
             HealthBarUI healthBar = hbObj.GetComponent<HealthBarUI>();
             healthBar.Initialize(bE);
             healthBars.Add(healthBar);

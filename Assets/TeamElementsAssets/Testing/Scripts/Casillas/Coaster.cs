@@ -5,6 +5,7 @@ using Unity.AI.Navigation;
 using UnityEditor;
 using UnityEngine;
 
+[CanEditMultipleObjects]
 public class Coaster : MonoBehaviour
 {
     public List<Coaster> next = new List<Coaster>();
@@ -73,9 +74,14 @@ public class Coaster : MonoBehaviour
     }
 
     // Realizar su función.
-    public virtual void Interact()
+    public virtual void Interact(BoardEntity interactor)
     {
+        Debug.Log("Base interact!");
+    }
 
+    public virtual void EndInteract()
+    {
+        Debug.Log("Base end interact!");
     }
 
     private void CreateWaitZones(int amount)
@@ -127,7 +133,7 @@ public class Coaster : MonoBehaviour
 
     // Movimiento en casillas.
     protected event Action<BoardEntity, Vector3> onPlayerEnter;
-    public void playerEnter(BoardEntity entity, Vector3 position)
+    public virtual void playerEnter(BoardEntity entity, Vector3 position)
     {
         //Debug.Log("Player entered the coaster!");
         SetWaitZoneState(position, entity);
@@ -182,15 +188,15 @@ public class Coaster : MonoBehaviour
     }
 
     protected event Action<BoardEntity> onPlayerStop;
-    public void playerStop(BoardEntity entity)
+    public virtual void playerStop(BoardEntity entity)
     {
         //Debug.Log("Player stopped on coaster!");
-        Interact();
+        Interact(entity);
         onPlayerStop?.Invoke(entity);
     }
 
     protected event Action<BoardEntity> onPlayerLeave;
-    public void playerLeave(BoardEntity entity)
+    public virtual void playerLeave(BoardEntity entity)
     {
         //Debug.Log("Player left the coaster!");
 
@@ -227,6 +233,7 @@ public class Coaster : MonoBehaviour
         player.ForceStop();
     }
 
+    /* (DON'T USE FOR NOW)
     // Activarse o desactivarse.
     public bool isCoasterEnabled = true;
     public void ToggleCoasterState()
@@ -238,6 +245,7 @@ public class Coaster : MonoBehaviour
     {
         isCoasterEnabled = enabled;
     }
+    */
 
     /* Que cosas puede hacer una casilla:
      * 
@@ -246,6 +254,6 @@ public class Coaster : MonoBehaviour
      * Forzar la detención del player.
      * Almacenar ingredientes.
      * Poner trampas.
-     * Activarse o desactivarse.
+     * Activarse o desactivarse. (De momento no).
      */
 }

@@ -97,7 +97,6 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 0
+  type: 3
   canRequestStop: 0
-  traps: []
   isCoasterEnabled: 1

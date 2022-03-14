@@ -64,7 +64,7 @@ public class BoardEntity : MonoBehaviour
     {
         onTurnStart?.Invoke();
     }
-
+    
     public event Action onTurnEnd;
     public void TurnEnd()
     {
@@ -89,7 +89,7 @@ public class BoardEntity : MonoBehaviour
     public event Action<float> onHealthChange;
     public void HealthChange(float health)
     {
-        Debug.Log($"Health changed on {name}.");
+        //Debug.Log($"Health changed on {name}.");
         onHealthChange?.Invoke(health);
     }
     #endregion
