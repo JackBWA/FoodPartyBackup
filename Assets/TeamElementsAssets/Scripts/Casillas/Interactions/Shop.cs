@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+
+    public TextMeshProUGUI timer;
 
     [HideInInspector]
     public BoardEntity shopInteractor;
@@ -55,7 +58,7 @@ public class Shop : MonoBehaviour
         {
             sEUI.itemName = sEUI.recipeElement.name;
             sEUI.itemSprite = sEUI.recipeElement.icon;
-            sEUI.itemCost = sEUI.recipeElement.cost;
+            sEUI.itemCost = sEUI.recipeElement.buyCost;
         }
         shopItems[0].GetComponent<Button>().Select();
         shopItems[0].SelectItem();

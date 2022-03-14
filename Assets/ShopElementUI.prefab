@@ -238,7 +238,7 @@ RectTransform:
   m_GameObject: {fileID: 2248269045456033530}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.85, y: 0.85, z: 0.85}
   m_Children:
   - {fileID: 2248269045212908098}
   - {fileID: 2248269044249081879}
@@ -263,8 +263,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1bee306a4ab5d4bbaf85ceea36b8ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shop: {fileID: 0}
   recipeElement: {fileID: 0}
   amount: 0
+  maxAmount: 0
   _itemName: {fileID: 2248269045212908101}
   _itemSprite: {fileID: 2248269044249081878}
   _itemCost: {fileID: 2248269045561708186}

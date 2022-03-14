@@ -63,14 +63,27 @@ public class SelectedItem : MonoBehaviour
     public Button itemBuyButton;
     public Button itemSellButton;
 
-    private void Awake()
+    public void UpdateItemAmountWithoutNotify(int value)
     {
-        _itemAmountSlider.onValueChanged.AddListener(UpdateValue);
+        _itemAmount = value;
     }
 
-    public void UpdateValue(float newValue)
+    private void Awake()
     {
-        _itemAmountInput.text = $"{(int) newValue}";
+        _itemAmountSlider.onValueChanged.AddListener(UpdateInputValue);
+        _itemAmountInput.onValueChanged.AddListener(UpdateSliderValue);
+    }
+
+    public void UpdateInputValue(float newValue)
+    {
+        _itemAmountInput.SetTextWithoutNotify($"{(int) newValue}");
+        UpdateItemAmountWithoutNotify((int) newValue);
+    }
+
+    public void UpdateSliderValue(string newValue)
+    {
+        _itemAmountSlider.SetValueWithoutNotify(int.Parse(newValue));
+        UpdateItemAmountWithoutNotify(int.Parse(newValue));
     }
 
     public void SetSelected(ShopElementUI selected)
