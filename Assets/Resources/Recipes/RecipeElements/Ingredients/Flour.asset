@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f366665d8f5b33a4788a2f358a3e7ab7, type: 3}
   m_Name: Flour
   m_EditorClassIdentifier: 
-  name: 
+  name: Flour
   icon: {fileID: 0}
   modelPrefab: {fileID: 0}
