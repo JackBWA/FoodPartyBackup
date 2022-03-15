@@ -31,7 +31,7 @@ public class ShopCoaster : Coaster
                 break;
 
             case PlayerCharacter.CharacterType.AI:
-                interactor.TurnEnd(); // TEMPORAL UNTIL AI CAN BUY XD.
+                EndInteract(interactor); // TEMPORAL UNTIL AI CAN BUY XD.
                 break;
         }
     }

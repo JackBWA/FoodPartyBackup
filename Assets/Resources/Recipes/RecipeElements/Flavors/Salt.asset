@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Salt
   m_EditorClassIdentifier: 
   name: Salt
+  buyCost: 300
+  sellCost: 100
   icon: {fileID: 0}
   modelPrefab: {fileID: 0}

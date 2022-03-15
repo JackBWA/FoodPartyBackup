@@ -48,6 +48,29 @@ public class SelectedItem : MonoBehaviour
 
     public int maxAmount;
 
+    public int buyCost
+    {
+        get
+        {
+            return selected.recipeElement.buyCost * itemAmount;
+        }
+        set
+        {
+            _buyCost.text = $"-{value}$";
+        }
+    }
+    public int sellCost
+    {
+        get
+        {
+            return selected.recipeElement.sellCost * itemAmount;
+        }
+        set
+        {
+            _sellCost.text = $"+{value}$";
+        }
+    }
+
     [SerializeField]
     private TextMeshProUGUI _itemName;
     [SerializeField]
@@ -60,12 +83,19 @@ public class SelectedItem : MonoBehaviour
     [SerializeField]
     private TMP_InputField _itemAmountInput;
 
+    [SerializeField]
+    private TextMeshProUGUI _buyCost;
+    [SerializeField]
+    private TextMeshProUGUI _sellCost;
+
     public Button itemBuyButton;
     public Button itemSellButton;
 
-    public void UpdateItemAmountWithoutNotify(int value)
+    public void UpdateItemAmountWithoutNotify(int amount)
     {
-        _itemAmount = value;
+        _itemAmount = amount;
+        buyCost = buyCost;
+        sellCost = sellCost;
     }
 
     private void Awake()
@@ -101,10 +131,12 @@ public class SelectedItem : MonoBehaviour
 
     public void UpdateAmountsDisplay()
     {
-        maxAmount = selected.maxAmount;
+        maxAmount = selected.amount;
         _itemAmountInput.text = $"{itemAmount}";
         _itemAmountSlider.minValue = 0;
         _itemAmountSlider.maxValue = maxAmount;
         _itemAmountSlider.value = Mathf.Clamp(selected.amount, _itemAmountSlider.minValue, _itemAmountSlider.maxValue);
+        buyCost = buyCost;
+        sellCost = sellCost;
     }
 }

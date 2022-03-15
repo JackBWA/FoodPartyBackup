@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Oil
   m_EditorClassIdentifier: 
   name: Oil
+  buyCost: 300
+  sellCost: 100
   icon: {fileID: 0}
   modelPrefab: {fileID: 0}

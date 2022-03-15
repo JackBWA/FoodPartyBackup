@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Flour
   m_EditorClassIdentifier: 
   name: Flour
+  buyCost: 45
+  sellCost: 15
   icon: {fileID: 0}
   modelPrefab: {fileID: 0}

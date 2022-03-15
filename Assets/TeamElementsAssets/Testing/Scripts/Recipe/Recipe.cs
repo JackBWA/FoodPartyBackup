@@ -10,17 +10,30 @@ public class Recipe : ScriptableObject
     public List<FlavorAmount> flavors = new List<FlavorAmount>();
     public List<IngredientAmount> ingredients = new List<IngredientAmount>();
 
+    /*
     public Dictionary<Flavor, int> requiredFlavors;
     public Dictionary<Ingredient, int> requiredIngredients;
+    */
 
+    public Dictionary<RecipeElement, int> requiredElements;
+    public Dictionary<RecipeElement, int> currentElements;
+
+    /*
     public Dictionary<Flavor, int> currentFlavors;
     public Dictionary<Ingredient, int> currentIngredients;
+    */
 
     public bool isCompleted
     {
         get
         {
             bool result = true;
+            foreach(KeyValuePair<RecipeElement, int> recipeElement in currentElements)
+            {
+                if (recipeElement.Value != requiredElements[recipeElement.Key]) result = false;
+            }
+
+            /*
             foreach (KeyValuePair<Flavor, int> flavor in currentFlavors)
             {
                 if (flavor.Value != requiredFlavors[flavor.Key])
@@ -38,6 +51,7 @@ public class Recipe : ScriptableObject
                     }
                 }
             }
+            */
             return result;
         }
     }
@@ -58,6 +72,19 @@ public class Recipe : ScriptableObject
             ingredients.Add(ingredient);
         }
 
+        requiredElements = new Dictionary<RecipeElement, int>();
+        foreach(KeyValuePair<RecipeElement, int> recipeElement in recipe.requiredElements)
+        {
+            requiredElements.Add(recipeElement.Key, recipeElement.Value);
+        }
+
+        currentElements = new Dictionary<RecipeElement, int>();
+        foreach (KeyValuePair<RecipeElement, int> recipeElement in recipe.currentElements)
+        {
+            currentElements.Add(recipeElement.Key, recipeElement.Value);
+        }
+
+        /*
         requiredFlavors = new Dictionary<Flavor, int>();
         foreach(KeyValuePair<Flavor, int> kV in recipe.requiredFlavors)
         {
@@ -81,6 +108,7 @@ public class Recipe : ScriptableObject
         {
             currentIngredients.Add(kV.Key, kV.Value);
         }
+        */
 
         /*
         flavors = recipe.flavors;
@@ -96,6 +124,12 @@ public class Recipe : ScriptableObject
 
     public void Complete()
     {
+        foreach(KeyValuePair<RecipeElement, int> recipeElement in requiredElements)
+        {
+            currentElements[recipeElement.Key] = requiredElements[recipeElement.Key];
+        }
+
+        /*
         foreach(KeyValuePair<Flavor, int> kV in requiredFlavors)
         {
             currentFlavors[kV.Key] = requiredFlavors[kV.Key];
@@ -105,15 +139,25 @@ public class Recipe : ScriptableObject
         {
             currentIngredients[kV.Key] = requiredIngredients[kV.Key];
         }
+        */
     }
 
     public void Initialize()
     {
+
+        requiredElements = new Dictionary<RecipeElement, int>();
+
+        /*
         requiredFlavors = new Dictionary<Flavor, int>();
         requiredIngredients = new Dictionary<Ingredient, int>();
+        */
 
+        currentElements = new Dictionary<RecipeElement, int>();
+
+        /*
         currentFlavors = new Dictionary<Flavor, int>();
         currentIngredients = new Dictionary<Ingredient, int>();
+        */
 
         foreach (FlavorAmount flavor in flavors)
         {
@@ -122,8 +166,14 @@ public class Recipe : ScriptableObject
             {
                 amount = flavor.GetRandomAmount();
             }
+
+            requiredElements.Add(flavor.flavor, amount);
+            currentElements.Add(flavor.flavor, 0);
+
+            /*
             requiredFlavors.Add(flavor.flavor, amount);
             currentFlavors.Add(flavor.flavor, 0);
+            */
         }
 
         foreach(IngredientAmount ingredient in ingredients)
@@ -133,65 +183,111 @@ public class Recipe : ScriptableObject
             {
                 amount = ingredient.GetRandomAmount();
             }
+
+            requiredElements.Add(ingredient.ingredient, amount);
+            currentElements.Add(ingredient.ingredient, 0);
+
+            /*
             requiredIngredients.Add(ingredient.ingredient, amount);
             currentIngredients.Add(ingredient.ingredient, 0);
+            */
         }
     }
 
     public override string ToString()
     {
+        // NEW
+        Dictionary<Flavor, int> auxFlavors = new Dictionary<Flavor, int>();
+        Dictionary<Ingredient, int> auxIngredients = new Dictionary<Ingredient, int>();
+        
+        foreach(KeyValuePair<RecipeElement, int> rE in currentElements)
+        {
+            switch (rE.Key)
+            {
+                case Flavor f:
+                    auxFlavors.Add(f, rE.Value);
+                    break;
+
+                case Ingredient i:
+                    auxIngredients.Add(i, rE.Value);
+                    break;
+            }
+        }
+        // END NEW
+
         string result = $"Recipe for {title}!\n" +
             $"Flavors:\n";
-        foreach (KeyValuePair<Flavor, int> kv in currentFlavors)
+        foreach (KeyValuePair<Flavor, int> kv in auxFlavors)
         {
-            result += $"     {kv.Key.name}: {kv.Value}/{requiredFlavors[kv.Key]}\n";
+            result += $"     {kv.Key.name}: {kv.Value}/{requiredElements[kv.Key]}\n";
         }
         result += $"Ingredients:\n";
-        foreach (KeyValuePair<Ingredient, int> kv in currentIngredients)
+        foreach (KeyValuePair<Ingredient, int> kv in auxIngredients)
         {
-            result += $"     {kv.Key.name}: {kv.Value}/{requiredIngredients[kv.Key]}\n";
+            result += $"     {kv.Key.name}: {kv.Value}/{requiredElements[kv.Key]}\n";
         }
         return result;
     }
 
-    #region Flavor Methods
-    public bool AddRequiredFlavor(Flavor flavor, int amount)
+    #region Recipe Methods
+    public bool AddRequiredElement(RecipeElement element, int amount)
     {
+        bool added = !requiredElements.ContainsKey(element);
+        if (added) requiredElements.Add(element, amount);
+        /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (!containsFlavor) requiredFlavors.Add(flavor, amount);
-        return containsFlavor;
+        */
+        return added;
     }
 
-    public bool RemoveRequiredFlavor(Flavor flavor)
+    public bool RemoveRequiredElement(RecipeElement element)
     {
+        bool removed = requiredElements.ContainsKey(element);
+        if (removed) requiredElements.Remove(element);
+        /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (containsFlavor) requiredFlavors.Remove(flavor);
-        return containsFlavor;
+        */
+        return removed;
     }
 
-    public bool UpdateRequiredFlavor(Flavor flavor, int newAmount)
+    public bool UpdateRequiredElement(RecipeElement element, int newAmount)
     {
+        bool wasUpdated = requiredElements.ContainsKey(element);
+        if (wasUpdated) requiredElements[element] = newAmount;
+        /*
         bool wasUpdated = requiredFlavors.ContainsKey(flavor);
         if (wasUpdated) requiredFlavors[flavor] = newAmount;
+        */
         return wasUpdated;
     }
 
-    public void SetCurrentFlavor(Flavor flavor, int newAmount)
+    public void SetCurrentElement(RecipeElement element, int newAmount)
     {
+        if (currentElements.ContainsKey(element))
+        {
+            currentElements[element] = newAmount;
+        }
+        /*
         if (currentFlavors.ContainsKey(flavor))
         {
             currentFlavors[flavor] = newAmount;
         }
+        */
     }
 
     #endregion
 
-    #region Ingredient Methods
+
+    // Deprecated since everything was packed to a same parent class.
+    #region Ingredient Methods (deprecated)
+    /*
     public bool AddRequiredIngredient(Ingredient ingredient, int amount)
     {
         bool containsFlavor = requiredIngredients.ContainsKey(ingredient);
         if (!containsFlavor) requiredIngredients.Add(ingredient, amount);
-        return containsFlavor;
+        return added;
     }
 
     public bool RemoveRequiredIngredient(Ingredient ingredient)
@@ -215,6 +311,6 @@ public class Recipe : ScriptableObject
             currentIngredients[ingredient] = newAmount;
         }
     }
-
+    */
     #endregion
 }

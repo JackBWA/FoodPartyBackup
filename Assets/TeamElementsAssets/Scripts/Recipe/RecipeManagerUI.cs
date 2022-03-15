@@ -61,7 +61,7 @@ public class RecipeManagerUI : MonoBehaviour
             RecipeElementUI reUI = Instantiate(elementPrefab);
             FlavorAmount fA = recipe.flavors[i];
             if(fA.flavor.icon != null) reUI.SetImage(fA.flavor.icon);
-            reUI.SetAmount(recipe.currentFlavors[fA.flavor], recipe.requiredFlavors[fA.flavor]);
+            reUI.SetAmount(recipe.currentElements[fA.flavor], recipe.requiredElements[fA.flavor]);
             reUI.transform.SetParent(flavorsHolder.transform);
             recipeElementsUI.Add(reUI);
         }
@@ -71,7 +71,7 @@ public class RecipeManagerUI : MonoBehaviour
             RecipeElementUI reUI = Instantiate(elementPrefab);
             IngredientAmount iA = recipe.ingredients[i];
             if(iA.ingredient.icon != null) reUI.SetImage(iA.ingredient.icon);
-            reUI.SetAmount(recipe.currentIngredients[iA.ingredient], recipe.requiredIngredients[iA.ingredient]);
+            reUI.SetAmount(recipe.currentElements[iA.ingredient], recipe.requiredElements[iA.ingredient]);
             reUI.transform.SetParent(ingredientsHolder.transform);
             recipeElementsUI.Add(reUI);
         }

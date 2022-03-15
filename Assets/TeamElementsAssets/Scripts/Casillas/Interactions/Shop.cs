@@ -61,12 +61,12 @@ public class Shop : MonoBehaviour
             {
                 case Flavor flavor:
                     sEUI.amount = 1;
-                    sEUI.maxAmount = 1;
+                    //sEUI.maxAmount = 1;
                     break;
 
                 case Ingredient ingredient:
                     sEUI.amount = 5;
-                    sEUI.maxAmount = 5;
+                    //sEUI.maxAmount = 5;
                     break;
             }
             sEUI.gameObject.transform.SetParent(itemsPanel.elementsContentPanel.transform);
@@ -98,5 +98,53 @@ public class Shop : MonoBehaviour
         //shopInteractor.currentCoaster.EndInteract(); // Moved to coroutine
         isOpen = false;
         //gameObject.SetActive(false);
+    }
+
+    public void BuyItem()
+    {
+        if(selectedItemPanel.itemAmount > selectedItemPanel.selected.amount || selectedItemPanel.buyCost > shopInteractor.coins)
+        {
+            Debug.LogWarning("Couldn't proceed with the purchase because interactor doesn't have enough coins.");
+            return;
+        }
+        // Update coins
+        shopInteractor.coins -= selectedItemPanel.buyCost;
+        if (!GameBoardManager.singleton.recipeStates[shopInteractor].currentElements.ContainsKey(selectedItemPanel.selected.recipeElement)) GameBoardManager.singleton.recipeStates[shopInteractor].currentElements.Add(selectedItemPanel.selected.recipeElement, selectedItemPanel.itemAmount);
+        else
+        {
+            int newAmount = GameBoardManager.singleton.recipeStates[shopInteractor].currentElements[selectedItemPanel.selected.recipeElement] + selectedItemPanel.itemAmount;
+            // Add X amount of recipe elements
+            GameBoardManager.singleton.recipeStates[shopInteractor].SetCurrentElement(selectedItemPanel.selected.recipeElement, newAmount);
+        }
+
+        // Update shop element UI amount value.
+        selectedItemPanel.selected.amount -= selectedItemPanel.itemAmount;
+        selectedItemPanel.UpdatePanel();
+
+        // Update recipe display
+        RecipeManagerUI.singleton.UpdateDisplay(shopInteractor);
+    }
+
+    public void SellItem()
+    {
+        if (GameBoardManager.singleton.recipeStates[shopInteractor].currentElements.ContainsKey(selectedItemPanel.selected.recipeElement) && selectedItemPanel.itemAmount > GameBoardManager.singleton.recipeStates[shopInteractor].currentElements[selectedItemPanel.selected.recipeElement])
+        {
+            Debug.LogWarning("Couldn't proceed with the sale because interactor doesn't have enough elements.");
+            return;
+        }
+
+        // Update coins
+        shopInteractor.coins += selectedItemPanel.sellCost;
+        int newAmount = GameBoardManager.singleton.recipeStates[shopInteractor].currentElements[selectedItemPanel.selected.recipeElement] - selectedItemPanel.itemAmount;
+        
+        // Remove X amount of recipe elements
+        GameBoardManager.singleton.recipeStates[shopInteractor].SetCurrentElement(selectedItemPanel.selected.recipeElement, newAmount);
+
+        // Update shop element UI amount value.
+        selectedItemPanel.selected.amount += selectedItemPanel.itemAmount;
+        selectedItemPanel.UpdatePanel();
+
+        // Update recipe display
+        RecipeManagerUI.singleton.UpdateDisplay(shopInteractor);
     }
 }

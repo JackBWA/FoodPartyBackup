@@ -39,6 +39,21 @@ public class BoardEntity : MonoBehaviour
 
     private float _health;
 
+    public int coins
+    {
+        get
+        {
+            return _coins;
+        }
+
+        set
+        {
+            _coins = value;
+        }
+    }
+
+    private int _coins;
+
     protected bool turn;
     protected Dice dice;
     protected int moves;
@@ -180,6 +195,7 @@ public class BoardEntity : MonoBehaviour
         }
         agent.radius = 0.1f;
         health = baseHealth;
+        coins = 50000;
         CreateCameras();
         DisableAgent();
     }

@@ -28,7 +28,7 @@ public class CameraBoardManager : MonoBehaviour
 
     private static void CheckIfBlendSettingsAreInitialized()
     {
-        if (cbs == null) cbs = new CinemachineBlenderSettings();
+        if (cbs == null) cbs = ScriptableObject.CreateInstance<CinemachineBlenderSettings>();// new CinemachineBlenderSettings();
     }
 
     public static void CreateEntityCameras(BoardEntity entity)

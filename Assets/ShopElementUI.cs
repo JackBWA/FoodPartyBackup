@@ -10,7 +10,7 @@ public class ShopElementUI : MonoBehaviour
 
     public RecipeElement recipeElement;
     public int amount;
-    public int maxAmount;
+    //public int maxAmount;
 
     public string itemName
     {
