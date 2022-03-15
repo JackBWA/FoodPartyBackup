@@ -41,12 +41,11 @@ public class SelectedItem : MonoBehaviour
         }
         set
         {
-            _itemAmount = value;
+            _itemAmount = Mathf.Clamp(value, 0, selected.amount);
+            //Debug.Log(_itemAmount);
             UpdateAmountsDisplay();
         }
     }
-
-    public int maxAmount;
 
     public int interactorAmount
     {
@@ -124,14 +123,16 @@ public class SelectedItem : MonoBehaviour
 
     public void UpdateInputValue(float newValue)
     {
+        int finalValue = Mathf.Clamp((int) newValue, 0, selected.amount);
         _itemAmountInput.SetTextWithoutNotify($"{(int) newValue}");
         UpdateItemAmountWithoutNotify((int) newValue);
     }
 
     public void UpdateSliderValue(string newValue)
     {
-        _itemAmountSlider.SetValueWithoutNotify(int.Parse(newValue));
-        UpdateItemAmountWithoutNotify(int.Parse(newValue));
+        int finalValue = Mathf.Clamp(int.Parse(newValue), 0, selected.amount);
+        _itemAmountSlider.SetValueWithoutNotify(finalValue);
+        UpdateItemAmountWithoutNotify(finalValue);
     }
 
     public void SetSelected(ShopElementUI selected)
@@ -146,18 +147,17 @@ public class SelectedItem : MonoBehaviour
         itemSprite = selected.recipeElement.icon;
         int amount = 0;
         GameBoardManager.singleton.recipeStates[shop.shopInteractor].currentElements.TryGetValue(selected.recipeElement, out amount);
-        Debug.Log(amount);
+        //Debug.Log(amount);
         interactorAmount = amount;
-        itemAmount = selected.amount;
+        itemAmount = 0;
     }
 
     public void UpdateAmountsDisplay()
     {
-        maxAmount = selected.amount;
         _itemAmountInput.text = $"{itemAmount}";
         _itemAmountSlider.minValue = 0;
-        _itemAmountSlider.maxValue = maxAmount;
-        _itemAmountSlider.value = Mathf.Clamp(selected.amount, _itemAmountSlider.minValue, _itemAmountSlider.maxValue);
+        _itemAmountSlider.maxValue = selected.amount;
+        _itemAmountSlider.value = Mathf.Clamp(itemAmount, _itemAmountSlider.minValue, _itemAmountSlider.maxValue);
         buyCost = buyCost;
         sellCost = sellCost;
     }

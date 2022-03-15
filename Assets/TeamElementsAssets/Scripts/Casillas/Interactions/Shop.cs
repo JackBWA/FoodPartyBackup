@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
+    CoasterControls inputActions;
 
     public float shopDuration;
 
@@ -23,13 +24,37 @@ public class Shop : MonoBehaviour
 
     public List<ShopElementUI> shopItems = new List<ShopElementUI>();
 
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
     private void Awake()
     {
+        CreateInputs();
         shopItems = new List<ShopElementUI>();
         selectedItemPanel.shop = this;
         CreateItems();
         LoadItems();
         gameObject.SetActive(false);
+    }
+
+    public void CreateInputs()
+    {
+        inputActions = new CoasterControls();
+        /*
+        inputActions.Shop.PreviousItem.performed += _ => SelectPreviousItem();
+        inputActions.Shop.NextItem.performed += _ => SelectNextItem();
+        */
+        inputActions.Shop.IncreaseAmount.performed += _ => selectedItemPanel.itemAmount++;
+        inputActions.Shop.DecreaseAmount.performed += _ => selectedItemPanel.itemAmount--;
+        inputActions.Shop.Buy.performed += _ => BuyItem();
+        inputActions.Shop.Sell.performed += _ => SellItem();
     }
 
     private void Start()
@@ -95,7 +120,6 @@ public class Shop : MonoBehaviour
         shopInteractor = entity;
         isOpen = true;
         shopItems[0].GetComponent<Button>().Select();
-        //Debug.Log("Selecting the first item,");
         shopItems[0].SelectItem();
         gameObject.SetActive(true);
     }

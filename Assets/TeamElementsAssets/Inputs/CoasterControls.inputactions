@@ -1,0 +1,90 @@
+{
+    "name": "CoasterControls",
+    "maps": [
+        {
+            "name": "Shop",
+            "id": "6a9e1a74-9996-4c0f-bc7e-8f60034f9536",
+            "actions": [
+                {
+                    "name": "Buy",
+                    "type": "Button",
+                    "id": "a28722ae-a974-4708-ac2c-e88c6c44e9e7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Sell",
+                    "type": "Button",
+                    "id": "3b14a092-15fb-491c-8901-2ae24ea8ffda",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "IncreaseAmount",
+                    "type": "Button",
+                    "id": "bbb00fa8-81ac-48bd-a689-59f437119309",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "DecreaseAmount",
+                    "type": "Button",
+                    "id": "62b0304e-ca03-432c-a423-7e6b3c54d64b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b07fe583-44e2-4191-98d7-1fa4aa9404ed",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Buy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ea6c1627-ba77-4bd7-9c96-f035a19609ec",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sell",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4659847e-6e51-4a4c-a238-4cbfc87d6700",
+                    "path": "<Keyboard>/numpadPlus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "IncreaseAmount",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "bbeac59f-0176-4961-b7ae-d607d60d4260",
+                    "path": "<Keyboard>/numpadMinus",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DecreaseAmount",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
