@@ -82,14 +82,21 @@ public class Shop : MonoBehaviour
             sEUI.itemSprite = sEUI.recipeElement.icon;
             sEUI.itemCost = sEUI.recipeElement.buyCost;
         }
+        /* // Moved to OpenShop()
         shopItems[0].GetComponent<Button>().Select();
+        Debug.Log("Selecting the first item,");
         shopItems[0].SelectItem();
+        */
     }
 
     public void OpenShop(BoardEntity entity)
     {
+        //Debug.Log("Open shop!");
         shopInteractor = entity;
         isOpen = true;
+        shopItems[0].GetComponent<Button>().Select();
+        //Debug.Log("Selecting the first item,");
+        shopItems[0].SelectItem();
         gameObject.SetActive(true);
     }
 

@@ -48,6 +48,19 @@ public class SelectedItem : MonoBehaviour
 
     public int maxAmount;
 
+    public int interactorAmount
+    {
+        get
+        {
+            return _interactorAmount;
+        }
+        set
+        {
+            _interactorAmount = value;
+            _interactorAmountTxt.text = $"Your amount: {value}";
+        }
+    }
+
     public int buyCost
     {
         get
@@ -77,6 +90,11 @@ public class SelectedItem : MonoBehaviour
     private Image _itemSprite;
 
     private int _itemAmount;
+
+    private int _interactorAmount;
+
+    [SerializeField]
+    private TextMeshProUGUI _interactorAmountTxt;
 
     [SerializeField]
     private Slider _itemAmountSlider;
@@ -126,6 +144,10 @@ public class SelectedItem : MonoBehaviour
     {
         itemName = selected.recipeElement.name;
         itemSprite = selected.recipeElement.icon;
+        int amount = 0;
+        GameBoardManager.singleton.recipeStates[shop.shopInteractor].currentElements.TryGetValue(selected.recipeElement, out amount);
+        Debug.Log(amount);
+        interactorAmount = amount;
         itemAmount = selected.amount;
     }
 
