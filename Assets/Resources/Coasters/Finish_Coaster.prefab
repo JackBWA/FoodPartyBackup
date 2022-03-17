@@ -98,5 +98,4 @@ MonoBehaviour:
   players: []
   waitZones: []
   type: 2
-  canRequestStop: 0
-  isCoasterEnabled: 1
+  canRequestInteract: 1

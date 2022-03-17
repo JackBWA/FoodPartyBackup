@@ -40,7 +40,7 @@ public class Coaster : MonoBehaviour
 
     public CoasterType type;
 
-    public bool canRequestStop;
+    public bool canRequestInteract;
     private bool canForceStop = false;
 
     #region Awake/Start/Update
@@ -178,9 +178,10 @@ public class Coaster : MonoBehaviour
             return;
         }
 
-        if (canRequestStop)
+        if (canRequestInteract)
         {
-            entity.RequestStop();
+            Debug.Log("Requesting interact.");
+            StartCoroutine(entity.RequestInteract());
         } else
         {
             entity.ContinueMoving();

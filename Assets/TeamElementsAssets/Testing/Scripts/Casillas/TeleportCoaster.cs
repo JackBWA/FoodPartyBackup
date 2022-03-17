@@ -5,6 +5,8 @@ using UnityEngine;
 public class TeleportCoaster : Coaster
 {
 
+    public Coaster teleportTarget;
+
     protected override void Awake()
     {
         base.Awake();
@@ -18,7 +20,7 @@ public class TeleportCoaster : Coaster
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
-        Debug.Log("Finish interact!");
+        Debug.Log("Teleport interact!");
     }
 
     public override void EndInteract(BoardEntity interactor)

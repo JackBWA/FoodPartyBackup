@@ -251,8 +251,27 @@ public class BoardEntity : MonoBehaviour
         StartCoroutine(Move(currentCoaster.next[0]));
     }
 
-    public IEnumerator RequestStop()
+    public IEnumerator RequestInteract()
     {
+        RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("RequestCanvas"));
+        requestManager.title = "Teleport request";
+        requestManager.message = "Would you like to use this teleport?";
+
+        while (!requestManager.hasSubmittedRequest)
+        {
+            yield return null;
+        }
+
+        bool result = requestManager.requestResult;
+        Destroy(requestManager.gameObject);
+
+        if (result)
+        {
+            currentCoaster.Interact(this);
+        } else
+        {
+            ContinueMoving();
+        }
         yield return null;
     }
 

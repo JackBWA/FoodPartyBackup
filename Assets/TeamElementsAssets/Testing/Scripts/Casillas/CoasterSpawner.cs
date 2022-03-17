@@ -41,6 +41,15 @@ public class CoasterSpawner : MonoBehaviour
         spawnedCoaster.transform.rotation = transform.rotation;
         spawnedCoaster.transform.parent = transform.parent;
         coaster = spawnedCoaster;
-        return spawnedCoaster;
+
+        switch (spawnedCoaster)
+        {
+            case TeleportCoaster teleport:
+                teleport.teleportTarget = next[next.Count - 1].coaster; // Target will always be the last one.
+                return teleport;
+
+            default:
+                return spawnedCoaster;
+        }
     }
 }

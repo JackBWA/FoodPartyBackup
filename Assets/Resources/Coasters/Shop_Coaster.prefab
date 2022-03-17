@@ -98,5 +98,5 @@ MonoBehaviour:
   players: []
   waitZones: []
   type: 5
-  canRequestStop: 0
+  canRequestInteract: 1
   shopPrefab: {fileID: 400148227892868636, guid: 3aeca9500b5291b4eb375e668d5501d3, type: 3}
