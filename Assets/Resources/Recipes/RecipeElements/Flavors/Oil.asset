@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Oil
   buyCost: 300
   sellCost: 100
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f82ecdf74b36e3145ac8ad55d41d64c0, type: 3}
   modelPrefab: {fileID: 0}

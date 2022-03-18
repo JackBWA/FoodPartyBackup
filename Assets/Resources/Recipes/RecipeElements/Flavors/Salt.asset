@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Salt
   buyCost: 300
   sellCost: 100
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6353207cbcb226546ba441eecd8a51e0, type: 3}
   modelPrefab: {fileID: 0}
