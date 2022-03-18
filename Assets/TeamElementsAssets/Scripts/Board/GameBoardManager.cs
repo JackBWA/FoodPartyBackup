@@ -364,6 +364,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameEnd;
     public void GameEnd()
     {
+        // Do stuff when game ends.
         onGameEnd?.Invoke();
     }
 

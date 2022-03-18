@@ -251,11 +251,20 @@ public class BoardEntity : MonoBehaviour
         StartCoroutine(Move(currentCoaster.next[0]));
     }
 
-    public IEnumerator RequestInteract()
+    public IEnumerator RequestInteract(string title = "Request", string message = "Would you like to interact?", string acceptText = "Accept", string declineText = "Decline")
     {
+        /*
+        Debug.Log(title);
+        Debug.Log(message);
+        Debug.Log(acceptText);
+        Debug.Log(declineText);
+        */
+
         RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("RequestCanvas"));
-        requestManager.title = "Teleport request";
-        requestManager.message = "Would you like to use this teleport?";
+        requestManager.title = title;
+        requestManager.message = message;
+        requestManager.acceptButtonText = acceptText;
+        requestManager.declineButtonText = declineText;
 
         while (!requestManager.hasSubmittedRequest)
         {

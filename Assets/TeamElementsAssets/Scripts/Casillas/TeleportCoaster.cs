@@ -18,6 +18,11 @@ public class TeleportCoaster : Coaster
         teleportTarget = next[next.Count - 1];
     }
 
+    protected override void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")
+    {
+        base.RequestInteract(interactor, "Teleport request", "Would you like to teleport?", acceptText, declineText);
+    }
+
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);

@@ -189,12 +189,25 @@ public class Coaster : MonoBehaviour
         if (canRequestInteract)
         {
             Debug.Log("Requesting interact.");
-            StartCoroutine(entity.RequestInteract());
+            RequestInteract(entity);
+            //StartCoroutine(entity.RequestInteract());
         } else
         {
             entity.ContinueMoving();
         }
         onPlayerEnter?.Invoke(entity, position);
+    }
+
+    protected virtual void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")
+    {
+        Debug.Log("Coaster request interact!");
+
+        if (string.IsNullOrEmpty(title)) title = "Request";
+        if (string.IsNullOrEmpty(message)) message = "Would you like to interact?";
+        if (string.IsNullOrEmpty(acceptText)) acceptText = "Accept";
+        if (string.IsNullOrEmpty(declineText)) declineText = "Decline";
+
+        StartCoroutine(interactor.RequestInteract(title, message, acceptText, declineText));
     }
 
     protected event Action<BoardEntity> onPlayerStop;
