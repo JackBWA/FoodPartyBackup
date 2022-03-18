@@ -16,7 +16,7 @@ public class Coaster : MonoBehaviour
     public List<Vector3> waitZones = new List<Vector3>();
     private Dictionary<Vector3, BoardEntity> waitZonesState = new Dictionary<Vector3, BoardEntity>();
 
-    public int coasterId { get; private set; }
+    //public int coasterId { get; private set; } // Not using anymore wtf lol.
 
     public bool isInitial
     {
@@ -33,9 +33,9 @@ public class Coaster : MonoBehaviour
         Finish,
         Safe,
         Teleport,
-        Shop/*,
+        Shop,
         Bonus,
-        Trap*/
+        Trap
     }
 
     public CoasterType type;
