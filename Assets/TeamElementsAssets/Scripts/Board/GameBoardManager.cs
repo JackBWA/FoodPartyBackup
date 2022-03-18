@@ -18,6 +18,9 @@ public class GameBoardManager : MonoBehaviour
     [HideInInspector]
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
 
+    [HideInInspector]
+    public BoardEntity winner;
+
     public Recipe recipe;
 
     public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
@@ -136,6 +139,7 @@ public class GameBoardManager : MonoBehaviour
         boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
         Scene aux = SceneManager.GetActiveScene();
         boardSceneName = aux.name;
+        winner = null;
         InitializeBoard();
         InitializePlayers();
         InitializeRecipe();
@@ -357,6 +361,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
+        recipeStates[boardPlayers[0]].Complete();
         RoundStart();
         onGameStart?.Invoke();
     }
@@ -365,6 +370,7 @@ public class GameBoardManager : MonoBehaviour
     public void GameEnd()
     {
         // Do stuff when game ends.
+        Debug.Log("Game ended!");
         onGameEnd?.Invoke();
     }
 
@@ -375,7 +381,6 @@ public class GameBoardManager : MonoBehaviour
         // Do stuff. (?)
         entity.hasTurn = true;
 
-
         // ------
         onTurnStart?.Invoke(entity);
     }
@@ -384,6 +389,13 @@ public class GameBoardManager : MonoBehaviour
     public void TurnEnd(BoardEntity entity)
     {
         entity.hasTurn = false;
+
+        if (winner != null)
+        {
+            GameEnd();
+            return;
+        }
+
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {

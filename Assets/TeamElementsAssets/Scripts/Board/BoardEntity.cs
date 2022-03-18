@@ -51,8 +51,20 @@ public class BoardEntity : MonoBehaviour
             _coins = value;
         }
     }
-
     private int _coins;
+
+    public bool isSafe
+    {
+        get
+        {
+            return _isSafe;
+        }
+        set
+        {
+            _isSafe = value;
+        }
+    }
+    private bool _isSafe;
 
     protected bool turn;
     protected Dice dice;
