@@ -15,12 +15,17 @@ public class TeleportCoaster : Coaster
     protected override void Start()
     {
         base.Start();
+        teleportTarget = next[next.Count - 1];
     }
 
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
         Debug.Log("Teleport interact!");
+        interactor.TeleportTo(teleportTarget.GetAvailableWaitZones()[0]);
+        interactor.currentCoaster = teleportTarget;
+        teleportTarget.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
+        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

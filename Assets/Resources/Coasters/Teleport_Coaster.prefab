@@ -101,12 +101,8 @@ MonoBehaviour:
   waitZones: []
   type: 4
   canRequestInteract: 1
+  keepMovesOnRequestAccept: 1
   teleportTarget: {fileID: 0}
-  wayPoints:
-  - {x: 0, y: 0, z: 0}
-  - {x: -2.5, y: 2, z: -2.5}
-  - {x: -5, y: 0, z: -5}
-  path: {fileID: 3136283300435014620}
 --- !u!1 &2982991211691974885
 GameObject:
   m_ObjectHideFlags: 0

@@ -99,3 +99,4 @@ MonoBehaviour:
   waitZones: []
   type: 2
   canRequestInteract: 1
+  keepMovesOnRequestAccept: 1

@@ -196,6 +196,17 @@ public class GameBoardManager : MonoBehaviour
             {
                 coasters[j].next.Add(next.coaster);
             }
+
+            /* // Read below.
+            if(coasterSpawners[j].coaster.GetType() == typeof(TeleportCoaster))
+            {
+                // 2 Formas de hacerlo pog.
+                //coasters[j] as TeleportCoaster).teleportTarget = null;
+                //((TeleportCoaster)coasters[j]).teleportTarget = null;
+                // Moved to TeleportCoaster.Start() //(coasters[j] as TeleportCoaster).teleportTarget = coasters[j].next[coasters[j].next.Count - 1];
+            }
+            */
+
             coasters[j].transform.parent = boardInteractablesParent.transform;
         }
         #endregion
@@ -221,6 +232,19 @@ public class GameBoardManager : MonoBehaviour
         }
         */
         #endregion
+
+        /*
+        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BoardPath"))
+        {
+            NavMeshSurface srfc;
+            if(!obj.TryGetComponent(out srfc))
+            {
+                srfc = obj.AddComponent<NavMeshSurface>();
+            }
+            srfc.collectObjects = CollectObjects.Children;
+            surfaces.Add(srfc);
+        }
+        */
 
         BuildNavMesh(surfaces);
 

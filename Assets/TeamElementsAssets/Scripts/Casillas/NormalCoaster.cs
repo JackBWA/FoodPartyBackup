@@ -19,6 +19,7 @@ public class NormalCoaster : Coaster
     {
         base.Interact(interactor);
         Debug.Log("Normal interact!");
+        base.EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

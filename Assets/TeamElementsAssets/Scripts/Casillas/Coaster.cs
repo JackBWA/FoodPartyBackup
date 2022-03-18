@@ -41,6 +41,8 @@ public class Coaster : MonoBehaviour
     public CoasterType type;
 
     public bool canRequestInteract;
+    public bool keepMovesOnRequestAccept;
+
     private bool canForceStop = false;
 
     #region Awake/Start/Update
@@ -82,7 +84,13 @@ public class Coaster : MonoBehaviour
     public virtual void EndInteract(BoardEntity interactor)
     {
         Debug.Log("Base end interact!");
-        interactor.TurnEnd();
+        if (!keepMovesOnRequestAccept)
+        {
+            interactor.TurnEnd();
+        } else
+        {
+            interactor.ContinueMoving();
+        }
     }
 
     private void CreateWaitZones(int amount)
