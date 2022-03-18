@@ -7,6 +7,22 @@ using UnityEngine.AI;
 
 public class BoardEntity : MonoBehaviour
 {
+
+    public Dictionary<BoardItem, int> items = new Dictionary<BoardItem, int>();
+    public bool canUseItem
+    {
+        get
+        {
+            return _canUseItem;
+        }
+        set
+        {
+            _canUseItem = value;
+        }
+    }
+
+    private bool _canUseItem;
+
     public bool hasTurn
     {
         get
@@ -89,12 +105,14 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnStart;
     public void TurnStart()
     {
+        canUseItem = true;
         onTurnStart?.Invoke();
     }
     
     public event Action onTurnEnd;
     public void TurnEnd()
     {
+        canUseItem = false;
         GameBoardManager.singleton.TurnEnd(this);
         onTurnEnd?.Invoke();
     }
@@ -137,6 +155,39 @@ public class BoardEntity : MonoBehaviour
         
     }
     #endregion
+
+    public void AddItem(BoardItem item, int amount = 1)
+    {
+        if (!items.ContainsKey(item))
+        {
+            items.Add(item, amount);
+        } else
+        {
+            items[item] += amount;
+        }
+    }
+
+    public bool HasItem(BoardItem item)
+    {
+        return items.ContainsKey(item);
+    }
+
+    public void UseItem(BoardItem item)
+    {
+        item.Use(this);
+    }
+
+    public void ConsumeItem(BoardItem item)
+    {
+        if (items.ContainsKey(item))
+        {
+            items.Remove(item);
+            canUseItem = false;
+        } else
+        {
+            Debug.LogWarning("This inventory doesn't have this item.");
+        }
+    }
 
     protected virtual void OnEnable()
     {
