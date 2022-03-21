@@ -18,6 +18,6 @@ public abstract class BoardItem<T> : ScriptableObject
 
     public virtual void Use(BoardEntity interactor)
     {
-        //prefabInstance = Instantiate<GameObject>(prefab) as T;
+
     }
 }

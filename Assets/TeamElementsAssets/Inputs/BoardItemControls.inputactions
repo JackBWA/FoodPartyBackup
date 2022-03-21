@@ -1,0 +1,33 @@
+{
+    "name": "BoardItemControls",
+    "maps": [
+        {
+            "name": "RottenTomato",
+            "id": "af65e696-dfba-4b3b-ad91-88cceb68dc71",
+            "actions": [
+                {
+                    "name": "Charge",
+                    "type": "Button",
+                    "id": "367a238a-8d40-4836-93d0-61bc8d573175",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "2f3f35c1-bdf1-42ff-8acf-080e76552bce",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Charge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

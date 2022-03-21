@@ -167,6 +167,18 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
+    public void UpdateItem(BoardItem<BoardItem_Base> item, int amount)
+    {
+        if (!items.ContainsKey(item))
+        {
+            return;
+        }
+        else
+        {
+            items[item] = amount;
+        }
+    }
+
     public bool HasItem(BoardItem<BoardItem_Base> item)
     {
         return items.ContainsKey(item);
