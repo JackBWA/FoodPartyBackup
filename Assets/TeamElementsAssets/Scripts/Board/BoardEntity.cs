@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class BoardEntity : MonoBehaviour
 {
 
-    public Dictionary<BoardItem, int> items = new Dictionary<BoardItem, int>();
+    public Dictionary<BoardItem<BoardItem_Base>, int> items = new Dictionary<BoardItem<BoardItem_Base>, int>();
     public bool canUseItem
     {
         get
@@ -156,7 +156,7 @@ public class BoardEntity : MonoBehaviour
     }
     #endregion
 
-    public void AddItem(BoardItem item, int amount = 1)
+    public void AddItem(BoardItem<BoardItem_Base> item, int amount = 1)
     {
         if (!items.ContainsKey(item))
         {
@@ -167,17 +167,17 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
-    public bool HasItem(BoardItem item)
+    public bool HasItem(BoardItem<BoardItem_Base> item)
     {
         return items.ContainsKey(item);
     }
 
-    public void UseItem(BoardItem item)
+    public void UseItem(BoardItem<BoardItem_Base> item)
     {
         item.Use(this);
     }
 
-    public void ConsumeItem(BoardItem item)
+    public void ConsumeItem(BoardItem<BoardItem_Base> item)
     {
         if (items.ContainsKey(item))
         {

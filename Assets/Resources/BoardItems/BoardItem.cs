@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BoardItem : ScriptableObject
+[CreateAssetMenu(fileName = "New Board Item", menuName = "TeamElements/Items/New Item")]
+public abstract class BoardItem<T> : ScriptableObject
 {
     public new string name;
 
@@ -11,7 +12,12 @@ public abstract class BoardItem : ScriptableObject
 
     public Sprite icon;
 
-    public GameObject prefab;
+    public T prefab;
 
-    public abstract void Use(BoardEntity interactor);
+    protected T prefabInstance;
+
+    public virtual void Use(BoardEntity interactor)
+    {
+        //prefabInstance = Instantiate<GameObject>(prefab) as T;
+    }
 }
