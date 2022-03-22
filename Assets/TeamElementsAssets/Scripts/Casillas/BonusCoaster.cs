@@ -10,9 +10,11 @@ public class BonusCoaster : Coaster
     protected override void Awake()
     {
         base.Awake();
+        /* // Moving to interact.
         foreach(BoardItem_Base item in Resources.LoadAll<BoardItem_Base>("BoardItems/Items")){
             obtainableItems.Add(item);
         }
+        */
     }
 
     protected override void Start()
@@ -23,6 +25,15 @@ public class BonusCoaster : Coaster
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
+        BoardItem_Base randomItem;
+        BoardItem_Base[] itemList = Resources.LoadAll<BoardItem_Base>("BoardItems/Items");
+        randomItem = itemList[Random.Range(0, itemList.Length)];
+        /*
+         * 
+         * Give some feedback.
+         * 
+         */
+        interactor.inventory.AddItem(randomItem);
         Debug.Log("Bonus interact!");
     }
 

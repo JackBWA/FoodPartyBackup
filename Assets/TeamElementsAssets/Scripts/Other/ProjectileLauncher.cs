@@ -46,21 +46,16 @@ public class ProjectileLauncher : MonoBehaviour
             return;
         }
 
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !ignore.Contains(other.gameObject))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.forward, out hit))
-            {
-                hasHit = true;
-                hitPoint = hit.point;
-            }
-            return;
+            hasHit = true;
+            hitPoint = other.gameObject.transform.position;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        hasHit = true;
+        //hasHit = true;
         hitPoint = collision.contacts[0].point;
         bounces++;
     }

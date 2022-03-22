@@ -1512,7 +1512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 0}
-  maxAmount: 0
   _itemName: {fileID: 360256328713257130}
   _itemSprite: {fileID: 360256328970695679}
   _interactorAmountTxt: {fileID: 7679469990202885521}

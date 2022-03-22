@@ -9,32 +9,7 @@ using System.Linq;
 public class BoardEntity : MonoBehaviour
 {
 
-    public Dictionary<BoardItem_Base, int> items = new Dictionary<BoardItem_Base, int>();
-    public bool canUseItem
-    {
-        get
-        {
-            return _canUseItem;
-        }
-        set
-        {
-            _canUseItem = value;
-        }
-    }
-    private bool _canUseItem;
-
-    public bool isUsingItem
-    {
-        get
-        {
-            return _isUsingItem;
-        }
-        set
-        {
-            _isUsingItem = value;
-        }
-    }
-    private bool _isUsingItem;
+    public BoardEntityInventory inventory;
 
     public bool hasTurn
     {
@@ -118,14 +93,14 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnStart;
     public void TurnStart()
     {
-        canUseItem = true;
+        inventory.canUseItem = true;
         onTurnStart?.Invoke();
     }
     
     public event Action onTurnEnd;
     public void TurnEnd()
     {
-        canUseItem = false;
+        inventory.canUseItem = false;
         GameBoardManager.singleton.TurnEnd(this);
         onTurnEnd?.Invoke();
     }
@@ -150,32 +125,6 @@ public class BoardEntity : MonoBehaviour
         //Debug.Log($"Health changed on {name}.");
         onHealthChange?.Invoke(health);
     }
-
-    public event Action onStartUsingItem;
-    public void StartUsingItem(BoardItem_Base item)
-    {
-        isUsingItem = true;
-        dice.canThrow = false;
-        onStartUsingItem?.Invoke();
-    }
-
-    public event Action onEndUsingItem;
-    public void EndUsingItem(BoardItem_Base item)
-    {
-        isUsingItem = false;
-        canUseItem = false;
-        dice.canThrow = true;
-        onEndUsingItem?.Invoke();
-    }
-
-    public event Action onCancelUsingItem;
-    public void CancelUsingItem(BoardItem_Base item)
-    {
-        isUsingItem = false;
-        canUseItem = true;
-        dice.canThrow = true;
-        onCancelUsingItem?.Invoke();
-    }
     #endregion
 
     #region Awake/Start/Update
@@ -186,7 +135,7 @@ public class BoardEntity : MonoBehaviour
 
     protected virtual void Start()
     {
-        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[0], 1);
+
     }
 
     private void Update()
@@ -194,58 +143,6 @@ public class BoardEntity : MonoBehaviour
         
     }
     #endregion
-
-    public void AddItem(BoardItem_Base item, int amount = 1)
-    {
-        if (!items.ContainsKey(item))
-        {
-            items.Add(item, amount);
-        } else
-        {
-            items[item] += amount;
-        }
-    }
-
-    public void UpdateItem(BoardItem_Base item, int amount)
-    {
-        if (!items.ContainsKey(item))
-        {
-            return;
-        }
-        else
-        {
-            items[item] = amount;
-        }
-    }
-
-    public bool HasItem(BoardItem_Base item)
-    {
-        return items.ContainsKey(item);
-    }
-
-    public void UseItem(BoardItem_Base item)
-    {
-        if (hasTurn && canUseItem && !isUsingItem)
-        {
-            BoardItem_Base itemInstance = Instantiate(item, transform.position + transform.forward * .5f, Quaternion.identity);
-            itemInstance.owner = this;
-            ConsumeItem(item);
-            StartUsingItem(itemInstance);
-        }
-    }
-
-    private void ConsumeItem(BoardItem_Base item)
-    {
-        if (items.ContainsKey(item))
-        {
-            items[item]--;
-            if (items[item] <= 0) items.Remove(item);
-            canUseItem = false;
-        } else
-        {
-            Debug.LogWarning("This inventory doesn't have this item.");
-        }
-    }
 
     protected virtual void OnEnable()
     {
@@ -314,6 +211,13 @@ public class BoardEntity : MonoBehaviour
         {
             agent = gameObject.AddComponent<NavMeshAgent>();
         }
+        if(!TryGetComponent(out inventory))
+        {
+            inventory = gameObject.AddComponent<BoardEntityInventory>();
+        }
+
+        inventory.enabled = false;
+
         agent.radius = 0.1f;
         health = baseHealth;
         coins = 50000;
@@ -459,6 +363,11 @@ public class BoardEntity : MonoBehaviour
         dice.owner = this;
     }
 
+    public void SetCanThrowDice(bool canThrow)
+    {
+        dice.canThrow = canThrow;
+    }
+
     public event Action onThrowDice;
     public void ThrowDice()
     {
@@ -473,6 +382,9 @@ public class BoardEntity : MonoBehaviour
         {
             return;
         }
+
+        inventory.isUsingItem = false;
+        inventory.canUseItem = false;
 
         ObjectRotator objRot;
         if (dice.TryGetComponent(out objRot))

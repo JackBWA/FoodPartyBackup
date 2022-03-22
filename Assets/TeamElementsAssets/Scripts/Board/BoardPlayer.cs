@@ -20,7 +20,7 @@ public class BoardPlayer : BoardEntity
     {
         playerControls.Dice.Throw.performed += _ => ThrowDice();
         playerControls.Map.Toggle.performed += _ => ToggleMapView();
-        playerControls.Inventory.TestItem.performed += _ => UseItem(items.ElementAt(0).Key); // using System.Linq;
+        playerControls.Inventory.TestItem.performed += _ => inventory.UseItem(inventory.items.ElementAt(0).Key);
     }
 
     public override void Initialize()

@@ -85,7 +85,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: d0f91d99af7e5d34a97fa16f30519a87, type: 2}
     - target: {fileID: 3053105058539897286, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
       propertyPath: m_text
-      value: BOT Notlaw
+      value: BOT Feniix
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44baa73fd94b1814cabb127b52025661, type: 3}

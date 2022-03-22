@@ -52,6 +52,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: -5481483443352737252, guid: 0899d4bfbd14390479ed5d31737f7c6d, type: 3}
   lineRenderer: {fileID: 2300970114046797083}
   damage: 10
+  effectRadius: 3
   forceIncreaseRate: 1
   minForce: 1
   maxForce: 25
@@ -74,7 +75,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 79459efec17a4d00a321bdcc27bbc385, type: 2}
+  - {fileID: 2100000, guid: 293916aaa5adcc84997447093b22f655, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

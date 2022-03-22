@@ -54,7 +54,7 @@ public class RottenTomato : BoardItem_Base
         inputActions.RottenTomato.Charge.canceled += _ => isCharging = false;
     }
 
-    public IEnumerator Charge(float updateRate = 0.2f, float maxHoldTime = 10f)
+    public IEnumerator Charge(float updateRate = 0.05f, float maxHoldTime = 10f)
     {
         float i = 0;
         float currentForce = minForce;
@@ -72,6 +72,7 @@ public class RottenTomato : BoardItem_Base
         lineRenderer.positionCount = 0;
 
         ProjectileLauncher projectileInstance = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        projectileInstance.ignore.Add(owner.gameObject);
         projectileInstance.Launch((transform.forward + transform.up).normalized * currentForce, false);
 
         while (!projectileInstance.hasHit && projectileInstance.lifeTime > 0)
@@ -91,7 +92,7 @@ public class RottenTomato : BoardItem_Base
         }
 
         Destroy(projectileInstance.gameObject);
-        owner.EndUsingItem(this);
+        owner.inventory.EndUsingItem(this);
         SceneManager.UnloadSceneAsync(simulationScene);
         Destroy(gameObject);
         yield return null;
@@ -118,13 +119,14 @@ public class RottenTomato : BoardItem_Base
     {
         ProjectileLauncher ghostProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(ghostProjectile.gameObject, simulationScene);
+        ghostProjectile.ignore.Add(owner.gameObject);
         ghostProjectile.Launch((transform.forward + transform.up).normalized * force, true);
 
         int i = 0;
         lineRenderer.positionCount = frameIterations;
         while (i < frameIterations)
         {
-            if (ghostProjectile.hasHit)
+            if (ghostProjectile.hasHit || ghostProjectile.bounces > 1)
             {
                 i = frameIterations;
             } else
