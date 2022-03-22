@@ -71,6 +71,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player4
       objectReference: {fileID: 0}
+    - target: {fileID: 1665230083823297043, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1665230083865378553, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -79,5 +83,9 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 12b832a2884be384f9d08075f4ed0907, type: 2}
+    - target: {fileID: 3053105058539897286, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: m_text
+      value: BOT delus3r
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44baa73fd94b1814cabb127b52025661, type: 3}

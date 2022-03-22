@@ -63,6 +63,14 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""TestItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""cadc042f-6adb-4277-8f02-eabdef0ed346"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -85,6 +93,17 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""41292c88-398f-43d9-b418-d1b80f2ab679"",
+                    ""path"": ""<Keyboard>/h"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TestItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -302,6 +321,7 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         // Inventory
         m_Inventory = asset.FindActionMap("Inventory", throwIfNotFound: true);
         m_Inventory_Toggle = m_Inventory.FindAction("Toggle", throwIfNotFound: true);
+        m_Inventory_TestItem = m_Inventory.FindAction("TestItem", throwIfNotFound: true);
         // Map
         m_Map = asset.FindActionMap("Map", throwIfNotFound: true);
         m_Map_Toggle = m_Map.FindAction("Toggle", throwIfNotFound: true);
@@ -390,11 +410,13 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Inventory;
     private IInventoryActions m_InventoryActionsCallbackInterface;
     private readonly InputAction m_Inventory_Toggle;
+    private readonly InputAction m_Inventory_TestItem;
     public struct InventoryActions
     {
         private @BoardPlayerControls m_Wrapper;
         public InventoryActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Toggle => m_Wrapper.m_Inventory_Toggle;
+        public InputAction @TestItem => m_Wrapper.m_Inventory_TestItem;
         public InputActionMap Get() { return m_Wrapper.m_Inventory; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -407,6 +429,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
                 @Toggle.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
                 @Toggle.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnToggle;
+                @TestItem.started -= m_Wrapper.m_InventoryActionsCallbackInterface.OnTestItem;
+                @TestItem.performed -= m_Wrapper.m_InventoryActionsCallbackInterface.OnTestItem;
+                @TestItem.canceled -= m_Wrapper.m_InventoryActionsCallbackInterface.OnTestItem;
             }
             m_Wrapper.m_InventoryActionsCallbackInterface = instance;
             if (instance != null)
@@ -414,6 +439,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                 @Toggle.started += instance.OnToggle;
                 @Toggle.performed += instance.OnToggle;
                 @Toggle.canceled += instance.OnToggle;
+                @TestItem.started += instance.OnTestItem;
+                @TestItem.performed += instance.OnTestItem;
+                @TestItem.canceled += instance.OnTestItem;
             }
         }
     }
@@ -492,6 +520,7 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     public interface IInventoryActions
     {
         void OnToggle(InputAction.CallbackContext context);
+        void OnTestItem(InputAction.CallbackContext context);
     }
     public interface IMapActions
     {

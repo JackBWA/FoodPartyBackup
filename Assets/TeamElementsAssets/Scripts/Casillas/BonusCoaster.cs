@@ -5,9 +5,14 @@ using UnityEngine;
 public class BonusCoaster : Coaster
 {
 
+    public static List<BoardItem_Base> obtainableItems = new List<BoardItem_Base>();
+
     protected override void Awake()
     {
         base.Awake();
+        foreach(BoardItem_Base item in Resources.LoadAll<BoardItem_Base>("BoardItems/Items")){
+            obtainableItems.Add(item);
+        }
     }
 
     protected override void Start()

@@ -4,11 +4,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Linq;
 
 public class BoardEntity : MonoBehaviour
 {
 
-    public Dictionary<BoardItem<BoardItem_Base>, int> items = new Dictionary<BoardItem<BoardItem_Base>, int>();
+    public Dictionary<BoardItem_Base, int> items = new Dictionary<BoardItem_Base, int>();
     public bool canUseItem
     {
         get
@@ -20,8 +21,20 @@ public class BoardEntity : MonoBehaviour
             _canUseItem = value;
         }
     }
-
     private bool _canUseItem;
+
+    public bool isUsingItem
+    {
+        get
+        {
+            return _isUsingItem;
+        }
+        set
+        {
+            _isUsingItem = value;
+        }
+    }
+    private bool _isUsingItem;
 
     public bool hasTurn
     {
@@ -137,6 +150,20 @@ public class BoardEntity : MonoBehaviour
         //Debug.Log($"Health changed on {name}.");
         onHealthChange?.Invoke(health);
     }
+
+    public event Action onStartUsingItem;
+    public void StartUsingItem(BoardItem_Base item)
+    {
+        isUsingItem = true;
+        onStartUsingItem?.Invoke();
+    }
+
+    public event Action onEndUsingItem;
+    public void EndUsingItem(BoardItem_Base item)
+    {
+        isUsingItem = false;
+        onEndUsingItem?.Invoke();
+    }
     #endregion
 
     #region Awake/Start/Update
@@ -147,7 +174,7 @@ public class BoardEntity : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[0], 1);
     }
 
     private void Update()
@@ -156,7 +183,7 @@ public class BoardEntity : MonoBehaviour
     }
     #endregion
 
-    public void AddItem(BoardItem<BoardItem_Base> item, int amount = 1)
+    public void AddItem(BoardItem_Base item, int amount = 1)
     {
         if (!items.ContainsKey(item))
         {
@@ -167,7 +194,7 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
-    public void UpdateItem(BoardItem<BoardItem_Base> item, int amount)
+    public void UpdateItem(BoardItem_Base item, int amount)
     {
         if (!items.ContainsKey(item))
         {
@@ -179,21 +206,28 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
-    public bool HasItem(BoardItem<BoardItem_Base> item)
+    public bool HasItem(BoardItem_Base item)
     {
         return items.ContainsKey(item);
     }
 
-    public void UseItem(BoardItem<BoardItem_Base> item)
+    public void UseItem(BoardItem_Base item)
     {
-        item.Use(this);
+        if (hasTurn && !isUsingItem)
+        {
+            BoardItem_Base itemInstance = Instantiate(item, transform.position + transform.forward * .5f, Quaternion.identity);
+            itemInstance.owner = this;
+            ConsumeItem(item);
+            StartUsingItem(itemInstance);
+        }
     }
 
-    public void ConsumeItem(BoardItem<BoardItem_Base> item)
+    private void ConsumeItem(BoardItem_Base item)
     {
         if (items.ContainsKey(item))
         {
-            items.Remove(item);
+            items[item]--;
+            if (items[item] <= 0) items.Remove(item);
             canUseItem = false;
         } else
         {

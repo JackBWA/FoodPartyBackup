@@ -31,7 +31,7 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2f3f35c1-bdf1-42ff-8acf-080e76552bce"",
-                    ""path"": ""<Keyboard>/space"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

@@ -50,6 +50,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "TestItem",
+                    "type": "Button",
+                    "id": "cadc042f-6adb-4277-8f02-eabdef0ed346",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -72,6 +80,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41292c88-398f-43d9-b418-d1b80f2ab679",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class BoardPlayer : BoardEntity
 {
@@ -19,6 +20,7 @@ public class BoardPlayer : BoardEntity
     {
         playerControls.Dice.Throw.performed += _ => ThrowDice();
         playerControls.Map.Toggle.performed += _ => ToggleMapView();
+        playerControls.Inventory.TestItem.performed += _ => UseItem(items.ElementAt(0).Key); // using System.Linq;
     }
 
     public override void Initialize()

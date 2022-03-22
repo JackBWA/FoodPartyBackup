@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class BoardItem_Base : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public BoardEntity owner;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public new string name;
+
+    [TextArea]
+    public string description;
+
+    public Sprite icon;
 }
