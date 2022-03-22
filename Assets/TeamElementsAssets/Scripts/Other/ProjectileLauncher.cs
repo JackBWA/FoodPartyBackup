@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class ProjectileLauncher<T> : MonoBehaviour
+public class ProjectileLauncher : MonoBehaviour
 {
 
     [SerializeField] private Rigidbody rb;
@@ -11,14 +11,21 @@ public class ProjectileLauncher<T> : MonoBehaviour
     [HideInInspector]
     public int bounces;
 
-    public T target;
+    public Vector3 hitPoint;
+    public bool hasHit;
 
     public float lifeTime = 10f;
+
+    private bool isSimulation;
+
+    public List<GameObject> ignore;
 
     private void Awake()
     {
         TryGetComponent(out rb);
         bounces = 0;
+        hasHit = false;
+        isSimulation = false;
     }
 
     private void Update()
@@ -26,18 +33,35 @@ public class ProjectileLauncher<T> : MonoBehaviour
         lifeTime -= Time.deltaTime;
     }
 
-    public void Launch(Vector3 force)
+    public void Launch(Vector3 force, bool isSimulation)
     {
         rb.AddForce(force, ForceMode.VelocityChange);
+        this.isSimulation = isSimulation;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (isSimulation)
+        {
+            return;
+        }
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
+            {
+                hasHit = true;
+                hitPoint = hit.point;
+            }
+            return;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            target = collision.gameObject.GetComponent<T>();
-            return;
-        }
+        hasHit = true;
+        hitPoint = collision.contacts[0].point;
         bounces++;
     }
 }

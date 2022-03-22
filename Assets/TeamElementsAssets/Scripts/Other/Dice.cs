@@ -9,6 +9,8 @@ public class Dice : MonoBehaviour
 
     public BoardEntity owner;
 
+    public bool canThrow;
+
     public float throwForce = 10f;
     public float sideThrowSpread = 5f;
     public float minRndRotation = 120f;

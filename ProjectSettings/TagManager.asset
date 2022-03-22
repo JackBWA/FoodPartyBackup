@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BoardPath
   - BoardInteractables
+  - MapStatic
   layers:
   - Default
   - TransparentFX

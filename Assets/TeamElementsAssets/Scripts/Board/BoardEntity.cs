@@ -155,6 +155,7 @@ public class BoardEntity : MonoBehaviour
     public void StartUsingItem(BoardItem_Base item)
     {
         isUsingItem = true;
+        dice.canThrow = false;
         onStartUsingItem?.Invoke();
     }
 
@@ -162,7 +163,18 @@ public class BoardEntity : MonoBehaviour
     public void EndUsingItem(BoardItem_Base item)
     {
         isUsingItem = false;
+        canUseItem = false;
+        dice.canThrow = true;
         onEndUsingItem?.Invoke();
+    }
+
+    public event Action onCancelUsingItem;
+    public void CancelUsingItem(BoardItem_Base item)
+    {
+        isUsingItem = false;
+        canUseItem = true;
+        dice.canThrow = true;
+        onCancelUsingItem?.Invoke();
     }
     #endregion
 
@@ -213,7 +225,7 @@ public class BoardEntity : MonoBehaviour
 
     public void UseItem(BoardItem_Base item)
     {
-        if (hasTurn && !isUsingItem)
+        if (hasTurn && canUseItem && !isUsingItem)
         {
             BoardItem_Base itemInstance = Instantiate(item, transform.position + transform.forward * .5f, Quaternion.identity);
             itemInstance.owner = this;
@@ -443,6 +455,7 @@ public class BoardEntity : MonoBehaviour
         dice.transform.position = transform.position + Vector3.up * 3f;
         int randomAxis = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObjectRotator.RotationAxis)).Length);
         dice.GetComponent<ObjectRotator>().rotationAxis = (ObjectRotator.RotationAxis) randomAxis;
+        dice.canThrow = true;
         dice.owner = this;
     }
 
@@ -456,7 +469,7 @@ public class BoardEntity : MonoBehaviour
             transform.position + Vector3.up * 5, Quaternion.identity);
         dice.owner = this;
         */
-        if (!hasTurn || dice == null || dice.used)
+        if (!hasTurn || dice == null || dice.used || !dice.canThrow)
         {
             return;
         }

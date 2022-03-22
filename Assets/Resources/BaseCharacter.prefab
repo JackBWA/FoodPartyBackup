@@ -500,6 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1665230083823297042}
   - component: {fileID: 5204748582397066365}
+  - component: {fileID: 6134024505600966319}
   m_Layer: 0
   m_Name: BaseCharacter
   m_TagString: Untagged
@@ -538,6 +539,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterType: 1
   aiDifficulty: 0
+--- !u!136 &6134024505600966319
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665230083823297043}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1665230083865378556
 GameObject:
   m_ObjectHideFlags: 0

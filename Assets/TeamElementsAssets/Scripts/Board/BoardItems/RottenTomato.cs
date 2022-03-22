@@ -7,7 +7,7 @@ public class RottenTomato : BoardItem_Base
 {
     public BoardItemControls inputActions;
 
-    public ProjectileLauncher<BoardEntity> projectilePrefab;
+    public ProjectileLauncher projectilePrefab;
 
     public LineRenderer lineRenderer;
 
@@ -15,6 +15,7 @@ public class RottenTomato : BoardItem_Base
     private PhysicsScene physicsScene;
 
     public float damage = 10f;
+    public float effectRadius = 3f;
 
     //public float forceMultiplier = 1f;
     public float forceIncreaseRate = 1f;
@@ -68,19 +69,31 @@ public class RottenTomato : BoardItem_Base
             i += Time.deltaTime + updateRate;
         }
 
-        ProjectileLauncher<BoardEntity> projectileInstance = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectileInstance.Launch((transform.forward + transform.up).normalized * currentForce);
+        lineRenderer.positionCount = 0;
 
-        while (projectileInstance.target == null && projectileInstance.lifeTime > 0)
+        ProjectileLauncher projectileInstance = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        projectileInstance.Launch((transform.forward + transform.up).normalized * currentForce, false);
+
+        while (!projectileInstance.hasHit && projectileInstance.lifeTime > 0)
         {
             yield return new WaitForSeconds(updateRate);
         }
 
-        if (projectileInstance.target != null)
+        if (projectileInstance.hasHit)
         {
-            projectileInstance.target.health -= damage;
+            foreach(Collider c in Physics.OverlapSphere(projectileInstance.hitPoint, effectRadius))
+            {
+                BoardEntity entity;
+                if(c.gameObject.TryGetComponent(out entity)){
+                    entity.health -= damage;
+                }
+            }
         }
+
         Destroy(projectileInstance.gameObject);
+        owner.EndUsingItem(this);
+        SceneManager.UnloadSceneAsync(simulationScene);
+        Destroy(gameObject);
         yield return null;
     }
 
@@ -91,7 +104,7 @@ public class RottenTomato : BoardItem_Base
 
         foreach (GameObject gO in SceneManager.GetActiveScene().GetRootGameObjects())
         {
-            if (gO.isStatic)
+            if (gO.activeInHierarchy && gO.CompareTag("MapStatic"))
             {
                 GameObject objInstance = Instantiate(gO, gO.transform.position, gO.transform.rotation);
                 Renderer rndr = objInstance.GetComponent<Renderer>();
@@ -103,15 +116,15 @@ public class RottenTomato : BoardItem_Base
 
     public void Simulate(float force, int frameIterations = 150)
     {
-        ProjectileLauncher<BoardEntity> ghostProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        ProjectileLauncher ghostProjectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         SceneManager.MoveGameObjectToScene(ghostProjectile.gameObject, simulationScene);
-        ghostProjectile.Launch((transform.forward + transform.up).normalized * force);
+        ghostProjectile.Launch((transform.forward + transform.up).normalized * force, true);
 
         int i = 0;
         lineRenderer.positionCount = frameIterations;
         while (i < frameIterations)
         {
-            if (ghostProjectile.bounces > 0)
+            if (ghostProjectile.hasHit)
             {
                 i = frameIterations;
             } else
