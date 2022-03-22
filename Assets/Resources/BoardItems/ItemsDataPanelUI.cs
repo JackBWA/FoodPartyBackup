@@ -36,8 +36,10 @@ public class ItemsDataPanelUI : MonoBehaviour
 
     private void Awake()
     {
-        if (!TryGetComponent(out _itemName)) gameObject.AddComponent<TextMeshProUGUI>();
-        if (!TryGetComponent(out _itemDescription)) gameObject.AddComponent<TextMeshProUGUI>();
+        /*
+        if (!TryGetComponent(out _itemName)) _itemName = gameObject.AddComponent<TextMeshProUGUI>();
+        if (!TryGetComponent(out _itemDescription)) _itemDescription = gameObject.AddComponent<TextMeshProUGUI>();
+        */
     }
 
     private void OnEnable()

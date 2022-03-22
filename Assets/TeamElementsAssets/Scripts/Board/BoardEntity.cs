@@ -93,6 +93,7 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnStart;
     public void TurnStart()
     {
+        inventory.Create();
         inventory.canUseItem = true;
         onTurnStart?.Invoke();
     }
@@ -100,6 +101,7 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnEnd;
     public void TurnEnd()
     {
+        inventory.Delete();
         inventory.canUseItem = false;
         GameBoardManager.singleton.TurnEnd(this);
         onTurnEnd?.Invoke();
@@ -213,9 +215,15 @@ public class BoardEntity : MonoBehaviour
         }
         if(!TryGetComponent(out inventory))
         {
-            inventory = gameObject.AddComponent<BoardEntityInventory>();
+            if(GetComponent<PlayerCharacter>().characterType == PlayerCharacter.CharacterType.Player)
+            {
+                inventory = gameObject.AddComponent<BoardPlayerInventory>();
+            } else
+            {
+                // For now
+                inventory = gameObject.AddComponent<BoardAIInventory>();
+            }
         }
-
         inventory.enabled = false;
 
         agent.radius = 0.1f;

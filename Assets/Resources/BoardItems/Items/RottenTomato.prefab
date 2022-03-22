@@ -48,7 +48,7 @@ MonoBehaviour:
   name: Rotten Tomato
   description: Throws a rotten tomato and deals damage to any target who receives
     a hit.
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4b48ed3de37e12c43b3f03b49199aaa5, type: 3}
   projectilePrefab: {fileID: -5481483443352737252, guid: 0899d4bfbd14390479ed5d31737f7c6d, type: 3}
   lineRenderer: {fileID: 2300970114046797083}
   damage: 10

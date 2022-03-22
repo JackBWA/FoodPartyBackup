@@ -41,17 +41,17 @@ public class ItemsCanvas : MonoBehaviour
             itemUI.icon = item.icon;
             itemUI.InitializeOnClick();
         }
-
         itemData.enabled = false;
     }
 
     private void OnEnable()
     {
-        gameObject.SetActive(true);
+        Debug.Log("Enableeee");
+        //gameObject.SetActive(true); // No va porque al deshabilitar no se detecta. Metodologia cambiada. :)
     }
 
     private void OnDisable()
     {
-        gameObject.SetActive(false);
+        Debug.Log("Disableeee");
     }
 }

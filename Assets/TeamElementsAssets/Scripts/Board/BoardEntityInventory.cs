@@ -39,10 +39,46 @@ public class BoardEntityInventory : MonoBehaviour
     }
     private bool _isUsingItem;
 
+    public bool visible
+    {
+        get
+        {
+            return _visible;
+        }
+        set
+        {
+            _visible = value;
+        }
+    }
+    private bool _visible;
+
     protected virtual void Awake()
     {
+        itemsCanvasPrefab = Resources.Load<ItemsCanvas>("UI/PlayerItemsUI");
+        visible = false;
         TryGetComponent(out owner);
         AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[0], 1);
+        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[1], 1);
+    }
+
+    public virtual void Create()
+    {
+        Debug.Log($"{owner.name} Esto es una pruebahfuriejnergerm");
+        itemsCanvasInstance = Instantiate(itemsCanvasPrefab);
+        itemsCanvasInstance.interactor = owner;
+        List<BoardItem_Base> auxItems = new List<BoardItem_Base>();
+        foreach (KeyValuePair<BoardItem_Base, int> kV in items)
+        {
+            auxItems.Add(kV.Key);
+        }
+        itemsCanvasInstance.SetItems(auxItems);
+        itemsCanvasInstance.enabled = visible;
+        itemsCanvasInstance.gameObject.SetActive(false);
+    }
+
+    public virtual void Delete()
+    {
+        Destroy(itemsCanvasInstance.gameObject);
     }
 
     #region Inventory Methods

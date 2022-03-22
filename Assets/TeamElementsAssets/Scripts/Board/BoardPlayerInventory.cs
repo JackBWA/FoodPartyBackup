@@ -9,34 +9,30 @@ public class BoardPlayerInventory : BoardEntityInventory
     protected override void Awake()
     {
         base.Awake();
+        //ToggleItemsUI();
         inputActions = new BoardPlayerControls();
-        inputActions.Inventory.Toggle.performed += _ => ToggleItemsUI();
+        inputActions.Inventory.Toggle.performed += _ =>
+        {
+            visible = !visible;
+            ToggleItemsUI();
+        };
     }
 
     public void ToggleItemsUI()
     {
-        if(itemsCanvasInstance == null)
-        {
-            itemsCanvasInstance = Instantiate(itemsCanvasPrefab);
-            List<BoardItem_Base> auxItems = new List<BoardItem_Base>();
-            foreach(KeyValuePair<BoardItem_Base, int> kV in items)
-            {
-                auxItems.Add(kV.Key);
-            }
-            itemsCanvasInstance.SetItems(auxItems);
-        } else
-        {
-            Destroy(itemsCanvasInstance.gameObject);
-        }
+        itemsCanvasInstance.enabled = visible;
+        itemsCanvasInstance.gameObject.SetActive(visible);
     }
 
-    private void OnEnable()
+    public override void Create()
     {
+        base.Create();
         inputActions.Enable();
     }
 
-    private void OnDisable()
+    public override void Delete()
     {
+        base.Delete();
         inputActions.Disable();
     }
 }
