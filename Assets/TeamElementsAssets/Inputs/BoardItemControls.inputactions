@@ -2,6 +2,33 @@
     "name": "BoardItemControls",
     "maps": [
         {
+            "name": "General",
+            "id": "9912fb09-0e76-449e-90f6-bce987528c11",
+            "actions": [
+                {
+                    "name": "Cancel",
+                    "type": "Button",
+                    "id": "bbd6c90d-d8f8-4f69-b671-129687453031",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f5459547-a4db-4aa1-8fec-462bb3e1a909",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Cancel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
             "name": "RottenTomato",
             "id": "af65e696-dfba-4b3b-ad91-88cceb68dc71",
             "actions": [

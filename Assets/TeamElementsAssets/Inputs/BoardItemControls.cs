@@ -15,6 +15,33 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
     ""name"": ""BoardItemControls"",
     ""maps"": [
         {
+            ""name"": ""General"",
+            ""id"": ""9912fb09-0e76-449e-90f6-bce987528c11"",
+            ""actions"": [
+                {
+                    ""name"": ""Cancel"",
+                    ""type"": ""Button"",
+                    ""id"": ""bbd6c90d-d8f8-4f69-b671-129687453031"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f5459547-a4db-4aa1-8fec-462bb3e1a909"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
             ""name"": ""RottenTomato"",
             ""id"": ""af65e696-dfba-4b3b-ad91-88cceb68dc71"",
             ""actions"": [
@@ -44,6 +71,9 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
     ],
     ""controlSchemes"": []
 }");
+        // General
+        m_General = asset.FindActionMap("General", throwIfNotFound: true);
+        m_General_Cancel = m_General.FindAction("Cancel", throwIfNotFound: true);
         // RottenTomato
         m_RottenTomato = asset.FindActionMap("RottenTomato", throwIfNotFound: true);
         m_RottenTomato_Charge = m_RottenTomato.FindAction("Charge", throwIfNotFound: true);
@@ -93,6 +123,39 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
         asset.Disable();
     }
 
+    // General
+    private readonly InputActionMap m_General;
+    private IGeneralActions m_GeneralActionsCallbackInterface;
+    private readonly InputAction m_General_Cancel;
+    public struct GeneralActions
+    {
+        private @BoardItemControls m_Wrapper;
+        public GeneralActions(@BoardItemControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Cancel => m_Wrapper.m_General_Cancel;
+        public InputActionMap Get() { return m_Wrapper.m_General; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(GeneralActions set) { return set.Get(); }
+        public void SetCallbacks(IGeneralActions instance)
+        {
+            if (m_Wrapper.m_GeneralActionsCallbackInterface != null)
+            {
+                @Cancel.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+                @Cancel.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+                @Cancel.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+            }
+            m_Wrapper.m_GeneralActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Cancel.started += instance.OnCancel;
+                @Cancel.performed += instance.OnCancel;
+                @Cancel.canceled += instance.OnCancel;
+            }
+        }
+    }
+    public GeneralActions @General => new GeneralActions(this);
+
     // RottenTomato
     private readonly InputActionMap m_RottenTomato;
     private IRottenTomatoActions m_RottenTomatoActionsCallbackInterface;
@@ -125,6 +188,10 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
         }
     }
     public RottenTomatoActions @RottenTomato => new RottenTomatoActions(this);
+    public interface IGeneralActions
+    {
+        void OnCancel(InputAction.CallbackContext context);
+    }
     public interface IRottenTomatoActions
     {
         void OnCharge(InputAction.CallbackContext context);

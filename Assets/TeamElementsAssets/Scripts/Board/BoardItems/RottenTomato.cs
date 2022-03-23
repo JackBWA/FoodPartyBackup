@@ -39,8 +39,9 @@ public class RottenTomato : BoardItem_Base
     }
     private bool _isCharging;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         inputActions = new BoardItemControls();
         InitializeControls();
         TryGetComponent(out lineRenderer);
@@ -52,10 +53,13 @@ public class RottenTomato : BoardItem_Base
     {
         inputActions.RottenTomato.Charge.performed += _ => isCharging = true;
         inputActions.RottenTomato.Charge.canceled += _ => isCharging = false;
+        inputActions.General.Cancel.performed += _ => Cancel();
     }
 
     public IEnumerator Charge(float updateRate = 0.05f, float maxHoldTime = 10f)
     {
+        inUse = true;
+
         float i = 0;
         float currentForce = minForce;
 
@@ -85,11 +89,13 @@ public class RottenTomato : BoardItem_Base
             foreach(Collider c in Physics.OverlapSphere(projectileInstance.hitPoint, effectRadius))
             {
                 BoardEntity entity;
-                if(c.gameObject.TryGetComponent(out entity)){
+                if(c.gameObject.TryGetComponent(out entity) && /* To avoid damaging yourself*/ entity != owner){
                     entity.health -= damage;
                 }
             }
         }
+
+
 
         Destroy(projectileInstance.gameObject);
         owner.inventory.EndUsingItem(this);
@@ -136,7 +142,6 @@ public class RottenTomato : BoardItem_Base
                 i++;
             }
         }
-
         Destroy(ghostProjectile.gameObject);
     }
 

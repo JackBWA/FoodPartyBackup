@@ -33,12 +33,26 @@ public class ItemUIPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void InitializeOnClick()
     {
-        button.onClick.AddListener(delegate { Clicked(); });
+        button.onClick.AddListener(delegate { OnClick(); });
     }
 
-    public void Clicked()
+    public void OnClick()
     {
-        // When clicks lol.
+        ItemsCanvas.singleton.interactor.inventory.UseItem(item);
+
+        /* // No hacia falta ya estaba hecho arriba xd.
+        BoardItem_Base _item = Instantiate(item, interactor.transform.position + interactor.transform.forward + (interactor.transform.up * 2.5f), ItemsCanvas.singleton.interactor.transform.rotation);
+        _item.owner = interactor;
+        interactor.inventory.StartUsingItem(_item);
+        */
+
+
+
+        // This should be called once item using is done.
+        /*
+         * ItemsCanvas.singleton.interactor.inventory.itemsCanvasInstance.enabled = false;
+           ItemsCanvas.singleton.interactor.inventory.itemsCanvasInstance.gameObject.SetActive(false);
+        */
     }
 
     public void OnPointerEnter(PointerEventData eventData)

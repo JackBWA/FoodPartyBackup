@@ -93,6 +93,7 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnStart;
     public void TurnStart()
     {
+        inventory.enabled = true;
         inventory.Create();
         inventory.canUseItem = true;
         onTurnStart?.Invoke();
@@ -101,6 +102,7 @@ public class BoardEntity : MonoBehaviour
     public event Action onTurnEnd;
     public void TurnEnd()
     {
+        inventory.enabled = false;
         inventory.Delete();
         inventory.canUseItem = false;
         GameBoardManager.singleton.TurnEnd(this);

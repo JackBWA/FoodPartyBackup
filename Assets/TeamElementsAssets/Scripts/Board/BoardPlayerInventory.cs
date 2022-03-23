@@ -13,15 +13,10 @@ public class BoardPlayerInventory : BoardEntityInventory
         inputActions = new BoardPlayerControls();
         inputActions.Inventory.Toggle.performed += _ =>
         {
+            if (!canUseItem) return;
             visible = !visible;
             ToggleItemsUI();
         };
-    }
-
-    public void ToggleItemsUI()
-    {
-        itemsCanvasInstance.enabled = visible;
-        itemsCanvasInstance.gameObject.SetActive(visible);
     }
 
     public override void Create()

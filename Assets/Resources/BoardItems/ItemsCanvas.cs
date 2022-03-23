@@ -46,12 +46,12 @@ public class ItemsCanvas : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Enableeee");
+        //Debug.Log("Enableeee");
         //gameObject.SetActive(true); // No va porque al deshabilitar no se detecta. Metodologia cambiada. :)
     }
 
     private void OnDisable()
     {
-        Debug.Log("Disableeee");
+        //Debug.Log("Disableeee");
     }
 }

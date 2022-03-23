@@ -11,7 +11,7 @@ public class BoardEntityInventory : MonoBehaviour
 
     public Dictionary<BoardItem_Base, int> items = new Dictionary<BoardItem_Base, int>();
 
-    protected ItemsCanvas itemsCanvasInstance;
+    public ItemsCanvas itemsCanvasInstance;
 
     public bool canUseItem
     {
@@ -61,9 +61,15 @@ public class BoardEntityInventory : MonoBehaviour
         AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[1], 1);
     }
 
+    public void ToggleItemsUI()
+    {
+        itemsCanvasInstance.enabled = visible;
+        itemsCanvasInstance.gameObject.SetActive(visible);
+    }
+
     public virtual void Create()
     {
-        Debug.Log($"{owner.name} Esto es una pruebahfuriejnergerm");
+        //Debug.Log($"{owner.name} Esto es una pruebahfuriejnergerm");
         itemsCanvasInstance = Instantiate(itemsCanvasPrefab);
         itemsCanvasInstance.interactor = owner;
         List<BoardItem_Base> auxItems = new List<BoardItem_Base>();
@@ -141,6 +147,8 @@ public class BoardEntityInventory : MonoBehaviour
     public event Action onStartUsingItem;
     public void StartUsingItem(BoardItem_Base item)
     {
+        visible = false;
+        ToggleItemsUI();
         canUseItem = false;
         isUsingItem = true;
         owner.SetCanThrowDice(false);
@@ -159,8 +167,11 @@ public class BoardEntityInventory : MonoBehaviour
     public event Action onCancelUsingItem;
     public void CancelUsingItem(BoardItem_Base item)
     {
+        visible = true;
+        ToggleItemsUI();
         isUsingItem = false;
         canUseItem = true;
+        AddItem(item);
         owner.SetCanThrowDice(true);
         onCancelUsingItem?.Invoke();
     }
