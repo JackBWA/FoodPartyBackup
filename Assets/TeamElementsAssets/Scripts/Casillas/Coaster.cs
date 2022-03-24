@@ -101,7 +101,7 @@ public class Coaster : MonoBehaviour
             GameObject waitZone = new GameObject("Wait Zone");
             waitZone.transform.position = transform.position;
             waitZone.transform.eulerAngles = new Vector3(0f, (i + 1) * subdivisionAngle, 0f);
-            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 2.5f);
+            waitZone.transform.position += waitZone.transform.forward.normalized * (transform.localScale.magnitude / 4f);
             waitZone.transform.parent = transform;
             waitZones.Add(waitZone.transform.position);
             waitZonesState.Add(waitZone.transform.position, null);

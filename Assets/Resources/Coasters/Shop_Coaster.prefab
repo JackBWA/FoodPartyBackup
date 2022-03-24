@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4531339268063243265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.33, y: 21.5, z: -6.6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d8a53285bf2161e43be586737b22dbd1, type: 2}
+  - {fileID: 2100000, guid: 602efa8410445a74391b527b108ca723, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,4 +99,5 @@ MonoBehaviour:
   waitZones: []
   type: 5
   canRequestInteract: 1
+  keepMovesOnRequestAccept: 0
   shopPrefab: {fileID: 400148227892868636, guid: 3aeca9500b5291b4eb375e668d5501d3, type: 3}

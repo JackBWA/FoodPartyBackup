@@ -36,6 +36,7 @@ public class CoasterSpawner : MonoBehaviour
             coasterObjName = type.ToString();
             spawnable = Resources.Load<Coaster>($"Coasters/{coasterObjName}_Coaster");
         }
+
         Coaster spawnedCoaster = Instantiate(spawnable);
         spawnedCoaster.gameObject.name = coasterObjName;
         spawnedCoaster.transform.position = transform.position;

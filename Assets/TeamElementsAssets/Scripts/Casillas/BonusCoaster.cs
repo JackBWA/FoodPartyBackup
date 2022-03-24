@@ -35,6 +35,7 @@ public class BonusCoaster : Coaster
          */
         interactor.inventory.AddItem(randomItem);
         Debug.Log("Bonus interact!");
+        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

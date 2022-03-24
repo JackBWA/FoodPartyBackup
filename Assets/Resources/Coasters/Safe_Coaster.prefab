@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8862333706012969997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.75, y: 21.5, z: 2.55}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9ded8e5e4dd9e184aab641e94735a3b4, type: 2}
+  - {fileID: 2100000, guid: b0a1b996ba0078c4384d4e27fc03eb1e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -98,5 +98,5 @@ MonoBehaviour:
   players: []
   waitZones: []
   type: 3
-  canRequestStop: 0
-  isCoasterEnabled: 1
+  canRequestInteract: 0
+  keepMovesOnRequestAccept: 0

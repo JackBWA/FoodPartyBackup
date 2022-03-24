@@ -11,9 +11,10 @@ using UnityEngine.UI;
 public class GameBoardManager : MonoBehaviour
 {
 
-    public string boardSceneName;
-
     public static GameBoardManager singleton;
+
+    [HideInInspector]
+    public string boardSceneName;
 
     [HideInInspector]
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
@@ -21,13 +22,23 @@ public class GameBoardManager : MonoBehaviour
     [HideInInspector]
     public BoardEntity winner;
 
+    [HideInInspector]
     public Recipe recipe;
 
     public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
+    public Canvas gameBoardCanvas;
+
     public List<string> minigameScenes = new List<string>();
 
-    private GameObject boardInteractablesParent;
+    #region Parents
+    public GameObject systemsParent;
+    public GameObject uiParent;
+    public GameObject navMeshParent;
+    public GameObject mapParent;
+    public GameObject saveLoadGameObjectsParent;
+    public GameObject otherParent;
+    #endregion
 
     /*
     public bool randomRecipe;
@@ -55,6 +66,12 @@ public class GameBoardManager : MonoBehaviour
             persistentBoardObjects.SetActive(false);
         }
 
+        foreach(GameObject gO in saveLoadGameObjectsParent.transform)
+        {
+            gO.transform.parent = persistentBoardObjects.transform;
+        }
+
+        /*
         foreach(Coaster c in FindObjectsOfType<Coaster>())
         {
             c.transform.parent = persistentBoardObjects.transform;
@@ -64,11 +81,11 @@ public class GameBoardManager : MonoBehaviour
         {
             bE.transform.parent = persistentBoardObjects.transform;
         }
+        */
     }
 
     public IEnumerator LoadGameState()
     {
-
         SceneManager.LoadScene(boardSceneName);
         while (!SceneManager.GetActiveScene().name.Equals(boardSceneName))
         {
@@ -79,21 +96,31 @@ public class GameBoardManager : MonoBehaviour
 
         CameraBoardManager.UpdateCinemachineBrain();
 
-        boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
+        // No.
+        //saveLoadBoardObjectsParent = GameObject.FindGameObjectWithTag("BoardInteractables");
 
+        foreach(GameObject gO in persistentBoardObjects.transform)
+        {
+            gO.transform.parent = null;
+            SceneManager.MoveGameObjectToScene(gO, SceneManager.GetActiveScene());
+            gO.transform.parent = saveLoadGameObjectsParent.transform;
+        }
+
+        /*
         foreach (Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())
         {
             c.gameObject.transform.parent = null;
             SceneManager.MoveGameObjectToScene(c.gameObject, SceneManager.GetActiveScene());
-            c.gameObject.transform.parent = boardInteractablesParent.transform;
+            c.gameObject.transform.parent = saveLoadBoardObjectsParent.transform;
         }
 
         foreach(BoardEntity bE in persistentBoardObjects.GetComponentsInChildren<BoardEntity>())
         {
             bE.gameObject.transform.parent = null;
             SceneManager.MoveGameObjectToScene(bE.gameObject, SceneManager.GetActiveScene());
-            bE.gameObject.transform.parent = boardInteractablesParent.transform;
+            bE.gameObject.transform.parent = saveLoadBoardObjectsParent.transform;
         }
+        */
 
         RandomizeTurns();
         RoundStart();
@@ -122,28 +149,26 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        //Time.timeScale = 3f;
     }
-
-    /*
-    private void Update()
-    {
-        
-    }
-    */
 
     #endregion
 
     private void InitializeGame()
     {
-        boardInteractablesParent = GameObject.FindGameObjectWithTag("BoardInteractables");
+        //saveLoadGameObjectsParent = GameObject.FindGameObjectWithTag("BoardInteractables");
         Scene aux = SceneManager.GetActiveScene();
         boardSceneName = aux.name;
         winner = null;
         InitializeBoard();
         InitializePlayers();
         InitializeRecipe();
+        InitializeCanvas();
         RandomizeTurns();
+    }
+
+    private void InitializeCanvas()
+    {
+        gameBoardCanvas = Instantiate(gameBoardCanvas);
     }
 
     private void InitializeRecipe()
@@ -180,7 +205,7 @@ public class GameBoardManager : MonoBehaviour
     private void InitializeBoard()
     {
         #region Coasters
-        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
+        //List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
         List<Coaster> coasters = new List<Coaster>();
 
@@ -190,7 +215,7 @@ public class GameBoardManager : MonoBehaviour
         {
             Coaster c = cS.SpawnCoaster();
             c.Initialize();
-            surfaces.Add(c.GetComponent<NavMeshSurface>());
+            //surfaces.Add(c.GetComponent<NavMeshSurface>()); // Prebaked.
             coasters.Add(c);
         }
 
@@ -211,31 +236,12 @@ public class GameBoardManager : MonoBehaviour
             }
             */
 
-            coasters[j].transform.parent = boardInteractablesParent.transform;
+            coasters[j].transform.parent = saveLoadGameObjectsParent.transform;
         }
         #endregion
 
         // Don't destroy CoasterSpawner because can be used again to change the coaster type (?)
 
-        #region Paths // Nope
-        /*
-        for(int i = 0; i < coasters.Count; i++)
-        {
-            GameObject gO = new GameObject("Path");
-            Coaster cC = coasters[i];
-            int j = i + 1;
-            if (j >= coasters.Count) j = 0;
-            Coaster nC = coasters[j];
-            Debug.Log(cC.transform.localScale);
-            gO.transform.position = cC.transform.position + cC.transform.forward * (cC.transform.localScale.x / 1.5f);
-            Spline spline = gO.AddComponent<Spline>();
-            spline.AddNode(new SplineNode(nC.transform.position + -nC.transform.forward * (nC.transform.localScale.x / 1.5f), Vector3.zero));
-            SplineMeshTiling splineMesh = gO.AddComponent<SplineMeshTiling>();
-            splineMesh.mesh = pathMesh;
-            splineMesh.mode = MeshBender.FillingMode.Repeat;
-        }
-        */
-        #endregion
 
         /*
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BoardPath"))
@@ -250,33 +256,12 @@ public class GameBoardManager : MonoBehaviour
         }
         */
 
-        BuildNavMesh(surfaces);
-
-        #region CreateLinks
-        /*
-        for (int i = 0; i < coasters.Count; i++)
-        {
-
-
-             // Doesn't work.
-            GameObject gO = new GameObject("NavMeshLink");
-            gO.transform.position = coasters[i].transform.position + (coasters[i].next[0].transform.position - coasters[i].transform.position) / 2;
-            NavMeshLink nml = gO.AddComponent<NavMeshLink>();
-            nml.startPoint = coasters[i].transform.localPosition;
-            //nml.startPoint = gO.transform.position + (coasters[i].transform.position - gO.transform.position);
-            nml.endPoint = coasters[i].next[0].transform.localPosition;
-            //.endPoint = gO.transform.position + (coasters[i].next[0].transform.position - gO.transform.position);
-            
-        }
-        */
-        #endregion
+        //BuildNavMesh(surfaces);
     }
 
+    /* // Nope
     private void InitializePaths() // Nop
     {
-        
-
-        /*
         List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("BoardPath"))
@@ -286,8 +271,10 @@ public class GameBoardManager : MonoBehaviour
             surfaces.Add(nms);
         }
         BuildNavMesh(surfaces);
-        */
     }
+    */
+
+    /* // Prebaked.
     private void BuildNavMesh(List<NavMeshSurface> surfaces)
     {
         foreach (NavMeshSurface nms in surfaces)
@@ -298,6 +285,7 @@ public class GameBoardManager : MonoBehaviour
             }
         }
     }
+    */
 
     private void InitializePlayers()
     {
@@ -330,7 +318,7 @@ public class GameBoardManager : MonoBehaviour
                 Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, boardPlayer);
             }
             boardPlayer.currentCoaster = Coaster.initialCoaster;
-            boardPlayer.transform.parent = boardInteractablesParent.transform;
+            boardPlayer.transform.parent = saveLoadGameObjectsParent.transform;
             boardPlayers.Add(boardPlayer);
         }
     }
@@ -421,11 +409,11 @@ public class GameBoardManager : MonoBehaviour
         SaveGameState();
         // Start random event. (Minigame, general boost, etc.)
         string nextMinigame = GetRandomMinigame();
+        onRoundEnd?.Invoke();
         if (nextMinigame != null)
         {
             SceneManager.LoadScene(nextMinigame);
         }
-        onRoundEnd?.Invoke();
     }
 
     public void EventEnd()

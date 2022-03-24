@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2300970114046797086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9387493, y: 30.80317, z: -7.354271}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -49,6 +49,7 @@ MonoBehaviour:
   description: Throws a rotten tomato and deals damage to any target who receives
     a hit.
   icon: {fileID: 21300000, guid: 4b48ed3de37e12c43b3f03b49199aaa5, type: 3}
+  inUse: 0
   projectilePrefab: {fileID: -5481483443352737252, guid: 0899d4bfbd14390479ed5d31737f7c6d, type: 3}
   lineRenderer: {fileID: 2300970114046797083}
   damage: 10

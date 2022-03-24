@@ -19,6 +19,7 @@ public class TrapCoaster : Coaster
     {
         base.Interact(interactor);
         Debug.Log("Trap interact!");
+        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)
