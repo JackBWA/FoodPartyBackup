@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8862333706012970000}
   - component: {fileID: 8862333706012969999}
   - component: {fileID: 8862333706012969998}
-  - component: {fileID: 8862333706012970001}
+  - component: {fileID: 431982206058249043}
   m_Layer: 0
   m_Name: Safe_Coaster
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8862333706012970001
+--- !u!114 &431982206058249043
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 3
+  type: 0
   canRequestInteract: 0
+  canForceInteract: 0
   keepMovesOnRequestAccept: 0

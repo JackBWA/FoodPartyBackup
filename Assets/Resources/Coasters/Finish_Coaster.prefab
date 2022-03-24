@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1788460795716235607}
   - component: {fileID: 1788460795716235600}
   - component: {fileID: 1788460795716235601}
-  - component: {fileID: 1788460795716235606}
+  - component: {fileID: 5830857432422555013}
   m_Layer: 0
   m_Name: Finish_Coaster
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1788460795716235606
+--- !u!114 &5830857432422555013
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,6 +97,7 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 2
+  type: 0
   canRequestInteract: 1
-  keepMovesOnRequestAccept: 0
+  canForceInteract: 0
+  keepMovesOnRequestAccept: 1

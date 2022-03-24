@@ -63,13 +63,14 @@ public class GameBoardManager : MonoBehaviour
         {
             persistentBoardObjects = new GameObject("Persistent On Board");
             DontDestroyOnLoad(persistentBoardObjects);
-            persistentBoardObjects.SetActive(false);
         }
 
-        foreach(GameObject gO in saveLoadGameObjectsParent.transform)
+        foreach(Transform gO in saveLoadGameObjectsParent.transform)
         {
-            gO.transform.parent = persistentBoardObjects.transform;
+            gO.parent = persistentBoardObjects.transform;
         }
+
+        persistentBoardObjects.SetActive(false);
 
         /*
         foreach(Coaster c in FindObjectsOfType<Coaster>())
@@ -149,6 +150,7 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
+        Time.timeScale = 5f;
     }
 
     #endregion

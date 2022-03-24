@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2075392981915195227}
   - component: {fileID: 2075392981915195221}
   - component: {fileID: 2075392981915195220}
-  - component: {fileID: 2075392981915195222}
+  - component: {fileID: 1892645174884885913}
   m_Layer: 0
   m_Name: Initial_Coaster
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2075392981915195222
+--- !u!114 &1892645174884885913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,4 +99,5 @@ MonoBehaviour:
   waitZones: []
   type: 1
   canRequestInteract: 0
+  canForceInteract: 0
   keepMovesOnRequestAccept: 0

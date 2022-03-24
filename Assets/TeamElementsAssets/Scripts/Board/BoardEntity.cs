@@ -265,10 +265,16 @@ public class BoardEntity : MonoBehaviour
         onTurnEnd -= DeactivateAllCameras;
     }
 
-    public void ForceStop()
+    public void ForceStop(bool forcedInteract)
     {
-        moves = 0;
-        ContinueMoving();
+        if (!forcedInteract)
+        {
+            moves = 0;
+            ContinueMoving();
+        } else
+        {
+            currentCoaster.Interact(this);
+        }
     }
 
     public void TeleportTo(Vector3 position)

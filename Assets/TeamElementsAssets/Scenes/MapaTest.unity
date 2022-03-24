@@ -219,7 +219,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -237,9 +237,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   random: 0
+  canForceInteract: 1
   next:
   - {fileID: 793719025}
-  - {fileID: 1724193925}
+  - {fileID: 1206856039}
   coaster: {fileID: 0}
 --- !u!4 &29687507
 Transform:
@@ -268,7 +269,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -300,8 +301,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
-  - {fileID: 365056136}
+  - {fileID: 208981158}
   coaster: {fileID: 0}
 --- !u!1 &208981156
 GameObject:
@@ -316,7 +318,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -348,8 +350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
-  - {fileID: 793719025}
+  - {fileID: 1724193925}
   coaster: {fileID: 0}
 --- !u!1 &298352825
 GameObject:
@@ -526,7 +529,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -544,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   random: 0
+  canForceInteract: 0
   next:
   - {fileID: 1791991472}
   coaster: {fileID: 0}
@@ -963,7 +967,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -981,8 +985,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
-  - {fileID: 813874577}
+  - {fileID: 124071782}
   coaster: {fileID: 0}
 --- !u!4 &793719028
 Transform:
@@ -1011,7 +1016,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1029,8 +1034,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
-  - {fileID: 1206856039}
+  - {fileID: 793719025}
   coaster: {fileID: 0}
 --- !u!4 &813874580
 Transform:
@@ -1812,7 +1818,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1830,8 +1836,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
-  - {fileID: 124071782}
+  - {fileID: 813874577}
   coaster: {fileID: 0}
 --- !u!4 &1206856042
 Transform:
@@ -2586,7 +2593,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2618,8 +2625,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   random: 0
+  canForceInteract: 0
   next:
-  - {fileID: 208981158}
+  - {fileID: 365056136}
   coaster: {fileID: 0}
 --- !u!1 &1730144447
 GameObject:
@@ -2715,7 +2723,7 @@ GameObject:
   m_Layer: 7
   m_Name: CoasterSpawner
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2733,6 +2741,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   random: 1
+  canForceInteract: 0
   next:
   - {fileID: 29687504}
   coaster: {fileID: 0}

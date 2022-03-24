@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4531339268063243266}
   - component: {fileID: 4531339268063243267}
   - component: {fileID: 4531339268063243264}
-  - component: {fileID: 4531339268063243269}
+  - component: {fileID: 6237186169040715083}
   m_Layer: 0
   m_Name: Shop_Coaster
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4531339268063243269
+--- !u!114 &6237186169040715083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,8 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 5
-  canRequestInteract: 1
+  type: 0
+  canRequestInteract: 0
+  canForceInteract: 0
   keepMovesOnRequestAccept: 0
   shopPrefab: {fileID: 400148227892868636, guid: 3aeca9500b5291b4eb375e668d5501d3, type: 3}

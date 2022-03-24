@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1024732423484618394}
   - component: {fileID: 1024732423484618395}
   - component: {fileID: 1024732423484618392}
-  - component: {fileID: -1114474616940555129}
+  - component: {fileID: -430817148090652468}
   m_Layer: 0
   m_Name: Trap_Coaster
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-1114474616940555129
+--- !u!114 &-430817148090652468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   waitZones: []
   type: 0
   canRequestInteract: 0
+  canForceInteract: 0
   keepMovesOnRequestAccept: 0
 --- !u!1 &2982991211691974885
 GameObject:

@@ -8,6 +8,8 @@ public class CoasterSpawner : MonoBehaviour
     public Coaster.CoasterType type;
     public bool random;
 
+    public bool canForceInteract;
+
     private List<string> randomIgnore = new List<string>(){ "Initial", "Finish", "Teleport" };
 
     public List<CoasterSpawner> next = new List<CoasterSpawner>();
@@ -42,6 +44,9 @@ public class CoasterSpawner : MonoBehaviour
         spawnedCoaster.transform.position = transform.position;
         spawnedCoaster.transform.rotation = transform.rotation;
         spawnedCoaster.transform.parent = transform.parent;
+
+        spawnedCoaster.canForceInteract = canForceInteract;
+
         coaster = spawnedCoaster;
 
         return spawnedCoaster;

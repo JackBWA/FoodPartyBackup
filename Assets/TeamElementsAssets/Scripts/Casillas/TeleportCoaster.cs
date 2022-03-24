@@ -27,9 +27,11 @@ public class TeleportCoaster : Coaster
     {
         base.Interact(interactor);
         Debug.Log("Teleport interact!");
-        interactor.TeleportTo(teleportTarget.GetAvailableWaitZones()[0]);
+        playerLeave(interactor);
+        Vector3 zone = teleportTarget.GetAvailableWaitZones()[0];
+        interactor.TeleportTo(zone);
         interactor.currentCoaster = teleportTarget;
-        teleportTarget.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
+        interactor.currentCoaster.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
         EndInteract(interactor);
     }
 

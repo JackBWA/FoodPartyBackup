@@ -79,6 +79,7 @@ public class Dice : MonoBehaviour
 
     private void ShowResult(int number)
     {
+        Debug.Log(number);
         // Wip (weird bug lol)
     }
 

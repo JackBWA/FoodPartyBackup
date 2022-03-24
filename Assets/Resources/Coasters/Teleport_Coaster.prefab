@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1024732423484618394}
   - component: {fileID: 1024732423484618395}
   - component: {fileID: 1024732423484618392}
-  - component: {fileID: 1024732423484618397}
+  - component: {fileID: -1508579288330664703}
   m_Layer: 0
   m_Name: Teleport_Coaster
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1024732423484618397
+--- !u!114 &-1508579288330664703
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,8 +99,9 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 4
+  type: 0
   canRequestInteract: 1
+  canForceInteract: 0
   keepMovesOnRequestAccept: 1
   teleportTarget: {fileID: 0}
 --- !u!1 &2982991211691974885
