@@ -27,7 +27,9 @@ public class GameBoardManager : MonoBehaviour
 
     public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
-    public Canvas gameBoardCanvas;
+    public Canvas gameBoardCanvasPrefab;
+    [HideInInspector]
+    public Canvas gameBoardCanvasInstance;
 
     public List<string> minigameScenes = new List<string>();
 
@@ -45,9 +47,6 @@ public class GameBoardManager : MonoBehaviour
     public List<Recipe> recipesList = new List<Recipe>();
     */
 
-    private List<Flavor> recipeFlavors = new List<Flavor>();
-    private List<Ingredient> recipeIngredients = new List<Ingredient>();
-
     [HideInInspector]
     public int roundIndex = 0;
 
@@ -64,6 +63,8 @@ public class GameBoardManager : MonoBehaviour
             persistentBoardObjects = new GameObject("Persistent On Board");
             DontDestroyOnLoad(persistentBoardObjects);
         }
+
+        saveLoadGameObjectsParent.gameObject.SetActive(false);
 
         saveLoadGameObjectsParent.transform.parent = persistentBoardObjects.transform;
 
@@ -99,6 +100,18 @@ public class GameBoardManager : MonoBehaviour
 
         // From here scene is loaded.
 
+        // Trash code.
+        foreach (GameObject gO in SceneManager.GetActiveScene().GetRootGameObjects())
+        {
+            if (gO.CompareTag("PersistentObjects"))
+            {
+                Destroy(gO);
+                break;
+            }
+        }
+
+        SetParents();
+
         CameraBoardManager.UpdateCinemachineBrain();
 
         // No.
@@ -107,6 +120,9 @@ public class GameBoardManager : MonoBehaviour
         saveLoadGameObjectsParent.transform.parent = null;
         SceneManager.MoveGameObjectToScene(saveLoadGameObjectsParent, SceneManager.GetActiveScene());
 
+        saveLoadGameObjectsParent.SetActive(true);
+
+        #region old code
         /*
         foreach(Transform persistentChild in persistentBoardObjects.transform)
         {
@@ -131,8 +147,11 @@ public class GameBoardManager : MonoBehaviour
             bE.gameObject.transform.parent = saveLoadBoardObjectsParent.transform;
         }
         */
+        #endregion
 
         RandomizeTurns();
+        InitializeGameCanvas();
+
         RoundStart();
 
         yield return null;
@@ -160,29 +179,55 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
+        Time.timeScale = 5f;
     }
 
     #endregion
 
     private void InitializeGame()
     {
+        SetParents();
         //saveLoadGameObjectsParent = GameObject.FindGameObjectWithTag("BoardInteractables");
         Scene aux = SceneManager.GetActiveScene();
         boardSceneName = aux.name;
         winner = null;
-        InitializeBoard();
-        InitializePlayers();
-        InitializeRecipe();
-        InitializeCanvas();
+        CreateBoard();
+        CreatePlayers();
+        CreateRecipe();
+
         RandomizeTurns();
+        InitializeGameCanvas();
     }
 
-    private void InitializeCanvas()
+    public void SetParents()
     {
-        gameBoardCanvas = Instantiate(gameBoardCanvas);
+        #region Parents Setting
+
+        if(systemsParent == null) systemsParent = GameObject.FindGameObjectWithTag("Systems");
+        if (uiParent == null) uiParent = GameObject.FindGameObjectWithTag("UI");
+        if (navMeshParent == null) navMeshParent = GameObject.FindGameObjectWithTag("NavMesh");
+        if (mapParent == null) mapParent = GameObject.FindGameObjectWithTag("MapStatic");
+        if (saveLoadGameObjectsParent == null) saveLoadGameObjectsParent = GameObject.FindGameObjectWithTag("PersistentObjects");
+        if (otherParent == null) otherParent = GameObject.FindGameObjectWithTag("Other");
+
+        /*
+        public GameObject systemsParent;
+        public GameObject uiParent;
+        public GameObject navMeshParent;
+        public GameObject mapParent;
+        public GameObject saveLoadGameObjectsParent;
+        public GameObject otherParent;
+        */
+        #endregion
     }
 
-    private void InitializeRecipe()
+    private void InitializeGameCanvas()
+    {
+        gameBoardCanvasInstance = Instantiate(gameBoardCanvasPrefab);
+        gameBoardCanvasInstance.transform.SetParent(uiParent.transform);
+    }
+
+    private void CreateRecipe()
     {
         Recipe[] recipes = Resources.LoadAll<Recipe>("Recipes");
         recipe = recipes[UnityEngine.Random.Range(0, recipes.Length)];
@@ -213,7 +258,7 @@ public class GameBoardManager : MonoBehaviour
         */
     }
 
-    private void InitializeBoard()
+    private void CreateBoard()
     {
         #region Coasters
         //List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
@@ -237,68 +282,13 @@ public class GameBoardManager : MonoBehaviour
                 coasters[j].next.Add(next.coaster);
             }
 
-            /* // Read below.
-            if(coasterSpawners[j].coaster.GetType() == typeof(TeleportCoaster))
-            {
-                // 2 Formas de hacerlo pog.
-                //coasters[j] as TeleportCoaster).teleportTarget = null;
-                //((TeleportCoaster)coasters[j]).teleportTarget = null;
-                // Moved to TeleportCoaster.Start() //(coasters[j] as TeleportCoaster).teleportTarget = coasters[j].next[coasters[j].next.Count - 1];
-            }
-            */
-
             coasters[j].transform.parent = saveLoadGameObjectsParent.transform;
         }
         #endregion
-
         // Don't destroy CoasterSpawner because can be used again to change the coaster type (?)
-
-
-        /*
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("BoardPath"))
-        {
-            NavMeshSurface srfc;
-            if(!obj.TryGetComponent(out srfc))
-            {
-                srfc = obj.AddComponent<NavMeshSurface>();
-            }
-            srfc.collectObjects = CollectObjects.Children;
-            surfaces.Add(srfc);
-        }
-        */
-
-        //BuildNavMesh(surfaces);
     }
 
-    /* // Nope
-    private void InitializePaths() // Nop
-    {
-        List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
-
-        foreach (GameObject gO in GameObject.FindGameObjectsWithTag("BoardPath"))
-        {
-            NavMeshSurface nms = gO.AddComponent<NavMeshSurface>();
-            nms.collectObjects = CollectObjects.Children;
-            surfaces.Add(nms);
-        }
-        BuildNavMesh(surfaces);
-    }
-    */
-
-    /* // Prebaked.
-    private void BuildNavMesh(List<NavMeshSurface> surfaces)
-    {
-        foreach (NavMeshSurface nms in surfaces)
-        {
-            if(nms != null)
-            {
-                nms.BuildNavMesh();
-            }
-        }
-    }
-    */
-
-    private void InitializePlayers()
+    private void CreatePlayers()
     {
         List<PlayerCharacter> players = new List<PlayerCharacter>();
         PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);

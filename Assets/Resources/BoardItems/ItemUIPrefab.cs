@@ -57,16 +57,20 @@ public class ItemUIPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Pointer enter");
+        //Debug.Log("Pointer enter");
         ItemsCanvas.singleton.itemData.itemName = item.name;
         ItemsCanvas.singleton.itemData.itemDescription = item.description;
+
+        Debug.Log($"Is null? {ItemsCanvas.singleton.itemData == null}");
+        Debug.Log(ItemsCanvas.singleton.itemData);
+
         ItemsCanvas.singleton.itemData.enabled = true;
         ItemsCanvas.singleton.itemData.gameObject.SetActive(true);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Pointer exit");
+        //Debug.Log("Pointer exit");
         ItemsCanvas.singleton.itemData.itemName = string.Empty;
         ItemsCanvas.singleton.itemData.itemDescription = string.Empty;
         ItemsCanvas.singleton.itemData.enabled = false;

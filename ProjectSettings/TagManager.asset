@@ -4,9 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - BoardPath
-  - BoardInteractables
   - MapStatic
+  - UI
+  - Systems
+  - NavMesh
+  - PersistentObjects
+  - Other
   layers:
   - Default
   - TransparentFX

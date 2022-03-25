@@ -34,7 +34,7 @@ public class BonusCoaster : Coaster
          * 
          */
         interactor.inventory.AddItem(randomItem);
-        Debug.Log("Bonus interact!");
+        //Debug.Log("Bonus interact!");
         EndInteract(interactor);
     }
 

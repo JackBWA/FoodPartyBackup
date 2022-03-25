@@ -76,12 +76,12 @@ public class Coaster : MonoBehaviour
     // Realizar su función.
     public virtual void Interact(BoardEntity interactor)
     {
-        Debug.Log("Base interact!");
+        //Debug.Log("Base interact!");
     }
 
     public virtual void EndInteract(BoardEntity interactor)
     {
-        Debug.Log("Base end interact!");
+        //Debug.Log("Base end interact!");
         if (!keepMovesOnRequestAccept)
         {
             interactor.TurnEnd();
@@ -144,13 +144,6 @@ public class Coaster : MonoBehaviour
     {
         //Debug.Log("Player entered the coaster!");
         SetWaitZoneState(position, entity);
-        /*
-         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
-         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
-         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
-         * CANFORCESTOP=FALSE ES TEMPORAL GRACIAS POR LEER.
-         */
-        //canForceInteract = false;
 
         if (canForceInteract)
         {

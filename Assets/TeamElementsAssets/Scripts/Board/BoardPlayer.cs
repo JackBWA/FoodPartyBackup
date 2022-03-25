@@ -35,7 +35,7 @@ public class BoardPlayer : BoardEntity
 
     protected override void UnbindEvents()
     {
-        base.BindEvents();
+        base.UnbindEvents();
     }
 
     protected override void OnEnable()

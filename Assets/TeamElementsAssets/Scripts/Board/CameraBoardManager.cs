@@ -23,6 +23,7 @@ public class CameraBoardManager : MonoBehaviour
             return;
         }
         singleton = this;
+        transform.parent = null;
         DontDestroyOnLoad(gameObject);
     }
 

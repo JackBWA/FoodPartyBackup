@@ -18,7 +18,7 @@ public class SafeCoaster : Coaster
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
-        Debug.Log("Safe interact!");
+        //Debug.Log("Safe interact!");
         EndInteract(interactor);
     }
 

@@ -71,6 +71,7 @@ public class BoardEntityInventory : MonoBehaviour
     {
         //Debug.Log($"{owner.name} Esto es una pruebahfuriejnergerm");
         itemsCanvasInstance = Instantiate(itemsCanvasPrefab);
+        itemsCanvasInstance.transform.SetParent(GameBoardManager.singleton.uiParent.transform);
         itemsCanvasInstance.interactor = owner;
         List<BoardItem_Base> auxItems = new List<BoardItem_Base>();
         foreach (KeyValuePair<BoardItem_Base, int> kV in items)
@@ -78,13 +79,18 @@ public class BoardEntityInventory : MonoBehaviour
             auxItems.Add(kV.Key);
         }
         itemsCanvasInstance.SetItems(auxItems);
+        ToggleItemsUI();
+        /*
         itemsCanvasInstance.enabled = visible;
         itemsCanvasInstance.gameObject.SetActive(false);
+        */
     }
 
     public virtual void Delete()
     {
         Destroy(itemsCanvasInstance.gameObject);
+        ItemsCanvas.singleton = null; // Weirdddd.
+        //itemsCanvasInstance = null;
     }
 
     #region Inventory Methods

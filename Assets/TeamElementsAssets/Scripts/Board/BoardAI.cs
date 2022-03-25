@@ -23,7 +23,7 @@ public class BoardAI : BoardEntity
 
     protected override void UnbindEvents()
     {
-        base.BindEvents();
+        base.UnbindEvents();
         onTurnStart -= ThrowDice;
     }
 
