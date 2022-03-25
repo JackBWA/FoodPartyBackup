@@ -179,7 +179,7 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        Time.timeScale = 5f;
+        //Time.timeScale = 5f;
     }
 
     #endregion
