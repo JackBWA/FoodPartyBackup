@@ -5,7 +5,6 @@ using Unity.AI.Navigation;
 using UnityEditor;
 using UnityEngine;
 
-[CanEditMultipleObjects]
 public class Coaster : MonoBehaviour
 {
     public List<Coaster> next = new List<Coaster>();

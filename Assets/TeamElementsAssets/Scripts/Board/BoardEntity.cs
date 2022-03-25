@@ -289,7 +289,7 @@ public class BoardEntity : MonoBehaviour
         //Debug.Log($"Dice: {amount}");
         moves = amount;
         // Notify
-        StartCoroutine(Move(currentCoaster.next[0]));
+        ContinueMoving();
     }
 
     public IEnumerator RequestInteract(string title = "Request", string message = "Would you like to interact?", string acceptText = "Accept", string declineText = "Decline")
@@ -328,9 +328,36 @@ public class BoardEntity : MonoBehaviour
     public void ContinueMoving()
     {
         moves--;
-        if (moves > 0)
+        if (moves >= 0)
         {
-            StartCoroutine(Move(currentCoaster.next[0]));
+            switch (currentCoaster.next.Count)
+            {
+                case 0:
+                    TurnEnd();
+                    break;
+
+                case 1:
+                    StartCoroutine(Move(currentCoaster.next[0]));
+                    break;
+
+                default:
+                    StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
+                    /* // OnMouseDown() isn't working. Fix needed.
+                    if (GetComponent<PlayerCharacter>().characterType == PlayerCharacter.CharacterType.AI)
+                    {
+                        StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
+                        break;
+                    }
+                    CoasterTargetSelector selector = Instantiate(Resources.Load<CoasterTargetSelector>("CoasterTargetSelector"));
+                    selector.interactor = this;
+                    selector.CreateSelectors();
+                    */
+                    break;
+            }
+
+
+            // Old.
+            //StartCoroutine(Move(currentCoaster.next[0]));
         }
         else
         {

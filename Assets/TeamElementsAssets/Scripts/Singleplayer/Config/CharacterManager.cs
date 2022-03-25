@@ -104,6 +104,6 @@ public class CharacterManager : MonoBehaviour
                 selectedCharacter.characterType = PlayerCharacter.CharacterType.Player;
             }
         }
-        SceneManager.LoadScene("MapaTest");
+        SceneManager.LoadScene("Mapa");
     }
 }

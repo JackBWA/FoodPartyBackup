@@ -65,10 +65,14 @@ public class GameBoardManager : MonoBehaviour
             DontDestroyOnLoad(persistentBoardObjects);
         }
 
+        saveLoadGameObjectsParent.transform.parent = persistentBoardObjects.transform;
+
+        /*
         foreach(Transform gO in saveLoadGameObjectsParent.transform)
         {
             gO.parent = persistentBoardObjects.transform;
         }
+        */
 
         persistentBoardObjects.SetActive(false);
 
@@ -100,12 +104,17 @@ public class GameBoardManager : MonoBehaviour
         // No.
         //saveLoadBoardObjectsParent = GameObject.FindGameObjectWithTag("BoardInteractables");
 
-        foreach(GameObject gO in persistentBoardObjects.transform)
+        saveLoadGameObjectsParent.transform.parent = null;
+        SceneManager.MoveGameObjectToScene(saveLoadGameObjectsParent, SceneManager.GetActiveScene());
+
+        /*
+        foreach(Transform persistentChild in persistentBoardObjects.transform)
         {
-            gO.transform.parent = null;
-            SceneManager.MoveGameObjectToScene(gO, SceneManager.GetActiveScene());
-            gO.transform.parent = saveLoadGameObjectsParent.transform;
+            persistentChild.parent = null;
+            SceneManager.MoveGameObjectToScene(persistentChild.gameObject, SceneManager.GetActiveScene());
+            persistentChild.parent = saveLoadGameObjectsParent.transform;
         }
+        */
 
         /*
         foreach (Coaster c in persistentBoardObjects.GetComponentsInChildren<Coaster>())
@@ -143,6 +152,7 @@ public class GameBoardManager : MonoBehaviour
         singleton = this;
         //persistentBoardObjects = null; // Not necessary tho (?).
         #endregion
+        transform.parent = null;
         DontDestroyOnLoad(this);
         InitializeGame();
     }
@@ -150,7 +160,6 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        Time.timeScale = 5f;
     }
 
     #endregion

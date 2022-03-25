@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -309,7 +309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2070532828}
   - component: {fileID: 2070532829}
-  - component: {fileID: 2070532830}
   m_Layer: 0
   m_Name: MiniGameManager
   m_TagString: Untagged
@@ -346,15 +345,3 @@ MonoBehaviour:
   minigameName: 
   minigameDescription: 
   spawnZones: []
---- !u!114 &2070532830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070532827}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdc955db00d1e44da6784ae23d20ae8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
