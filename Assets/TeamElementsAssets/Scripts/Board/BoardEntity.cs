@@ -333,17 +333,15 @@ public class BoardEntity : MonoBehaviour
             switch (currentCoaster.next.Count)
             {
                 case 0:
-                    Debug.Log("?");
-                    TurnEnd();
+                    currentCoaster.playerStop(this);
+                    //TurnEnd();
                     break;
 
                 case 1:
-                    Debug.Log("Ey");
                     StartCoroutine(Move(currentCoaster.next[0]));
                     break;
 
                 default:
-                    Debug.Log("f");
                     StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
 
 
@@ -366,8 +364,8 @@ public class BoardEntity : MonoBehaviour
         }
         else
         {
-            currentCoaster.playerStop(this);
-            //TurnEnd();
+            TurnEnd();
+            //currentCoaster.playerStop(this);
         }
     }
 

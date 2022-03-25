@@ -4859,7 +4859,7 @@ MonoBehaviour:
   random: 1
   canForceInteract: 0
   next:
-  - {fileID: 405505606}
+  - {fileID: 1330121668}
   coaster: {fileID: 0}
 --- !u!4 &405505607
 Transform:
