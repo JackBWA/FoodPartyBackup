@@ -16,6 +16,7 @@ public class TeleportCoaster : Coaster
     {
         base.Start();
         teleportTarget = next[next.Count - 1];
+        next.Remove(teleportTarget);
     }
 
     protected override void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")

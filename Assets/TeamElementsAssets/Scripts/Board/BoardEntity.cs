@@ -245,7 +245,7 @@ public class BoardEntity : MonoBehaviour
 
     protected virtual void BindEvents()
     {
-        Debug.Log("Binding events. " + gameObject.name);
+        //Debug.Log("Binding events. " + gameObject.name);
         onTurnStart += SpawnDice;
         onTurnStart += ActivateTPC;
         onTurnStart += EnableCanToggleCameraView;
@@ -256,7 +256,7 @@ public class BoardEntity : MonoBehaviour
 
     protected virtual void UnbindEvents()
     {
-        Debug.Log("Unbinding events. " + gameObject.name);
+        //Debug.Log("Unbinding events. " + gameObject.name);
         onTurnStart -= SpawnDice;
         onTurnStart -= ActivateTPC;
         onTurnStart -= EnableCanToggleCameraView;
@@ -322,7 +322,7 @@ public class BoardEntity : MonoBehaviour
         {
             ContinueMoving();
         }
-        yield return null;
+        //yield return null;
     }
 
     public void ContinueMoving()
@@ -333,15 +333,20 @@ public class BoardEntity : MonoBehaviour
             switch (currentCoaster.next.Count)
             {
                 case 0:
+                    Debug.Log("?");
                     TurnEnd();
                     break;
 
                 case 1:
+                    Debug.Log("Ey");
                     StartCoroutine(Move(currentCoaster.next[0]));
                     break;
 
                 default:
+                    Debug.Log("f");
                     StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
+
+
                     /* // OnMouseDown() isn't working. Fix needed.
                     if (GetComponent<PlayerCharacter>().characterType == PlayerCharacter.CharacterType.AI)
                     {
@@ -362,7 +367,7 @@ public class BoardEntity : MonoBehaviour
         else
         {
             currentCoaster.playerStop(this);
-            //TurnEnd(); // YA NO.
+            //TurnEnd();
         }
     }
 
