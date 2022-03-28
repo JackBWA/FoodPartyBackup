@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/TeamElementsAssets/Scenes/Minigames/Minigame_ClimbTheRamp.unity
     guid: 146c5df0785cdf5469a22d17dce32568
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/Minigame_FoodCatch.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/Transporte de comida.unity
     guid: d5375f3eb2e2ab44b85b388baa04c955
   - enabled: 1
     path: Assets/TeamElementsAssets/Scenes/Minigames/Rampa.unity
