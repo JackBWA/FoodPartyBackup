@@ -10,6 +10,8 @@ TagManager:
   - NavMesh
   - PersistentObjects
   - Other
+  - BoardPath
+  - SpawnZone
   layers:
   - Default
   - TransparentFX

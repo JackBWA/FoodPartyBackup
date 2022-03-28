@@ -400,7 +400,6 @@ public class BoardEntity : MonoBehaviour
 
     protected void SpawnDice()
     {
-        Debug.Log("Spawned dice!!!1!!1");
         dice = Instantiate(
             ((GameObject)Resources.Load("Dice")).GetComponent<Dice>());
         dice.transform.position = transform.position + Vector3.up * 3f;

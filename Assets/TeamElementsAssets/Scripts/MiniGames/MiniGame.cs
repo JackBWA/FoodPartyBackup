@@ -7,18 +7,14 @@ using UnityEngine.SceneManagement;
 public class MiniGame : MonoBehaviour
 {
     public string minigameName;
+    [TextArea]
     public string minigameDescription;
-    public List<Transform> spawnZones = new List<Transform>();
+
+    public List<Vector3> spawnZones = new List<Vector3>();
 
     public static MiniGame singleton;
 
     #region Events
-    public event Action onMinigameEnter;
-    public void MinigameEnter()
-    {
-        onMinigameEnter?.Invoke();
-    }
-
     public event Action onMinigameStart;
     public void MiniGameStart()
     {
@@ -52,6 +48,10 @@ public class MiniGame : MonoBehaviour
     protected virtual void Awake()
     {
         singleton = this;
+        foreach (GameObject gO in GameObject.FindGameObjectsWithTag("SpawnZone"))
+        {
+            spawnZones.Add(gO.transform.position);
+        }
     }
 
     protected virtual void Start()

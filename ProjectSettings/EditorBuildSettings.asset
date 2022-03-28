@@ -20,22 +20,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/TeamElementsAssets/Scenes/Minigame_Temp.unity
     guid: c29c1c9bc674d9d4eb346081a48b10d5
-  - enabled: 1
+  - enabled: 0
     path: Assets/TeamElementsAssets/Scenes/Minigames/Minigame_ClimbTheRamp.unity
     guid: 146c5df0785cdf5469a22d17dce32568
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/Transporte de comida.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/FoodCatcher.unity
     guid: d5375f3eb2e2ab44b85b388baa04c955
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/Rampa.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/RaceToTheTop.unity
     guid: f361675e8255c2543858e2567626522d
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/rey de la colina.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/KingOfTheHill.unity
     guid: 9332b2e73dfdef148a5f586d9a1d5f41
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/Honrno.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/DontGetBurnt.unity
     guid: b91b2a1135d9e8b4a9b4369a1400e6b9
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/Olla.unity
+    path: Assets/TeamElementsAssets/Scenes/Minigames/LastOneToSink.unity
     guid: b3de82e213f34a642b3b718e84533fc4
   m_configObjects: {}

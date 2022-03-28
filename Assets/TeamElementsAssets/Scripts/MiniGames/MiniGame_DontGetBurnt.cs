@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGame_FoodCatch : MiniGame
+public class MiniGame_DontGetBurnt : MiniGame
 {
     #region Awake/Start/Update
     protected override void Awake()
@@ -12,12 +12,12 @@ public class MiniGame_FoodCatch : MiniGame
 
     protected override void Start()
     {
-        //singleton.LoadBoardScene();
+        base.Start();
     }
 
     protected override void Update()
     {
-
+        base.Update();
     }
     #endregion
 }
