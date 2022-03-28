@@ -3,20 +3,44 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class MainMenuEventSystem : MonoBehaviour
 {
 
-    public void Hi()
-    {
-        Debug.Log("Hi");
-    }
-
     #region Variables
 
+    public GameObject contentParent;
+
+    public OptionsMenu optionsMenu;
+
+    public CinemachineVirtualCamera mainMenuVCam;
+    public CinemachineVirtualCamera initialPositionVCam;
+
+    public enum CurrentMenu
+    {
+        MAIN,
+        OPTIONS
+    }
     #endregion
 
+    private void Awake()
+    {
+        DisplayContent(0);
+    }
+
+    private void Start()
+    {
+        mainMenuVCam.gameObject.SetActive(true);
+        initialPositionVCam.gameObject.SetActive(false);
+    }
+
     #region Events
+    public void PressMainMenu()
+    {
+        ShowMainMenu();
+    }
+
     public void PressSingleplayer()
     {
         StartSingleplayerGame();
@@ -43,9 +67,13 @@ public class MainMenuEventSystem : MonoBehaviour
     #endregion
 
     #region Private Methods
+    private void ShowMainMenu()
+    {
+        optionsMenu.enabled = false;
+    }   
+
     private void StartSingleplayerGame()
     {
-        // Hardcoded de momento.
         SceneManager.LoadScene("SingleplayerConfig");
     }
 
@@ -56,7 +84,23 @@ public class MainMenuEventSystem : MonoBehaviour
 
     private void ShowOptionsMenu()
     {
-        Debug.Log("WIP");
+        optionsMenu.enabled = true;
+    }
+    #endregion
+
+    #region Public Methods
+    public void DisplayContent(int index)
+    {
+        for(int i = 0; i < contentParent.transform.childCount; i++)
+        {
+            if(i == index)
+            {
+                contentParent.transform.GetChild(i).gameObject.SetActive(true);
+            } else
+            {
+                contentParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
     }
     #endregion
 }

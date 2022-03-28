@@ -3,62 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using System.Linq;
+using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
 
     public TMP_Dropdown resolutionsDropDown;
-    List<TMP_Dropdown.OptionData> availableResolutions = new List<TMP_Dropdown.OptionData>();
+    List<TMP_Dropdown.OptionData> resolutionOptions = new List<TMP_Dropdown.OptionData>();
 
     public TMP_Dropdown qualityDropDown;
-    List<TMP_Dropdown.OptionData> availableQuality = new List<TMP_Dropdown.OptionData>();
+    List<TMP_Dropdown.OptionData> qualityOptions = new List<TMP_Dropdown.OptionData>();
 
-    public TMP_Dropdown shadowDropdown;
-    List<TMP_Dropdown.OptionData> availableShadow = new List<TMP_Dropdown.OptionData>();
+    public TMP_Dropdown shadowDropDown;
+    List<TMP_Dropdown.OptionData> shadowOptions = new List<TMP_Dropdown.OptionData>();
 
-    public void Initialize()
+    //public Toggle windowedToggle;
+
+    public void Awake()
     {
         #region Resolutions
-        availableResolutions = new List<TMP_Dropdown.OptionData>();
+        resolutionOptions = new List<TMP_Dropdown.OptionData>();
         foreach (Resolution res in Screen.resolutions){
-            availableResolutions.Add(new TMP_Dropdown.OptionData($"{res.width}x{res.height} {res.refreshRate}hz"));
+            resolutionOptions.Add(new TMP_Dropdown.OptionData($"{res.width}x{res.height} {res.refreshRate}hz"));
         }
         resolutionsDropDown.ClearOptions();
-        resolutionsDropDown.AddOptions(availableResolutions);
+        resolutionsDropDown.AddOptions(resolutionOptions);
         #endregion
 
         #region Quality
-        availableQuality = new List<TMP_Dropdown.OptionData>();
+        qualityOptions = new List<TMP_Dropdown.OptionData>();
         foreach(string s in QualitySettings.names)
         {
-            availableQuality.Add(new TMP_Dropdown.OptionData($"{s}"));
+            qualityOptions.Add(new TMP_Dropdown.OptionData($"{s}"));
         }
         qualityDropDown.ClearOptions();
-        qualityDropDown.AddOptions(availableQuality);
+        qualityDropDown.AddOptions(qualityOptions);
         #endregion
 
         #region Shadows
-        availableShadow = new List<TMP_Dropdown.OptionData>();
+        shadowOptions = new List<TMP_Dropdown.OptionData>();
         foreach(string s in Enum.GetNames(typeof(ShadowResolution))){
-            availableShadow.Add(new TMP_Dropdown.OptionData(s));
+            shadowOptions.Add(new TMP_Dropdown.OptionData(s));
         }
-        shadowDropdown.AddOptions(availableShadow);
+        shadowDropDown.AddOptions(shadowOptions);
         #endregion
 
         #region Set Selected Values
-        // WIP
+        resolutionsDropDown.SetValueWithoutNotify(Screen.resolutions.ToList().IndexOf(Screen.currentResolution));
+        qualityDropDown.SetValueWithoutNotify(QualitySettings.GetQualityLevel());
         #endregion
-    }
-
-    private void OnEnable()
-    {
-        Initialize();
     }
 
     public void SetResolution()
     {
         Resolution selectedRes = new Resolution();
-        TMP_Dropdown.OptionData selectedOption = availableResolutions[resolutionsDropDown.value];
+        TMP_Dropdown.OptionData selectedOption = resolutionOptions[resolutionsDropDown.value];
         string[] parameterSplit = selectedOption.text.Split(' ');
         string resolutionTxt = parameterSplit[0];          /*selectedOption.text.Substring(0, selectedOption.text.IndexOf(" "));*/
         string[] resolutionSplit = resolutionTxt.Split('x');
@@ -74,13 +74,26 @@ public class OptionsMenu : MonoBehaviour
 
     public void SetQuality()
     {
-        string selectedQuality = availableQuality[qualityDropDown.value].text;
+        string selectedQuality = qualityOptions[qualityDropDown.value].text;
         QualitySettings.SetQualityLevel(qualityDropDown.value);
     }
 
     public void SetShadowResolution()
     {
-        Debug.Log((ShadowResolution)shadowDropdown.value);
-        QualitySettings.shadowResolution = (ShadowResolution) shadowDropdown.value;
+        Debug.Log((ShadowResolution)shadowDropDown.value);
+        QualitySettings.shadowResolution = (ShadowResolution) shadowDropDown.value;
     }
+
+    /*
+    public void ToggleWindowed()
+    {
+        if (windowedToggle.isOn)
+        {
+            Screen.fullScreenMode = FullScreenMode.Windowed;
+        } else
+        {
+            Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+        }
+    }
+    */
 }
