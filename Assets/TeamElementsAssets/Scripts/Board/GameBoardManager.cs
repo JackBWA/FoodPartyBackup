@@ -397,7 +397,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onRoundStart;
     public void RoundStart()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 15f;
         TurnStart(boardPlayers[turnIndex]);
         onRoundStart?.Invoke();
     }
