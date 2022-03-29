@@ -61,11 +61,15 @@ public class MiniGame : MonoBehaviour
         InitializePlayers();
         SpawnPlayers();
         #endregion
+
+        #region Countdown
+
+        #endregion
     }
 
     protected virtual void Start()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 1f; // Temporal xd.
     }
 
     protected virtual void Update()
