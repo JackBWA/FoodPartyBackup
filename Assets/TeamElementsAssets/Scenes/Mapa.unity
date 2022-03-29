@@ -183,6 +183,10 @@ PrefabInstance:
       value: PlatoHondo (19)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -206,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 52945793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lampara
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -376,6 +380,10 @@ PrefabInstance:
       value: edificio _restaurante_exterior2 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d58f7cf3a17913448a88641af125d4a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d58f7cf3a17913448a88641af125d4a7, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -399,7 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 81325651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Puerta
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -478,6 +486,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -641,6 +653,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_Name
       value: "mesa peque\xF1a"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -962,6 +978,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -1475,6 +1495,10 @@ PrefabInstance:
       value: sartenbug (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -1757,6 +1781,10 @@ PrefabInstance:
       value: pote de pimienta
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -1835,6 +1863,10 @@ PrefabInstance:
       value: Olla (6)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -1903,6 +1935,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -1979,6 +2015,10 @@ PrefabInstance:
       value: sartenbug (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -2053,6 +2093,10 @@ PrefabInstance:
       value: sartenbug (24)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -2076,7 +2120,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 241740903}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Dado
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -2401,6 +2445,10 @@ PrefabInstance:
       value: PlatoNormal (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -2473,6 +2521,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_Name
       value: Tenedor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_TagString
@@ -2579,7 +2631,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 280356945}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tenedores
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -2659,6 +2711,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -2897,6 +2953,10 @@ PrefabInstance:
       value: PlatoHondo (11)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -3060,6 +3120,10 @@ PrefabInstance:
       value: PosaCuchillos
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: eaf6450473bf2874681220522cb89118, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: eaf6450473bf2874681220522cb89118, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -3138,6 +3202,10 @@ PrefabInstance:
       value: pica de agua
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4e98f948eb1b4d947bec368af19e77cc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4e98f948eb1b4d947bec368af19e77cc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -3206,6 +3274,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -3288,6 +3360,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
       propertyPath: m_Name
       value: extractor (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3449,6 +3525,10 @@ PrefabInstance:
       value: Olla (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -3468,7 +3548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 374157779}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PosaCuchillos
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -3550,6 +3630,10 @@ PrefabInstance:
       value: sartenbug (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -3622,6 +3706,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -3828,6 +3916,10 @@ PrefabInstance:
       value: Cuchara (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -3902,6 +3994,10 @@ PrefabInstance:
       value: Cuchara (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -3974,6 +4070,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -4058,6 +4158,10 @@ PrefabInstance:
       value: Olla (9)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -4134,6 +4238,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4376,6 +4484,10 @@ PrefabInstance:
       value: Olla (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -4444,6 +4556,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -4609,6 +4725,10 @@ PrefabInstance:
       value: HORNO (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd232759333724249bdad7fa73385310, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd232759333724249bdad7fa73385310, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -4677,6 +4797,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -4834,6 +4958,10 @@ PrefabInstance:
       value: sartenbug (25)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -4908,6 +5036,10 @@ PrefabInstance:
       value: Bandeja (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -4980,6 +5112,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -5062,6 +5198,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5245,7 +5385,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553534016}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Basos
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -5326,6 +5466,10 @@ PrefabInstance:
       value: PlatoHondo (14)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -5400,6 +5544,10 @@ PrefabInstance:
       value: sartenbug (8)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -5472,6 +5620,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: c8a808649494a6346ad98abef1d0a3b5, type: 3}
       propertyPath: m_Name
       value: barbacoa
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c8a808649494a6346ad98abef1d0a3b5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c8a808649494a6346ad98abef1d0a3b5, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5556,6 +5708,10 @@ PrefabInstance:
       value: PlatoHondo (9)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -5579,7 +5735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 612842474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cucharas
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -5658,6 +5814,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -5740,6 +5900,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -5901,6 +6065,10 @@ PrefabInstance:
       value: estanteria
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4f01b150af4989a4fb28c40b72394074, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4f01b150af4989a4fb28c40b72394074, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -5977,6 +6145,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_Name
       value: Lampara (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_IsActive
@@ -6140,6 +6312,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -6378,6 +6554,10 @@ PrefabInstance:
       value: PlatoNormal (6)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -6450,6 +6630,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -6696,6 +6880,10 @@ PrefabInstance:
       value: Olla
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -6764,6 +6952,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -6842,6 +7034,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -7009,6 +7205,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -7328,6 +7528,10 @@ PrefabInstance:
       value: PlatoNormal (23)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -7400,6 +7604,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -7506,7 +7714,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 772424830}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Estanterias
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -7594,6 +7802,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
       propertyPath: m_Name
       value: extractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0dbcb05c8d328e946b3938bfa70d0d11, type: 3}
       propertyPath: m_TagString
@@ -7700,7 +7912,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 811320529}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Reloj
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -7944,6 +8156,10 @@ PrefabInstance:
       value: PlatoHondo (12)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -7967,7 +8183,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819597065}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Platos
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -8129,6 +8345,10 @@ PrefabInstance:
       value: Tenedor (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -8211,6 +8431,10 @@ PrefabInstance:
       value: pote de pimienta (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -8285,6 +8509,10 @@ PrefabInstance:
       value: edificio _restaurante_exterior2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d58f7cf3a17913448a88641af125d4a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d58f7cf3a17913448a88641af125d4a7, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -8357,6 +8585,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -8626,6 +8858,10 @@ PrefabInstance:
       value: PlatoHondo (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -8779,6 +9015,10 @@ PrefabInstance:
       value: Bandeja (8)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -8859,6 +9099,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 389a57c3033e73d47b22626f70f2b8b9, type: 3}
       propertyPath: m_Name
       value: dado
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 389a57c3033e73d47b22626f70f2b8b9, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 389a57c3033e73d47b22626f70f2b8b9, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -9083,6 +9327,10 @@ PrefabInstance:
       value: Tenedor (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -9287,6 +9535,10 @@ PrefabInstance:
       value: PlatoNormal (21)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -9361,6 +9613,10 @@ PrefabInstance:
       value: sartenbug (23)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -9384,7 +9640,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 937136996}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9546,6 +9802,10 @@ PrefabInstance:
       value: Cuchara (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -9560,50 +9820,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
   m_PrefabInstance: {fileID: 954877947}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &957474295
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 957474296}
-  - component: {fileID: 957474297}
-  m_Layer: 6
-  m_Name: TemporalCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &957474296
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957474295}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &957474297
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957474295}
-  m_Material: {fileID: 13400000, guid: cc5c0023fc5f869408c4b26f39c9a459, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 500, y: 1, z: 1000}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &962399311
 GameObject:
   m_ObjectHideFlags: 0
@@ -9802,6 +10018,10 @@ PrefabInstance:
       value: "mesa peque\xF1a (5)"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -9884,6 +10104,10 @@ PrefabInstance:
       value: Cuchara
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -9956,6 +10180,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -10202,6 +10430,10 @@ PrefabInstance:
       value: pote de pimienta (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -10221,7 +10453,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1016960120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pica de agua
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -10252,7 +10484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1060663947}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Mesa central
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -10342,6 +10574,10 @@ PrefabInstance:
       value: Olla (8)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -10410,6 +10646,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 5c3216f49500e1041b97e1911a399f83, type: 3}
       propertyPath: m_Name
       value: CuchilloJamonero (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5c3216f49500e1041b97e1911a399f83, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5c3216f49500e1041b97e1911a399f83, type: 3}
       propertyPath: m_TagString
@@ -10565,6 +10805,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -10803,6 +11047,10 @@ PrefabInstance:
       value: PlatoHondo (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -10875,6 +11123,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -11117,6 +11369,10 @@ PrefabInstance:
       value: Cuchillo (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -11189,6 +11445,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -11271,6 +11531,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_Name
       value: "mesa peque\xF1a (2)"
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -11424,6 +11688,10 @@ PrefabInstance:
       value: PlatoNormal
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -11575,6 +11843,10 @@ PrefabInstance:
       value: Batidora (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 92b22ff43768be14ebc24f7b977ff8dc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92b22ff43768be14ebc24f7b977ff8dc, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -11643,6 +11915,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -11719,6 +11995,10 @@ PrefabInstance:
       value: Bandeja (10)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -11791,6 +12071,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -11867,6 +12151,10 @@ PrefabInstance:
       value: PlatoHondo (18)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -11939,6 +12227,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -12170,6 +12462,10 @@ PrefabInstance:
       value: Tenedor (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -12193,7 +12489,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1277063304}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12272,6 +12568,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -12356,6 +12656,10 @@ PrefabInstance:
       value: lavavajillas
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fd7c48e4a9dfed74591c6689d9913cf2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: fd7c48e4a9dfed74591c6689d9913cf2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -12434,6 +12738,10 @@ PrefabInstance:
       value: HORNO
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dd232759333724249bdad7fa73385310, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd232759333724249bdad7fa73385310, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -12510,6 +12818,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_Name
       value: Lampara (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_IsActive
@@ -12592,6 +12904,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12753,6 +13069,10 @@ PrefabInstance:
       value: mricoondas
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2048091ca1208fa41a8c9fc366c8f565, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2048091ca1208fa41a8c9fc366c8f565, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -12904,6 +13224,10 @@ PrefabInstance:
       value: sartenbug (15)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -13033,6 +13357,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 24bf6a8cfb327254cbed0894e28ed426, type: 3}
       propertyPath: m_Name
       value: armario frontal
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 24bf6a8cfb327254cbed0894e28ed426, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 24bf6a8cfb327254cbed0894e28ed426, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -13274,7 +13602,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1357876050}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CuchilloJamonero
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -13363,6 +13691,10 @@ PrefabInstance:
       value: Mesa central
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3139d78f8221215458108ca3bf002048, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3139d78f8221215458108ca3bf002048, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -13373,6 +13705,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3139d78f8221215458108ca3bf002048, type: 3}
   m_PrefabInstance: {fileID: 1375761526}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1375761528 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3139d78f8221215458108ca3bf002048, type: 3}
+  m_PrefabInstance: {fileID: 1375761526}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1375761529
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375761528}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3619043733691504058, guid: 3139d78f8221215458108ca3bf002048, type: 3}
 --- !u!1001 &1385541774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13433,6 +13784,10 @@ PrefabInstance:
       value: PlatoNormal (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -13456,7 +13811,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1391522041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Olla
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -13595,6 +13950,10 @@ PrefabInstance:
       value: sartenbug (6)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -13618,7 +13977,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1428032715}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Barbacoa
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -13698,6 +14057,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -13863,6 +14226,10 @@ PrefabInstance:
       value: pote de pimienta (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -13931,6 +14298,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -14177,6 +14548,10 @@ PrefabInstance:
       value: pote de pimienta (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -14403,6 +14778,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 92b22ff43768be14ebc24f7b977ff8dc, type: 3}
       propertyPath: m_Name
       value: Batidora
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92b22ff43768be14ebc24f7b977ff8dc, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 92b22ff43768be14ebc24f7b977ff8dc, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14777,6 +15156,10 @@ PrefabInstance:
       value: Olla (12)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -14934,6 +15317,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_Name
       value: Lampara (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_IsActive
@@ -15172,6 +15559,10 @@ PrefabInstance:
       value: sartenbug (7)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -15244,6 +15635,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -15401,6 +15796,10 @@ PrefabInstance:
       value: sartenbug (16)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -15473,6 +15872,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -15549,6 +15952,10 @@ PrefabInstance:
       value: Tenedor (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40e426cb53dc6a746aef6e8a216760f3, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -15623,6 +16030,10 @@ PrefabInstance:
       value: PlatoNormal (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -15695,6 +16106,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -15941,6 +16356,10 @@ PrefabInstance:
       value: pote de pimienta (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d2dcc636bf27ea548b39893429430059, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -15960,7 +16379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1645930993}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: =====MAP=====
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -16249,6 +16668,10 @@ PrefabInstance:
       value: sartenbug (12)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -16272,7 +16695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1663338509}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lavavajillas
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -16431,6 +16854,10 @@ PrefabInstance:
       value: NEVERA (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ca2415fbd139364c86c62b95de97640, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ca2415fbd139364c86c62b95de97640, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -16499,6 +16926,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -16573,6 +17004,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
@@ -16655,6 +17090,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -16820,6 +17259,10 @@ PrefabInstance:
       value: Cuchillo (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -16843,7 +17286,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706159927}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Nevera
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -16865,50 +17308,6 @@ Transform:
   - {fileID: 1673338918}
   m_Father: {fileID: 1645930993}
   m_RootOrder: 120
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1707561545
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1707561547}
-  - component: {fileID: 1707561546}
-  m_Layer: 6
-  m_Name: TemporalCollider (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1707561546
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707561545}
-  m_Material: {fileID: 13400000, guid: cc5c0023fc5f869408c4b26f39c9a459, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 500, y: 1, z: 1000}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &1707561547
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1707561545}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.8, y: 25.75, z: -22.4}
-  m_LocalScale: {x: 0.09998894, y: 0.99458, z: 0.09998894}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1708833352
 GameObject:
@@ -17051,6 +17450,10 @@ PrefabInstance:
       value: PlatoNormal (22)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -17123,6 +17526,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_Name
       value: PlatoHondo (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
@@ -17280,6 +17687,10 @@ PrefabInstance:
       value: sartenbug (14)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -17362,6 +17773,10 @@ PrefabInstance:
       value: "mesa peque\xF1a (4)"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -17381,7 +17796,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1754402263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cuchillo
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -17468,6 +17883,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -17700,6 +18119,10 @@ PrefabInstance:
       value: Lampara
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0a2b4f2b54b0031418fe574baf01209d, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -17774,6 +18197,10 @@ PrefabInstance:
       value: PlatoHondo (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -17829,7 +18256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1786845919}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bandeja
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -17918,6 +18345,10 @@ PrefabInstance:
       value: "mesa peque\xF1a (1)"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -18000,6 +18431,10 @@ PrefabInstance:
       value: PlatoHondo (8)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -18072,6 +18507,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -18310,6 +18749,10 @@ PrefabInstance:
       value: sartenbug (19)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -18382,6 +18825,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_Name
       value: Cuchillo (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
@@ -18488,7 +18935,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1847488448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: "Mesa peque\xF1a"
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -18571,6 +19018,10 @@ PrefabInstance:
       value: NEVERA
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ca2415fbd139364c86c62b95de97640, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8ca2415fbd139364c86c62b95de97640, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -18649,6 +19100,10 @@ PrefabInstance:
       value: "mesa peque\xF1a (3)"
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: faf047e94e845034db1eb7eb67b6fb37, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -18668,7 +19123,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1866133130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Armarios
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -18749,6 +19204,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_Name
       value: sartenbug (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
@@ -19242,6 +19701,10 @@ PrefabInstance:
       value: Cuchillo (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -19328,6 +19791,10 @@ PrefabInstance:
       value: Cuchara (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0c3162b14b1fa08498b943392b9dab03, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -19351,7 +19818,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1944639077}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pote de pimienta
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -19419,7 +19886,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1957677160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Horno
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -19502,6 +19969,10 @@ PrefabInstance:
       value: PlatoNormal (9)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -19574,6 +20045,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -19743,6 +20218,10 @@ PrefabInstance:
       value: PlatoNormal (10)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -19817,6 +20296,10 @@ PrefabInstance:
       value: sartenbug (13)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -19840,7 +20323,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1987929872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Microondas
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -19932,6 +20415,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_Name
       value: Cuchillo (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
@@ -20119,7 +20606,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2009299863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Batidora
   m_TagString: MapStatic
   m_Icon: {fileID: 0}
@@ -20202,6 +20689,10 @@ PrefabInstance:
       value: PlatoHondo
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f456891ff5c10444d841070558a206ba, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -20276,6 +20767,10 @@ PrefabInstance:
       value: sartenbug (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4acc7c7e54e2efd40bfefb805de6b0dd, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -20348,6 +20843,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -20505,6 +21004,10 @@ PrefabInstance:
       value: PlatoNormal (15)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -20585,6 +21088,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_Name
       value: Olla (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b248f96e5659d0e49add4d5d18feb7f8, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -20831,6 +21338,10 @@ PrefabInstance:
       value: Cuchillo (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0caf1600a4dfd4e49aaf734195958fad, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -21075,6 +21586,10 @@ PrefabInstance:
       value: Reloj
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f13f0a2ec16af7240a74760902c17107, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f13f0a2ec16af7240a74760902c17107, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -21234,6 +21749,10 @@ PrefabInstance:
       value: armario lateral
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3b9602427ae5ea3498595f926c95baa4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b9602427ae5ea3498595f926c95baa4, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 119
       objectReference: {fileID: 0}
@@ -21302,6 +21821,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_Name
       value: PlatoNormal (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f250a41fe860b0246a035aaf30570f65, type: 3}
       propertyPath: m_TagString
@@ -21459,6 +21982,10 @@ PrefabInstance:
       value: Bandeja (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString
       value: MapStatic
       objectReference: {fileID: 0}
@@ -21531,6 +22058,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_Name
       value: Bandeja (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f80ca80be6e8e5b459a0e3fcbfb40b7b, type: 3}
       propertyPath: m_TagString

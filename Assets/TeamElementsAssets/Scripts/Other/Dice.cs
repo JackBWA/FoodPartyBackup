@@ -15,7 +15,7 @@ public class Dice : MonoBehaviour
     public float sideThrowSpread = 5f;
     public float minRndRotation = 120f;
     public float maxRndRotation = -60f;
-    public LayerMask detectionMask;
+    //public LayerMask detectionMask;
     public List<Transform> sides = new List<Transform>();
 
     public bool used { get; private set; }
@@ -69,7 +69,7 @@ public class Dice : MonoBehaviour
         {
             ShowResult(result);
             owner.SetMoves(result);
-            Destroy(gameObject);
+            Destroy(gameObject); // Remove this once dice shows the number.
         }
         else
         {
@@ -81,12 +81,27 @@ public class Dice : MonoBehaviour
     {
         Debug.Log(number);
         // Wip (weird bug lol)
+        // Once it finished showing the number, destroy the object.
     }
 
     private int CheckResult()
     {
         int result = -1;
-        int i = 0;
+
+        for(int i = 0; i < sides.Count; i++)
+        {
+            if (i == 0)
+            {
+                result = sides.Count - i;
+                continue;
+            }
+            if(sides[i].forward.y < sides[sides.Count - result].forward.y)
+            {
+                result = sides.Count - i;
+            }
+        }
+        #region Old Code
+        /*
         while (i < sides.Count)
         {
             Collider[] objects = Physics.OverlapSphere(sides[i].position, 0.1f, detectionMask);
@@ -100,6 +115,8 @@ public class Dice : MonoBehaviour
                 i++;
             }
         }
+        */
+        #endregion
         return result;
     }
 }
