@@ -2,10 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class MiniGame : MonoBehaviour
 {
+
+    public static MiniGame singleton;
+
     public string minigameName;
     [TextArea]
     public string minigameDescription;
@@ -14,7 +18,7 @@ public class MiniGame : MonoBehaviour
 
     public List<PlayerCharacter> players = new List<PlayerCharacter>();
 
-    public static MiniGame singleton;
+    public PlayableDirector countdownTimeline;
 
     #region Events
     public event Action onMinigameStart;
@@ -77,6 +81,11 @@ public class MiniGame : MonoBehaviour
 
     }
     #endregion
+
+    public void PlayCountdownTimeline()
+    {
+        countdownTimeline.Play();
+    }
 
     protected virtual void InitializePlayers()
     {
