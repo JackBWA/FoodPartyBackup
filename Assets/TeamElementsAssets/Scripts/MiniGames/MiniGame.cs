@@ -2,34 +2,67 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
-using UnityEngine.SceneManagement;
 
 public class MiniGame : MonoBehaviour
 {
 
     public static MiniGame singleton;
 
-    public string minigameName;
+    public string minigameName = "Awesome Minigame";
     [TextArea]
-    public string minigameDescription;
+    public string minigameDescription = "Use this box to describe the minigame objective.";
+
+    public bool hasTimeLimit = true;
+    private float timeLeft;
+    public float timeLimit = 60f;
 
     public List<Vector3> spawnZones = new List<Vector3>();
 
     public List<PlayerCharacter> players = new List<PlayerCharacter>();
 
-    public PlayableDirector countdownTimeline;
+    public MinigameUI minigameUI;
+    public TutorialUI tutorialUI;
+    public CountdownUI countdownUI;
+    public ResultsUI resultsUI;
 
     #region Events
-    public event Action onMinigameStart;
-    public void MiniGameStart()
+    public event Action onMinigameEnter;
+    public void MinigameEnter()
     {
+        DisplayMinigameUI(false);
+        DisplayTutorialUI(true);
+        DisplayCountdownUI(false);
+        DisplayResultsUI(false);
+        onMinigameEnter?.Invoke();
+    }
+
+    public event Action onMinigamePreStart;
+    public void MinigamePreStart()
+    {
+        DisplayMinigameUI(false);
+        DisplayTutorialUI(false);
+        DisplayCountdownUI(true);
+        DisplayResultsUI(false);
+        onMinigamePreStart?.Invoke();
+    }
+
+    public event Action onMinigameStart;
+    public void MinigameStart()
+    {
+        DisplayMinigameUI(true);
+        DisplayTutorialUI(false);
+        DisplayCountdownUI(false);
+        DisplayResultsUI(false);
         onMinigameStart?.Invoke();
     }
 
     public event Action onMinigameFinish;
     public void MinigameFinish()
     {
+        DisplayMinigameUI(false);
+        DisplayTutorialUI(false);
+        DisplayCountdownUI(false);
+        DisplayResultsUI(true);
         onMinigameFinish?.Invoke();
     }
 
@@ -37,6 +70,29 @@ public class MiniGame : MonoBehaviour
     public void MinigameExit()
     {
         onMinigameExit?.Invoke();
+    }
+    #endregion
+
+    #region UI
+    public void DisplayMinigameUI(bool display)
+    {
+        minigameUI.enabled = display;
+        minigameUI.gameObject.SetActive(display);
+    }
+    public void DisplayTutorialUI(bool display)
+    {
+        tutorialUI.enabled = display;
+        tutorialUI.gameObject.SetActive(display);
+    }
+    public void DisplayCountdownUI(bool display)
+    {
+        countdownUI.enabled = display;
+        countdownUI.gameObject.SetActive(display);
+    }
+    public void DisplayResultsUI(bool display)
+    {
+        resultsUI.enabled = display;
+        resultsUI.gameObject.SetActive(display);
     }
     #endregion
 
@@ -66,9 +122,7 @@ public class MiniGame : MonoBehaviour
         SpawnPlayers();
         #endregion
 
-        #region Countdown
-
-        #endregion
+        MinigameEnter();
     }
 
     protected virtual void Start()
@@ -81,11 +135,6 @@ public class MiniGame : MonoBehaviour
 
     }
     #endregion
-
-    public void PlayCountdownTimeline()
-    {
-        countdownTimeline.Play();
-    }
 
     protected virtual void InitializePlayers()
     {
