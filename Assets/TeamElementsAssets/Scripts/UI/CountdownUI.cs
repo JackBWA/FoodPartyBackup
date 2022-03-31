@@ -26,7 +26,7 @@ public class CountdownUI : MonoBehaviour
         timer = countdownSeconds;
         while (timer >= 0)
         {
-            countdownText.text = $"{(int) timer}";
+            countdownText.text = $"{((int) timer) + 1}";
             timer -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }

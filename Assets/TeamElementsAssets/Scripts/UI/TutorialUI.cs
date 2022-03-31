@@ -6,17 +6,35 @@ using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
 {
-    [HideInInspector]
-    public string title;
-    [HideInInspector]
-    public string description;
+    public string title
+    {
+        get
+        {
+            return _title.text;
+        }
+        set
+        {
+            _title.text = value;
+        }
+    }
+    public string description
+    {
+        get
+        {
+            return _description.text;
+        }
+        set
+        {
+            _description.text = value;
+        }
+    }
 
     public List<Sprite> images = new List<Sprite>();
 
     [SerializeField]
-    private TextMeshProUGUI titleText;
+    private TextMeshProUGUI _title;
     [SerializeField]
-    private TextMeshProUGUI descriptionText;
+    private TextMeshProUGUI _description;
     [SerializeField]
     private Image imagesHolder;
     public float maxImageDuration = 5f;

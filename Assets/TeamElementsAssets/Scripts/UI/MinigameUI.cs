@@ -1,9 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class MinigameUI : MonoBehaviour
 {
+    public int timer
+    {
+        get
+        {
+            return int.Parse(_timer.text);
+        }
+        set
+        {
+            _timer.text = $"{value}";
+        }
+    }
+    [SerializeField]
+    private TextMeshProUGUI _timer;
+
     public Transform scoresParentUI;
 
     public PlayerScore playerScoreUIPrefab;
@@ -18,6 +33,7 @@ public class MinigameUI : MonoBehaviour
             // Set icon lol.
             instance.transform.SetParent(scoresParentUI);
             scoresUI.Add(instance);
+            MiniGame.singleton.playerScores.Add(pC, instance.score);
         }
     }
 
@@ -27,10 +43,18 @@ public class MinigameUI : MonoBehaviour
         {
             CreateUI();
         }
+        MiniGame.singleton.onTimeLeftChange += UpdateTimer;
+        MiniGame.singleton.StartTimer();
     }
 
     private void OnDisable()
     {
-        
+        MiniGame.singleton.onTimeLeftChange -= UpdateTimer;
+        MiniGame.singleton.StopTimer();
+    }
+
+    public void UpdateTimer(float newValue)
+    {
+        timer = (int) newValue;
     }
 }

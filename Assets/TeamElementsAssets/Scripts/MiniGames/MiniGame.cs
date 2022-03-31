@@ -15,6 +15,7 @@ public class MiniGame : MonoBehaviour
     public bool hasTimeLimit = true;
     private float timeLeft;
     public float timeLimit = 60f;
+    private Coroutine timerCo;
 
     public bool hasScoreLimit = false;
     public int scoreLimit = 1000;
@@ -31,6 +32,12 @@ public class MiniGame : MonoBehaviour
     public ResultsUI resultsUI;
 
     #region Events
+    public event Action<float> onTimeLeftChange;
+    public void TimeLeftChange(float newValue)
+    {
+        onTimeLeftChange?.Invoke(newValue);
+    }
+
     public event Action onMinigameEnter;
     public void MinigameEnter()
     {
@@ -109,6 +116,29 @@ public class MiniGame : MonoBehaviour
     private void OnDisable()
     {
         onMinigameExit -= GameBoardManager.singleton.EventEnd;
+    }
+
+    public void StartTimer()
+    {
+        timerCo = StartCoroutine(TimerStart());
+    }
+
+    private IEnumerator TimerStart()
+    {
+        timeLeft = timeLimit;
+        while(timeLeft >= 0f)
+        {
+            timeLeft -= Time.deltaTime;
+            TimeLeftChange(timeLeft);
+            yield return new WaitForEndOfFrame();
+        }
+        MinigameFinish();
+        yield return null;
+    }
+
+    public void StopTimer()
+    {
+        StopCoroutine(timerCo);
     }
 
     #region Awake/Start/Update
