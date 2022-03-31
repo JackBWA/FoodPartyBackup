@@ -58,9 +58,15 @@ public class ResultsUI : MonoBehaviour
         {
             sortedResults.Add(kV.Key, kV.Value);
         }
+
         int i = 1;
         foreach (KeyValuePair<PlayerCharacter, int> kV in sortedResults)
         {
+            if (i == 1)
+            {
+                // CUtre x d,
+                winnerText = $"{kV.Key.name} is the winner!";
+            }
             PlayerResult instance = Instantiate(playerResultUIPrefab);
             instance.position = i;
             instance.playerName = kV.Key.name;

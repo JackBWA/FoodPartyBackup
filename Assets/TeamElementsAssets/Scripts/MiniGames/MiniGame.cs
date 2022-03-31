@@ -108,12 +108,12 @@ public class MiniGame : MonoBehaviour
     }
     #endregion
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         onMinigameExit += GameBoardManager.singleton.EventEnd;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         onMinigameExit -= GameBoardManager.singleton.EventEnd;
     }
@@ -174,15 +174,10 @@ public class MiniGame : MonoBehaviour
     protected virtual void InitializePlayers()
     {
         PlayerCharacter playerChar = Instantiate(CharacterManager.selectedCharacter);
-        DontGetBurntPlayerController playerController = playerChar.gameObject.AddComponent<DontGetBurntPlayerController>();
-        playerController.Initialize();
         players.Add(playerChar);
         for (int i = 0; i < CharacterManager.aiCharacters.Count; i++)
         {
             PlayerCharacter aiChar = Instantiate(CharacterManager.aiCharacters[i]);
-            DontGetBurntAIController aiController = aiChar.gameObject.AddComponent<DontGetBurntAIController>();
-            // Initialize controller.
-            aiController.Initialize();
             players.Add(aiChar);
         }
     }
