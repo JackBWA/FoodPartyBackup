@@ -4,14 +4,32 @@ using UnityEngine;
 
 public class MinigameUI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Transform scoresParentUI;
+
+    public PlayerScore playerScoreUIPrefab;
+    public List<PlayerScore> scoresUI = new List<PlayerScore>();
+
+    private void CreateUI()
     {
-        
+        foreach (PlayerCharacter pC in MiniGame.singleton.players)
+        {
+            PlayerScore instance = Instantiate(playerScoreUIPrefab);
+            instance.characterReference = pC;
+            // Set icon lol.
+            instance.transform.SetParent(scoresParentUI);
+            scoresUI.Add(instance);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
+    {
+        if(scoresUI == null || scoresUI.Count == 0)
+        {
+            CreateUI();
+        }
+    }
+
+    private void OnDisable()
     {
         
     }

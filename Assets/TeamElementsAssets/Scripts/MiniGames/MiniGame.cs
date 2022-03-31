@@ -16,9 +16,14 @@ public class MiniGame : MonoBehaviour
     private float timeLeft;
     public float timeLimit = 60f;
 
+    public bool hasScoreLimit = false;
+    public int scoreLimit = 1000;
+
+    [HideInInspector]
     public List<Vector3> spawnZones = new List<Vector3>();
 
     public List<PlayerCharacter> players = new List<PlayerCharacter>();
+    public Dictionary<PlayerCharacter, int> playerScores = new Dictionary<PlayerCharacter, int>();
 
     public MinigameUI minigameUI;
     public TutorialUI tutorialUI;
@@ -113,7 +118,7 @@ public class MiniGame : MonoBehaviour
         singleton = this;
         #endregion
 
-        #region Players
+        #region Players & SpawnZones
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("SpawnZone"))
         {
             spawnZones.Add(gO.transform.position);
