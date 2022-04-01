@@ -6,6 +6,14 @@ using UnityEngine;
 public class MiniGame : MonoBehaviour
 {
 
+    public enum MinigameState
+    {
+        STARTING,
+        STARTED,
+        FINISHED
+    };
+    protected MinigameState miniGameState = MinigameState.STARTING;
+
     public static MiniGame singleton;
 
     public string minigameName = "Awesome Minigame";
@@ -41,6 +49,7 @@ public class MiniGame : MonoBehaviour
     public event Action onMinigameEnter;
     public void MinigameEnter()
     {
+        miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(true);
         DisplayCountdownUI(false);
@@ -51,6 +60,7 @@ public class MiniGame : MonoBehaviour
     public event Action onMinigamePreStart;
     public void MinigamePreStart()
     {
+        miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);
         DisplayCountdownUI(true);
@@ -61,6 +71,7 @@ public class MiniGame : MonoBehaviour
     public event Action onMinigameStart;
     public void MinigameStart()
     {
+        miniGameState = MinigameState.STARTED;
         DisplayMinigameUI(true);
         DisplayTutorialUI(false);
         DisplayCountdownUI(false);
@@ -71,6 +82,7 @@ public class MiniGame : MonoBehaviour
     public event Action onMinigameFinish;
     public void MinigameFinish()
     {
+        miniGameState = MinigameState.FINISHED;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);
         DisplayCountdownUI(false);

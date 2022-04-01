@@ -49,11 +49,11 @@ public class DontGetBurntPlayerController : DontGetBurntController
             Vector3 velocity = moveVector * magnitude;
             velocity.y = ySpeed;
 
-            Debug.Log(velocity);
+            //Debug.Log(velocity);
 
             controller.Move(velocity * Time.deltaTime);
 
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
+            if(velocity.magnitude > Vector3.kEpsilon) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
         }
     }
     #endregion
