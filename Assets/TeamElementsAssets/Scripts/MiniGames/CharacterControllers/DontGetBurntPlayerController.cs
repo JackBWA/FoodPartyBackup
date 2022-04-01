@@ -7,14 +7,19 @@ public class DontGetBurntPlayerController : DontGetBurntController
 
     MinigamePlayerControls inputActions;
 
-    private Vector2 moveVector;
+    private Vector3 moveVector;
+    private float ySpeed;
 
     #region Awake/Start/Update
     protected override void Awake()
     {
         base.Awake();
         inputActions = new MinigamePlayerControls();
-        inputActions.DontGetBurnt.Move.performed += ctx => moveVector = ctx.ReadValue<Vector2>();
+        inputActions.DontGetBurnt.Move.performed += ctx =>
+        {
+            Vector2 _ = ctx.ReadValue<Vector2>();
+            moveVector = new Vector3(_.x, moveVector.y, _.y);
+        };
         inputActions.DontGetBurnt.Move.canceled += _ => moveVector = Vector2.zero;
         inputActions.DontGetBurnt.Jump.performed += _ => Jump();
     }
@@ -27,20 +32,44 @@ public class DontGetBurntPlayerController : DontGetBurntController
     protected override void Update()
     {
         base.Update();
-        if(rB != null) rB.velocity = new Vector3(moveVector.x * speed, rB.velocity.y, moveVector.y * speed);
+        
+    }
+
+    private void FixedUpdate()
+    {
+        if (controller != null)
+        {
+            float magnitude = Mathf.Clamp01(moveVector.magnitude) * speed;
+            moveVector.Normalize();
+
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+
+            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
+
+            Vector3 velocity = moveVector * magnitude;
+            velocity.y = ySpeed;
+
+            Debug.Log(velocity);
+
+            controller.Move(velocity * Time.deltaTime);
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
+        }
     }
     #endregion
 
     public void Jump()
     {
-        Debug.Log(CanJump());
-        if (rB != null && CanJump()) rB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        if(controller != null && IsGrounded())
+        {
+            ySpeed = jumpForce;
+        }
     }
 
-    private bool CanJump()
+    private bool IsGrounded()
     {
-        RaycastHit hit;
-        return Physics.Raycast(transform.position, -transform.up, out hit, .1f);
+        bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Floor"));
+        return isGrounded;
     }
 
     protected override void OnEnable()

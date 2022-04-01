@@ -5,11 +5,11 @@ using UnityEngine;
 public class DontGetBurntController : MonoBehaviour
 {
 
-    public Rigidbody rB;
     public CharacterController controller;
     
     public float speed = 5f;
     public float jumpForce = 7.5f;
+    public float rotationSpeed = 10f;
 
     #region Awake/Start/Update
     protected virtual void Awake()
@@ -30,26 +30,28 @@ public class DontGetBurntController : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        MiniGame.singleton.onMinigameFinish += StopRb;
+        MiniGame.singleton.onMinigameFinish += StopMovement;
     }
 
     protected virtual void OnDisable()
     {
-        MiniGame.singleton.onMinigameFinish -= StopRb;
+        MiniGame.singleton.onMinigameFinish -= StopMovement;
     }
 
-    public void StopRb()
+    public void StopMovement()
     {
-        rB.velocity = Vector3.zero;
+        enabled = false;
     }
 
     public void Initialize()
     {
+        /*
         if(!gameObject.TryGetComponent(out rB))
         {
             rB = gameObject.AddComponent<Rigidbody>();
             rB.constraints = RigidbodyConstraints.FreezeRotation;
         }
+        */
 
         if(!gameObject.TryGetComponent(out controller))
         {
