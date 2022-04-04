@@ -30,7 +30,7 @@ public class MiniGame : MonoBehaviour
     public int scorePerRound = 50;
 
     [HideInInspector]
-    public List<Vector3> spawnZones = new List<Vector3>();
+    public List<PositionRotation> spawnZones = new List<PositionRotation>();
 
     public List<PlayerCharacter> players = new List<PlayerCharacter>();
     public Dictionary<PlayerCharacter, int> playerScores = new Dictionary<PlayerCharacter, int>();
@@ -164,7 +164,7 @@ public class MiniGame : MonoBehaviour
         #region Players & SpawnZones
         foreach (GameObject gO in GameObject.FindGameObjectsWithTag("SpawnZone"))
         {
-            spawnZones.Add(gO.transform.position);
+            spawnZones.Add(new PositionRotation(gO.transform.position, gO.transform.rotation));
         }
         InitializePlayers();
         SpawnPlayers();
@@ -199,7 +199,8 @@ public class MiniGame : MonoBehaviour
     {
         for(int i = 0; i < players.Count; i++)
         {
-            players[i].transform.position = spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)];
+            players[i].transform.position = spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)].position;
+            players[i].transform.rotation = Quaternion.Euler(spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)].rotation);
         }
     }
 

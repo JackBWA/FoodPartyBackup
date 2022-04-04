@@ -30,7 +30,7 @@ public class Stove : MonoBehaviour
     private void OnDrawGizmos()
     {
         if (!debug) return;
-        Gizmos.color = new Color(255f/255f, 0f/255f, 0f/255f, 102f/255f);
+        Gizmos.color = new Color(255f/255f, 0f/255f, 0f/255f, 100f/255f);
         Gizmos.DrawCube(transform.position + centerOffset, areaSize);
 
         foreach(PositionRotation pR in particlePositions)
@@ -49,6 +49,7 @@ public class Stove : MonoBehaviour
         #endregion
 
         #region Area Overlap
+        
         foreach (Collider c in Physics.OverlapBox(transform.position + centerOffset, areaSize))
         {
             DontGetBurntController controller;

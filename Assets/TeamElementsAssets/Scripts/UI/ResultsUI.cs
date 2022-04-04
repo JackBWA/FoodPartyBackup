@@ -59,14 +59,11 @@ public class ResultsUI : MonoBehaviour
             sortedResults.Add(kV.Key, kV.Value);
         }
 
+        winnerText = $"{sortedResults.ElementAt(0).Key.name} is the winner!";
+
         int i = 1;
-        foreach (KeyValuePair<PlayerCharacter, int> kV in sortedResults)
+        foreach (KeyValuePair<PlayerCharacter, int> kV in MiniGame.singleton.playerScores.OrderByDescending(ctx => ctx.Value))
         {
-            if (i == 1)
-            {
-                // CUtre x d,
-                winnerText = $"{kV.Key.name} is the winner!";
-            }
             PlayerResult instance = Instantiate(playerResultUIPrefab);
             instance.position = i;
             instance.playerName = kV.Key.name;

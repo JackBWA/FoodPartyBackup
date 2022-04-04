@@ -103,6 +103,74 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""FoodCatcher"",
+            ""id"": ""cbe91236-d045-4fa8-adcd-88e67c51458d"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Button"",
+                    ""id"": ""553cb790-bfc0-4c9d-ad58-e5d6b94107a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""a55712d6-6005-4692-ae0b-00db8a5b17ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""423f673b-5b11-401b-b4b4-4cfca0edfa44"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""39e2064d-51f6-42a8-825e-65e87d0dff39"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""a1c639d9-cdbd-4b58-9b03-7d44e248b1c0"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""39a11661-cdba-4431-b1bc-4afbb1b90be1"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -111,6 +179,10 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         m_DontGetBurnt = asset.FindActionMap("DontGetBurnt", throwIfNotFound: true);
         m_DontGetBurnt_Move = m_DontGetBurnt.FindAction("Move", throwIfNotFound: true);
         m_DontGetBurnt_Jump = m_DontGetBurnt.FindAction("Jump", throwIfNotFound: true);
+        // FoodCatcher
+        m_FoodCatcher = asset.FindActionMap("FoodCatcher", throwIfNotFound: true);
+        m_FoodCatcher_Move = m_FoodCatcher.FindAction("Move", throwIfNotFound: true);
+        m_FoodCatcher_Jump = m_FoodCatcher.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -197,7 +269,53 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         }
     }
     public DontGetBurntActions @DontGetBurnt => new DontGetBurntActions(this);
+
+    // FoodCatcher
+    private readonly InputActionMap m_FoodCatcher;
+    private IFoodCatcherActions m_FoodCatcherActionsCallbackInterface;
+    private readonly InputAction m_FoodCatcher_Move;
+    private readonly InputAction m_FoodCatcher_Jump;
+    public struct FoodCatcherActions
+    {
+        private @MinigamePlayerControls m_Wrapper;
+        public FoodCatcherActions(@MinigamePlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_FoodCatcher_Move;
+        public InputAction @Jump => m_Wrapper.m_FoodCatcher_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_FoodCatcher; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(FoodCatcherActions set) { return set.Get(); }
+        public void SetCallbacks(IFoodCatcherActions instance)
+        {
+            if (m_Wrapper.m_FoodCatcherActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_FoodCatcherActionsCallbackInterface.OnJump;
+            }
+            m_Wrapper.m_FoodCatcherActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+            }
+        }
+    }
+    public FoodCatcherActions @FoodCatcher => new FoodCatcherActions(this);
     public interface IDontGetBurntActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IFoodCatcherActions
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);

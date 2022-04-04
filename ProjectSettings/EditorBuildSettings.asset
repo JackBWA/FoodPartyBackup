@@ -21,8 +21,8 @@ EditorBuildSettings:
     path: Assets/TeamElementsAssets/Scenes/Minigames/DontGetBurnt.unity
     guid: cfb46cf02b9bf944b956a1b95caacc7a
   - enabled: 1
-    path: Assets/TeamElementsAssets/Scenes/Minigames/oldfoodcatch.unity
-    guid: d5375f3eb2e2ab44b85b388baa04c955
+    path: Assets/TeamElementsAssets/Scenes/Minigames/FoodCatcher.unity
+    guid: fd9dd9bcf88d82641b29250e121d87d3
   - enabled: 1
     path: Assets/TeamElementsAssets/Scenes/Minigames/KingOfTheHill.unity
     guid: 9332b2e73dfdef148a5f586d9a1d5f41
