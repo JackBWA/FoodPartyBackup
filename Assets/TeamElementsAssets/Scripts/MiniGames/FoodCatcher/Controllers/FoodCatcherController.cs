@@ -27,6 +27,7 @@ public class FoodCatcherController : MonoBehaviour
 
     }
     #endregion
+
     public void Initialize()
     {
         if (!gameObject.TryGetComponent(out controller))
