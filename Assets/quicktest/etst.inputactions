@@ -1,0 +1,33 @@
+{
+    "name": "etst",
+    "maps": [
+        {
+            "name": "test",
+            "id": "ce093a39-892c-4b58-a34f-a231c6ad4f33",
+            "actions": [
+                {
+                    "name": "a",
+                    "type": "Button",
+                    "id": "e165f4d5-ca90-41b6-abd9-9e2bde753321",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8488e72f-15d0-4d5d-8e05-b27b82a9ba98",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "a",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
