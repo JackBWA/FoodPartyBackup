@@ -6,6 +6,8 @@ public class PointCollect : MonoBehaviour
 {
     public int value;
     public bool random;
-    public int minValue;
-    public int maxValue;
+    [SerializeField]
+    private int minValue;
+    [SerializeField]
+    private int maxValue;
 }

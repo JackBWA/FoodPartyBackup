@@ -910,7 +910,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403471755}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: =====MAP=====
   m_TagString: MapStatic
   m_Icon: {fileID: 0}

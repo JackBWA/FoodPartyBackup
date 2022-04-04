@@ -95,6 +95,7 @@ public class MiniGame_FoodCatcher : MiniGame
 
     public void StopFoodThrow()
     {
+        canSpawnFood = false;
         StopCoroutine(foodThrowCo);
     }
 
@@ -106,7 +107,8 @@ public class MiniGame_FoodCatcher : MiniGame
             Vector3 randomPointInArea = new Vector3(
                 areaPosition.x + Random.Range(-areaSize.x / 2, areaSize.x / 2),
                 areaPosition.y + Random.Range(-areaSize.y / 2, areaSize.y / 2),
-                areaPosition.z + Random.Range(-areaSize.z / 2, areaSize.z / 2));
+                areaPosition.z);
+                //areaPosition.z + Random.Range(-areaSize.z / 2, areaSize.z / 2));
             PointCollect collectable = Instantiate(foodPrefabs[Random.Range(0, foodPrefabs.Count)], randomPointInArea, Quaternion.identity);
             yield return new WaitForSeconds(spawnRate);
         }

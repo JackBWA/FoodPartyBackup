@@ -19,8 +19,8 @@ TagManager:
   - Player
   - Water
   - UI
-  - Floor
-  - 
+  - MapStatic
+  - Collectable
   - 
   - 
   - 

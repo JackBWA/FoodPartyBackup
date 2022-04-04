@@ -7,8 +7,8 @@ public class FoodCatcherController : MonoBehaviour
 
     public CharacterController controller;
 
-    public float speed = 5f;
-    public float jumpForce = 7.5f;
+    public float speed = 8f;
+    public float jumpForce = 12f;
     public float rotationSpeed = 10f;
 
     #region Awake/Start/Update
@@ -53,6 +53,10 @@ public class FoodCatcherController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("A");
+        PointCollect points;
+        if (!other.TryGetComponent(out points)) return;
+        MiniGame.singleton.AddScore(GetComponent<PlayerCharacter>(), points.value);
+        MiniGame.singleton.UpdateScores();
+        Destroy(points.gameObject);
     }
 }

@@ -68,7 +68,7 @@ public class DontGetBurntPlayerController : DontGetBurntController
 
     private bool IsGrounded()
     {
-        bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("Floor"));
+        bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("MapStatic"));
         return isGrounded;
     }
 
