@@ -23,10 +23,11 @@ public class MiniGame : MonoBehaviour
     public bool hasTimeLimit = true;
     private float timeLeft;
     public float timeLimit = 60f;
-    private Coroutine timerCo;
+    protected Coroutine timerCo;
 
     public bool hasScoreLimit = false;
     public int scoreLimit = 1000;
+    public int scorePerRound = 50;
 
     [HideInInspector]
     public List<Vector3> spawnZones = new List<Vector3>();
@@ -199,6 +200,24 @@ public class MiniGame : MonoBehaviour
         for(int i = 0; i < players.Count; i++)
         {
             players[i].transform.position = spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)];
+        }
+    }
+
+    public void AddScore(PlayerCharacter pC)
+    {
+        playerScores[pC] += scorePerRound;
+    }
+
+    public void AddScore(PlayerCharacter pC, int score)
+    {
+        playerScores[pC] += score;
+    }
+
+    public void UpdateScores()
+    {
+        foreach(PlayerScore pS in minigameUI.scoresUI)
+        {
+            pS.score = playerScores[pS.characterReference];
         }
     }
 }

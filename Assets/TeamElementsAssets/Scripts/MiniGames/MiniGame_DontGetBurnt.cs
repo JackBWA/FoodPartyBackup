@@ -11,8 +11,6 @@ public class MiniGame_DontGetBurnt : MiniGame
     public float stoveTriggerDelay = 10f;
     private float timer = 0f;
 
-    public int pointsPerRound = 50;
-
     #region Awake/Start/Update
     protected override void Awake()
     {
@@ -106,18 +104,21 @@ public class MiniGame_DontGetBurnt : MiniGame
         Stove stove = stoves[Random.Range(0, stoves.Count)];
         stove.Trigger();
 
+        foreach (PlayerCharacter pC in playersLeft)
+        {
+            AddScore(pC);
+        }
+
+        UpdateScores();
+
         #region Finish Check
         if (((MiniGame_DontGetBurnt)MiniGame.singleton).playersLeft.Count <= 1)
         {
+            StopCoroutine(timerCo);
             MinigameFinish();
             return;
         }
         #endregion
-
-        foreach(PlayerCharacter pC in playersLeft)
-        {
-            playerScores[pC] += pointsPerRound;
-        }
     }
 
     public void RemovePlayer(PlayerCharacter pC)

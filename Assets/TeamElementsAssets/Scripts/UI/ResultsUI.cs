@@ -54,7 +54,7 @@ public class ResultsUI : MonoBehaviour
     private void LoadResults()
     {
         Dictionary<PlayerCharacter, int> sortedResults = new Dictionary<PlayerCharacter, int>();
-        foreach (KeyValuePair<PlayerCharacter, int> kV in MiniGame.singleton.playerScores.OrderBy(ctx => ctx.Value))
+        foreach (KeyValuePair<PlayerCharacter, int> kV in MiniGame.singleton.playerScores.OrderByDescending(ctx => ctx.Value))
         {
             sortedResults.Add(kV.Key, kV.Value);
         }

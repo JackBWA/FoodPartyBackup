@@ -964,6 +964,7 @@ MonoBehaviour:
   - {fileID: 284935431}
   - {fileID: 1400124176}
   stoveTriggerDelay: 10
+  pointsPerRound: 50
 --- !u!4 &425684680
 Transform:
   m_ObjectHideFlags: 0
