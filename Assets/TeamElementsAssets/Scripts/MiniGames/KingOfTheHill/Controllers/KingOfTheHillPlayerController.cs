@@ -7,9 +7,6 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
 
     MinigamePlayerControls inputActions;
 
-    private Vector3 moveVector;
-    private float ySpeed;
-
     #region Awake/Start/Update
     protected override void Awake()
     {
@@ -17,6 +14,7 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         inputActions = new MinigamePlayerControls();
         inputActions.KingOfTheHill.Move.performed += ctx =>
         {
+            if (!canMove) return;
             Vector2 _ = ctx.ReadValue<Vector2>();
             moveVector = new Vector3(_.x, moveVector.y, _.y);
         };
@@ -24,7 +22,20 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         inputActions.KingOfTheHill.Jump.performed += _ => Jump();
         inputActions.KingOfTheHill.Punch.performed += _ =>
         {
+            Debug.Log("Punch input performed.");
             if (canPunch) Punch();
+        };
+        inputActions.KingOfTheHill.MouseLook.performed += ctx =>
+        {
+            RaycastHit hit;
+            Vector2 value = ctx.ReadValue<Vector2>();
+            Ray ray = Camera.main.ScreenPointToRay(value);
+            if(Physics.Raycast(ray, out hit))
+            {
+                Vector3 hitPoint = hit.point;
+                hitPoint.y = transform.position.y;
+                transform.LookAt(hitPoint);
+            }
         };
     }
 
@@ -38,44 +49,11 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         base.Update();
     }
 
-    private void FixedUpdate()
+    protected override void FixedUpdate()
     {
-        if (controller != null)
-        {
-            float magnitude = Mathf.Clamp01(moveVector.magnitude) * speed;
-            moveVector.Normalize();
-
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-
-            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
-
-            Vector3 velocity = moveVector * magnitude;
-            velocity.y = ySpeed;
-
-            //Debug.Log(velocity);
-
-            controller.Move(velocity * Time.deltaTime);
-
-            //Debug.Log($"{velocity.magnitude} | {Vector3.kEpsilon}");
-
-            if (velocity.magnitude > Vector3.kEpsilon) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
-        }
+        base.FixedUpdate();
     }
     #endregion
-
-    public void Jump()
-    {
-        if (controller != null && IsGrounded())
-        {
-            ySpeed = jumpForce;
-        }
-    }
-
-    private bool IsGrounded()
-    {
-        bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("MapStatic"));
-        return isGrounded;
-    }
 
     protected override void OnEnable()
     {

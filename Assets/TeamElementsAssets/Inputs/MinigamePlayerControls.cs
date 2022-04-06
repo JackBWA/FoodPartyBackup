@@ -199,6 +199,14 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseLook"",
+                    ""type"": ""Value"",
+                    ""id"": ""b1df60fd-a4fb-4bd4-8032-0fa9d540dadf"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -278,6 +286,17 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Punch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b106fc2-3c1f-40ab-a4b7-75a134dc5501"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MouseLook"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -297,6 +316,7 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         m_KingOfTheHill_Move = m_KingOfTheHill.FindAction("Move", throwIfNotFound: true);
         m_KingOfTheHill_Jump = m_KingOfTheHill.FindAction("Jump", throwIfNotFound: true);
         m_KingOfTheHill_Punch = m_KingOfTheHill.FindAction("Punch", throwIfNotFound: true);
+        m_KingOfTheHill_MouseLook = m_KingOfTheHill.FindAction("MouseLook", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -431,6 +451,7 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_KingOfTheHill_Move;
     private readonly InputAction m_KingOfTheHill_Jump;
     private readonly InputAction m_KingOfTheHill_Punch;
+    private readonly InputAction m_KingOfTheHill_MouseLook;
     public struct KingOfTheHillActions
     {
         private @MinigamePlayerControls m_Wrapper;
@@ -438,6 +459,7 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         public InputAction @Move => m_Wrapper.m_KingOfTheHill_Move;
         public InputAction @Jump => m_Wrapper.m_KingOfTheHill_Jump;
         public InputAction @Punch => m_Wrapper.m_KingOfTheHill_Punch;
+        public InputAction @MouseLook => m_Wrapper.m_KingOfTheHill_MouseLook;
         public InputActionMap Get() { return m_Wrapper.m_KingOfTheHill; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -456,6 +478,9 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                 @Punch.started -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnPunch;
                 @Punch.performed -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnPunch;
                 @Punch.canceled -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnPunch;
+                @MouseLook.started -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnMouseLook;
+                @MouseLook.performed -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnMouseLook;
+                @MouseLook.canceled -= m_Wrapper.m_KingOfTheHillActionsCallbackInterface.OnMouseLook;
             }
             m_Wrapper.m_KingOfTheHillActionsCallbackInterface = instance;
             if (instance != null)
@@ -469,6 +494,9 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                 @Punch.started += instance.OnPunch;
                 @Punch.performed += instance.OnPunch;
                 @Punch.canceled += instance.OnPunch;
+                @MouseLook.started += instance.OnMouseLook;
+                @MouseLook.performed += instance.OnMouseLook;
+                @MouseLook.canceled += instance.OnMouseLook;
             }
         }
     }
@@ -488,5 +516,6 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
+        void OnMouseLook(InputAction.CallbackContext context);
     }
 }
