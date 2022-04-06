@@ -14,4 +14,12 @@ public class DestroyBox : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (layers == (layers | 1 << collision.gameObject.layer))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
 }
