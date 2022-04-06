@@ -13585,7 +13585,7 @@ MonoBehaviour:
   gameBoardCanvasPrefab: {fileID: 7657296680851125543, guid: ad14baa7b53bdc14a83abb017199b109, type: 3}
   gameBoardCanvasInstance: {fileID: 0}
   minigameScenes:
-  - KingOfTheHill
+  - RaceToTheTop
   systemsParent: {fileID: 1769978176}
   uiParent: {fileID: 856243757}
   navMeshParent: {fileID: 1955368614}

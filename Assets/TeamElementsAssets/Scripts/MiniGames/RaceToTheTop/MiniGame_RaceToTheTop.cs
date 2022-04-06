@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniGame_KingOfTheHill : MiniGame
+public class MiniGame_RaceToTheTop : MiniGame
 {
-
-    public Collider stayArea;
-
     #region Awake/Start/Update
     protected override void Awake()
     {
@@ -33,13 +30,13 @@ public class MiniGame_KingOfTheHill : MiniGame
             switch (pC.characterType)
             {
                 case PlayerCharacter.CharacterType.AI:
-                    KingOfTheHillAIController aiController = pC.gameObject.AddComponent<KingOfTheHillAIController>();
+                    RaceToTheTopAIController aiController = pC.gameObject.AddComponent<RaceToTheTopAIController>();
                     aiController.Initialize();
                     aiController.enabled = false;
                     break;
 
                 case PlayerCharacter.CharacterType.Player:
-                    KingOfTheHillPlayerController playerController = pC.gameObject.AddComponent<KingOfTheHillPlayerController>();
+                    RaceToTheTopPlayerController playerController = pC.gameObject.AddComponent<RaceToTheTopPlayerController>();
                     playerController.Initialize();
                     playerController.enabled = false;
                     break;
@@ -63,7 +60,7 @@ public class MiniGame_KingOfTheHill : MiniGame
     {
         foreach (PlayerCharacter pC in players)
         {
-            KingOfTheHillController controller = pC.GetComponent<KingOfTheHillController>();
+            RaceToTheTopController controller = pC.GetComponent<RaceToTheTopController>();
             controller.enabled = true;
         }
     }

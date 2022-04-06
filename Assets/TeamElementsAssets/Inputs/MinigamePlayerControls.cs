@@ -299,6 +299,115 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""RaceToTheTop"",
+            ""id"": ""0fab18ce-5f6a-46b5-b9ee-3d037f8474cd"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Button"",
+                    ""id"": ""335d8486-43bc-444f-9986-10931acf846c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""a582aae4-0c43-441a-9c2e-c7a033691f2e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dodge"",
+                    ""type"": ""Button"",
+                    ""id"": ""449865c2-a34c-4065-bac3-fbe6ba56a156"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""31118e17-54ce-4902-a2d6-de7761fa8449"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Axis"",
+                    ""id"": ""200cc56c-195e-4b96-914c-1fbdb9d68d1f"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""389697c1-aaf9-4ff9-b766-11bfa792db53"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c1b088d2-a3ad-444e-9190-4a333b57264b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""9c3cb1f6-0053-4a64-8381-2ad4816ef9f8"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""610b25af-0508-40d4-9669-c36bf3ff664d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8786a1e7-6fc4-4506-874a-b20d584c2cc1"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dodge"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -317,6 +426,11 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         m_KingOfTheHill_Jump = m_KingOfTheHill.FindAction("Jump", throwIfNotFound: true);
         m_KingOfTheHill_Punch = m_KingOfTheHill.FindAction("Punch", throwIfNotFound: true);
         m_KingOfTheHill_MouseLook = m_KingOfTheHill.FindAction("MouseLook", throwIfNotFound: true);
+        // RaceToTheTop
+        m_RaceToTheTop = asset.FindActionMap("RaceToTheTop", throwIfNotFound: true);
+        m_RaceToTheTop_Move = m_RaceToTheTop.FindAction("Move", throwIfNotFound: true);
+        m_RaceToTheTop_Jump = m_RaceToTheTop.FindAction("Jump", throwIfNotFound: true);
+        m_RaceToTheTop_Dodge = m_RaceToTheTop.FindAction("Dodge", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -501,6 +615,55 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         }
     }
     public KingOfTheHillActions @KingOfTheHill => new KingOfTheHillActions(this);
+
+    // RaceToTheTop
+    private readonly InputActionMap m_RaceToTheTop;
+    private IRaceToTheTopActions m_RaceToTheTopActionsCallbackInterface;
+    private readonly InputAction m_RaceToTheTop_Move;
+    private readonly InputAction m_RaceToTheTop_Jump;
+    private readonly InputAction m_RaceToTheTop_Dodge;
+    public struct RaceToTheTopActions
+    {
+        private @MinigamePlayerControls m_Wrapper;
+        public RaceToTheTopActions(@MinigamePlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Move => m_Wrapper.m_RaceToTheTop_Move;
+        public InputAction @Jump => m_Wrapper.m_RaceToTheTop_Jump;
+        public InputAction @Dodge => m_Wrapper.m_RaceToTheTop_Dodge;
+        public InputActionMap Get() { return m_Wrapper.m_RaceToTheTop; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(RaceToTheTopActions set) { return set.Get(); }
+        public void SetCallbacks(IRaceToTheTopActions instance)
+        {
+            if (m_Wrapper.m_RaceToTheTopActionsCallbackInterface != null)
+            {
+                @Move.started -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnMove;
+                @Move.performed -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnMove;
+                @Move.canceled -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnMove;
+                @Jump.started -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnJump;
+                @Dodge.started -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_RaceToTheTopActionsCallbackInterface.OnDodge;
+            }
+            m_Wrapper.m_RaceToTheTopActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
+            }
+        }
+    }
+    public RaceToTheTopActions @RaceToTheTop => new RaceToTheTopActions(this);
     public interface IDontGetBurntActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -517,5 +680,11 @@ public class @MinigamePlayerControls : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnPunch(InputAction.CallbackContext context);
         void OnMouseLook(InputAction.CallbackContext context);
+    }
+    public interface IRaceToTheTopActions
+    {
+        void OnMove(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
     }
 }
