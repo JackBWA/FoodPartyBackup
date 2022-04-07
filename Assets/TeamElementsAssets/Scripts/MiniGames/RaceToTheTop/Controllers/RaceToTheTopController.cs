@@ -43,9 +43,19 @@ public class RaceToTheTopController : MonoBehaviour
 
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+    }
+
     protected virtual void Update()
     {
-
+        RaycastHit hit;
+        Debug.DrawRay(transform.position, -transform.up, Color.black, Time.deltaTime);
+        if(Physics.Raycast(transform.position, -transform.up, out hit, 1f, 1 << LayerMask.NameToLayer("MapStatic")))
+        {
+            Debug.Log("Rotate player towards ground WIP.");
+        }
     }
 
     protected virtual void FixedUpdate()
