@@ -13586,7 +13586,7 @@ MonoBehaviour:
   gameBoardCanvasInstance: {fileID: 0}
   minigameScenes:
   - DontGetBurnt
-  - FoodCatch
+  - FoodCatcher
   - KingOfTheHill
   - RaceToTheTop
   systemsParent: {fileID: 1769978176}
