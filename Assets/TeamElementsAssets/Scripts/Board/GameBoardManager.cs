@@ -179,7 +179,6 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        //Time.timeScale = 5f;
     }
 
     #endregion
@@ -398,6 +397,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onRoundStart;
     public void RoundStart()
     {
+        Time.timeScale = 15f;
         TurnStart(boardPlayers[turnIndex]);
         onRoundStart?.Invoke();
     }
