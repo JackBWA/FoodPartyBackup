@@ -189,6 +189,7 @@ public class BoardEntity : MonoBehaviour
         isViewingMap = true;
         topCamera.enabled = true;
         topCameraController.enabled = true;
+        topCamera.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
         DeactivateTPC();
     }
 
