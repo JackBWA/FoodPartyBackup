@@ -80,7 +80,7 @@ public class BoardEntity : MonoBehaviour
     public bool isViewingMap;
 
     [HideInInspector]
-    public CinemachineFreeLook thirdPersonCamera;
+    public CinemachineVirtualCamera thirdPersonCamera;
     [HideInInspector]
     public CinemachineVirtualCamera topCamera;
     public TopViewCameraController topCameraController;
@@ -215,6 +215,8 @@ public class BoardEntity : MonoBehaviour
         if(!TryGetComponent(out agent))
         {
             agent = gameObject.AddComponent<NavMeshAgent>();
+            agent.speed = 10f;
+            agent.acceleration = 40f;
         }
         if(!TryGetComponent(out inventory))
         {
@@ -403,7 +405,7 @@ public class BoardEntity : MonoBehaviour
     {
         dice = Instantiate(
             ((GameObject)Resources.Load("Dice")).GetComponent<Dice>());
-        dice.transform.position = transform.position + Vector3.up * 3f;
+        dice.transform.position = transform.position + Vector3.up * 5f;
         int randomAxis = UnityEngine.Random.Range(0, Enum.GetValues(typeof(ObjectRotator.RotationAxis)).Length);
         dice.GetComponent<ObjectRotator>().rotationAxis = (ObjectRotator.RotationAxis) randomAxis;
         dice.canThrow = true;
