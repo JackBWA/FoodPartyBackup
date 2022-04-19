@@ -11,6 +11,8 @@ public class Dice : MonoBehaviour
 
     public bool canThrow;
 
+    public float displayTime = 2f;
+
     public float throwForce = 10f;
     public float sideThrowSpread = 5f;
     public float minRndRotation = 120f;
@@ -67,9 +69,11 @@ public class Dice : MonoBehaviour
         //Debug.Log(result);
         if (result > 0)
         {
-            ShowResult(result);
+            StartCoroutine(ShowResult(result));
+            /*
             owner.SetMoves(result);
             Destroy(gameObject); // Remove this once dice shows the number.
+            */
         }
         else
         {
@@ -77,11 +81,15 @@ public class Dice : MonoBehaviour
         }
     }
 
-    private void ShowResult(int number)
+    private IEnumerator ShowResult(int number)
     {
-        Debug.Log(number);
-        // Wip (weird bug lol)
-        // Once it finished showing the number, destroy the object.
+        TextDisplayer textDisplayer = Instantiate(Resources.Load<TextDisplayer>("Other/TextDisplayer"));
+        textDisplayer.transform.position = transform.position + Vector3.up;
+        textDisplayer.text = $"{number}";
+        yield return new WaitForSeconds(displayTime);
+        owner.SetMoves(number);
+        Destroy(textDisplayer.gameObject);
+        Destroy(gameObject);
     }
 
     private int CheckResult()
