@@ -45,14 +45,14 @@ public class HealthBarUI : MonoBehaviour
 
     public void UpdateHealthBar(float value)
     {
-        Debug.Log("Tira pero este si");
+        //Debug.Log("Tira pero este si");
         healthTextDisplay.text = $"{value}/{entity.baseHealth}";
         healthGfxDisplay.value = value / entity.baseHealth;
     }
 
     public void UpdateCoins(int coins)
     {
-        Debug.Log("Tira");
+        //Debug.Log("Tira");
         coinsDisplay.text = $"{coins}$";
     }
 }

@@ -37,6 +37,7 @@ public class BoardEntity : MonoBehaviour
         }
         set
         {
+            if (isSafe && value < health) return;
             _health = Mathf.Clamp(value, 0f, baseHealth);
             HealthChange(health);
         }
@@ -66,6 +67,7 @@ public class BoardEntity : MonoBehaviour
         set
         {
             _isSafe = value;
+            // Safe particles.
         }
     }
     private bool _isSafe;

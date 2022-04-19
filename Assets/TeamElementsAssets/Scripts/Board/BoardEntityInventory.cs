@@ -112,10 +112,14 @@ public class BoardEntityInventory : MonoBehaviour
         {
             return;
         }
-        else
+
+        if(amount == 0)
         {
-            items[item] = amount;
+            items.Remove(item);
+            return;
         }
+
+        items[item] = amount;
     }
 
     public bool HasItem(BoardItem_Base item)
