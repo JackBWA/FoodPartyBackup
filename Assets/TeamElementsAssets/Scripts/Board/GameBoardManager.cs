@@ -20,7 +20,23 @@ public class GameBoardManager : MonoBehaviour
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
 
     [HideInInspector]
-    public BoardEntity winner;
+    public BoardEntity winner
+    {
+        get
+        {
+            return _winner;
+        }
+        set
+        {
+            _winner = value;
+            if(_winner != null)
+            {
+                GameEnd();
+            }
+        }
+    }
+
+    private BoardEntity _winner;
 
     [HideInInspector]
     public Recipe recipe;
@@ -388,13 +404,13 @@ public class GameBoardManager : MonoBehaviour
     public void TurnEnd(BoardEntity entity)
     {
         entity.hasTurn = false;
-
+        /*
         if (winner != null)
         {
             GameEnd();
             return;
         }
-
+        */
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {

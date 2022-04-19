@@ -32,14 +32,8 @@ public class FinishCoaster : Coaster
         } else
         {
             // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
+            EndInteract(interactor);
         }
-        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

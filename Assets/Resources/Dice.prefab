@@ -219,7 +219,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 239378781582670930, guid: 389a57c3033e73d47b22626f70f2b8b9, type: 3}
+  - {fileID: 2100000, guid: e64e67a0c7e1d0443a136430375ebab0, type: 2}
+  - {fileID: 2100000, guid: c2ded7645929e1746befa52ddd920fbb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -255,13 +256,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
   canThrow: 0
+  displayTime: 2
   throwForce: 10
   sideThrowSpread: 5
   minRndRotation: 150
   maxRndRotation: -90
-  detectionMask:
-    serializedVersion: 2
-    m_Bits: 64
   sides:
   - {fileID: 6431229443465196120}
   - {fileID: 6431229443519848354}
