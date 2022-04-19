@@ -34,13 +34,13 @@ public class BoardEntity : MonoBehaviour
         get
         {
             return _health;
-        } set
+        }
+        set
         {
             _health = Mathf.Clamp(value, 0f, baseHealth);
             HealthChange(health);
         }
     }
-
     private float _health;
 
     public int coins
@@ -49,10 +49,10 @@ public class BoardEntity : MonoBehaviour
         {
             return _coins;
         }
-
         set
         {
             _coins = value;
+            CoinsChange(coins);
         }
     }
     private int _coins;
@@ -128,6 +128,12 @@ public class BoardEntity : MonoBehaviour
     {
         //Debug.Log($"Health changed on {name}.");
         onHealthChange?.Invoke(health);
+    }
+
+    public event Action<int> onCoinsChange;
+    public void CoinsChange(int coins)
+    {
+        onCoinsChange?.Invoke(coins);
     }
     #endregion
 
@@ -233,7 +239,7 @@ public class BoardEntity : MonoBehaviour
 
         agent.radius = 0.1f;
         health = baseHealth;
-        coins = 50000;
+        coins = GameBoardManager.singleton.playerInitialCoins;
         CreateCameras();
         DisableAgent();
     }
@@ -367,8 +373,8 @@ public class BoardEntity : MonoBehaviour
         }
         else
         {
-            TurnEnd();
-            //currentCoaster.playerStop(this);
+            //TurnEnd();
+            currentCoaster.playerStop(this);
         }
     }
 
