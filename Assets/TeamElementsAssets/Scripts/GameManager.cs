@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,5 +36,11 @@ public class GameManager : MonoBehaviour
         #endregion
         gameState = GameState.MAIN_MENU;
         DontDestroyOnLoad(this);
+    }
+
+    public void ExitGame()
+    {
+        SceneManager.LoadScene("MainMenu");
+        PauseManager.singleton.canToggle = false;
     }
 }

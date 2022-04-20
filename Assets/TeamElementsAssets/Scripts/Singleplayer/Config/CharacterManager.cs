@@ -104,6 +104,7 @@ public class CharacterManager : MonoBehaviour
                 selectedCharacter.characterType = PlayerCharacter.CharacterType.Player;
             }
         }
+        PauseManager.singleton.canToggle = true;
         SceneManager.LoadScene("Mapa");
     }
 }
