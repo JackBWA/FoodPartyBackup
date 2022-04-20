@@ -376,7 +376,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
-        recipeStates[boardPlayers[0]].Complete();
+        recipeStates[boardPlayers[1]].Complete();
         RoundStart();
         onGameStart?.Invoke();
     }

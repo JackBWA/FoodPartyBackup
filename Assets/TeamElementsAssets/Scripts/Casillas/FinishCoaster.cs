@@ -46,6 +46,28 @@ public class FinishCoaster : Coaster
         base.playerEnter(entity, position);
     }
 
+    protected override void RequestChecker(BoardEntity entity)
+    {
+        switch (entity.GetComponent<PlayerCharacter>().characterType)
+        {
+            case PlayerCharacter.CharacterType.Player:
+                base.RequestChecker(entity);
+                break;
+
+            case PlayerCharacter.CharacterType.AI:
+                // Aqui el bot "piensa" xd.
+                if (GameBoardManager.singleton.recipeStates[entity].isCompleted)
+                {
+                    Interact(entity);
+                } else
+                {
+                    if (entity.GetMoves() > 0) entity.ContinueMoving();
+                    else entity.TurnEnd();
+                }
+                break;
+        }
+    }
+
     public override void playerStop(BoardEntity entity)
     {
         base.playerStop(entity);

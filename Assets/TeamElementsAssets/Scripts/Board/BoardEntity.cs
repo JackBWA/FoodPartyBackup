@@ -295,6 +295,11 @@ public class BoardEntity : MonoBehaviour
         EnableAgent();
     }
 
+    public int GetMoves()
+    {
+        return moves;
+    }
+
     public void SetMoves(int amount)
     {
         //Debug.Log($"Dice: {amount}");

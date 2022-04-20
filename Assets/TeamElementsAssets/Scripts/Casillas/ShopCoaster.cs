@@ -31,9 +31,16 @@ public class ShopCoaster : Coaster
                 break;
 
             case PlayerCharacter.CharacterType.AI:
-                EndInteract(interactor); // TEMPORAL UNTIL AI CAN BUY XD.
+                StartCoroutine(AutoBuy(shopInstance));
+                EndInteract(interactor);
                 break;
         }
+    }
+
+    public IEnumerator AutoBuy(Shop shop)
+    {
+        List<ShopElementUI> items = shop.shopItems;
+        yield return null;
     }
 
     public override void EndInteract(BoardEntity interactor)
