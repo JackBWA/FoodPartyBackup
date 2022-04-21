@@ -15213,7 +15213,7 @@ MonoBehaviour:
   boardSceneName: 
   boardPlayers: []
   recipe: {fileID: 0}
-  playerInitialCoins: 50
+  playerInitialCoins: 5000
   gameBoardCanvasPrefab: {fileID: 7657296680851125543, guid: ad14baa7b53bdc14a83abb017199b109, type: 3}
   gameBoardCanvasInstance: {fileID: 0}
   minigameScenes:
