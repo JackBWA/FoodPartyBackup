@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028504, g: 0.22571549, b: 0.30692345, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028481, g: 0.22571513, b: 0.3069228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1621,8 +1621,8 @@ MonoBehaviour:
   minigameDescription: Catch as many food as you can. Whoever catches the most wins!
   hasTimeLimit: 1
   timeLimit: 60
-  hasScoreLimit: 0
-  scoreLimit: 1000
+  hasScoreLimit: 1
+  scoreLimit: 500
   scorePerRound: 50
   spawnZones: []
   players: []
