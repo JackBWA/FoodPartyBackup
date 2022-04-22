@@ -32,14 +32,8 @@ public class FinishCoaster : Coaster
         } else
         {
             // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            // Might save ingredients and flavors (remove them from the required on the recipe).
+            EndInteract(interactor);
         }
-        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)
@@ -50,6 +44,28 @@ public class FinishCoaster : Coaster
     public override void playerEnter(BoardEntity entity, Vector3 position)
     {
         base.playerEnter(entity, position);
+    }
+
+    protected override void RequestChecker(BoardEntity entity)
+    {
+        switch (entity.GetComponent<PlayerCharacter>().characterType)
+        {
+            case PlayerCharacter.CharacterType.Player:
+                base.RequestChecker(entity);
+                break;
+
+            case PlayerCharacter.CharacterType.AI:
+                // Aqui el bot "piensa" xd.
+                if (GameBoardManager.singleton.recipeStates[entity].isCompleted)
+                {
+                    Interact(entity);
+                } else
+                {
+                    if (entity.GetMoves() > 0) entity.ContinueMoving();
+                    else entity.TurnEnd();
+                }
+                break;
+        }
     }
 
     public override void playerStop(BoardEntity entity)

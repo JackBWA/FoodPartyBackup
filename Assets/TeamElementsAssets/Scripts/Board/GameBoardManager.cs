@@ -20,10 +20,28 @@ public class GameBoardManager : MonoBehaviour
     public List<BoardEntity> boardPlayers = new List<BoardEntity>(); // For turns shuffle.
 
     [HideInInspector]
-    public BoardEntity winner;
+    public BoardEntity winner
+    {
+        get
+        {
+            return _winner;
+        }
+        set
+        {
+            _winner = value;
+            if(_winner != null)
+            {
+                GameEnd();
+            }
+        }
+    }
+
+    private BoardEntity _winner;
 
     [HideInInspector]
     public Recipe recipe;
+
+    public int playerInitialCoins = 50;
 
     public Dictionary<BoardEntity, Recipe> recipeStates = new Dictionary<BoardEntity, Recipe>();
 
@@ -196,6 +214,8 @@ public class GameBoardManager : MonoBehaviour
 
         RandomizeTurns();
         InitializeGameCanvas();
+
+        InitializePlayers();
     }
 
     public void SetParents()
@@ -289,37 +309,44 @@ public class GameBoardManager : MonoBehaviour
 
     private void CreatePlayers()
     {
-        List<PlayerCharacter> players = new List<PlayerCharacter>();
+        //List<PlayerCharacter> players = new List<PlayerCharacter>();
         PlayerCharacter player = Instantiate(CharacterManager.selectedCharacter);
-        BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();
+        boardPlayers.Add(player.gameObject.AddComponent<BoardPlayer>());
+        /*BoardPlayer bP = player.gameObject.AddComponent<BoardPlayer>();
         bP.Initialize();
-        players.Add(player);
+        players.Add(player);*/
 
         foreach (PlayerCharacter ai in CharacterManager.aiCharacters)
         {
             PlayerCharacter aiPlayer = Instantiate(ai);
-            BoardAI aiP = aiPlayer.gameObject.AddComponent<BoardAI>();
+            boardPlayers.Add(aiPlayer.gameObject.AddComponent<BoardAI>());
+            /*BoardAI aiP = aiPlayer.gameObject.AddComponent<BoardAI>();
             aiP.Initialize();
-            players.Add(aiPlayer);
+            players.Add(aiPlayer);*/
         }
+    }
 
-        foreach (PlayerCharacter p in players)
+    private void InitializePlayers()
+    {
+        foreach (BoardEntity bE in boardPlayers)
         {
-
-            BoardEntity boardPlayer = p.GetComponent<BoardEntity>();
+            //BoardEntity bE = bE.GetComponent<BoardEntity>();
+            bE.Initialize();
             List<Vector3> waitZones = Coaster.initialCoaster.GetAvailableWaitZones();
             if (waitZones.Count > 0)
             {
-                boardPlayer.TeleportTo(waitZones[0]);
-                Coaster.initialCoaster.SetWaitZoneState(waitZones[0], boardPlayer);
-            } else
-            {
-                boardPlayer.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
-                Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, boardPlayer);
+                bE.TeleportTo(waitZones[0]);
+                Coaster.initialCoaster.SetWaitZoneState(waitZones[0], bE);
             }
-            boardPlayer.currentCoaster = Coaster.initialCoaster;
-            boardPlayer.transform.parent = saveLoadGameObjectsParent.transform;
-            boardPlayers.Add(boardPlayer);
+            else
+            {
+                bE.TeleportTo(Coaster.initialCoaster.transform.position + Vector3.up);
+                Coaster.initialCoaster.SetWaitZoneState(Coaster.initialCoaster.transform.position + Vector3.up, bE);
+            }
+
+            bE.currentCoaster = Coaster.initialCoaster;
+            bE.transform.parent = saveLoadGameObjectsParent.transform;
+            //boardPlayers.Add(bE);
         }
     }
 
@@ -349,7 +376,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
-        recipeStates[boardPlayers[0]].Complete();
+        recipeStates[boardPlayers[1]].Complete();
         RoundStart();
         onGameStart?.Invoke();
     }
@@ -377,13 +404,13 @@ public class GameBoardManager : MonoBehaviour
     public void TurnEnd(BoardEntity entity)
     {
         entity.hasTurn = false;
-
+        /*
         if (winner != null)
         {
             GameEnd();
             return;
         }
-
+        */
         turnIndex++;
         if (turnIndex >= boardPlayers.Count)
         {

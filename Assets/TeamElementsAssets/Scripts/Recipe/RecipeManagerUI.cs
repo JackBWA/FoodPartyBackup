@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,8 @@ public class RecipeManagerUI : MonoBehaviour
         {
             Display(recipe);
         }
+
+        GameBoardManager.singleton.recipeStates[entity].RecipeUpdate();
     }
 
     public void Display(Recipe recipe)

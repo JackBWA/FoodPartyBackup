@@ -100,4 +100,4 @@ MonoBehaviour:
   type: 0
   canRequestInteract: 1
   canForceInteract: 0
-  keepMovesOnRequestAccept: 1
+  keepMovesOnRequestAccept: 0

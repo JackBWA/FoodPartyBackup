@@ -151,15 +151,22 @@ public class Coaster : MonoBehaviour
             return;
         }
 
+        RequestChecker(entity);
+        onPlayerEnter?.Invoke(entity, position);
+    }
+
+    protected virtual void RequestChecker(BoardEntity entity)
+    {
         if (canRequestInteract)
         {
             Debug.Log("Requesting interact.");
             RequestInteract(entity);
-        } else
-        {
-            entity.ContinueMoving();
         }
-        onPlayerEnter?.Invoke(entity, position);
+        else
+        {
+            if (entity.GetMoves() > 0) entity.ContinueMoving();
+            else entity.TurnEnd();
+        }
     }
 
     protected virtual void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")

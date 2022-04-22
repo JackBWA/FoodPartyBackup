@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,12 @@ public class Recipe : ScriptableObject
         }
     }
 
+    public event Action onRecipeUpdate;
+    public void RecipeUpdate()
+    {
+        onRecipeUpdate?.Invoke();
+    }
+
     public void CopyFrom(Recipe recipe)
     {
         title = recipe.title;
@@ -83,6 +90,8 @@ public class Recipe : ScriptableObject
         {
             currentElements.Add(recipeElement.Key, recipeElement.Value);
         }
+
+        RecipeUpdate();
 
         /*
         requiredFlavors = new Dictionary<Flavor, int>();
@@ -128,6 +137,8 @@ public class Recipe : ScriptableObject
         {
             currentElements[recipeElement.Key] = requiredElements[recipeElement.Key];
         }
+
+        RecipeUpdate();
 
         /*
         foreach(KeyValuePair<Flavor, int> kV in requiredFlavors)
@@ -234,6 +245,8 @@ public class Recipe : ScriptableObject
     {
         bool added = !requiredElements.ContainsKey(element);
         if (added) requiredElements.Add(element, amount);
+
+        RecipeUpdate();
         /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (!containsFlavor) requiredFlavors.Add(flavor, amount);
@@ -245,6 +258,8 @@ public class Recipe : ScriptableObject
     {
         bool removed = requiredElements.ContainsKey(element);
         if (removed) requiredElements.Remove(element);
+
+        RecipeUpdate();
         /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (containsFlavor) requiredFlavors.Remove(flavor);
@@ -256,6 +271,8 @@ public class Recipe : ScriptableObject
     {
         bool wasUpdated = requiredElements.ContainsKey(element);
         if (wasUpdated) requiredElements[element] = newAmount;
+
+        RecipeUpdate();
         /*
         bool wasUpdated = requiredFlavors.ContainsKey(flavor);
         if (wasUpdated) requiredFlavors[flavor] = newAmount;
@@ -269,6 +286,8 @@ public class Recipe : ScriptableObject
         {
             currentElements[element] = newAmount;
         }
+
+        RecipeUpdate();
         /*
         if (currentFlavors.ContainsKey(flavor))
         {
@@ -280,7 +299,7 @@ public class Recipe : ScriptableObject
     #endregion
 
 
-    // Deprecated since everything was packed to a same parent class.
+    // Deprecated since everything was packed to the same parent class.
     #region Ingredient Methods (deprecated)
     /*
     public bool AddRequiredIngredient(Ingredient ingredient, int amount)
