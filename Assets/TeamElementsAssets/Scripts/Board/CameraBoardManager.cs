@@ -7,7 +7,7 @@ using static Cinemachine.CinemachineBlenderSettings;
 public class CameraBoardManager : MonoBehaviour
 {
 
-    public CameraBoardManager singleton;
+    public static CameraBoardManager singleton;
 
     [HideInInspector]
     public static CinemachineBlenderSettings cbs;

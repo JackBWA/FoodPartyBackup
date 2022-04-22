@@ -1620,7 +1620,7 @@ MonoBehaviour:
   minigameName: Food Catcher
   minigameDescription: Catch as many food as you can. Whoever catches the most wins!
   hasTimeLimit: 1
-  timeLimit: 60
+  timeLimit: 5
   hasScoreLimit: 0
   scoreLimit: 1000
   scorePerRound: 50

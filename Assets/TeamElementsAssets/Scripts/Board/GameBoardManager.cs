@@ -72,7 +72,7 @@ public class GameBoardManager : MonoBehaviour
 
     #region Save/Load
 
-    private GameObject persistentBoardObjects;
+    public GameObject persistentBoardObjects;
 
     public void SaveGameState()
     {
@@ -197,6 +197,7 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
+        Time.timeScale = 10f;
     }
 
     #endregion

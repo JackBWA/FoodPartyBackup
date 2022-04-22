@@ -104,6 +104,9 @@ public class PauseManager : MonoBehaviour
     {
         canToggle = false;
         Resume();
+        Destroy(CameraBoardManager.singleton.gameObject);
+        Destroy(GameBoardManager.singleton.persistentBoardObjects);
+        Destroy(GameBoardManager.singleton.gameObject);
         GameManager.singleton.ExitGame();
     }
 }

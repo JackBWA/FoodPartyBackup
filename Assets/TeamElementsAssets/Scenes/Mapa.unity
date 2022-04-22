@@ -15220,7 +15220,6 @@ MonoBehaviour:
   - DontGetBurnt
   - FoodCatcher
   - KingOfTheHill
-  - RaceToTheTop
   systemsParent: {fileID: 1769978176}
   uiParent: {fileID: 856243757}
   navMeshParent: {fileID: 1955368614}
@@ -15228,6 +15227,7 @@ MonoBehaviour:
   saveLoadGameObjectsParent: {fileID: 902782046}
   otherParent: {fileID: 886326464}
   roundIndex: 0
+  persistentBoardObjects: {fileID: 0}
 --- !u!1001 &1375761526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15527,7 +15527,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b8ff7c400b1aab4b8fadd1603c7f68c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  singleton: {fileID: 0}
 --- !u!1001 &1406920227
 PrefabInstance:
   m_ObjectHideFlags: 0

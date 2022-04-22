@@ -964,7 +964,7 @@ MonoBehaviour:
   minigameName: Don't Get Burnt
   minigameDescription: WIP xd.
   hasTimeLimit: 1
-  timeLimit: 60
+  timeLimit: 5
   hasScoreLimit: 0
   scoreLimit: 1000
   scorePerRound: 50
