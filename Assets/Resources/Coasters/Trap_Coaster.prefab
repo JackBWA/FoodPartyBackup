@@ -103,6 +103,9 @@ MonoBehaviour:
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0
+  healthAmount: 10
+  coinsAmount: 15
+  itemsAmount: 1
 --- !u!1 &2982991211691974885
 GameObject:
   m_ObjectHideFlags: 0

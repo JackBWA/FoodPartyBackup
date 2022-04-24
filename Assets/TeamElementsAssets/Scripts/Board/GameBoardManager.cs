@@ -7,6 +7,7 @@ using Unity.AI.Navigation;
 using SplineMesh;
 using System.Collections;
 using UnityEngine.UI;
+using System.Linq;
 
 public class GameBoardManager : MonoBehaviour
 {
@@ -241,6 +242,21 @@ public class GameBoardManager : MonoBehaviour
         #endregion
     }
 
+    public void SpawnFlavorOnRandomNormalCoaster()
+    {
+        int random = UnityEngine.Random.Range(0, coastersWhereFlavorCanBe.Count);
+        for(int i = 0; i < coastersWhereFlavorCanBe.Count; i++)
+        {
+            if(i == random)
+            {
+                coastersWhereFlavorCanBe[i].hasFlavor = true;
+            } else
+            {
+                coastersWhereFlavorCanBe[i].hasFlavor = false;
+            }
+        }
+    }
+
     private void InitializeGameCanvas()
     {
         gameBoardCanvasInstance = Instantiate(gameBoardCanvasPrefab);
@@ -278,24 +294,50 @@ public class GameBoardManager : MonoBehaviour
         */
     }
 
+    List<NormalCoaster> coastersWhereFlavorCanBe;
+
     private void CreateBoard()
     {
         #region Coasters
         //List<NavMeshSurface> surfaces = new List<NavMeshSurface>();
 
+        coastersWhereFlavorCanBe = new List<NormalCoaster>();
+
         List<Coaster> coasters = new List<Coaster>();
 
-        CoasterSpawner[] coasterSpawners = FindObjectsOfType<CoasterSpawner>();
+        List<CoasterSpawner> coasterSpawners = FindObjectsOfType<CoasterSpawner>().ToList();
+
+        List<CoasterSpawner> forcedNormal = new List<CoasterSpawner>();
+
+        List<CoasterSpawner> nonIgnored = coasterSpawners.Where(t => !t.IsTypeIgnored()).ToList();
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (nonIgnored.Count > 0)
+            {
+                CoasterSpawner cS = nonIgnored[UnityEngine.Random.Range(0, nonIgnored.Count)];
+                nonIgnored.Remove(cS);
+                forcedNormal.Add(cS);
+            }
+        }
 
         foreach (CoasterSpawner cS in coasterSpawners)
         {
+            if (forcedNormal.Contains(cS))
+            {
+                cS.type = Coaster.CoasterType.Normal;
+                cS.random = false;
+            }
             Coaster c = cS.SpawnCoaster();
             c.Initialize();
             //surfaces.Add(c.GetComponent<NavMeshSurface>()); // Prebaked.
             coasters.Add(c);
+            if (c.type == Coaster.CoasterType.Normal) coastersWhereFlavorCanBe.Add((NormalCoaster) c);
         }
 
-        for (int j = 0; j < coasterSpawners.Length; j++)
+        SpawnFlavorOnRandomNormalCoaster();
+
+        for (int j = 0; j < coasterSpawners.Count; j++)
         {
             foreach (CoasterSpawner next in coasterSpawners[j].next)
             {

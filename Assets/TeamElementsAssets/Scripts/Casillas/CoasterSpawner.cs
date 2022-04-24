@@ -16,6 +16,20 @@ public class CoasterSpawner : MonoBehaviour
 
     [HideInInspector]
     public Coaster coaster;
+    public bool IsTypeIgnored()
+    {
+        return randomIgnore.Contains(type.ToString());
+    }
+
+    public bool IsTypeIgnored(string _type)
+    {
+        return randomIgnore.Contains(_type);
+    }
+
+    public bool IsTypeIgnored(Coaster.CoasterType _type)
+    {
+        return randomIgnore.Contains(_type.ToString());
+    }
 
     public Coaster SpawnCoaster()
     {
@@ -40,10 +54,13 @@ public class CoasterSpawner : MonoBehaviour
         }
 
         Coaster spawnedCoaster = Instantiate(spawnable);
+
         spawnedCoaster.gameObject.name = coasterObjName;
         spawnedCoaster.transform.position = transform.position;
         spawnedCoaster.transform.rotation = transform.rotation;
         spawnedCoaster.transform.parent = transform.parent;
+
+        spawnedCoaster.type = (Coaster.CoasterType) Enum.Parse(typeof(Coaster.CoasterType), coasterObjName);
 
         spawnedCoaster.canForceInteract = canForceInteract;
 
