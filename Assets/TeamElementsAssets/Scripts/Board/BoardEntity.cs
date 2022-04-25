@@ -358,10 +358,8 @@ public class BoardEntity : MonoBehaviour
                     break;
 
                 default:
-                    StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
-
-
-                    /* // OnMouseDown() isn't working. Fix needed.
+                    //StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
+                    /* */ // OnMouseDown() isn't working. Fix needed.
                     if (GetComponent<PlayerCharacter>().characterType == PlayerCharacter.CharacterType.AI)
                     {
                         StartCoroutine(Move(currentCoaster.next[UnityEngine.Random.Range(0, currentCoaster.next.Count)]));
@@ -370,7 +368,6 @@ public class BoardEntity : MonoBehaviour
                     CoasterTargetSelector selector = Instantiate(Resources.Load<CoasterTargetSelector>("CoasterTargetSelector"));
                     selector.interactor = this;
                     selector.CreateSelectors();
-                    */
                     break;
             }
 
@@ -385,7 +382,7 @@ public class BoardEntity : MonoBehaviour
         }
     }
 
-    public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
+    public IEnumerator Move(Coaster target, float checkRate = 0.25f, float distanceRadius = 2f) // Or Vector3 targetPosition
     {
         //Debug.Log(target);
         currentCoaster.playerLeave(this);
