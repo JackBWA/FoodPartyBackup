@@ -467,7 +467,6 @@ public class GameBoardManager : MonoBehaviour
     public event Action onRoundStart;
     public void RoundStart()
     {
-        Time.timeScale = 1f;
         TurnStart(boardPlayers[turnIndex]);
         onRoundStart?.Invoke();
     }
@@ -477,13 +476,14 @@ public class GameBoardManager : MonoBehaviour
     {
         turnIndex = 0;
         roundIndex++;
-        SaveGameState();
+        //SaveGameState(); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
         // Start random event. (Minigame, general boost, etc.)
         string nextMinigame = GetRandomMinigame();
         onRoundEnd?.Invoke();
         if (nextMinigame != null)
         {
-            SceneManager.LoadScene(nextMinigame);
+            RoundStart(); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+            //SceneManager.LoadScene(nextMinigame); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
         }
     }
 

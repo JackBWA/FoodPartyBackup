@@ -32,13 +32,37 @@ public class NormalCoaster : Coaster
     }
     private bool _hasFlavor = false;
 
+    public int interactionCost = 50;
+
     public ParticleSystem flavorParticle;
 
     private Flavor GetRandomFlavor(BoardEntity interactor)
     {
-        Flavor flavor;
-        flavor = (Flavor) GameBoardManager.singleton.recipeStates[interactor].requiredElements.ElementAt(UnityEngine.Random.Range(0, GameBoardManager.singleton.recipeStates[interactor].requiredElements.Count)).Key;
+        Flavor flavor = null;
+        /*
+        foreach(KeyValuePair<RecipeElement, int> xd in GameBoardManager.singleton.recipeStates[interactor].requiredElements)
+        {
+            /Debug.Log($"{xd.Key.name} | {xd.Key.GetType()}");
+        }
+        */
+        //Debug.Log("========================================================================");
+        List<KeyValuePair<RecipeElement, int>> list = GameBoardManager.singleton.recipeStates[interactor].requiredElements.Where(rE => rE.Key.GetType() == typeof(Flavor)).ToList();
+        //Debug.Log("List size is: " + list.Count);
+        int random = UnityEngine.Random.Range(0, list.Count);
+        //Debug.Log("Random number generated is: " + random);
+        //Debug.Log("List elements are: ");
+        /*
+        foreach(KeyValuePair<RecipeElement, int> kvp in list)
+        {
+            Debug.Log(kvp.Key.name + " | Type of: " + kvp.Key.GetType().ToString());
+        }
+        */
+        //Debug.Log("Flavor should be null here: " + (flavor == null));
+        flavor = (Flavor) list[UnityEngine.Random.Range(0, list.Count)].Key;
+        //Debug.Log("Flavor should NOT be null here: " + (flavor == null));
+        //Debug.Log("Flavor should NOT be null here. Value equals to: " + flavor);
         return flavor;
+        //flavor =  GameBoardManager.singleton.recipeStates[interactor].requiredElements.Where(rE => rE.GetType().Equals(typeof(Flavor))).ToList().ElementAt(UnityEngine.Random.Range(0, GameBoardManager.singleton.recipeStates[interactor].requiredElements.Count)).Key;
     }
 
     protected override void Awake()
@@ -55,7 +79,22 @@ public class NormalCoaster : Coaster
     {
         base.Interact(interactor);
 
-        StartCoroutine(RequestCo(interactor));
+        switch (interactor)
+        {
+            case BoardPlayer player:
+                StartCoroutine(RequestCo(interactor));
+                break;
+
+            case BoardAI ai:
+                if(interactor.coins >= interactionCost)
+                {
+                    Flavor flavor = GetRandomFlavor(interactor);
+                    GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
+                    GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+                    EndInteract(interactor);
+                }
+                break;
+        }
 
         //Debug.Log("Normal interact!");
         //base.EndInteract(interactor);

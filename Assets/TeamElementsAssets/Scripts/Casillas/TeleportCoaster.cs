@@ -56,7 +56,7 @@ public class TeleportCoaster : Coaster
 
             case PlayerCharacter.CharacterType.AI:
                 int rnd = Random.Range(0, 2);
-                Debug.Log(rnd);
+                //Debug.Log(rnd);
                 if(rnd >= 1)
                 {
                     Interact(entity);
