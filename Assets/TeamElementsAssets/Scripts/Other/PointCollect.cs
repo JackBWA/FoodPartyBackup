@@ -15,4 +15,10 @@ public class PointCollect : MonoBehaviour
     {
         if (random) value = UnityEngine.Random.Range(minValue, maxValue);
     }
+
+    private void OnDestroy()
+    {
+        //Cagate
+        ((MiniGame_FoodCatcher)MiniGame.singleton).Remove(this);
+    }
 }

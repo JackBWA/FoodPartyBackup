@@ -7,6 +7,9 @@ public class MiniGame_FoodCatcher : MiniGame
 
     public List<PointCollect> foodPrefabs = new List<PointCollect>();
 
+    [HideInInspector]
+    public List<PointCollect> pointsInstances = new List<PointCollect>();
+
     public float spawnRate = 0.33f;
 
     // Tabla de indicios de spawnrate;
@@ -39,6 +42,24 @@ public class MiniGame_FoodCatcher : MiniGame
     {
         Gizmos.color = new Color(255f/255f, 127f/255f, 1f/255f, 255f/255f);
         Gizmos.DrawWireCube(areaPosition, areaSize);
+    }
+
+    public void Remove(PointCollect point)
+    {
+        pointsInstances.Remove(point);
+    }
+
+    protected override void SpawnPlayers()
+    {
+        base.SpawnPlayers();
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].characterType == PlayerCharacter.CharacterType.AI)
+            {
+                FoodCatcherAIController aiController = players[i].GetComponent<FoodCatcherAIController>();
+                aiController.TeleportTo(aiController.transform.position);
+            }
+        }
     }
 
     protected override void InitializePlayers()
@@ -110,6 +131,7 @@ public class MiniGame_FoodCatcher : MiniGame
                 areaPosition.z);
                 //areaPosition.z + Random.Range(-areaSize.z / 2, areaSize.z / 2));
             PointCollect collectable = Instantiate(foodPrefabs[Random.Range(0, foodPrefabs.Count)], randomPointInArea, Quaternion.identity);
+            pointsInstances.Add(collectable);
             yield return new WaitForSeconds(spawnRate);
         }
         yield return null;

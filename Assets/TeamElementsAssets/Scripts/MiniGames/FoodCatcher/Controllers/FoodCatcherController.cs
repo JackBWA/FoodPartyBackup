@@ -5,8 +5,6 @@ using UnityEngine;
 public class FoodCatcherController : MonoBehaviour
 {
 
-    public CharacterController controller;
-
     public float speed = 8f;
     public float jumpForce = 12f;
     public float rotationSpeed = 10f;
@@ -32,50 +30,24 @@ public class FoodCatcherController : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
-        if (controller != null)
-        {
-            float magnitude = Mathf.Clamp01(moveVector.magnitude) * speed;
-            moveVector.Normalize();
-
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-
-            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
-
-            Vector3 velocity = moveVector * magnitude;
-            velocity.y = ySpeed;
-
-            //Debug.Log(velocity);
-
-            controller.Move(velocity * Time.deltaTime);
-
-            //Debug.Log($"{velocity.magnitude} | {Vector3.kEpsilon}");
-
-            if (velocity.magnitude > Vector3.kEpsilon) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
-        }
+        
     }
     #endregion
 
-    public void Jump()
+    public virtual void Jump()
     {
-        if (controller != null && IsGrounded())
-        {
-            ySpeed = jumpForce;
-        }
+
     }
 
-    protected bool IsGrounded()
+    protected virtual bool IsGrounded()
     {
         bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("MapStatic"));
         return isGrounded;
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
-        if (!gameObject.TryGetComponent(out controller))
-        {
-            controller = gameObject.AddComponent<CharacterController>();
-            controller.center = Vector3.up;
-        }
+
     }
 
     protected virtual void OnEnable()
@@ -93,7 +65,7 @@ public class FoodCatcherController : MonoBehaviour
         enabled = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         PointCollect points;
         if (!other.TryGetComponent(out points)) return;

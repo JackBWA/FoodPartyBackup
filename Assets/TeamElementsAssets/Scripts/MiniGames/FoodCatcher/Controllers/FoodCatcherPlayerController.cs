@@ -8,11 +8,12 @@ public class FoodCatcherPlayerController : FoodCatcherController
 
     MinigamePlayerControls inputActions;
 
+    public CharacterController controller;
+
     #region Awake/Start/Update
     protected override void Awake()
     {
         base.Awake();
-
         inputActions = new MinigamePlayerControls();
         inputActions.FoodCatcher.Move.performed += ctx =>
         {
@@ -38,8 +39,47 @@ public class FoodCatcherPlayerController : FoodCatcherController
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (controller != null)
+        {
+            float magnitude = Mathf.Clamp01(moveVector.magnitude) * speed;
+            moveVector.Normalize();
+
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+
+            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
+
+            Vector3 velocity = moveVector * magnitude;
+            velocity.y = ySpeed;
+
+            //Debug.Log(velocity);
+
+            controller.Move(velocity * Time.deltaTime);
+
+            //Debug.Log($"{velocity.magnitude} | {Vector3.kEpsilon}");
+
+            if (velocity.magnitude > Vector3.kEpsilon) transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(moveVector), rotationSpeed * Time.deltaTime);
+        }
     }
     #endregion
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        if (!gameObject.TryGetComponent(out controller))
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+            controller.center = Vector3.up;
+        }
+    }
+
+    public override void Jump()
+    {
+        base.Jump();
+        if (controller != null && IsGrounded())
+        {
+            ySpeed = jumpForce;
+        }
+    }
 
     protected override void OnEnable()
     {
