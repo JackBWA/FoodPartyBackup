@@ -198,7 +198,7 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        Time.timeScale = 10f;
+        Time.timeScale = 1f; //jijijija
     }
 
     #endregion

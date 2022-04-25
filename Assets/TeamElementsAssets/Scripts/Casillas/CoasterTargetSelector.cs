@@ -33,9 +33,11 @@ public class CoasterTargetSelector : MonoBehaviour
 
     public void SetResult(Coaster coaster)
     {
-        result = coaster;
+
+        //result = coaster;
         // Notify.
-        StartCoroutine(interactor.Move(result));
+        interactor.StartCoroutine(interactor.Move(coaster, true));
+        //StartCoroutine(interactor.Move(coaster, true));
         foreach(CoasterTarget cT in selectors)
         {
             Destroy(cT.gameObject);
