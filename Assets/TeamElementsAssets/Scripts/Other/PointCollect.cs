@@ -10,4 +10,9 @@ public class PointCollect : MonoBehaviour
     private int minValue;
     [SerializeField]
     private int maxValue;
+
+    private void Awake()
+    {
+        if (random) value = UnityEngine.Random.Range(minValue, maxValue);
+    }
 }

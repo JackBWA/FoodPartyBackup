@@ -198,7 +198,7 @@ public class GameBoardManager : MonoBehaviour
     private void Start()
     {
         GameStart();
-        Time.timeScale = 1f; //jijijija
+        Time.timeScale = 10f; //jijijija
     }
 
     #endregion
@@ -476,14 +476,13 @@ public class GameBoardManager : MonoBehaviour
     {
         turnIndex = 0;
         roundIndex++;
-        //SaveGameState(); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+        SaveGameState();
         // Start random event. (Minigame, general boost, etc.)
         string nextMinigame = GetRandomMinigame();
         onRoundEnd?.Invoke();
         if (nextMinigame != null)
         {
-            RoundStart(); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-            //SceneManager.LoadScene(nextMinigame); // TEMPORALLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+            SceneManager.LoadScene(nextMinigame);
         }
     }
 

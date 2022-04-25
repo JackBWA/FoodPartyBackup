@@ -413,7 +413,6 @@ public class BoardEntity : MonoBehaviour
                 //if (debugBruh) Debug.Log("7");
                 //if (debugBruh) Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
                 yield return new WaitForSeconds(checkRate);
-                Debug.Log("aaaniufeui");
             }
             //if (debugBruh) Debug.Log("8");
 

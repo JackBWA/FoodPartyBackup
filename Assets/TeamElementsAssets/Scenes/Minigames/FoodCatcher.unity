@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028504, g: 0.22571549, b: 0.30692345, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028481, g: 0.22571513, b: 0.3069228, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1620,7 +1620,7 @@ MonoBehaviour:
   minigameName: Food Catcher
   minigameDescription: Catch as many food as you can. Whoever catches the most wins!
   hasTimeLimit: 1
-  timeLimit: 5
+  timeLimit: 40
   hasScoreLimit: 0
   scoreLimit: 1000
   scorePerRound: 50
@@ -1634,6 +1634,7 @@ MonoBehaviour:
   - {fileID: 1588264565744924554, guid: 557f09fa597c151408f4634b01b52772, type: 3}
   - {fileID: 3862598088979875635, guid: b2963ff8e3f9c464a80ccef7bb2d32b0, type: 3}
   - {fileID: 7199453822677142280, guid: 2804af7ebb66f764a9c09314261d015b, type: 3}
+  - {fileID: 7199453822677142280, guid: 91327a3c05b17044caf4d1595340f8ff, type: 3}
   spawnRate: 0.33
   areaPosition: {x: 24.5, y: 50, z: 11}
   areaSize: {x: 50, y: 5, z: 2.5}
