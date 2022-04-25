@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class DontGetBurntController : MonoBehaviour
 {
-
-    public CharacterController controller;
     
     public float speed = 5f;
     public float jumpForce = 7.5f;
@@ -43,7 +41,7 @@ public class DontGetBurntController : MonoBehaviour
         enabled = false;
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
         /*
         if(!gameObject.TryGetComponent(out rB))
@@ -51,12 +49,12 @@ public class DontGetBurntController : MonoBehaviour
             rB = gameObject.AddComponent<Rigidbody>();
             rB.constraints = RigidbodyConstraints.FreezeRotation;
         }
-        */
 
         if(!gameObject.TryGetComponent(out controller))
         {
             controller = gameObject.AddComponent<CharacterController>();
             controller.center = Vector3.up;
         }
+        */
     }
 }

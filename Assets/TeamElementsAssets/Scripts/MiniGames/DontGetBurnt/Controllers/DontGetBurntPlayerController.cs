@@ -5,6 +5,8 @@ using UnityEngine;
 public class DontGetBurntPlayerController : DontGetBurntController
 {
 
+    public CharacterController controller;
+
     MinigamePlayerControls inputActions;
 
     private Vector3 moveVector;
@@ -57,6 +59,16 @@ public class DontGetBurntPlayerController : DontGetBurntController
         }
     }
     #endregion
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        if (!gameObject.TryGetComponent(out controller))
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+            controller.center = Vector3.up;
+        }
+    }
 
     public void Jump()
     {

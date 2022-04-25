@@ -50,45 +50,49 @@ public class MiniGame : MonoBehaviour
     public event Action onMinigameEnter;
     public void MinigameEnter()
     {
+        onMinigameEnter?.Invoke();
+
         miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(true);
         DisplayCountdownUI(false);
         DisplayResultsUI(false);
-        onMinigameEnter?.Invoke();
     }
 
     public event Action onMinigamePreStart;
     public void MinigamePreStart()
     {
+        onMinigamePreStart?.Invoke();
+
         miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);
         DisplayCountdownUI(true);
         DisplayResultsUI(false);
-        onMinigamePreStart?.Invoke();
     }
 
     public event Action onMinigameStart;
-    public void MinigameStart()
+    public virtual void MinigameStart()
     {
+        onMinigameStart?.Invoke();
+
         miniGameState = MinigameState.STARTED;
         DisplayMinigameUI(true);
         DisplayTutorialUI(false);
         DisplayCountdownUI(false);
         DisplayResultsUI(false);
-        onMinigameStart?.Invoke();
     }
 
     public event Action onMinigameFinish;
     public void MinigameFinish()
     {
+        onMinigameFinish?.Invoke();
+
         miniGameState = MinigameState.FINISHED;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);
         DisplayCountdownUI(false);
         DisplayResultsUI(true);
-        onMinigameFinish?.Invoke();
     }
 
     public event Action onMinigameExit;

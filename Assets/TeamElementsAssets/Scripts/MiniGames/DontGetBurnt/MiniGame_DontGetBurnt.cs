@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +57,23 @@ public class MiniGame_DontGetBurnt : MiniGame
         }
     }
 
+    protected override void SpawnPlayers()
+    {
+        base.SpawnPlayers();
+        for (int i = 0; i < players.Count; i++)
+        {
+            if(players[i].characterType == PlayerCharacter.CharacterType.AI)
+            {
+                DontGetBurntAIController aiController = players[i].GetComponent<DontGetBurntAIController>();
+                aiController.TeleportTo(aiController.transform.position);
+            }
+            /*
+            players[i].transform.position = spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)].position;
+            players[i].transform.rotation = Quaternion.Euler(spawnZones[Mathf.Clamp(i, 0, spawnZones.Count - 1)].rotation);
+            */
+        }
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -68,6 +86,19 @@ public class MiniGame_DontGetBurnt : MiniGame
         base.OnDisable();
         onMinigameStart -= EnableControllers;
         onMinigameStart -= StartStoves;
+    }
+
+    public override void MinigameStart()
+    {
+        base.MinigameStart();
+        foreach (PlayerCharacter pC in players)
+        {
+            DontGetBurntAIController aiCutreXd = pC.GetComponent<DontGetBurntAIController>();
+            if(aiCutreXd != null)
+            {
+                aiCutreXd.SwapStove();
+            }
+        }
     }
 
     public void EnableControllers()
@@ -99,9 +130,12 @@ public class MiniGame_DontGetBurnt : MiniGame
         }
     }
 
+    public event Action onTriggerStove;
     public void TriggerStove()
     {
-        Stove stove = stoves[Random.Range(0, stoves.Count)];
+        onTriggerStove?.Invoke();
+
+        Stove stove = stoves[UnityEngine.Random.Range(0, stoves.Count)];
         stove.Trigger();
 
         foreach (PlayerCharacter pC in playersLeft)
