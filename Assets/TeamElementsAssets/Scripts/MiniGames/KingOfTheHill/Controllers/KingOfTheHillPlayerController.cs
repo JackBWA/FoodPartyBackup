@@ -5,6 +5,8 @@ using UnityEngine;
 public class KingOfTheHillPlayerController : KingOfTheHillController
 {
 
+    public CharacterController controller;
+
     MinigamePlayerControls inputActions;
 
     #region Awake/Start/Update
@@ -14,7 +16,7 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         inputActions = new MinigamePlayerControls();
         inputActions.KingOfTheHill.Move.performed += ctx =>
         {
-            if (!canMove) return;
+            if (isStunned) return;
             Vector2 _ = ctx.ReadValue<Vector2>();
             moveVector = new Vector3(_.x, moveVector.y, _.y);
         };
@@ -22,7 +24,6 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         inputActions.KingOfTheHill.Jump.performed += _ => Jump();
         inputActions.KingOfTheHill.Punch.performed += _ =>
         {
-            Debug.Log("Punch input performed.");
             if (canPunch) Punch();
         };
         inputActions.KingOfTheHill.MouseLook.performed += ctx =>
@@ -48,12 +49,26 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
     {
         base.Update();
     }
-
-    protected override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
     #endregion
+
+    public override void Jump()
+    {
+        base.Jump();
+        if (controller != null && IsGrounded())
+        {
+            ySpeed = jumpForce;
+        }
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        if (!gameObject.TryGetComponent(out controller))
+        {
+            controller = gameObject.AddComponent<CharacterController>();
+            controller.center = Vector3.up;
+        }
+    }
 
     protected override void OnEnable()
     {
@@ -65,5 +80,10 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
     {
         base.OnDisable();
         inputActions.Disable();
+    }
+
+    protected override IEnumerator coStun(Vector3 force)
+    {
+        return base.coStun(force);
     }
 }

@@ -6,17 +6,18 @@ using UnityEngine;
 public class KingOfTheHillController : MonoBehaviour
 {
 
-    public CharacterController controller;
-
     public float speed = 8f;
     public float jumpForce = 12f;
     public float rotationSpeed = 10f;
 
     protected Vector3 moveVector;
-    private float ySpeed;
+    protected float ySpeed;
 
     public float punchForce = 20f;
     public float punchCooldown = .75f;
+
+    protected Rigidbody rB;
+
     public bool canPunch
     {
         get
@@ -36,6 +37,24 @@ public class KingOfTheHillController : MonoBehaviour
     private Coroutine scoreCo;
 
     public float stunDuration = 2f;
+    public bool isStunned
+    {
+        get
+        {
+            return _isStunned;
+        }
+        set
+        {
+            _isStunned = value;
+            if (isStunned)
+            {
+                moveVector = Vector3.zero;
+            }
+        }
+    }
+    private bool _isStunned;
+
+    /*
     protected bool canMove
     {
         get
@@ -48,12 +67,13 @@ public class KingOfTheHillController : MonoBehaviour
         }
     }
     private bool _canMove;
+    */
 
     #region Awake/Start/Update
     protected virtual void Awake()
     {
         canPunch = true;
-        canMove = true;
+        isStunned = false;
     }
 
     protected virtual void Start()
@@ -65,50 +85,25 @@ public class KingOfTheHillController : MonoBehaviour
     {
 
     }
-
-    protected virtual void FixedUpdate()
-    {
-        if (controller != null)
-        {
-            float magnitude = Mathf.Clamp01(moveVector.magnitude) * speed;
-            moveVector.Normalize();
-
-            ySpeed += Physics.gravity.y * Time.deltaTime;
-
-            if(gameObject.name.Equals("Player2(Clone)"))
-            {
-                Debug.Log($"{ySpeed < 0f} && {IsGrounded()}");
-            }
-            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
-
-            Vector3 velocity = moveVector * magnitude;
-            velocity.y = ySpeed;
-
-            controller.Move(velocity * Time.deltaTime);
-        }
-    }
     #endregion
 
-    public void Jump()
+    public virtual void Jump()
     {
-        if (controller != null && IsGrounded())
-        {
-            ySpeed = jumpForce;
-        }
+
     }
 
-    private bool IsGrounded()
+    protected bool IsGrounded()
     {
         bool isGrounded = Physics.CheckSphere(transform.position, 0.2f, 1 << LayerMask.NameToLayer("MapStatic"));
         return isGrounded;
     }
 
-    public void Initialize()
+    public virtual void Initialize()
     {
-        if (!gameObject.TryGetComponent(out controller))
+        if (!gameObject.TryGetComponent(out rB))
         {
-            controller = gameObject.AddComponent<CharacterController>();
-            controller.center = Vector3.up;
+            rB = gameObject.AddComponent<Rigidbody>();
+            rB.constraints = RigidbodyConstraints.FreezeRotation;
         }
     }
 
@@ -161,6 +156,7 @@ public class KingOfTheHillController : MonoBehaviour
 
     public void Punch()
     {
+        Debug.Log("He punchiao");
         timer = 0f;
 
         // Do stuff.
@@ -169,26 +165,22 @@ public class KingOfTheHillController : MonoBehaviour
             if(overlapped.gameObject != gameObject)
             {
                 KingOfTheHillController _controller = overlapped.gameObject.GetComponent<KingOfTheHillController>();
-                _controller.Stun(stunDuration, (_controller.transform.position - transform.position).normalized * punchForce);
+                _controller.Stun((_controller.transform.position - transform.position).normalized * punchForce);
             }
         }
 
         StartCoroutine(PunchTimer());
     }
 
-    public void Stun(float duration, Vector3 force)
+    public void Stun(Vector3 force)
     {
-        StartCoroutine(coStun(duration));
+        StartCoroutine(coStun(force));
         moveVector = force;
         ySpeed = punchForce / 2f;
     }
 
-    private IEnumerator coStun(float duration)
+    protected virtual IEnumerator coStun(Vector3 force)
     {
-        canMove = false;
-        yield return new WaitForSeconds(duration);
-        canMove = true;
-        moveVector = Vector3.zero;
         yield return null;
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028459, g: 0.225715, b: 0.3069233, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028441, g: 0.22571585, b: 0.30692342, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2907,9 +2907,9 @@ MonoBehaviour:
   minigameName: King of the Hill
   minigameDescription: Use this box to describe the minigame objective.
   hasTimeLimit: 1
-  timeLimit: 5
-  hasScoreLimit: 0
-  scoreLimit: 1000
+  timeLimit: 60
+  hasScoreLimit: 1
+  scoreLimit: 250
   scorePerRound: 1
   spawnZones: []
   players: []

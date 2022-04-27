@@ -47,6 +47,19 @@ public class MiniGame_KingOfTheHill : MiniGame
         }
     }
 
+    protected override void SpawnPlayers()
+    {
+        base.SpawnPlayers();
+        for (int i = 0; i < players.Count; i++)
+        {
+            if (players[i].characterType == PlayerCharacter.CharacterType.AI)
+            {
+                KingOfTheHillAIController aiController = players[i].GetComponent<KingOfTheHillAIController>();
+                aiController.TeleportTo(aiController.transform.position);
+            }
+        }
+    }
+
     protected override void OnEnable()
     {
         base.OnEnable();
