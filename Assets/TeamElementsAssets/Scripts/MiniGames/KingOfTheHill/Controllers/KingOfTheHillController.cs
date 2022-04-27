@@ -6,15 +6,25 @@ using UnityEngine;
 public class KingOfTheHillController : MonoBehaviour
 {
 
-    public float speed = 8f;
-    public float jumpForce = 12f;
+    public float speed = 15f;
+    public float jumpForce = 7.5f;
     public float rotationSpeed = 10f;
 
-    protected Vector3 moveVector;
-    protected float ySpeed;
+    protected Vector3 moveVector
+    {
+        get
+        {
+            return _moveVector * speed;
+        }
+        set
+        {
+            _moveVector = value;
+        }
+    }
+    private Vector3 _moveVector;
 
-    public float punchForce = 20f;
-    public float punchCooldown = .75f;
+    public float punchForce = 35f;
+    public float punchCooldown = 5f;
 
     protected Rigidbody rB;
 
@@ -22,7 +32,7 @@ public class KingOfTheHillController : MonoBehaviour
     {
         get
         {
-            return timer >= punchCooldown;
+            return timer >= punchCooldown && !isStunned;
         }
         set
         {
@@ -36,7 +46,7 @@ public class KingOfTheHillController : MonoBehaviour
 
     private Coroutine scoreCo;
 
-    public float stunDuration = 2f;
+    public float stunDuration = 1f;
     public bool isStunned
     {
         get
@@ -156,16 +166,14 @@ public class KingOfTheHillController : MonoBehaviour
 
     public void Punch()
     {
-        Debug.Log("He punchiao");
+        if (!canPunch) return;
         timer = 0f;
-
         // Do stuff.
-        // transform.position + transform.forward + transform.up; // OVERLAP AREA
-        foreach(Collider overlapped in Physics.OverlapSphere(transform.position + transform.forward + transform.up, 1.5f).Where(obj => obj.gameObject.CompareTag("Player")).ToArray()){
+        foreach(Collider overlapped in Physics.OverlapSphere(transform.position + (transform.forward * 1.5f) + transform.up, 2.25f).Where(obj => obj.gameObject.CompareTag("Player")).ToArray()){
             if(overlapped.gameObject != gameObject)
             {
                 KingOfTheHillController _controller = overlapped.gameObject.GetComponent<KingOfTheHillController>();
-                _controller.Stun((_controller.transform.position - transform.position).normalized * punchForce);
+                _controller.Stun((((_controller.transform.position - transform.position).normalized) + (Vector3.up * .25f)) * punchForce);
             }
         }
 
@@ -174,9 +182,8 @@ public class KingOfTheHillController : MonoBehaviour
 
     public void Stun(Vector3 force)
     {
+        isStunned = true;
         StartCoroutine(coStun(force));
-        moveVector = force;
-        ySpeed = punchForce / 2f;
     }
 
     protected virtual IEnumerator coStun(Vector3 force)

@@ -91,6 +91,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Name
       objectReference: {fileID: 0}
+    - target: {fileID: 3569344964566908812, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: m_Height
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569344964566908812, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: m_Radius
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3569344964566908812, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: m_Center.y
+      value: 1.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
 --- !u!4 &5367321801363377963 stripped

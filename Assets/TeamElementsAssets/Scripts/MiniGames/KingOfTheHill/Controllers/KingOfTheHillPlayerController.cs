@@ -5,7 +5,7 @@ using UnityEngine;
 public class KingOfTheHillPlayerController : KingOfTheHillController
 {
 
-    public CharacterController controller;
+    //public CharacterController controller;
 
     MinigamePlayerControls inputActions;
 
@@ -24,7 +24,7 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         inputActions.KingOfTheHill.Jump.performed += _ => Jump();
         inputActions.KingOfTheHill.Punch.performed += _ =>
         {
-            if (canPunch) Punch();
+            Punch();
         };
         inputActions.KingOfTheHill.MouseLook.performed += ctx =>
         {
@@ -48,26 +48,36 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
     protected override void Update()
     {
         base.Update();
+        transform.position += moveVector * Time.deltaTime;
     }
     #endregion
 
     public override void Jump()
     {
+        //Debug.Log($"Attempt to jump: {rB != null} | {!isStunned} | {IsGrounded()} || {jumpForce}");
         base.Jump();
+        if(rB != null && !isStunned && IsGrounded())
+        {
+            rB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+        }
+        /*
         if (controller != null && IsGrounded())
         {
             ySpeed = jumpForce;
         }
+        */
     }
 
     public override void Initialize()
     {
         base.Initialize();
+        /*
         if (!gameObject.TryGetComponent(out controller))
         {
             controller = gameObject.AddComponent<CharacterController>();
             controller.center = Vector3.up;
         }
+        */
     }
 
     protected override void OnEnable()
@@ -84,6 +94,14 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
 
     protected override IEnumerator coStun(Vector3 force)
     {
-        return base.coStun(force);
+        rB.AddForce(force, ForceMode.VelocityChange);
+        yield return new WaitForSeconds(.25f);
+        while (!IsGrounded())
+        {
+            yield return new WaitForSeconds(.5f);
+        }
+        yield return new WaitForSeconds(stunDuration);
+        isStunned = false;
+        yield return null;
     }
 }
