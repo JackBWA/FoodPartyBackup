@@ -24,6 +24,7 @@ public class CharacterManager : MonoBehaviour
 
     public List<Vector3> spawnPositions = new List<Vector3>();
 
+    /*
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -32,6 +33,7 @@ public class CharacterManager : MonoBehaviour
             Gizmos.DrawWireSphere(transform.position + spawnPositions[i], 1f);
         }
     }
+    */
 
     private void Awake()
     {
