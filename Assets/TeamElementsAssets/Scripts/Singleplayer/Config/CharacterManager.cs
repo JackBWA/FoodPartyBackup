@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Cinemachine;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -19,6 +20,19 @@ public class CharacterManager : MonoBehaviour
 
     private int index = 0;
 
+    private Dictionary<PlayerCharacter, CinemachineVirtualCamera> camRefs = new Dictionary<PlayerCharacter, CinemachineVirtualCamera>();
+
+    public List<Vector3> spawnPositions = new List<Vector3>();
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        for(int i = 0; i < spawnPositions.Count; i++)
+        {
+            Gizmos.DrawWireSphere(transform.position + spawnPositions[i], 1f);
+        }
+    }
+
     private void Awake()
     {
         #region Singleton
@@ -30,37 +44,63 @@ public class CharacterManager : MonoBehaviour
         }
         singleton = this;
         #endregion
-        LoadPlayableCharacters();
+        //LoadPlayableCharacters();
     }
 
-    private void LoadPlayableCharacters()
+    public void LoadPlayableCharacters()
     {
         PlayerCharacter[] characters = Resources.LoadAll<PlayerCharacter>("Characters/");
+        CinemachineVirtualCamera cameraRef = Resources.Load<CinemachineVirtualCamera>("Cameras/FrontalVirtualCamera");
         if (characters.Length > 0)
         {
-            foreach (PlayerCharacter pChar in characters)
+            for(int i = 0; i < characters.Length; i++)
             {
+                PlayerCharacter pChar = characters[i];
                 PlayerCharacter _character = Instantiate(pChar).GetComponent<PlayerCharacter>();
                 _character.GetComponentInChildren<NickBillboard>().gameObject.SetActive(false);
-                _character.gameObject.SetActive(false);
+                //_character.gameObject.SetActive(false);
+                _character.transform.position = transform.position + spawnPositions[i];
                 playableCharacters.Add(_character);
                 cachedCharacters.Add(pChar);
+                CinemachineVirtualCamera frontalCam = Instantiate(cameraRef);
+                frontalCam.Follow = _character.trackPoint;
+                frontalCam.LookAt = _character.trackPoint;
+                camRefs.Add(_character, frontalCam);
             }
-            UpdateCharacter();
         }
     }
 
-    private void UpdateCharacter()
+    public void UnloadCharacterManager()
+    {
+        for(int i = 0; i < playableCharacters.Count; i++)
+        {
+            Destroy(camRefs[playableCharacters[i]].gameObject);
+            Destroy(playableCharacters[i].gameObject);
+        }
+        cachedCharacters.Clear();
+        playableCharacters.Clear();
+        camRefs.Clear();
+        selectedCharacter = null;
+    }
+
+    public void UpdateCharacter()
     {
         for (int i = 0; i < playableCharacters.Count; i++)
         {
             if(i == index)
             {
+                camRefs[playableCharacters[i]].enabled = true;
+                selectedCharacter = cachedCharacters[i];
+                /*
                 playableCharacters[i].gameObject.SetActive(true);
                 selectedCharacter = cachedCharacters[i];
+                */
             } else
             {
+                camRefs[playableCharacters[i]].enabled = false;
+                /*
                 playableCharacters[i].gameObject.SetActive(false);
+                */
             }
         }
     }

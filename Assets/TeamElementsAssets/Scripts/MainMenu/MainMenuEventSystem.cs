@@ -43,7 +43,7 @@ public class MainMenuEventSystem : MonoBehaviour
 
     public void PressSingleplayer()
     {
-        StartSingleplayerGame();
+        ShowCharacterSelection();
     }
 
     public void PressMultiplayer()
@@ -69,12 +69,19 @@ public class MainMenuEventSystem : MonoBehaviour
     #region Private Methods
     private void ShowMainMenu()
     {
-        optionsMenu.enabled = false;
+        DisplayContent(0);
     }   
 
-    private void StartSingleplayerGame()
+    private void ShowCharacterSelection()
     {
-        SceneManager.LoadScene("SingleplayerConfig");
+        //SceneManager.LoadScene("SingleplayerConfig");
+        CharacterManager charMan = CharacterManager.singleton;
+        if(charMan != null && charMan.playableCharacters.Count <= 0)
+        {
+            charMan.LoadPlayableCharacters();
+        }
+        charMan.UpdateCharacter();
+        DisplayContent(2);
     }
 
     private void ShowMultiplayerMenu()
@@ -84,7 +91,7 @@ public class MainMenuEventSystem : MonoBehaviour
 
     private void ShowOptionsMenu()
     {
-        optionsMenu.enabled = true;
+        DisplayContent(1);
     }
     #endregion
 

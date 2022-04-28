@@ -23,6 +23,8 @@ public class PlayerCharacter : MonoBehaviour
     }
     public CharacterType characterType;
 
+    public Transform trackPoint;
+
     // Probablemente no se use de forma compleja.
     #region AI Variables
     public enum AIDifficulty
