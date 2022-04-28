@@ -61,8 +61,8 @@ public class ItemUIPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         ItemsCanvas.singleton.itemData.itemName = item.name;
         ItemsCanvas.singleton.itemData.itemDescription = item.description;
 
-        Debug.Log($"Is null? {ItemsCanvas.singleton.itemData == null}");
-        Debug.Log(ItemsCanvas.singleton.itemData);
+        //Debug.Log($"Is null? {ItemsCanvas.singleton.itemData == null}");
+        //Debug.Log(ItemsCanvas.singleton.itemData);
 
         ItemsCanvas.singleton.itemData.enabled = true;
         ItemsCanvas.singleton.itemData.gameObject.SetActive(true);

@@ -197,7 +197,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 10f;
+        //Time.timeScale = 10f;
         GameStart();
     }
 
@@ -419,7 +419,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
-        recipeStates[boardPlayers[1]].Complete();
+        //recipeStates[boardPlayers[1]].Complete();
         RoundStart();
         onGameStart?.Invoke();
     }
