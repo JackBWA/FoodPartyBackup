@@ -42,6 +42,9 @@ public class CameraBoardManager : MonoBehaviour
         {
             topCamera.transform.parent = entity.gameObject.transform;
             entity.topCameraController = topCamera.gameObject.GetComponent<TopViewCameraController>();
+            Vector3 newPosition = entity.topCameraController.gameObject.transform.position;
+            newPosition.y = 75f;
+            entity.topCameraController.gameObject.transform.position = newPosition;
         } else
         {
             Destroy(topCamera);

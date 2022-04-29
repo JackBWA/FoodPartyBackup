@@ -20,6 +20,11 @@ public class BoardItem_Base : MonoBehaviour
         inUse = false;
     }
 
+    public virtual void Use()
+    {
+        inUse = true;
+    }
+
     public void Cancel()
     {
         if (inUse) return;

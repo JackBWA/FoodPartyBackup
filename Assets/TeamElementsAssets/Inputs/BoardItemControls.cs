@@ -25,6 +25,14 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Use"",
+                    ""type"": ""Button"",
+                    ""id"": ""50b46a01-e300-4fe2-a71b-0b6343003e34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -36,6 +44,17 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Cancel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""83f1db02-e636-4d5e-80dd-078fe49ef126"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Use"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -74,6 +93,7 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
         // General
         m_General = asset.FindActionMap("General", throwIfNotFound: true);
         m_General_Cancel = m_General.FindAction("Cancel", throwIfNotFound: true);
+        m_General_Use = m_General.FindAction("Use", throwIfNotFound: true);
         // RottenTomato
         m_RottenTomato = asset.FindActionMap("RottenTomato", throwIfNotFound: true);
         m_RottenTomato_Charge = m_RottenTomato.FindAction("Charge", throwIfNotFound: true);
@@ -127,11 +147,13 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_General;
     private IGeneralActions m_GeneralActionsCallbackInterface;
     private readonly InputAction m_General_Cancel;
+    private readonly InputAction m_General_Use;
     public struct GeneralActions
     {
         private @BoardItemControls m_Wrapper;
         public GeneralActions(@BoardItemControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Cancel => m_Wrapper.m_General_Cancel;
+        public InputAction @Use => m_Wrapper.m_General_Use;
         public InputActionMap Get() { return m_Wrapper.m_General; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -144,6 +166,9 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
                 @Cancel.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
                 @Cancel.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
                 @Cancel.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnCancel;
+                @Use.started -= m_Wrapper.m_GeneralActionsCallbackInterface.OnUse;
+                @Use.performed -= m_Wrapper.m_GeneralActionsCallbackInterface.OnUse;
+                @Use.canceled -= m_Wrapper.m_GeneralActionsCallbackInterface.OnUse;
             }
             m_Wrapper.m_GeneralActionsCallbackInterface = instance;
             if (instance != null)
@@ -151,6 +176,9 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
                 @Cancel.started += instance.OnCancel;
                 @Cancel.performed += instance.OnCancel;
                 @Cancel.canceled += instance.OnCancel;
+                @Use.started += instance.OnUse;
+                @Use.performed += instance.OnUse;
+                @Use.canceled += instance.OnUse;
             }
         }
     }
@@ -191,6 +219,7 @@ public class @BoardItemControls : IInputActionCollection, IDisposable
     public interface IGeneralActions
     {
         void OnCancel(InputAction.CallbackContext context);
+        void OnUse(InputAction.CallbackContext context);
     }
     public interface IRottenTomatoActions
     {
