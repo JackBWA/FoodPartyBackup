@@ -15745,6 +15745,7 @@ MonoBehaviour:
   playerInitialCoins: 5000
   gameBoardCanvasPrefab: {fileID: 7657296680851125543, guid: ad14baa7b53bdc14a83abb017199b109, type: 3}
   gameBoardCanvasInstance: {fileID: 0}
+  rankingCanvas: {fileID: 0}
   minigameScenes:
   - FoodCatcher
   systemsParent: {fileID: 1769978176}
@@ -34128,8 +34129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   canForceInteract: 0
   next:
   - {fileID: 2075392981228073476}
@@ -34863,8 +34864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   canForceInteract: 0
   next:
   - {fileID: 8862333707188254777}
@@ -36035,8 +36036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
+  type: 5
+  random: 0
   canForceInteract: 0
   next:
   - {fileID: 670418938550132862}

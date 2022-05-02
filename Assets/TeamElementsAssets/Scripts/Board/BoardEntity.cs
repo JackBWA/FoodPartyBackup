@@ -378,48 +378,54 @@ public class BoardEntity : MonoBehaviour
         else
         {
             //TurnEnd();
+            Debug.Log("awa");
             currentCoaster.playerStop(this);
         }
     }
 
-    public IEnumerator Move(Coaster target, bool debugBruh = false, float checkRate = 0.5f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
+    public IEnumerator Move(Coaster target, float checkRate = 0.5f, float distanceRadius = 0.2f) // Or Vector3 targetPosition
     {
-        //if (debugBruh) Debug.Log("Check rate??? " + checkRate);
-        //if (debugBruh) Debug.Log("Distance radius??? " + distanceRadius);
-        //if (debugBruh) Debug.Log(currentCoaster);
-        //if (debugBruh) Debug.Log(target);
-        //if(debugBruh) Debug.Log("1");
+        //Debug.Log("Check rate??? " + checkRate);
+        //Debug.Log("Distance radius??? " + distanceRadius);
+        //Debug.Log(currentCoaster);
+        //Debug.Log(target);
+        //Debug.Log("1");
         currentCoaster.playerLeave(this);
-        //if (debugBruh) Debug.Log("2");
+        //Debug.Log("2");
         if (target != null)
         {
-            //if (debugBruh) Debug.Log("3");
+            //Debug.Log("3");
             List<Vector3> waitZones = target.GetAvailableWaitZones();
             if(waitZones != null && waitZones.Count > 0)
             {
-                //if (debugBruh) Debug.Log("4");
+                //Debug.Log("4");
                 //Debug.Log(waitZones[0]);
                 agent.SetDestination(waitZones[0]);
             } else
             {
-                //if (debugBruh) Debug.Log("5");
+                //Debug.Log("5");
                 // If this triggers there's an error. (99% sure).
                 TurnEnd();
             }
 
-            //if (debugBruh) Debug.Log("6");
+            //Debug.Log("6");
             while (Vector3.Distance(transform.position, waitZones[0]) > distanceRadius)
             {
-                //if (debugBruh) Debug.Log("7");
-                //if (debugBruh) Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
+                //Debug.Log("7");
+                //Debug.Log(Vector3.Distance(transform.position, waitZones[0]));
                 yield return new WaitForSeconds(checkRate);
             }
-            //if (debugBruh) Debug.Log("8");
+            //Debug.Log("8");
 
             currentCoaster = target;
             currentCoaster.playerEnter(this, waitZones[0]);
-            //if (debugBruh) Debug.Log("9");
+            //Debug.Log("9");
         }
+    }
+
+    public Dice GetDice()
+    {
+        return dice;
     }
 
     protected void SpawnDice()

@@ -165,7 +165,8 @@ public class Coaster : MonoBehaviour
         else
         {
             if (entity.GetMoves() > 0) entity.ContinueMoving();
-            else entity.TurnEnd();
+            else Interact(entity);
+            //else entity.TurnEnd();
         }
     }
 
