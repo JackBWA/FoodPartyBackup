@@ -34129,8 +34129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
-  random: 0
+  type: 0
+  random: 1
   canForceInteract: 0
   next:
   - {fileID: 2075392981228073476}
@@ -34864,8 +34864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
-  random: 0
+  type: 0
+  random: 1
   canForceInteract: 0
   next:
   - {fileID: 8862333707188254777}
@@ -36036,8 +36036,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
-  random: 0
+  type: 0
+  random: 1
   canForceInteract: 0
   next:
   - {fileID: 670418938550132862}
