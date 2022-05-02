@@ -6,6 +6,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Cooking Party/Recipe/Empty Recipe")]
 public class Recipe : ScriptableObject
 {
+    public BoardEntity owner;
+
     public string title;
 
     public List<FlavorAmount> flavors = new List<FlavorAmount>();
@@ -23,6 +25,45 @@ public class Recipe : ScriptableObject
     public Dictionary<Flavor, int> currentFlavors;
     public Dictionary<Ingredient, int> currentIngredients;
     */
+
+    private const float flavorProgressFactor = 60f;
+    private const float ingredientProgressFactor = 40f;
+    //private const float progressFactor = flavorProgressFactor + ingredientProgressFactor;
+
+    public float progress
+    {
+        get
+        {
+            float flavorMaxResult = 0f;
+            float ingredientMaxResult = 0f;
+            float result;
+
+            float flavorResult = 0f;
+            float ingredientResult = 0f;
+            foreach(KeyValuePair<RecipeElement, int> kV in currentElements)
+            {
+                switch (kV.Key)
+                {
+                    case Flavor flavor:
+                        flavorMaxResult += requiredElements[flavor];
+                        flavorResult += kV.Value;
+                        break;
+
+                    case Ingredient ingredient:
+                        ingredientMaxResult += requiredElements[ingredient];
+                        ingredientResult += kV.Value;
+                        break;
+                }
+            }
+
+            flavorResult = flavorResult * flavorProgressFactor / flavorMaxResult;
+            ingredientResult = ingredientResult * ingredientProgressFactor / ingredientMaxResult;
+
+            result = flavorResult + ingredientResult;
+
+            return result;
+        }
+    }
 
     public bool isCompleted
     {
@@ -57,10 +98,10 @@ public class Recipe : ScriptableObject
         }
     }
 
-    public event Action onRecipeUpdate;
-    public void RecipeUpdate()
+    public event Action<BoardEntity> onRecipeUpdate;
+    public void RecipeUpdate(BoardEntity entity)
     {
-        onRecipeUpdate?.Invoke();
+        onRecipeUpdate?.Invoke(entity);
     }
 
     public void CopyFrom(Recipe recipe)
@@ -90,8 +131,6 @@ public class Recipe : ScriptableObject
         {
             currentElements.Add(recipeElement.Key, recipeElement.Value);
         }
-
-        RecipeUpdate();
 
         /*
         requiredFlavors = new Dictionary<Flavor, int>();
@@ -138,7 +177,7 @@ public class Recipe : ScriptableObject
             currentElements[recipeElement.Key] = requiredElements[recipeElement.Key];
         }
 
-        RecipeUpdate();
+        RecipeUpdate(owner);
 
         /*
         foreach(KeyValuePair<Flavor, int> kV in requiredFlavors)
@@ -226,7 +265,7 @@ public class Recipe : ScriptableObject
         }
         // END NEW
 
-        string result = $"Recipe for {title}!\n" +
+        string result = $"Recipe for {title}! ({owner.gameObject.name} | Progress: {progress})\n" +
             $"Flavors:\n";
         foreach (KeyValuePair<Flavor, int> kv in auxFlavors)
         {
@@ -246,7 +285,7 @@ public class Recipe : ScriptableObject
         bool added = !requiredElements.ContainsKey(element);
         if (added) requiredElements.Add(element, amount);
 
-        RecipeUpdate();
+        RecipeUpdate(owner);
         /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (!containsFlavor) requiredFlavors.Add(flavor, amount);
@@ -259,7 +298,7 @@ public class Recipe : ScriptableObject
         bool removed = requiredElements.ContainsKey(element);
         if (removed) requiredElements.Remove(element);
 
-        RecipeUpdate();
+        RecipeUpdate(owner);
         /*
         bool containsFlavor = requiredFlavors.ContainsKey(flavor);
         if (containsFlavor) requiredFlavors.Remove(flavor);
@@ -272,7 +311,7 @@ public class Recipe : ScriptableObject
         bool wasUpdated = requiredElements.ContainsKey(element);
         if (wasUpdated) requiredElements[element] = newAmount;
 
-        RecipeUpdate();
+        RecipeUpdate(owner);
         /*
         bool wasUpdated = requiredFlavors.ContainsKey(flavor);
         if (wasUpdated) requiredFlavors[flavor] = newAmount;
@@ -287,7 +326,7 @@ public class Recipe : ScriptableObject
             currentElements[element] = newAmount;
         }
 
-        RecipeUpdate();
+        RecipeUpdate(owner);
         /*
         if (currentFlavors.ContainsKey(flavor))
         {

@@ -25,6 +25,13 @@ public class BoardItem_Base : MonoBehaviour
         inUse = true;
     }
 
+    public virtual void EndUse()
+    {
+        inUse = false;
+        owner.inventory.EndUsingItem(this);
+        Destroy(gameObject);
+    }
+
     public void Cancel()
     {
         if (inUse) return;

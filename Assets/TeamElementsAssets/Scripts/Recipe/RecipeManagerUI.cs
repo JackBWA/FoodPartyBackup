@@ -33,11 +33,19 @@ public class RecipeManagerUI : MonoBehaviour
     private void OnEnable()
     {
         GameBoardManager.singleton.onTurnStart += UpdateDisplay;
+        foreach(KeyValuePair<BoardEntity, Recipe> kV in GameBoardManager.singleton.recipeStates)
+        {
+            kV.Value.onRecipeUpdate += UpdateDisplay;
+        }
     }
 
     private void OnDisable()
     {
         GameBoardManager.singleton.onTurnStart -= UpdateDisplay;
+        foreach (KeyValuePair<BoardEntity, Recipe> kV in GameBoardManager.singleton.recipeStates)
+        {
+            kV.Value.onRecipeUpdate -= UpdateDisplay;
+        }
     }
 
     public void ToggleDisplay(bool enabled)
@@ -53,7 +61,7 @@ public class RecipeManagerUI : MonoBehaviour
             Display(recipe);
         }
 
-        GameBoardManager.singleton.recipeStates[entity].RecipeUpdate();
+        //GameBoardManager.singleton.recipeStates[entity].RecipeUpdate(); // Ya no ????
     }
 
     public void Display(Recipe recipe)

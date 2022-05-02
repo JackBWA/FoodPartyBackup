@@ -153,7 +153,7 @@ public class Shop : MonoBehaviour
         selectedItemPanel.UpdatePanel();
 
         // Update recipe display
-        RecipeManagerUI.singleton.UpdateDisplay(shopInteractor);
+        // RecipeManagerUI.singleton.UpdateDisplay(shopInteractor); // Ya no ?????
     }
 
     public void SellItem()
@@ -176,6 +176,6 @@ public class Shop : MonoBehaviour
         selectedItemPanel.UpdatePanel();
 
         // Update recipe display
-        RecipeManagerUI.singleton.UpdateDisplay(shopInteractor);
+        // RecipeManagerUI.singleton.UpdateDisplay(shopInteractor); // Ya no ???
     }
 }

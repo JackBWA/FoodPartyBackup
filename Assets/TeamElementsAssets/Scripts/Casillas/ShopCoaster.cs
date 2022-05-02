@@ -86,7 +86,7 @@ public class ShopCoaster : Coaster
             recipe.SetCurrentElement(sEui.recipeElement, recipe.currentElements[sEui.recipeElement] + resultAmount);
             shop.shopInteractor.coins -= resultAmount * sEui.recipeElement.buyCost;
 
-            RecipeManagerUI.singleton.UpdateDisplay(shop.shopInteractor);
+            // RecipeManagerUI.singleton.UpdateDisplay(shop.shopInteractor); // Ya no ???
 
             //Debug.Log("=====Checking next required=====");
             yield return new WaitForSeconds(.25f);

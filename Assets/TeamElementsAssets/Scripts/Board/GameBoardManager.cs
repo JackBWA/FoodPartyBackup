@@ -273,6 +273,7 @@ public class GameBoardManager : MonoBehaviour
         {
             Recipe recipeCopy = ScriptableObject.CreateInstance<Recipe>();
             recipeCopy.CopyFrom(recipe);
+            recipeCopy.owner = player;
 
             /*
             // TEST
@@ -419,7 +420,6 @@ public class GameBoardManager : MonoBehaviour
     public event Action onGameStart;
     public void GameStart()
     {
-        //recipeStates[boardPlayers[1]].Complete();
         RoundStart();
         onGameStart?.Invoke();
     }

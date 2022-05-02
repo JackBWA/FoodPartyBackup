@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class C_TomatoRain : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public Animator animController;
+
+    public void Drop()
     {
-        
+        animController.SetBool("Drop", true);
     }
 }

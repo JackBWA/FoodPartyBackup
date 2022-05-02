@@ -11,7 +11,7 @@ public class TomatoRain : BoardItem_Base
 
     public int maxDistance = 5;
 
-    public float speed = 2f;
+    public float speed = .15f;
 
     public List<C_TomatoRain> instances = new List<C_TomatoRain>();
 
@@ -50,8 +50,20 @@ public class TomatoRain : BoardItem_Base
         {
             StartCoroutine(SpawnAtCoaster(c, maxDistance));
         }
-        yield return new WaitForSeconds(speed * maxDistance);
-        Debug.Log("Done");
+        yield return new WaitForSeconds(speed * maxDistance + 1f);
+
+        foreach(C_TomatoRain tomato in instances)
+        {
+            tomato.Drop();
+        }
+
+        yield return new WaitForSeconds(4f);
+
+        foreach(C_TomatoRain tomato in instances)
+        {
+            Destroy(tomato.gameObject);
+        }
+        EndUse();
     }
 
     private IEnumerator SpawnAtCoaster(Coaster coaster, int left)
@@ -59,10 +71,8 @@ public class TomatoRain : BoardItem_Base
         C_TomatoRain instance = Instantiate(prefab);
         instance.transform.position = coaster.transform.position + Vector3.up * 3f;
         instances.Add(instance);
-        Debug.Log("Waiting");
         yield return new WaitForSeconds(speed);
-        Debug.Log("Weited " + left);
-        if (left > 0)
+        if (left > 1)
         {
             foreach (Coaster c in coaster.next)
             {
