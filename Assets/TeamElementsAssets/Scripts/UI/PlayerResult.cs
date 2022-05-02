@@ -39,7 +39,7 @@ public class PlayerResult : MonoBehaviour
             _playerName.text = value;
         }
     }
-    public int resultScore
+    public float resultScore
     {
         get
         {

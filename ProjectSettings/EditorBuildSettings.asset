@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/TeamElementsAssets/Scenes/Mapa.unity
     guid: 0f74610bd486c6d4cb1b416db83d9552
   - enabled: 1
+    path: Assets/TeamElementsAssets/Scenes/MapaRanking.unity
+    guid: eb70b4b79cac27e47b3e8c7b8f6a5c66
+  - enabled: 1
     path: Assets/TeamElementsAssets/Scenes/Minigames/DontGetBurnt.unity
     guid: cfb46cf02b9bf944b956a1b95caacc7a
   - enabled: 1

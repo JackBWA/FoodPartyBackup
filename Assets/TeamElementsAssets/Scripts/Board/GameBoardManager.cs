@@ -50,6 +50,8 @@ public class GameBoardManager : MonoBehaviour
     [HideInInspector]
     public Canvas gameBoardCanvasInstance;
 
+    public GameBoardRankingResults rankingCanvas;
+
     public List<string> minigameScenes = new List<string>();
 
     #region Parents
@@ -430,8 +432,24 @@ public class GameBoardManager : MonoBehaviour
         // Do stuff when game ends.
         Debug.Log("Game ended!");
         onGameEnd?.Invoke();
-    }
 
+        if (persistentBoardObjects == null)
+        {
+            persistentBoardObjects = new GameObject("Persistent On Board");
+            DontDestroyOnLoad(persistentBoardObjects);
+        }
+
+        foreach (BoardEntity player in boardPlayers)
+        {
+            foreach(Component c in player.gameObject.GetComponents(typeof(Component)))
+            {
+                /* FIX WIP */if(c.GetType() != typeof(PlayerCharacter) && c.GetType() != typeof(Transform)) Destroy(c);
+            }
+            player.gameObject.transform.SetParent(persistentBoardObjects.transform);
+        }
+
+        SceneManager.LoadSceneAsync("MapaRanking");
+    }
     
     public event Action<BoardEntity> onTurnStart;
     public void TurnStart(BoardEntity entity)
