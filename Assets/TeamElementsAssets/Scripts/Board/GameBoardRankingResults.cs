@@ -42,10 +42,16 @@ public class GameBoardRankingResults : MonoBehaviour
     private List<PositionRotation> podiumPositions = new List<PositionRotation>();
 
     [SerializeField]
+    private bool debug;
+
+    [SerializeField]
     private bool localTransform;
+
+    public List<BoardEntity> players = new List<BoardEntity>();
 
     private void OnDrawGizmos()
     {
+        if (!debug) return;
         Gizmos.color = Color.magenta;
         foreach(PositionRotation posRot in podiumPositions)
         {
@@ -55,7 +61,7 @@ public class GameBoardRankingResults : MonoBehaviour
                 auxPosRot.position += transform.position;
                 auxPosRot.rotation += transform.rotation.eulerAngles;
             }
-            Gizmos.DrawWireCube(auxPosRot.position, new Vector3(1f, 3f, 1f));
+            Gizmos.DrawWireCube(auxPosRot.position, new Vector3(1f, 1f, 1f));
         }
     }
 
@@ -67,20 +73,30 @@ public class GameBoardRankingResults : MonoBehaviour
 
     private void LoadResults()
     {
-        int i = 1;
+        players = GameBoardManager.singleton.boardPlayers;
+        int i = 0;
         foreach(KeyValuePair<BoardEntity, Recipe> kV in GameBoardManager.singleton.recipeStates.OrderBy(r => r.Value.progress).Reverse())
         {
             PlayerResult pRInstance = Instantiate(playerResultUIPrefab);
-            pRInstance.position = i;
+            pRInstance.position = i + 1;
             pRInstance.playerName = kV.Key.GetComponent<PlayerCharacter>().name;
             pRInstance.resultScore = kV.Value.progress;
-            i++;
             pRInstance.transform.SetParent(scoresListParent);
+
+            players[players.IndexOf(kV.Key)].gameObject.transform.position = podiumPositions[i].position;
+
+            players[players.IndexOf(kV.Key)].gameObject.transform.rotation = Quaternion.Euler(podiumPositions[i].rotation);
+            i++;
         }
     }
 
     public void ExitGame()
     {
+        Destroy(GameBoardManager.singleton.persistentBoardObjects);
+        Destroy(CameraBoardManager.singleton.gameObject);
+        Destroy(GameBoardManager.singleton.gameObject);
+        CharacterManager.aiCharacters.Clear();
+        //CharacterManager.selectedCharacter = null; // I don't know xd.
         SceneManager.LoadSceneAsync("MainMenu");
     }
 }

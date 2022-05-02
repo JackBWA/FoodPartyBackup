@@ -67,7 +67,7 @@ public class PauseManager : MonoBehaviour
 
     private void OnDisable()
     {
-        inputActions.Disable();
+        if(inputActions != null) inputActions.Disable();
         onPauseStateChanged -= ToggleVisibility;
     }
 

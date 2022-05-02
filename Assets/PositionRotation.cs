@@ -21,4 +21,9 @@ public class PositionRotation
         this.position = position;
         this.rotation = rotation.eulerAngles;
     }
+
+    public override string ToString()
+    {
+        return $"Position: {position}\n Rotation: {rotation}";
+    }
 }

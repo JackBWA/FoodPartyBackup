@@ -288,6 +288,8 @@ public class GameBoardManager : MonoBehaviour
             recipeStates.Add(player, recipeCopy);
         }
 
+        recipeStates[boardPlayers[0]].Complete(); // XDD
+
         /* // Test of recipe completion. (Works)
         Debug.Log(recipe.isCompleted);
         Debug.Log(recipe);
@@ -443,7 +445,11 @@ public class GameBoardManager : MonoBehaviour
         {
             foreach(Component c in player.gameObject.GetComponents(typeof(Component)))
             {
-                /* FIX WIP */if(c.GetType() != typeof(PlayerCharacter) && c.GetType() != typeof(Transform)) Destroy(c);
+                if (c.GetType() != typeof(Transform)
+                    && c.GetType() != typeof(PlayerCharacter)
+                    && c.GetType() != typeof(BoardEntity)
+                    && c.GetType() != typeof(BoardPlayer)
+                    && c.GetType() != typeof(BoardAI)) Destroy(c);
             }
             player.gameObject.transform.SetParent(persistentBoardObjects.transform);
         }

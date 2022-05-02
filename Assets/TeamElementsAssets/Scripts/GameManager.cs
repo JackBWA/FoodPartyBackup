@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager singleton;
     public static int maxPlayers = 4;
 
+    /*
     public enum GameState
     {
         DEFAULT,
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
     }
 
     public GameState gameState;
+    */
 
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class GameManager : MonoBehaviour
         }
         singleton = this;
         #endregion
-        gameState = GameState.MAIN_MENU;
+        //gameState = GameState.MAIN_MENU;
         DontDestroyOnLoad(this);
     }
 
