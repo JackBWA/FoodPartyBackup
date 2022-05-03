@@ -13,6 +13,8 @@ public class TomatoRain : BoardItem_Base
 
     public float speed = .15f;
 
+    public float damage = 8f;
+
     public List<C_TomatoRain> instances = new List<C_TomatoRain>();
 
     protected override void Awake()
@@ -54,6 +56,8 @@ public class TomatoRain : BoardItem_Base
 
         foreach(C_TomatoRain tomato in instances)
         {
+            tomato.owner = owner;
+            tomato.damage = damage;
             tomato.Drop();
         }
 
@@ -69,7 +73,7 @@ public class TomatoRain : BoardItem_Base
     private IEnumerator SpawnAtCoaster(Coaster coaster, int left)
     {
         C_TomatoRain instance = Instantiate(prefab);
-        instance.transform.position = coaster.transform.position + Vector3.up * 3f;
+        instance.transform.position = coaster.transform.position + Vector3.up * 5.5f;
         instances.Add(instance);
         yield return new WaitForSeconds(speed);
         if (left > 1)

@@ -5,10 +5,29 @@ using UnityEngine;
 public class C_TomatoRain : MonoBehaviour
 {
 
+    public BoardEntity owner;
+
+    public float damage;
+
     public Animator animController;
+
+    public Rigidbody rB;
+
+    private void Awake()
+    {
+        TryGetComponent(out rB);
+    }
 
     public void Drop()
     {
-        animController.SetBool("Drop", true);
+        rB.useGravity = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player") && other.GetComponent<BoardEntity>() != owner)
+        {
+            other.GetComponent<BoardEntity>().health -= damage;
+        }
     }
 }

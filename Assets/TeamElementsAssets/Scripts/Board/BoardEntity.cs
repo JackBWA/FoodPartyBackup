@@ -130,6 +130,17 @@ public class BoardEntity : MonoBehaviour
     {
         //Debug.Log($"Health changed on {name}.");
         onHealthChange?.Invoke(health);
+        if (health <= 0f)
+        {
+            Die(this);
+        }
+    }
+
+    public event Action<BoardEntity> onDie;
+    public void Die(BoardEntity entity)
+    {
+        Debug.Log("He muerto coño");
+        onDie?.Invoke(entity);
     }
 
     public event Action<int> onCoinsChange;

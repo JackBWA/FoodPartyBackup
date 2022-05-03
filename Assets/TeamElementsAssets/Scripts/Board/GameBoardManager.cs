@@ -205,6 +205,22 @@ public class GameBoardManager : MonoBehaviour
 
     #endregion
 
+    private void OnEnable()
+    {
+        foreach(BoardEntity bE in boardPlayers)
+        {
+            bE.onDie += RespawnOnInitialCoaster;
+        }
+    }
+
+    private void OnDisable()
+    {
+        foreach (BoardEntity bE in boardPlayers)
+        {
+            bE.onDie -= RespawnOnInitialCoaster;
+        }
+    }
+
     private void InitializeGame()
     {
         SetParents();
@@ -372,6 +388,21 @@ public class GameBoardManager : MonoBehaviour
             aiP.Initialize();
             players.Add(aiPlayer);*/
         }
+    }
+
+    public void RespawnOnInitialCoaster(BoardEntity entity)
+    {
+        entity.currentCoaster.playerLeave(entity);
+        List<Vector3> availableWaitZones = Coaster.initialCoaster.GetAvailableWaitZones();
+        if (availableWaitZones.Count <= 0)
+        {
+            entity.TeleportTo(Coaster.initialCoaster.transform.position);
+        } else
+        {
+            entity.TeleportTo(Coaster.initialCoaster.GetAvailableWaitZones()[0]);
+        }
+        entity.currentCoaster = Coaster.initialCoaster;
+        entity.health = entity.baseHealth;
     }
 
     private void InitializePlayers()
