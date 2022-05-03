@@ -11,21 +11,27 @@ public class C_TomatoRain : MonoBehaviour
 
     public Animator animController;
 
+    public SphereCollider sC;
+
     public Rigidbody rB;
 
     private void Awake()
     {
         TryGetComponent(out rB);
+        TryGetComponent(out sC);
+        sC.enabled = false;
     }
 
     public void Drop()
     {
-        rB.useGravity = true;
+        if (rB != null) rB.useGravity = true;
+        if (sC != null) sC.enabled = true;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player") && other.GetComponent<BoardEntity>() != owner)
+        BoardEntity entity;
+        if(other.TryGetComponent(out entity) /*&& entity.CompareTag("Player") */&& entity != owner)
         {
             other.GetComponent<BoardEntity>().health -= damage;
         }

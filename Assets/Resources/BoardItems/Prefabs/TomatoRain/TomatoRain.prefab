@@ -49,6 +49,8 @@ MonoBehaviour:
   owner: {fileID: 0}
   damage: 0
   animController: {fileID: 6020393574783464352}
+  sC: {fileID: 0}
+  rB: {fileID: 0}
 --- !u!135 &2526902147832960862
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -58,7 +60,7 @@ SphereCollider:
   m_GameObject: {fileID: 1846702749601509141}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
