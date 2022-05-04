@@ -58,6 +58,7 @@ public class KingOfTheHillAIController : KingOfTheHillController
                 reachedDestination = true;
             }
         }
+        if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
     }
     #endregion
 

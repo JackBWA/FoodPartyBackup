@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ef8f0abc9a25f0549a5acb9007f3c1bb
+guid: 6a813807884e46a45a03055f17d542a1
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -128,7 +128,7 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Bone001
+    rootMotionBoneName: Hueso Padre
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1

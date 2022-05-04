@@ -25,6 +25,13 @@ public class PlayerCharacter : MonoBehaviour
 
     public Transform trackPoint;
 
+    public CharacterAnimationManager animManager;
+
+    private void Awake()
+    {
+        if (animManager == null) animManager = GetComponentInChildren<CharacterAnimationManager>();
+    }
+
     // Probablemente no se use de forma compleja.
     #region AI Variables
     public enum AIDifficulty

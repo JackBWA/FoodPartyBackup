@@ -36,6 +36,7 @@ public class FoodCatcherAIController : FoodCatcherController
         {
             MoveToRandomNearbyCollectable();
         }
+        if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", agent.velocity.magnitude / agent.speed);
     }
 
     protected override void FixedUpdate()

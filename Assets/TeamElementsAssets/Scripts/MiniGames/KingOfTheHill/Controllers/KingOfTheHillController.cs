@@ -6,6 +6,8 @@ using UnityEngine;
 public class KingOfTheHillController : MonoBehaviour
 {
 
+    public PlayerCharacter playerCharacter;
+
     public float speed = 15f;
     public float jumpForce = 7.5f;
     public float rotationSpeed = 10f;
@@ -82,6 +84,7 @@ public class KingOfTheHillController : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
+        TryGetComponent(out playerCharacter);
         canPunch = true;
         isStunned = false;
     }

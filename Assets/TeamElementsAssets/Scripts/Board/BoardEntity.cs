@@ -9,6 +9,8 @@ using System.Linq;
 public class BoardEntity : MonoBehaviour
 {
 
+    public PlayerCharacter playerCharacter;
+
     public BoardEntityInventory inventory;
 
     public bool hasTurn
@@ -153,6 +155,7 @@ public class BoardEntity : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
+        TryGetComponent(out playerCharacter);
         hasTurn = false; // Posibilidad que no se tenga que indicar aqui.
     }
 
@@ -163,7 +166,7 @@ public class BoardEntity : MonoBehaviour
 
     private void Update()
     {
-        
+        if (playerCharacter.animManager != null) playerCharacter.animManager.speed = agent.velocity.magnitude / agent.speed;
     }
     #endregion
 

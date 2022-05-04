@@ -46,12 +46,18 @@ public class FoodCatcherPlayerController : FoodCatcherController
 
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
-            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
+            if (ySpeed < 0f && IsGrounded())
+            {
+                ySpeed = Vector3.kEpsilon;
+                playerCharacter.animManager.ator.SetBool("InAir", false);
+            }
 
             Vector3 velocity = moveVector * magnitude;
             velocity.y = ySpeed;
 
             //Debug.Log(velocity);
+
+            if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", moveVector.magnitude);
 
             controller.Move(velocity * Time.deltaTime);
 
@@ -78,6 +84,7 @@ public class FoodCatcherPlayerController : FoodCatcherController
         if (controller != null && IsGrounded())
         {
             ySpeed = jumpForce;
+            if (playerCharacter != null) playerCharacter.animManager.ator.SetBool("InAir", true);
         }
     }
 

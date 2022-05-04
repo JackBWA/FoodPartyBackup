@@ -5,6 +5,8 @@ using UnityEngine;
 public class FoodCatcherController : MonoBehaviour
 {
 
+    public PlayerCharacter playerCharacter;
+
     public float speed = 8f;
     public float jumpForce = 12f;
     public float rotationSpeed = 10f;
@@ -15,7 +17,7 @@ public class FoodCatcherController : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-
+        TryGetComponent(out playerCharacter);
     }
 
     protected virtual void Start()

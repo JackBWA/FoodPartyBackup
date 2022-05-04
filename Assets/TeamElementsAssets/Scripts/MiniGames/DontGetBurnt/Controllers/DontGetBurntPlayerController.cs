@@ -46,10 +46,16 @@ public class DontGetBurntPlayerController : DontGetBurntController
 
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
-            if (ySpeed < 0f && IsGrounded()) ySpeed = Vector3.kEpsilon;
+            if (ySpeed < 0f && IsGrounded())
+            {
+                ySpeed = Vector3.kEpsilon;
+                playerCharacter.animManager.ator.SetBool("InAir", false);
+            }
 
             Vector3 velocity = moveVector * magnitude;
             velocity.y = ySpeed;
+
+            if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", moveVector.magnitude);
 
             //Debug.Log(velocity);
 
@@ -75,6 +81,7 @@ public class DontGetBurntPlayerController : DontGetBurntController
         if(controller != null && IsGrounded())
         {
             ySpeed = jumpForce;
+            if (playerCharacter != null) playerCharacter.animManager.ator.SetBool("InAir", true);
         }
     }
 

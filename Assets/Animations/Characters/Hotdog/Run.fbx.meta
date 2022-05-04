@@ -1,12 +1,22 @@
 fileFormatVersion: 2
-guid: d19021445d0c62946b5f9cac0c823587
+guid: c8fb883d2af69fe439c34101d78dd5f9
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
-      74: 1827226128182048838
-    second: Jump
-  externalObjects: {}
+      74: 5522812681064789136
+    second: Run
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body
+    second: {fileID: 2100000, guid: b1bc37488a3dacc46acc5772066a4302, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Face
+    second: {fileID: 2100000, guid: e64e67a0c7e1d0443a136430375ebab0, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +45,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Jump
+      name: Run
       takeName: Take 001
       internalID: 0
       firstFrame: 0
@@ -46,7 +56,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -118,11 +128,11 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     globalScale: 1
-    rootMotionBoneName: Bone001
+    rootMotionBoneName: Hueso padre
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: ef8f0abc9a25f0549a5acb9007f3c1bb, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 58f6a993e5ef8154d82a533ae0ea0dad, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1

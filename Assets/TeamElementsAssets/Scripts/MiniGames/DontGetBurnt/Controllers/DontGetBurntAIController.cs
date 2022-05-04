@@ -24,6 +24,7 @@ public class DontGetBurntAIController : DontGetBurntController
     protected override void Update()
     {
         base.Update();
+        if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", controller.velocity.magnitude / controller.speed);
     }
     #endregion
 

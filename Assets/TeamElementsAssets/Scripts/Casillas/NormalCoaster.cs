@@ -78,24 +78,28 @@ public class NormalCoaster : Coaster
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
-
-        switch (interactor)
+        if (hasFlavor)
         {
-            case BoardPlayer player:
-                StartCoroutine(RequestCo(interactor));
-                break;
+            switch (interactor)
+            {
+                case BoardPlayer player:
+                    StartCoroutine(RequestCo(interactor));
+                    break;
 
-            case BoardAI ai:
-                if(interactor.coins >= interactionCost)
-                {
-                    Flavor flavor = GetRandomFlavor(interactor);
-                    GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
-                    GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
-                    EndInteract(interactor);
-                }
-                break;
+                case BoardAI ai:
+                    if(interactor.coins >= interactionCost)
+                    {
+                        Flavor flavor = GetRandomFlavor(interactor);
+                        GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
+                        GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+                        EndInteract(interactor);
+                    }
+                    break;
+            }
+        } else
+        {
+            EndInteract(interactor);
         }
-
         //Debug.Log("Normal interact!");
         //base.EndInteract(interactor);
     }

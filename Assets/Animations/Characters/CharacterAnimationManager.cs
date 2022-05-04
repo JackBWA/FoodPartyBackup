@@ -7,12 +7,12 @@ using UnityEngine;
 public class CharacterAnimationManager : MonoBehaviour
 {
     #region Face State Parameters
-    public MeshRenderer _renderer;
+    public SkinnedMeshRenderer _renderer;
 
-    public Vector2 tiling;
+    public Vector2 tiling = new Vector2(.5f, .25f);
 
     public List<CharacterExpression> faceStates = new List<CharacterExpression>();
-    public CharacterExpression.CharExpression defaultFaceState;
+    public CharacterExpression.CharExpression defaultFaceState = CharacterExpression.CharExpression.IDLE;
 
     public int materialIndex;
     private Material _faceMaterial;
@@ -27,55 +27,61 @@ public class CharacterAnimationManager : MonoBehaviour
         {
             CharacterExpression cE = faceStates.First(fS => fS.charExpression.Equals(value));
             _currentFaceState = cE;
+            SetExpression(cE.charExpression);
         }
     }
     private CharacterExpression _currentFaceState;
     #endregion
 
+    public float speed
+    {
+        get
+        {
+            return _speed;
+        }
+        set
+        {
+            _speed = value;
+            UpdateFaceBasedOnSpeed(speed);
+            ator.SetFloat("Speed", speed);
+        }
+    }
+    private float _speed;
+
+    public Animator ator;
+
     #region Awake/Start/Update/Enable/Disable
     private void Awake()
     {
+        if (ator == null) ator = GetComponent<Animator>();
         #region Face State
         if(_renderer != null)
         {
             _faceMaterial = _renderer.materials[materialIndex];
             _faceMaterial.mainTextureScale = tiling;
-            SetExpression(defaultFaceState);
+            currentFaceState = defaultFaceState;
         };
         #endregion
-    }
-
-    private void Start()
-    {
-        
-    }
-
-    private void Update()
-    {
-        
-    }
-
-    private void OnEnable()
-    {
-        
-    }
-
-    private void OnDisable()
-    {
-        
     }
     #endregion
 
     #region Face State Methods
-    public void SetExpression(CharacterExpression.CharExpression faceState)
+    private void UpdateFaceBasedOnSpeed(float speed)
     {
-        currentFaceState = faceState;
+        if (speed >= .66f)
+        {
+            currentFaceState = CharacterExpression.CharExpression.TEASED;
+        } else
+        {
+            currentFaceState = defaultFaceState;
+        }
+    }
+
+    private void SetExpression(CharacterExpression.CharExpression faceState)
+    {
+        //currentFaceState = faceState; // Stack overflow.
         _faceMaterial.mainTextureOffset = _currentFaceState.offset;
     }
-    #endregion
-
-    #region Animation
-
     #endregion
 }
 

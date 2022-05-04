@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using Cinemachine;
+using System;
+using System.Linq;
 
 public class CharacterManager : MonoBehaviour
 {
@@ -47,6 +49,39 @@ public class CharacterManager : MonoBehaviour
         singleton = this;
         #endregion
         //LoadPlayableCharacters();
+    }
+
+    List<CharacterExpression.CharExpression> characterExpressions = new List<CharacterExpression.CharExpression>();
+    private void Start()
+    {
+        foreach(string s in Enum.GetNames(typeof(CharacterExpression.CharExpression)))
+        {
+            CharacterExpression.CharExpression cE = (CharacterExpression.CharExpression) Enum.Parse(typeof(CharacterExpression.CharExpression), s);
+            if(Enum.IsDefined(typeof(CharacterExpression.CharExpression), cE))
+            {
+                characterExpressions.Add(cE);
+            }
+        }
+    }
+
+    float timer = 0f;
+    int faceIndex = 0;
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= 1f)
+        {
+            timer = 0f;
+            faceIndex++;
+            if (faceIndex >= characterExpressions.Count) faceIndex = 0;
+            playableCharacters[index].animManager.currentFaceState = characterExpressions[faceIndex];
+            /*
+            List<string> faceExpressions = Enum.GetNames(typeof(CharacterExpression.CharExpression)).ToList();
+            faceExpressions.Remove(playableCharacters[index].animManager.currentFaceState.ToString());
+            playableCharacters[index].animManager.currentFaceState = (CharacterExpression.CharExpression) Enum.Parse(typeof(CharacterExpression.CharExpression), faceExpressions[(UnityEngine.Random.Range(0, faceExpressions.Count))]);
+            */
+        }
     }
 
     public void LoadPlayableCharacters()
@@ -100,6 +135,7 @@ public class CharacterManager : MonoBehaviour
             } else
             {
                 camRefs[playableCharacters[i]].enabled = false;
+                playableCharacters[i].animManager.defaultFaceState = CharacterExpression.CharExpression.IDLE;
                 /*
                 playableCharacters[i].gameObject.SetActive(false);
                 */

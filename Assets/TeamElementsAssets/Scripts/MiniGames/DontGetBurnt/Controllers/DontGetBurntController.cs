@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DontGetBurntController : MonoBehaviour
 {
+
+    public PlayerCharacter playerCharacter;
     
     public float speed = 5f;
     public float jumpForce = 7.5f;
@@ -12,7 +14,7 @@ public class DontGetBurntController : MonoBehaviour
     #region Awake/Start/Update
     protected virtual void Awake()
     {
-
+        TryGetComponent(out playerCharacter);
     }
 
     protected virtual void Start()

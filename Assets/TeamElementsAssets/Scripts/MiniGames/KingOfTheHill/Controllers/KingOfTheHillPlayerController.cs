@@ -49,6 +49,7 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
     {
         base.Update();
         transform.position += moveVector * Time.deltaTime;
+        if (playerCharacter != null) playerCharacter.animManager.ator.SetFloat("Speed", moveVector.magnitude / speed);
     }
     #endregion
 
@@ -59,6 +60,7 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
         if(rB != null && !isStunned && IsGrounded())
         {
             rB.AddForce(Vector3.up * jumpForce, ForceMode.VelocityChange);
+            if (playerCharacter != null) playerCharacter.animManager.ator.SetBool("InAir", true);
         }
         /*
         if (controller != null && IsGrounded())
@@ -90,6 +92,11 @@ public class KingOfTheHillPlayerController : KingOfTheHillController
     {
         base.OnDisable();
         inputActions.Disable();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (playerCharacter != null) playerCharacter.animManager.ator.SetBool("InAir", false);
     }
 
     protected override IEnumerator coStun(Vector3 force)
