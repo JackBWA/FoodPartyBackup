@@ -68,7 +68,7 @@ public class SelectedItem : MonoBehaviour
         }
         set
         {
-            _buyCost.text = $"-{value}$";
+            _buyCost.text = $"-{value}";
         }
     }
     public int sellCost
@@ -79,7 +79,7 @@ public class SelectedItem : MonoBehaviour
         }
         set
         {
-            _sellCost.text = $"+{value}$";
+            _sellCost.text = $"+{value}";
         }
     }
 

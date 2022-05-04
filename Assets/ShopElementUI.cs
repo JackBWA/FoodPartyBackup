@@ -45,7 +45,7 @@ public class ShopElementUI : MonoBehaviour
 
         set
         {
-            _itemCost.text = $"{value}$";
+            _itemCost.text = $"{value}";
         }
     }
 

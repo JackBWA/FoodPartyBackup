@@ -21,7 +21,7 @@ public class HealthBarUI : MonoBehaviour
         nameDisplay.text = entity.GetComponent<PlayerCharacter>().name;
         healthTextDisplay.text = $"{entity.health}/{entity.baseHealth}";
         healthGfxDisplay.value = entity.health / entity.baseHealth;
-        coinsDisplay.text = $"{entity.coins}$";
+        coinsDisplay.text = $"{entity.coins}";
         enabled = true; // Weird but works.
     }
 
@@ -53,6 +53,6 @@ public class HealthBarUI : MonoBehaviour
     public void UpdateCoins(int coins)
     {
         //Debug.Log("Tira");
-        coinsDisplay.text = $"{coins}$";
+        coinsDisplay.text = $"{coins}";
     }
 }
