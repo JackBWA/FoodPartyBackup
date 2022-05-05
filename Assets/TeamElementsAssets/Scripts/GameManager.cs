@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void ExitGame()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadSceneAsync("MainMenu");
         PauseManager.singleton.canToggle = false;
     }
 }

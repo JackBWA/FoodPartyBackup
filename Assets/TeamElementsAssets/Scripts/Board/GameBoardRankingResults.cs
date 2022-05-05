@@ -101,7 +101,7 @@ public class GameBoardRankingResults : MonoBehaviour
         Destroy(CameraBoardManager.singleton.gameObject);
         Destroy(GameBoardManager.singleton.gameObject);
         CharacterManager.aiCharacters.Clear();
-        //CharacterManager.selectedCharacter = null; // I don't know xd.
-        SceneManager.LoadSceneAsync("MainMenu");
+        CharacterManager.selectedCharacter = null; // I don't know xd.
+        GameManager.singleton.ExitGame();
     }
 }

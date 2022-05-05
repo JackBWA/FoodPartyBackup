@@ -57,6 +57,7 @@ public class CameraBoardManager : MonoBehaviour
             //thirdPersonCamera.transform.rotation = Quaternion.Euler(new Vector3(25f, 0f, 0f));
             entity.thirdPersonCamera.Follow = entity.transform;
             entity.thirdPersonCamera.LookAt = entity.transform;
+            entity.thirdPersonCamera.transform.parent = GameBoardManager.singleton.saveLoadGameObjectsParent.transform;
         }
         else
         {

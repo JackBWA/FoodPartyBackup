@@ -104,9 +104,11 @@ public class PauseManager : MonoBehaviour
     {
         canToggle = false;
         Resume();
-        Destroy(CameraBoardManager.singleton.gameObject);
         Destroy(GameBoardManager.singleton.persistentBoardObjects);
+        Destroy(CameraBoardManager.singleton.gameObject);
         Destroy(GameBoardManager.singleton.gameObject);
+        CharacterManager.aiCharacters.Clear();
+        CharacterManager.selectedCharacter = null; // I don't know xd.
         GameManager.singleton.ExitGame();
     }
 }
