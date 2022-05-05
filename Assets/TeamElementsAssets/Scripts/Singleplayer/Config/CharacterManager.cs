@@ -64,24 +64,23 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
-    float timer = 0f;
-    int faceIndex = 0;
-
-    private void Update()
+    public Coroutine faceChangeCo;
+    private IEnumerator FaceIndexCo()
     {
-        timer += Time.deltaTime;
-        if (timer >= 1f)
+        int faceIndex = 0;
+        while (true)
         {
-            timer = 0f;
-            faceIndex++;
             if (faceIndex >= characterExpressions.Count) faceIndex = 0;
-            playableCharacters[index].animManager.currentFaceState = characterExpressions[faceIndex];
+            if (playableCharacters != null /*&& playableCharacters.Count > 0 */&& index < playableCharacters.Count) playableCharacters[index].animManager.currentFaceState = characterExpressions[faceIndex];
+            faceIndex++;
+            yield return new WaitForSeconds(1f);
             /*
             List<string> faceExpressions = Enum.GetNames(typeof(CharacterExpression.CharExpression)).ToList();
             faceExpressions.Remove(playableCharacters[index].animManager.currentFaceState.ToString());
             playableCharacters[index].animManager.currentFaceState = (CharacterExpression.CharExpression) Enum.Parse(typeof(CharacterExpression.CharExpression), faceExpressions[(UnityEngine.Random.Range(0, faceExpressions.Count))]);
             */
         }
+        yield return null;
     }
 
     public void LoadPlayableCharacters()
@@ -105,6 +104,7 @@ public class CharacterManager : MonoBehaviour
                 camRefs.Add(_character, frontalCam);
             }
         }
+        faceChangeCo = StartCoroutine(FaceIndexCo());
     }
 
     public void UnloadCharacterManager()
@@ -118,6 +118,7 @@ public class CharacterManager : MonoBehaviour
         playableCharacters.Clear();
         camRefs.Clear();
         selectedCharacter = null;
+        StopCoroutine(faceChangeCo);
     }
 
     public void UpdateCharacter()
