@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  name: Greedy Pot
+  name: Olla de la codicia
   description: Te otorga 1 condimento y varios ingredientes de tu receta.
   icon: {fileID: 21300000, guid: 6353207cbcb226546ba441eecd8a51e0, type: 3}
   inUse: 0

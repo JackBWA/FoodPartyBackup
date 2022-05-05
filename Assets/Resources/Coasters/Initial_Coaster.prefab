@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2075392981915195227}
-  - component: {fileID: 2075392981915195221}
-  - component: {fileID: 2075392981915195220}
   - component: {fileID: 1892645174884885913}
   m_Layer: 0
   m_Name: Initial_Coaster
@@ -28,26 +26,81 @@ Transform:
   m_GameObject: {fileID: 2075392981915195226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 0.1, z: 5}
-  m_Children: []
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1376670031050147432}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2075392981915195221
+--- !u!114 &1892645174884885913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2075392981915195226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407de11beacce8047a42cd94c8f59563, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  next: []
+  players: []
+  waitZones: []
+  type: 1
+  canRequestInteract: 0
+  canForceInteract: 0
+  keepMovesOnRequestAccept: 0
+  interactionCost: 50
+  flavorParticle: {fileID: 0}
+--- !u!1 &4491242756051571808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1376670031050147432}
+  - component: {fileID: 8334726197552073808}
+  - component: {fileID: 375395587255497284}
+  - component: {fileID: 1204741397689540320}
+  m_Layer: 0
+  m_Name: GFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1376670031050147432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4491242756051571808}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2075392981915195227}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!33 &8334726197552073808
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075392981915195226}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2075392981915195220
+  m_GameObject: {fileID: 4491242756051571808}
+  m_Mesh: {fileID: -8996726741490762613, guid: a57f6e4e3a5fedf47a04bd0f9c707ad4, type: 3}
+--- !u!23 &375395587255497284
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075392981915195226}
+  m_GameObject: {fileID: 4491242756051571808}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -82,22 +135,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1892645174884885913
-MonoBehaviour:
+--- !u!65 &1204741397689540320
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2075392981915195226}
+  m_GameObject: {fileID: 4491242756051571808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 407de11beacce8047a42cd94c8f59563, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  next: []
-  players: []
-  waitZones: []
-  type: 1
-  canRequestInteract: 0
-  canForceInteract: 0
-  keepMovesOnRequestAccept: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

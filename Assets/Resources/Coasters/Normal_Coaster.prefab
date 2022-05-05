@@ -4865,6 +4865,7 @@ MonoBehaviour:
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0
+  interactionCost: 50
   flavorParticle: {fileID: 8682513221436621066}
 --- !u!1 &7406446343722569129
 GameObject:
@@ -4892,13 +4893,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7406446343722569129}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 0.1, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 670418938546844499}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!33 &5261608192882204170
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4906,7 +4907,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7406446343722569129}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -8996726741490762613, guid: a57f6e4e3a5fedf47a04bd0f9c707ad4, type: 3}
 --- !u!23 &2291808148927430294
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4967,4 +4968,5 @@ MonoBehaviour:
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0
+  interactionCost: 50
   flavorParticle: {fileID: 0}

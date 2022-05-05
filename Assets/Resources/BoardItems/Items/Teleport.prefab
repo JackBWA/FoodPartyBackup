@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  name: Teleport
+  name: Teletransportador
   description: Te teletransporta a un jugador.
   icon: {fileID: 21300000, guid: 32aa61718c8ad044497ab44aef71cb54, type: 3}
   inUse: 0
   canvasPrefab: {fileID: 6861034760081591522, guid: 3351f94234acf0f40b06df84348ff755, type: 3}
+  target: {fileID: 0}

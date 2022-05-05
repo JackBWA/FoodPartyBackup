@@ -5058,6 +5058,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2459860597838357557, guid: 4b04ba575ca65b54abf409c3b2887f93, type: 3}
+      propertyPath: m_text
+      value: '{Player} es el ganador!'
+      objectReference: {fileID: 0}
     - target: {fileID: 2459860598131960312, guid: 4b04ba575ca65b54abf409c3b2887f93, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5073,6 +5077,10 @@ PrefabInstance:
     - target: {fileID: 2459860598131960312, guid: 4b04ba575ca65b54abf409c3b2887f93, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6023308625315641191, guid: 4b04ba575ca65b54abf409c3b2887f93, type: 3}
+      propertyPath: m_text
+      value: SALIR
       objectReference: {fileID: 0}
     - target: {fileID: 8298108600564639260, guid: 4b04ba575ca65b54abf409c3b2887f93, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

@@ -59,7 +59,7 @@ public class ResultsUI : MonoBehaviour
             sortedResults.Add(kV.Key, kV.Value);
         }
 
-        winnerText = $"{sortedResults.ElementAt(0).Key.name} is the winner!";
+        winnerText = $"{sortedResults.ElementAt(0).Key.name} es el ganador!";
 
         int i = 1;
         foreach (KeyValuePair<PlayerCharacter, int> kV in MiniGame.singleton.playerScores.OrderByDescending(ctx => ctx.Value))
@@ -82,7 +82,7 @@ public class ResultsUI : MonoBehaviour
         while(timeLeft >= 0f)
         {
             timeLeft -= Time.deltaTime;
-            leavingText = $"Leaving in {((int) timeLeft) + 1} seconds...";
+            leavingText = $"Volverás al tablero en {((int) timeLeft) + 1} segundos...";
             yield return new WaitForEndOfFrame();
         }
         MiniGame.singleton.MinigameExit();

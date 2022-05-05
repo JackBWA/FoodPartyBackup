@@ -83,6 +83,11 @@ public class GameBoardRankingResults : MonoBehaviour
             pRInstance.resultScore = kV.Value.progress;
             pRInstance.transform.SetParent(scoresListParent);
 
+            if (i == 0)
+            {
+                winnerText = $"{pRInstance.playerName} es el ganador!";
+            }
+
             players[players.IndexOf(kV.Key)].gameObject.transform.position = podiumPositions[i].position;
 
             players[players.IndexOf(kV.Key)].gameObject.transform.rotation = Quaternion.Euler(podiumPositions[i].rotation);

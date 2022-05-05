@@ -73,7 +73,7 @@ public class TomatoRain : BoardItem_Base
     private IEnumerator SpawnAtCoaster(Coaster coaster, int left)
     {
         C_TomatoRain instance = Instantiate(prefab);
-        instance.transform.position = coaster.transform.position + Vector3.up * 5.5f;
+        instance.transform.position = coaster.transform.position + Vector3.up * 6.5f;
         instances.Add(instance);
         yield return new WaitForSeconds(speed);
         if (left > 1)
