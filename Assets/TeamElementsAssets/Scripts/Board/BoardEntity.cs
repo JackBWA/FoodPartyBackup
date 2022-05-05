@@ -84,7 +84,7 @@ public class BoardEntity : MonoBehaviour
     public bool isViewingMap;
 
     [HideInInspector]
-    public CinemachineVirtualCamera thirdPersonCamera;
+    public CinemachineFreeLook thirdPersonCamera;
     [HideInInspector]
     public CinemachineVirtualCamera topCamera;
     public TopViewCameraController topCameraController;

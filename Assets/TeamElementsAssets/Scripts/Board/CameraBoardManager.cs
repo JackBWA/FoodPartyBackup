@@ -53,10 +53,10 @@ public class CameraBoardManager : MonoBehaviour
         GameObject thirdPersonCamera = Instantiate(thirdPersonCameraPrefab);
         if (thirdPersonCamera.TryGetComponent(out entity.thirdPersonCamera))
         {
-            thirdPersonCamera.transform.parent = entity.gameObject.transform;
+            //thirdPersonCamera.transform.parent = entity.gameObject.transform;
             //thirdPersonCamera.transform.rotation = Quaternion.Euler(new Vector3(25f, 0f, 0f));
-            //entity.thirdPersonCamera.Follow = entity.transform;
-            //entity.thirdPersonCamera.LookAt = entity.transform;
+            entity.thirdPersonCamera.Follow = entity.transform;
+            entity.thirdPersonCamera.LookAt = entity.transform;
         }
         else
         {

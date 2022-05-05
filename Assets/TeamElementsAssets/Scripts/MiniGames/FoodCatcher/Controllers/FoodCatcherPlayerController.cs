@@ -84,7 +84,7 @@ public class FoodCatcherPlayerController : FoodCatcherController
         if (controller != null && IsGrounded())
         {
             ySpeed = jumpForce;
-            if (playerCharacter != null) playerCharacter.animManager.ator.SetBool("InAir", true);
+            if (playerCharacter != null && !playerCharacter.animManager.ator.GetBool("InAir")) playerCharacter.animManager.ator.SetBool("InAir", true);
         }
     }
 

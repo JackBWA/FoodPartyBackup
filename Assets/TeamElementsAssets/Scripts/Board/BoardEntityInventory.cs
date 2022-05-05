@@ -57,7 +57,7 @@ public class BoardEntityInventory : MonoBehaviour
         itemsCanvasPrefab = Resources.Load<ItemsCanvas>("UI/PlayerItemsUI");
         visible = false;
         TryGetComponent(out owner);
-        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[2], 1);
+        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[0], 1); // XDDD
     }
 
     public void ToggleItemsUI()
@@ -130,7 +130,7 @@ public class BoardEntityInventory : MonoBehaviour
     {
         if (canUseItem && !isUsingItem)
         {
-            BoardItem_Base itemInstance = Instantiate(item, transform.position + transform.forward + (transform.up * 2f), Quaternion.identity);
+            BoardItem_Base itemInstance = Instantiate(item, transform.position + transform.forward * 1.5f + (transform.up * 2f), Quaternion.identity);
             itemInstance.owner = owner;
             ConsumeItem(item);
             StartUsingItem(itemInstance);
