@@ -196,7 +196,6 @@ public class BoardEntity : MonoBehaviour
     {
         //Debug.Log("Activate third person camera.");
         isViewingMap = false;
-        Debug.Log("a");
         thirdPersonCamera.enabled = true;
     }
 
