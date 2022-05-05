@@ -66,7 +66,6 @@ public class Dice : MonoBehaviour
         }
 
         int result = CheckResult();
-        //if (owner.GetType() == typeof(BoardPlayer)) result = 2; // XDDD
         //Debug.Log(result);
         if (result > 0)
         {

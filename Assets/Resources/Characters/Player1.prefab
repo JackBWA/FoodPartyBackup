@@ -87,6 +87,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CupCakeCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 3650618416086088090, guid: 6a813807884e46a45a03055f17d542a1, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3650618416086088090, guid: 6a813807884e46a45a03055f17d542a1, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 6a813807884e46a45a03055f17d542a1, type: 3}
       propertyPath: m_Controller
       value: 
@@ -227,6 +235,10 @@ PrefabInstance:
       propertyPath: ator
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: avatar
+      value: 
+      objectReference: {fileID: 21300000, guid: 9b9adfc314ed5bb4babb0cd3986db379, type: 3}
     - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
       propertyPath: animManager
       value: 

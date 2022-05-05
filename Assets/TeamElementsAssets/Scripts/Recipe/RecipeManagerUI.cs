@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RecipeManagerUI : MonoBehaviour
 {
@@ -11,6 +13,34 @@ public class RecipeManagerUI : MonoBehaviour
     public static RecipeManagerUI singleton;
 
     private RecipeElementUI elementPrefab;
+
+    public string recipeTitle
+    {
+        get
+        {
+            return _recipeTitle.text;
+        }
+        set
+        {
+            _recipeTitle.text = value;
+        }
+    }
+    [SerializeField]
+    private TextMeshProUGUI _recipeTitle;
+
+    public Sprite recipeIcon
+    {
+        get
+        {
+            return _recipeIcon.sprite;
+        }
+        set
+        {
+            _recipeIcon.sprite = value;
+        }
+    }
+    [SerializeField]
+    private Image _recipeIcon;
 
     public GameObject flavorsHolder;
     public GameObject ingredientsHolder;
@@ -67,6 +97,11 @@ public class RecipeManagerUI : MonoBehaviour
     public void Display(Recipe recipe)
     {
         Clear();
+
+        recipeTitle = recipe.title;
+        recipeIcon = recipe.icon;
+        _recipeIcon.preserveAspect = true;
+
         for(int i = 0; i < recipe.flavors.Count; i++)
         {
             RecipeElementUI reUI = Instantiate(elementPrefab);

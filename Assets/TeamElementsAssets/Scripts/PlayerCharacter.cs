@@ -16,6 +16,8 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    public Sprite avatar;
+
     public enum CharacterType
     {
         Player,

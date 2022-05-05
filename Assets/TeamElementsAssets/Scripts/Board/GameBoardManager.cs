@@ -304,8 +304,6 @@ public class GameBoardManager : MonoBehaviour
             recipeStates.Add(player, recipeCopy);
         }
 
-        recipeStates[boardPlayers[0]].Complete(); // XDD
-
         /* // Test of recipe completion. (Works)
         Debug.Log(recipe.isCompleted);
         Debug.Log(recipe);

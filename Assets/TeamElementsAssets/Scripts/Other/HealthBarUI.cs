@@ -18,6 +18,7 @@ public class HealthBarUI : MonoBehaviour
     public void Initialize(BoardEntity entity)
     {
         this.entity = entity;
+        playerAvatar.sprite = entity.GetComponent<PlayerCharacter>().avatar;
         nameDisplay.text = entity.GetComponent<PlayerCharacter>().name;
         healthTextDisplay.text = $"{entity.health}/{entity.baseHealth}";
         healthGfxDisplay.value = entity.health / entity.baseHealth;

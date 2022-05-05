@@ -80,7 +80,6 @@ public class CharacterManager : MonoBehaviour
             playableCharacters[index].animManager.currentFaceState = (CharacterExpression.CharExpression) Enum.Parse(typeof(CharacterExpression.CharExpression), faceExpressions[(UnityEngine.Random.Range(0, faceExpressions.Count))]);
             */
         }
-        yield return null;
     }
 
     public void LoadPlayableCharacters()

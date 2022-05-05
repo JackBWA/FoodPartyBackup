@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb2c743fe5a6f6c4ea9855020fceec2a, type: 3}
-  m_Name: Crepe
+  m_Name: Pastel
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  title: Crepe
-  icon: {fileID: 21300000, guid: 9a29a80d258f233439b98fb9ab747b43, type: 3}
+  title: Pastel
+  icon: {fileID: 21300000, guid: 0251d0c1fb5225d4fb821c94a99b7c06, type: 3}
   flavors:
-  - flavor: {fileID: 11400000, guid: c8b4ed8a52012ec489ee4763c30170e1, type: 2}
+  - flavor: {fileID: 11400000, guid: f32850df5f3aedd428d0ac2f7bc3db96, type: 2}
     randomAmount: 0
     amount: 1
     minAmount: 0
@@ -27,28 +27,28 @@ MonoBehaviour:
     minAmount: 0
     maxAmount: 0
   ingredients:
-  - ingredient: {fileID: 11400000, guid: 54c8fc4d495f2064c830cf694facc7d5, type: 2}
-    randomAmount: 0
-    amount: 3
-    minAmount: 0
-    maxAmount: 0
+  - ingredient: {fileID: 11400000, guid: 9a204e454c3671442abfa4c56b4082b9, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 5
+    maxAmount: 10
   - ingredient: {fileID: 11400000, guid: a9e6fe089b9f1164caf794ef1d5af1a8, type: 2}
     randomAmount: 1
     amount: 0
     minAmount: 2
     maxAmount: 7
-  - ingredient: {fileID: 11400000, guid: 5553270d137e62040b9226e0dce42e0d, type: 2}
+  - ingredient: {fileID: 11400000, guid: 51fe08ba8128b124da4ef534bed20bec, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 4
+    maxAmount: 6
+  - ingredient: {fileID: 11400000, guid: f4c5830f1fbb6f141806ec8fcce6de08, type: 2}
+    randomAmount: 1
+    amount: 0
+    minAmount: 20
+    maxAmount: 30
+  - ingredient: {fileID: 11400000, guid: 54c8fc4d495f2064c830cf694facc7d5, type: 2}
     randomAmount: 1
     amount: 0
     minAmount: 4
     maxAmount: 9
-  - ingredient: {fileID: 11400000, guid: 9a204e454c3671442abfa4c56b4082b9, type: 2}
-    randomAmount: 1
-    amount: 0
-    minAmount: 12
-    maxAmount: 17
-  - ingredient: {fileID: 11400000, guid: 5f116ce87a5a17e4ca2deabf116c1e74, type: 2}
-    randomAmount: 1
-    amount: 0
-    minAmount: 8
-    maxAmount: 10

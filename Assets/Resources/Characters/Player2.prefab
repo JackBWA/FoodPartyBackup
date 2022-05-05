@@ -140,6 +140,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: avatar
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c490e988ec5a4c408f4136118b87f3f, type: 3}
+    - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
       propertyPath: animManager
       value: 
       objectReference: {fileID: 6667450028146501899}
