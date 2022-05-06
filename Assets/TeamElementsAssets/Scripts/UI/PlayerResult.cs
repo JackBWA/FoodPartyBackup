@@ -15,6 +15,7 @@ public class PlayerResult : MonoBehaviour
         set
         {
             _icon.sprite = value;
+            _icon.preserveAspect = true;
         }
     }
     public int position

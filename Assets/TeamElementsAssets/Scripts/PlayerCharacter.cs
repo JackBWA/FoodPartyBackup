@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+
+    public Renderer _renderer;
+
     public new string name
     {
         get

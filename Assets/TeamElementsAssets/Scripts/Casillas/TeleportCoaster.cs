@@ -7,6 +7,8 @@ public class TeleportCoaster : Coaster
 
     public Coaster teleportTarget;
 
+    public GameObject onTeleportParticlePrefab;
+
     protected override void Awake()
     {
         base.Awake();
@@ -27,12 +29,26 @@ public class TeleportCoaster : Coaster
     public override void Interact(BoardEntity interactor)
     {
         base.Interact(interactor);
-        Debug.Log("Teleport interact!");
+        StartCoroutine(Teleport(interactor));
+    }
+
+    private IEnumerator Teleport(BoardEntity interactor)
+    {
         playerLeave(interactor);
         Vector3 zone = teleportTarget.GetAvailableWaitZones()[0];
+        ParticleSystem pS = Instantiate(onTeleportParticlePrefab).GetComponentInChildren<ParticleSystem>();
+        pS.transform.position = interactor.transform.position;
+        interactor.playerCharacter._renderer.enabled = false;
+        yield return new WaitForSeconds(1f);
         interactor.TeleportTo(zone);
         interactor.currentCoaster = teleportTarget;
         interactor.currentCoaster.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
+        yield return new WaitForSeconds(1f);
+        pS = Instantiate(onTeleportParticlePrefab).GetComponentInChildren<ParticleSystem>();
+        pS.transform.position = interactor.transform.position;
+        yield return new WaitForSeconds(.1f);
+        interactor.playerCharacter._renderer.enabled = true;
+        yield return new WaitForSeconds(1f);
         EndInteract(interactor);
     }
 

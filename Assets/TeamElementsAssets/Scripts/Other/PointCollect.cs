@@ -11,8 +11,12 @@ public class PointCollect : MonoBehaviour
     [SerializeField]
     private int maxValue;
 
+    Rigidbody rB;
+
     private void Awake()
     {
+        TryGetComponent(out rB);
+        if (rB != null) rB.drag = UnityEngine.Random.Range(2.5f, 3.75f);
         if (random) value = UnityEngine.Random.Range(minValue, maxValue);
     }
 

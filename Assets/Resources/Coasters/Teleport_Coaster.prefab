@@ -54,6 +54,7 @@ MonoBehaviour:
   canForceInteract: 0
   keepMovesOnRequestAccept: 1
   teleportTarget: {fileID: 0}
+  onTeleportParticlePrefab: {fileID: 5354661233409336789, guid: 93d696ea5d37ab948be72cc22520414c, type: 3}
 --- !u!1 &2982991211691974885
 GameObject:
   m_ObjectHideFlags: 0

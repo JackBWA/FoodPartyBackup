@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96151107c7e14d249936f531d4f1df91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 500486102792979805, guid: 560a681715e6bde41b5a1e79d7e221d2, type: 3}
+  prefab: {fileID: 500486102792979811, guid: 560a681715e6bde41b5a1e79d7e221d2, type: 3}
   interactor: {fileID: 0}
   selectors: []
   result: {fileID: 0}

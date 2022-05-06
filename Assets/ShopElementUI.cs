@@ -34,6 +34,7 @@ public class ShopElementUI : MonoBehaviour
         set
         {
             _itemSprite.sprite = value;
+            _itemSprite.preserveAspect = true;
         }
     }
     public int itemCost

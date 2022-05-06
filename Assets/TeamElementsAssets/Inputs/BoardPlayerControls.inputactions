@@ -270,6 +270,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Camera",
+            "id": "2886567d-c2c3-438b-80da-cda57bcff29a",
+            "actions": [
+                {
+                    "name": "Lock",
+                    "type": "Button",
+                    "id": "f6c2d907-7579-43de-831c-8371835be435",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "cd262597-e336-4a0e-929a-5cfaa8c7df34",
+                    "path": "<Keyboard>/alt",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Lock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

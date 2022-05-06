@@ -283,6 +283,33 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Camera"",
+            ""id"": ""2886567d-c2c3-438b-80da-cda57bcff29a"",
+            ""actions"": [
+                {
+                    ""name"": ""Lock"",
+                    ""type"": ""Button"",
+                    ""id"": ""f6c2d907-7579-43de-831c-8371835be435"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""cd262597-e336-4a0e-929a-5cfaa8c7df34"",
+                    ""path"": ""<Keyboard>/alt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Lock"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -327,6 +354,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         m_Map_Toggle = m_Map.FindAction("Toggle", throwIfNotFound: true);
         m_Map_Move = m_Map.FindAction("Move", throwIfNotFound: true);
         m_Map_Accelerate = m_Map.FindAction("Accelerate", throwIfNotFound: true);
+        // Camera
+        m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
+        m_Camera_Lock = m_Camera.FindAction("Lock", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -495,6 +525,39 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         }
     }
     public MapActions @Map => new MapActions(this);
+
+    // Camera
+    private readonly InputActionMap m_Camera;
+    private ICameraActions m_CameraActionsCallbackInterface;
+    private readonly InputAction m_Camera_Lock;
+    public struct CameraActions
+    {
+        private @BoardPlayerControls m_Wrapper;
+        public CameraActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Lock => m_Wrapper.m_Camera_Lock;
+        public InputActionMap Get() { return m_Wrapper.m_Camera; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CameraActions set) { return set.Get(); }
+        public void SetCallbacks(ICameraActions instance)
+        {
+            if (m_Wrapper.m_CameraActionsCallbackInterface != null)
+            {
+                @Lock.started -= m_Wrapper.m_CameraActionsCallbackInterface.OnLock;
+                @Lock.performed -= m_Wrapper.m_CameraActionsCallbackInterface.OnLock;
+                @Lock.canceled -= m_Wrapper.m_CameraActionsCallbackInterface.OnLock;
+            }
+            m_Wrapper.m_CameraActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Lock.started += instance.OnLock;
+                @Lock.performed += instance.OnLock;
+                @Lock.canceled += instance.OnLock;
+            }
+        }
+    }
+    public CameraActions @Camera => new CameraActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -527,5 +590,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         void OnToggle(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnAccelerate(InputAction.CallbackContext context);
+    }
+    public interface ICameraActions
+    {
+        void OnLock(InputAction.CallbackContext context);
     }
 }

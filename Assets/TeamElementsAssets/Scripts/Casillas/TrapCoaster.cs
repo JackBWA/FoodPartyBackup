@@ -11,11 +11,17 @@ public class TrapCoaster : Coaster
     public int coinsAmount = 15;
     public int itemsAmount = 1;
 
+    public GameObject healthLoseParticlePrefab;
+
+    public GameObject coinsLoseParticlePrefab;
+
+    public GameObject ingredientLoseParticlePrefab;
+
     public enum TrapType
     {
         LoseHealth,
         LoseCoins,
-        LoseItem
+        LoseIngredients
     }
 
     protected override void Awake()
@@ -42,7 +48,13 @@ public class TrapCoaster : Coaster
                 interactor.coins = Mathf.Clamp(interactor.coins - coinsAmount, 0, int.MaxValue); ;
                 break;
 
-            case TrapType.LoseItem:
+            case TrapType.LoseIngredients:
+                List<KeyValuePair<RecipeElement, int>> ingredients = GameBoardManager.singleton.recipeStates[interactor].currentElements.Where(rE => rE.Key.GetType() == typeof(Ingredient)).ToList();
+                foreach(KeyValuePair<RecipeElement, int> kV in ingredients)
+                {
+                    GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(kV.Key, kV.Value - UnityEngine.Random.Range(0, kV.Value / 2));
+                }
+                /*
                 if (interactor.inventory.items.Count <= 0) break;
                 for (int i = 0; i < itemsAmount; i++)
                 {
@@ -50,9 +62,30 @@ public class TrapCoaster : Coaster
                     interactor.inventory.UpdateItem(item, interactor.inventory.items[item] - 1);
                     if (interactor.inventory.items.Count <= 0) break;
                 }
+                */
                 break;
         }
-        Debug.Log("Trap interact!");
+
+        StartCoroutine(ShowFeedback(trapType, interactor));
+    }
+
+    private IEnumerator ShowFeedback(TrapType trapType, BoardEntity interactor)
+    {
+        switch (trapType)
+        {
+            case TrapType.LoseHealth:
+                Instantiate(healthLoseParticlePrefab).transform.position = interactor.transform.position;
+                break;
+
+            case TrapType.LoseCoins:
+                Instantiate(coinsLoseParticlePrefab).transform.position = interactor.transform.position;
+                break;
+
+            case TrapType.LoseIngredients:
+                Instantiate(ingredientLoseParticlePrefab).transform.position = interactor.transform.position;
+                break;
+        }
+        yield return new WaitForSeconds(1f);
         EndInteract(interactor);
     }
 

@@ -56,6 +56,9 @@ MonoBehaviour:
   healthAmount: 10
   coinsAmount: 15
   itemsAmount: 1
+  healthLoseParticlePrefab: {fileID: 5354661233409336789, guid: 9cb639829db39ec4f897f3037982a253, type: 3}
+  coinsLoseParticlePrefab: {fileID: 5354661233409336789, guid: 53580988dd3980343ba02b10eb3a956e, type: 3}
+  ingredientLoseParticlePrefab: {fileID: 5354661233409336789, guid: 64a34df8a94c8dc47a14c4b6dbb8c4dd, type: 3}
 --- !u!1 &1537309127413113275
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +163,9 @@ MonoBehaviour:
   healthAmount: 10
   coinsAmount: 15
   itemsAmount: 1
+  healthLoseParticlePrefab: {fileID: 0}
+  coinsLoseParticlePrefab: {fileID: 0}
+  ingredientLoseParticlePrefab: {fileID: 0}
 --- !u!1 &2982991211691974885
 GameObject:
   m_ObjectHideFlags: 0

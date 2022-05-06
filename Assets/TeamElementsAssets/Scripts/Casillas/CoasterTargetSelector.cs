@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CoasterTargetSelector : MonoBehaviour
 {
-    public CoasterTarget prefab;
+    public GameObject prefab;
 
     public BoardEntity interactor;
 
@@ -21,10 +21,10 @@ public class CoasterTargetSelector : MonoBehaviour
     {
         foreach(Coaster next in interactor.currentCoaster.next)
         {
-            CoasterTarget instance = Instantiate(prefab);
+            CoasterTarget instance = Instantiate(prefab).GetComponentInChildren<CoasterTarget>();
             instance.selector = this;
-            instance.transform.forward = next.transform.position - interactor.transform.position;
-            instance.transform.position = interactor.transform.position + Vector3.up + (instance.transform.forward.normalized * 2.5f);
+            instance.transform.parent.forward = next.transform.position - interactor.transform.position;
+            instance.transform.parent.position = interactor.transform.position + Vector3.up + (instance.transform.parent.forward.normalized * 2.5f);
             instance.target = next;
 
             selectors.Add(instance);

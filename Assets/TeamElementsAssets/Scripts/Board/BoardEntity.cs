@@ -83,6 +83,8 @@ public class BoardEntity : MonoBehaviour
     public bool canToggleCameraView;
     public bool isViewingMap;
 
+    private Vector2 cameraSpeedsCache;
+
     [HideInInspector]
     public CinemachineFreeLook thirdPersonCamera;
     [HideInInspector]
@@ -178,6 +180,21 @@ public class BoardEntity : MonoBehaviour
     protected virtual void OnDisable()
     {
         UnbindEvents();
+    }
+
+    public void LockTPC()
+    {
+        if (!thirdPersonCamera.enabled) return;
+        cameraSpeedsCache = new Vector2(thirdPersonCamera.m_YAxis.m_MaxSpeed, thirdPersonCamera.m_XAxis.m_MaxSpeed);
+        thirdPersonCamera.m_YAxis.m_MaxSpeed = 0f;
+        thirdPersonCamera.m_XAxis.m_MaxSpeed = 0f;
+    }
+
+    public void UnlockTPC()
+    {
+        if (!thirdPersonCamera.enabled) return;
+        thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraSpeedsCache.x;
+        thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraSpeedsCache.y;
     }
 
     public void DisableCanToggleCameraView()
@@ -331,7 +348,7 @@ public class BoardEntity : MonoBehaviour
         Debug.Log(declineText);
         */
 
-        RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("RequestCanvas"));
+        RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("UI/RequestCanvas"));
         requestManager.title = title;
         requestManager.message = message;
         requestManager.acceptButtonText = acceptText;

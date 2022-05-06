@@ -66,6 +66,7 @@ public class ResultsUI : MonoBehaviour
         {
             PlayerResult instance = Instantiate(playerResultUIPrefab);
             instance.position = i;
+            instance.icon = kV.Key.avatar;
             instance.playerName = kV.Key.name;
             instance.resultScore = kV.Value;
 

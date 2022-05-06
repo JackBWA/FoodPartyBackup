@@ -240,6 +240,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 9b9adfc314ed5bb4babb0cd3986db379, type: 3}
     - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 8113620241132348653}
+    - target: {fileID: 5204748582397066365, guid: 44baa73fd94b1814cabb127b52025661, type: 3}
       propertyPath: animManager
       value: 
       objectReference: {fileID: 5971693421006763071}

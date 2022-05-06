@@ -30,6 +30,7 @@ public class MinigameUI : MonoBehaviour
         {
             PlayerScore instance = Instantiate(playerScoreUIPrefab);
             instance.characterReference = pC;
+            instance.icon = pC.avatar;
             // Set icon lol.
             instance.transform.SetParent(scoresParentUI);
             scoresUI.Add(instance);

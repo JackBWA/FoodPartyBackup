@@ -18,6 +18,7 @@ public class PlayerScore : MonoBehaviour
         set
         {
             _icon.sprite = value;
+            _icon.preserveAspect = true;
         }
     }
     public int score

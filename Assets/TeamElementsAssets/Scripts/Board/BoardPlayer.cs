@@ -18,6 +18,8 @@ public class BoardPlayer : BoardEntity
 
     private void LoadInputs()
     {
+        playerControls.Camera.Lock.performed += _ => LockTPC();
+        playerControls.Camera.Lock.canceled += _ => UnlockTPC();
         playerControls.Dice.Throw.performed += _ => ThrowDice();
         playerControls.Map.Toggle.performed += _ => ToggleMapView();
         playerControls.Inventory.TestItem.performed += _ => inventory.UseItem(inventory.items.ElementAt(0).Key);
