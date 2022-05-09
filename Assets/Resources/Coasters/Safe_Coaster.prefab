@@ -212,7 +212,10 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 0
+  title: "Casilla de protecci\xF3n"
+  description: "Esta casilla te proporciona invulnerabilidad a perder vida mientras
+    est\xE9s dentro de esta."
+  type: 3
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0

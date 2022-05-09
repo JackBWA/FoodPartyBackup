@@ -22,17 +22,26 @@ public class FinishCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        Debug.Log("Finish interact!");
-
-        //Debug.Log("Recipe completed? " + GameBoardManager.singleton.recipeStates[interactor].isCompleted);
-        if (GameBoardManager.singleton.recipeStates[interactor].isCompleted)
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
-            GameBoardManager.singleton.winner = interactor;
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
         } else
         {
-            // Might save ingredients and flavors (remove them from the required on the recipe).
-            EndInteract(interactor);
+            base.Interact(interactor);
+            Debug.Log("Finish interact!");
+
+            //Debug.Log("Recipe completed? " + GameBoardManager.singleton.recipeStates[interactor].isCompleted);
+            if (GameBoardManager.singleton.recipeStates[interactor].isCompleted)
+            {
+                GameBoardManager.singleton.winner = interactor;
+            }
+            else
+            {
+                // Might save ingredients and flavors (remove them from the required on the recipe).
+                EndInteract(interactor);
+            }
         }
     }
 

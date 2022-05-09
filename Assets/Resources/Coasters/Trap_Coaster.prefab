@@ -49,7 +49,16 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 0
+  title: Casilla de trampa
+  description: 'Esta casilla te quita de forma aleatoria:
+
+    Vida
+
+    Monedas
+
+    Ingredientes
+    de la receta'
+  type: 7
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0
@@ -156,6 +165,8 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
+  title: 
+  description: 
   type: 0
   canRequestInteract: 0
   canForceInteract: 0

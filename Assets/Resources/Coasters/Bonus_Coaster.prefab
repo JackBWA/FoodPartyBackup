@@ -47,6 +47,17 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
+  title: Casilla de bono
+  description: 'Esta casilla te otorga aleatoriamente una de las siguientes bonificaciones:
+
+    Vida
+
+    Monedas
+
+    Objeto
+    utilizable
+
+    Ingredientes de la receta'
   type: 6
   canRequestInteract: 0
   canForceInteract: 0

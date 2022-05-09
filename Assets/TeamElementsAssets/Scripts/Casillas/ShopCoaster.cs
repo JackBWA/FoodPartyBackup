@@ -22,19 +22,27 @@ public class ShopCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        Debug.Log("Shop interact!");
-        shopInstance = Instantiate(shopPrefab);
-        switch (interactor.GetComponent<PlayerCharacter>().characterType)
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
-            case PlayerCharacter.CharacterType.Player:
-                shopInstance.OpenShop(interactor);
-                break;
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
+        } else
+        {
+            base.Interact(interactor);
+            Debug.Log("Shop interact!");
+            shopInstance = Instantiate(shopPrefab);
+            switch (interactor.GetComponent<PlayerCharacter>().characterType)
+            {
+                case PlayerCharacter.CharacterType.Player:
+                    shopInstance.OpenShop(interactor);
+                    break;
 
-            case PlayerCharacter.CharacterType.AI:
-                shopInstance.shopInteractor = interactor;
-                StartCoroutine(AutoBuy(shopInstance));
-                break;
+                case PlayerCharacter.CharacterType.AI:
+                    shopInstance.shopInteractor = interactor;
+                    StartCoroutine(AutoBuy(shopInstance));
+                    break;
+            }
         }
     }
 

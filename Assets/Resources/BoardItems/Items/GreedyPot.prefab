@@ -48,7 +48,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   name: Olla de la codicia
   description: Te otorga 1 condimento y varios ingredientes de tu receta.
-  icon: {fileID: 21300000, guid: 6353207cbcb226546ba441eecd8a51e0, type: 3}
+  icon: {fileID: 21300000, guid: 064f15279bea1af4fa6514c5a9268dec, type: 3}
   inUse: 0
   maxFlavors: 1
   maxIngredients: 15

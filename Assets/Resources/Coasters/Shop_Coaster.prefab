@@ -130,7 +130,10 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 0
+  title: Casilla de tienda
+  description: Esta casilla te permite comprar ingredientes y condimentos. Utiliza
+    las monedas que consigas durante la partida para comprar en la tienda.
+  type: 5
   canRequestInteract: 0
   canForceInteract: 0
   keepMovesOnRequestAccept: 0

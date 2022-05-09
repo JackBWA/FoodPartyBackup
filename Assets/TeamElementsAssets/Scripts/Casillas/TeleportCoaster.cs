@@ -28,8 +28,16 @@ public class TeleportCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        StartCoroutine(Teleport(interactor));
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
+        {
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
+        } else
+        {
+            base.Interact(interactor);
+            StartCoroutine(Teleport(interactor));
+        }
     }
 
     private IEnumerator Teleport(BoardEntity interactor)

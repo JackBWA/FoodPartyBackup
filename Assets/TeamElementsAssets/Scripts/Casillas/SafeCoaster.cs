@@ -17,9 +17,17 @@ public class SafeCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        //Debug.Log("Safe interact!");
-        EndInteract(interactor);
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
+        {
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
+        } else
+        {
+            base.Interact(interactor);
+            //Debug.Log("Safe interact!");
+            EndInteract(interactor);
+        }
     }
 
     public override void EndInteract(BoardEntity interactor)

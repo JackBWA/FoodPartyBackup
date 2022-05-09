@@ -36,37 +36,45 @@ public class TrapCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        TrapType trapType = (TrapType) UnityEngine.Random.Range(0, Enum.GetValues(typeof(TrapType)).Length);
-        switch (trapType)
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
-            case TrapType.LoseHealth:
-                interactor.health = Mathf.Clamp(interactor.health - healthAmount, 0, interactor.baseHealth);
-                break;
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
+        } else
+        {
+            base.Interact(interactor);
+            TrapType trapType = (TrapType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(TrapType)).Length);
+            switch (trapType)
+            {
+                case TrapType.LoseHealth:
+                    interactor.health = Mathf.Clamp(interactor.health - healthAmount, 0, interactor.baseHealth);
+                    break;
 
-            case TrapType.LoseCoins:
-                interactor.coins = Mathf.Clamp(interactor.coins - coinsAmount, 0, int.MaxValue); ;
-                break;
+                case TrapType.LoseCoins:
+                    interactor.coins = Mathf.Clamp(interactor.coins - coinsAmount, 0, int.MaxValue); ;
+                    break;
 
-            case TrapType.LoseIngredients:
-                List<KeyValuePair<RecipeElement, int>> ingredients = GameBoardManager.singleton.recipeStates[interactor].currentElements.Where(rE => rE.Key.GetType() == typeof(Ingredient)).ToList();
-                foreach(KeyValuePair<RecipeElement, int> kV in ingredients)
-                {
-                    GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(kV.Key, kV.Value - UnityEngine.Random.Range(0, kV.Value / 2));
-                }
-                /*
-                if (interactor.inventory.items.Count <= 0) break;
-                for (int i = 0; i < itemsAmount; i++)
-                {
-                    BoardItem_Base item = interactor.inventory.items.ElementAt(UnityEngine.Random.Range(0, interactor.inventory.items.Count)).Key;
-                    interactor.inventory.UpdateItem(item, interactor.inventory.items[item] - 1);
+                case TrapType.LoseIngredients:
+                    List<KeyValuePair<RecipeElement, int>> ingredients = GameBoardManager.singleton.recipeStates[interactor].currentElements.Where(rE => rE.Key.GetType() == typeof(Ingredient)).ToList();
+                    foreach (KeyValuePair<RecipeElement, int> kV in ingredients)
+                    {
+                        GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(kV.Key, kV.Value - UnityEngine.Random.Range(0, kV.Value / 2));
+                    }
+                    /*
                     if (interactor.inventory.items.Count <= 0) break;
-                }
-                */
-                break;
-        }
+                    for (int i = 0; i < itemsAmount; i++)
+                    {
+                        BoardItem_Base item = interactor.inventory.items.ElementAt(UnityEngine.Random.Range(0, interactor.inventory.items.Count)).Key;
+                        interactor.inventory.UpdateItem(item, interactor.inventory.items[item] - 1);
+                        if (interactor.inventory.items.Count <= 0) break;
+                    }
+                    */
+                    break;
+            }
 
-        StartCoroutine(ShowFeedback(trapType, interactor));
+            StartCoroutine(ShowFeedback(trapType, interactor));
+        }
     }
 
     private IEnumerator ShowFeedback(TrapType trapType, BoardEntity interactor)

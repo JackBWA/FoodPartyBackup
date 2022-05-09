@@ -4861,6 +4861,9 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
+  title: Casilla normal
+  description: En las casillas normales puede aparecer el condimento, un elemento
+    esencial para completar tu receta y ganar la partida.
   type: 0
   canRequestInteract: 0
   canForceInteract: 0
@@ -4964,6 +4967,8 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
+  title: 
+  description: 
   type: 0
   canRequestInteract: 0
   canForceInteract: 0

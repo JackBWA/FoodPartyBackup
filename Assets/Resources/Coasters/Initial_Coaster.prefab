@@ -47,6 +47,10 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
+  title: Casilla de inicio
+  description: "Esta es la casilla de inicio, desde donde salen todos los jugadores
+    al principio de la partida, adem\xE1s del punto de resurreci\xF3n en caso de
+    morir."
   type: 1
   canRequestInteract: 0
   canForceInteract: 0

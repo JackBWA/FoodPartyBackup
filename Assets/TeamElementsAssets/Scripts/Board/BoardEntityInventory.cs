@@ -58,6 +58,8 @@ public class BoardEntityInventory : MonoBehaviour
         visible = false;
         TryGetComponent(out owner);
         AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[0], 1); // XDDD
+        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[1], 1); // XDDD
+        AddItem(Resources.LoadAll<BoardItem_Base>("BoardItems/Items")[2], 1); // XDDD
     }
 
     public void ToggleItemsUI()

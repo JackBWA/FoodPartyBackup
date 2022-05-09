@@ -47,7 +47,7 @@ MonoBehaviour:
   name: Lluvia de tomates
   description: "Sigue el camino de casillas y crea una lluvia de tomates que da\xF1a
     a los jugadores."
-  icon: {fileID: 21300000, guid: dfdfdc71cd272da43a7e33b5095c6e7b, type: 3}
+  icon: {fileID: 21300000, guid: d2851dab938323b46857daad19b664d5, type: 3}
   inUse: 0
   prefab: {fileID: 6284222439659079672, guid: 905a54853b273a14aa54bc03436d81ee, type: 3}
   maxDistance: 5

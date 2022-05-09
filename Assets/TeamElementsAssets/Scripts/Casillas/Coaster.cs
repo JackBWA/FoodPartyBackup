@@ -17,6 +17,11 @@ public class Coaster : MonoBehaviour
 
     //public int coasterId { get; private set; } // Not using anymore wtf lol.
 
+    public string title;
+
+    [TextArea]
+    public string description;
+
     public bool isInitial
     {
         get
@@ -71,6 +76,27 @@ public class Coaster : MonoBehaviour
         //GameObjectUtility.SetStaticEditorFlags(gameObject, StaticEditorFlags.NavigationStatic);
         NavMeshSurface nms = gameObject.AddComponent<NavMeshSurface>();
         nms.collectObjects = CollectObjects.Children;
+    }
+
+    public void DisplayInfo(BoardEntity interactor/*string title, string description*/)
+    {
+        /*
+        if (string.IsNullOrEmpty(title)) title = this.title;
+        if (string.IsNullOrEmpty(description)) description = this.description;
+        */
+
+        interactor.LockTPC();
+        InfoCanvas infoCanvas = Instantiate(Resources.Load<InfoCanvas>("UI/InfoCanvas"));
+        infoCanvas.onClose += StopDisplayInfo;
+        infoCanvas.title = title;
+        infoCanvas.description = description;
+        infoCanvas.Open(interactor);
+    }
+
+    public void StopDisplayInfo(BoardEntity interactor)
+    {
+        interactor.UnlockTPC();
+        Interact(interactor);
     }
 
     // Realizar su función.

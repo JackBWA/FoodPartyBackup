@@ -49,7 +49,11 @@ MonoBehaviour:
   next: []
   players: []
   waitZones: []
-  type: 0
+  title: Casilla de teletransporte
+  description: "La casilla de teletransporte te permite teletransportarte a una casilla
+    situada en otro punto del mapa. Hay veces que su uso es obligatorio, y hay veces
+    que su uso es opcional y queda a decisi\xF3n del jugador."
+  type: 4
   canRequestInteract: 1
   canForceInteract: 0
   keepMovesOnRequestAccept: 1

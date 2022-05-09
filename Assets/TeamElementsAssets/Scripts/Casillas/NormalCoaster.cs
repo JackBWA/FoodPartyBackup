@@ -77,31 +77,40 @@ public class NormalCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-        if (hasFlavor)
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
-            switch (interactor)
-            {
-                case BoardPlayer player:
-                    StartCoroutine(RequestCo(interactor));
-                    break;
-
-                case BoardAI ai:
-                    if(interactor.coins >= interactionCost)
-                    {
-                        Flavor flavor = GetRandomFlavor(interactor);
-                        GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
-                        GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
-                        EndInteract(interactor);
-                    }
-                    break;
-            }
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
         } else
         {
-            EndInteract(interactor);
+            base.Interact(interactor);
+            if (hasFlavor)
+            {
+                switch (interactor)
+                {
+                    case BoardPlayer player:
+                        StartCoroutine(RequestCo(interactor));
+                        break;
+
+                    case BoardAI ai:
+                        if (interactor.coins >= interactionCost)
+                        {
+                            Flavor flavor = GetRandomFlavor(interactor);
+                            GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
+                            GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+                            EndInteract(interactor);
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                EndInteract(interactor);
+            }
+            //Debug.Log("Normal interact!");
+            //base.EndInteract(interactor);
         }
-        //Debug.Log("Normal interact!");
-        //base.EndInteract(interactor);
     }
 
     private IEnumerator RequestCo(BoardEntity interactor)

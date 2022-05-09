@@ -38,47 +38,55 @@ public class BonusCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
-        base.Interact(interactor);
-
-        BonusType bonusType = (BonusType) UnityEngine.Random.Range(0, Enum.GetValues(typeof(BonusType)).Length);
-        switch (bonusType)
+        PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
+        if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
-            case BonusType.HealthBonus:
-                interactor.health = Mathf.Clamp(interactor.health + healthAmount, 0, interactor.baseHealth);
-                break;
+            PlayerPrefs.SetInt(GetType().ToString(), 1);
+            DisplayInfo(interactor/*title, description*/);
+        } else
+        {
+            base.Interact(interactor);
 
-            case BonusType.CoinsBonus:
-                interactor.coins = Mathf.Clamp(interactor.coins + coinsAmount, 0, int.MaxValue);
-                break;
+            BonusType bonusType = (BonusType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(BonusType)).Length);
+            switch (bonusType)
+            {
+                case BonusType.HealthBonus:
+                    interactor.health = Mathf.Clamp(interactor.health + healthAmount, 0, interactor.baseHealth);
+                    break;
 
-            case BonusType.ItemBonus:
-                BoardItem_Base randomItem;
-                BoardItem_Base[] itemList = Resources.LoadAll<BoardItem_Base>("BoardItems/Items");
-                randomItem = itemList[UnityEngine.Random.Range(0, itemList.Length)];
-                /*
-                 * 
-                 * Give some feedback.
-                 * 
-                 */
-                interactor.inventory.AddItem(randomItem);
-                break;
+                case BonusType.CoinsBonus:
+                    interactor.coins = Mathf.Clamp(interactor.coins + coinsAmount, 0, int.MaxValue);
+                    break;
 
-            case BonusType.IngredientBonus:
-                List<Ingredient> obtainableIngredients = new List<Ingredient>();
-                foreach (Ingredient i in GameBoardManager.singleton.recipeStates[interactor].requiredElements.Keys.Where((e) => e.GetType() == typeof(Ingredient)).ToList())
-                {
-                    obtainableIngredients.Add(i);
-                }
+                case BonusType.ItemBonus:
+                    BoardItem_Base randomItem;
+                    BoardItem_Base[] itemList = Resources.LoadAll<BoardItem_Base>("BoardItems/Items");
+                    randomItem = itemList[UnityEngine.Random.Range(0, itemList.Length)];
+                    /*
+                     * 
+                     * Give some feedback.
+                     * 
+                     */
+                    interactor.inventory.AddItem(randomItem);
+                    break;
 
-                for(int i = 0; i < ingredientsAmount; i++)
-                {
-                    Ingredient ingredient = obtainableIngredients[UnityEngine.Random.Range(0, obtainableIngredients.Count)];
-                    GameBoardManager.singleton.recipeStates[interactor].currentElements[ingredient]++;
-                }
-                break;
+                case BonusType.IngredientBonus:
+                    List<Ingredient> obtainableIngredients = new List<Ingredient>();
+                    foreach (Ingredient i in GameBoardManager.singleton.recipeStates[interactor].requiredElements.Keys.Where((e) => e.GetType() == typeof(Ingredient)).ToList())
+                    {
+                        obtainableIngredients.Add(i);
+                    }
+
+                    for (int i = 0; i < ingredientsAmount; i++)
+                    {
+                        Ingredient ingredient = obtainableIngredients[UnityEngine.Random.Range(0, obtainableIngredients.Count)];
+                        GameBoardManager.singleton.recipeStates[interactor].currentElements[ingredient]++;
+                    }
+                    break;
+            }
+
+            EndInteract(interactor);
         }
-
-        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)
