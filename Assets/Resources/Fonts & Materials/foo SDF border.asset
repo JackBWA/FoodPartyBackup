@@ -65,7 +65,7 @@ Material:
     - _OutlineSoftness: 0
     - _OutlineUVSpeedX: 0
     - _OutlineUVSpeedY: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.15
     - _PerspectiveFilter: 0.875
     - _Reflectivity: 10
     - _ScaleRatioA: 0.8333333
@@ -160,11 +160,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: foo SDF
+  m_Name: foo SDF border
   m_EditorClassIdentifier: 
-  hashCode: -160682825
+  hashCode: -1169604453
   material: {fileID: -8934247187459278848}
-  materialHashCode: 752571191
+  materialHashCode: -150739621
   m_Version: 1.1.0
   m_SourceFontFileGUID: fc232a7db93ffe74ab912b026014384f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: fc232a7db93ffe74ab912b026014384f, type: 3}

@@ -21,6 +21,7 @@ public class ItemUIPrefab : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         set
         {
             itemImage.sprite = value;
+            itemImage.maskable = false;
         }
     }
 

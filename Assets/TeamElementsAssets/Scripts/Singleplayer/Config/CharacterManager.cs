@@ -169,7 +169,8 @@ public class CharacterManager : MonoBehaviour
             {
                 PlayerCharacter aiChar = cachedCharacters[i];
                 string randomName = auxNamesAI[UnityEngine.Random.Range(0, auxNamesAI.Count)];
-                aiChar.name = $"BOT {randomName}";
+                //aiChar.name = $"BOT {randomName}";
+                aiChar.name = $"{randomName}";
                 auxNamesAI.Remove(randomName);
                 aiChar.characterType = PlayerCharacter.CharacterType.AI;
                 aiCharacters.Add(aiChar);

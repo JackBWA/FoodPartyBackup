@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Exit Game
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -598,6 +598,10 @@ MonoBehaviour:
   playerResultUIPrefab: {fileID: 3939900665921716455, guid: afee2e3521379be40a70a85dd69ee621, type: 3}
   _winnerText: {fileID: 2459860597838357557}
   _scoresListParent: {fileID: 2459860597092409579}
+  podiumPositions: []
+  debug: 0
+  localTransform: 0
+  players: []
 --- !u!1 &2459860597838357558
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,8 +669,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '{Player} is the winner!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

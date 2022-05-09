@@ -5134,8 +5134,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: M - Mapa
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7944,8 +7944,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: X - Usar objeto
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8604,8 +8604,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Q - Cancelar objeto
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -16613,8 +16613,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: E - Inventario
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19892,8 +19892,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Alt - Lock Third Person Camera
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
