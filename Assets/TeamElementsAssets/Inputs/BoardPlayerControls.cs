@@ -310,6 +310,33 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Info"",
+            ""id"": ""b28f4c59-a7ab-4270-9af1-51800a94e33a"",
+            ""actions"": [
+                {
+                    ""name"": ""Toggle"",
+                    ""type"": ""Button"",
+                    ""id"": ""45d2e124-7497-4524-ac36-5442c0505041"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b88aadc1-a3b3-446c-a7e4-affd39db2679"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Toggle"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -357,6 +384,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Lock = m_Camera.FindAction("Lock", throwIfNotFound: true);
+        // Info
+        m_Info = asset.FindActionMap("Info", throwIfNotFound: true);
+        m_Info_Toggle = m_Info.FindAction("Toggle", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -558,6 +588,39 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
         }
     }
     public CameraActions @Camera => new CameraActions(this);
+
+    // Info
+    private readonly InputActionMap m_Info;
+    private IInfoActions m_InfoActionsCallbackInterface;
+    private readonly InputAction m_Info_Toggle;
+    public struct InfoActions
+    {
+        private @BoardPlayerControls m_Wrapper;
+        public InfoActions(@BoardPlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Toggle => m_Wrapper.m_Info_Toggle;
+        public InputActionMap Get() { return m_Wrapper.m_Info; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(InfoActions set) { return set.Get(); }
+        public void SetCallbacks(IInfoActions instance)
+        {
+            if (m_Wrapper.m_InfoActionsCallbackInterface != null)
+            {
+                @Toggle.started -= m_Wrapper.m_InfoActionsCallbackInterface.OnToggle;
+                @Toggle.performed -= m_Wrapper.m_InfoActionsCallbackInterface.OnToggle;
+                @Toggle.canceled -= m_Wrapper.m_InfoActionsCallbackInterface.OnToggle;
+            }
+            m_Wrapper.m_InfoActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Toggle.started += instance.OnToggle;
+                @Toggle.performed += instance.OnToggle;
+                @Toggle.canceled += instance.OnToggle;
+            }
+        }
+    }
+    public InfoActions @Info => new InfoActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -594,5 +657,9 @@ public class @BoardPlayerControls : IInputActionCollection, IDisposable
     public interface ICameraActions
     {
         void OnLock(InputAction.CallbackContext context);
+    }
+    public interface IInfoActions
+    {
+        void OnToggle(InputAction.CallbackContext context);
     }
 }

@@ -26,6 +26,7 @@ public class MainMenuEventSystem : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = true;
         DisplayContent(0);
     }
 

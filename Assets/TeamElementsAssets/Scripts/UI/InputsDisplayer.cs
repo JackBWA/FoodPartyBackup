@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class InputsDisplayer : MonoBehaviour
 {
-    public static InputsDisplayer instance;
+    public static InputsDisplayer singleton;
 
     public InputItemUI prefab;
     public Transform parentContainer;
 
     private List<InputItemUI> inputsList = new List<InputItemUI>();
 
-    private bool visible
+    public bool visible
     {
         get
         {
@@ -35,13 +35,13 @@ public class InputsDisplayer : MonoBehaviour
 
     private void Awake()
     {
-        if(instance != null)
+        if(singleton != null)
         {
             Destroy(this);
             return;
         }
 
-        instance = this;
+        singleton = this;
 
         visible = false;
         AddInput(null, "Tirar dado");

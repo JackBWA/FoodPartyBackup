@@ -51,7 +51,7 @@ public class MiniGame : MonoBehaviour
     public void MinigameEnter()
     {
         onMinigameEnter?.Invoke();
-
+        Cursor.visible = true;
         miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(true);
@@ -63,7 +63,7 @@ public class MiniGame : MonoBehaviour
     public void MinigamePreStart()
     {
         onMinigamePreStart?.Invoke();
-
+        Cursor.visible = false;
         miniGameState = MinigameState.STARTING;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);
@@ -87,7 +87,7 @@ public class MiniGame : MonoBehaviour
     public void MinigameFinish()
     {
         onMinigameFinish?.Invoke();
-
+        Cursor.visible = true;
         miniGameState = MinigameState.FINISHED;
         DisplayMinigameUI(false);
         DisplayTutorialUI(false);

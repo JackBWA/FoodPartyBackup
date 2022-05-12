@@ -7,8 +7,8 @@ public class FoodCatcherController : MonoBehaviour
 
     public PlayerCharacter playerCharacter;
 
-    public float speed = 8f;
-    public float jumpForce = 12f;
+    public float speed = 15f;
+    public float jumpForce = 12.5f;
     public float rotationSpeed = 10f;
 
     protected Vector3 moveVector;

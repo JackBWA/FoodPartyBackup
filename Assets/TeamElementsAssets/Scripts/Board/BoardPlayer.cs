@@ -20,6 +20,10 @@ public class BoardPlayer : BoardEntity
     {
         playerControls.Camera.Lock.performed += _ => LockTPC();
         playerControls.Camera.Lock.canceled += _ => UnlockTPC();
+        playerControls.Info.Toggle.performed += _ =>
+        {
+            if (InputsDisplayer.singleton != null) InputsDisplayer.singleton.ToggleVisibility();
+        };
         playerControls.Dice.Throw.performed += _ => ThrowDice();
         playerControls.Map.Toggle.performed += _ => ToggleMapView();
         playerControls.Inventory.TestItem.performed += _ => inventory.UseItem(inventory.items.ElementAt(0).Key);

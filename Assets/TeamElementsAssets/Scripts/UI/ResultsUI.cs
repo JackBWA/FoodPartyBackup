@@ -6,7 +6,14 @@ using TMPro;
 
 public class ResultsUI : MonoBehaviour
 {
+
+    public Sprite coinRewardIcon;
+
+    public List<Reward> rewards = new List<Reward>();
+
     public PlayerResult playerResultUIPrefab;
+
+    public RewardResult playerRewardUIPrefab;
 
     public float resultsDisplayTime = 10f;
 
@@ -32,6 +39,19 @@ public class ResultsUI : MonoBehaviour
             _scoresListParent = value;
         }
     }
+
+    public Transform rewardsListParent
+    {
+        get
+        {
+            return _rewardsListParent;
+        }
+        set
+        {
+            _rewardsListParent = value;
+        }
+    }
+
     public string leavingText
     {
         get
@@ -48,6 +68,8 @@ public class ResultsUI : MonoBehaviour
     private TextMeshProUGUI _winnerText;
     [SerializeField]
     private Transform _scoresListParent;
+    [SerializeField]
+    private Transform _rewardsListParent;
     [SerializeField]
     private TextMeshProUGUI _leavingText;
 
@@ -71,6 +93,36 @@ public class ResultsUI : MonoBehaviour
             instance.resultScore = kV.Value;
 
             instance.transform.SetParent(scoresListParent);
+
+            BoardEntity bE = GameBoardManager.singleton.saveLoadGameObjectsParent.GetComponentsInChildren<PlayerCharacter>().First(playerChar => playerChar.name == kV.Key.name).GetComponent<BoardEntity>();
+
+            Reward reward = rewards[i - 1];
+
+            reward.GetReward(bE);
+
+            RewardResult rewardsDisplay = Instantiate(playerRewardUIPrefab);
+            rewardsDisplay.transform.SetParent(rewardsListParent);
+
+            RewardUIElement coinsRewardUI = Instantiate(rewardsDisplay.prefab);
+            coinsRewardUI.amount = reward.coinsAmount;
+            coinsRewardUI.icon = coinRewardIcon;
+            coinsRewardUI.transform.SetParent(rewardsDisplay.contentParent);
+
+            foreach(KeyValuePair<Ingredient, int> iV in reward.obtainedIngredients)
+            {
+                RewardUIElement ingredientsRewardUI = Instantiate(rewardsDisplay.prefab);
+                ingredientsRewardUI.amount = iV.Value;
+                ingredientsRewardUI.icon = iV.Key.icon;
+                ingredientsRewardUI.transform.SetParent(rewardsDisplay.contentParent);
+            }
+
+            foreach (KeyValuePair<BoardItem_Base, int> iV in reward.obtainedItems)
+            {
+                RewardUIElement itemsRewardUI = Instantiate(rewardsDisplay.prefab);
+                itemsRewardUI.amount = iV.Value;
+                itemsRewardUI.icon = iV.Key.icon;
+                itemsRewardUI.transform.SetParent(rewardsDisplay.contentParent);
+            }
 
             i++;
         }

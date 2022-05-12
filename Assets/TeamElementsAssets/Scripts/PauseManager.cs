@@ -90,12 +90,14 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
+        Cursor.visible = true;
         Time.timeScale = 0f;
         isPaused = true;
     }
 
     public void Resume()
     {
+        Cursor.visible = false;
         Time.timeScale = defaultTimeScale;
         isPaused = false;
     }

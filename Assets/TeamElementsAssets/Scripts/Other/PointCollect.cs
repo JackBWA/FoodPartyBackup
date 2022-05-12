@@ -16,7 +16,7 @@ public class PointCollect : MonoBehaviour
     private void Awake()
     {
         TryGetComponent(out rB);
-        if (rB != null) rB.drag = UnityEngine.Random.Range(2.5f, 3.75f);
+        if (rB != null) rB.drag = UnityEngine.Random.Range(1f, 2f);
         if (random) value = UnityEngine.Random.Range(minValue, maxValue);
     }
 

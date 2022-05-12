@@ -67,7 +67,8 @@ public class FoodCatcherAIController : FoodCatcherController
         {
             agent = gameObject.AddComponent<NavMeshAgent>();
             agent.updateRotation = false;
-            agent.speed = 8f;
+            agent.speed = speed;
+            agent.acceleration = 100f;
         }
     }
 
@@ -77,6 +78,30 @@ public class FoodCatcherAIController : FoodCatcherController
         agent.Warp(position + new Vector3(0f, transform.localScale.y, 0f));
         if (agent != null) agent.enabled = true;
     }
+    
+    /*
+    private void MoveToRandomNearbyCollectable()
+    {
+        //timer = 0f;
+        //if (_moveCo != null) return;
+        //List<Collider> pointCollectables = Physics.OverlapSphere(transform.position, checkRadius, LayerMask.GetMask("Collectable"))/*.Where(aux => aux.gameObject.GetComponent<PointCollect>()).ToList();
+
+        PointCollect randomCollectable = pointCollectables[UnityEngine.Random.Range(0, pointCollectables.Count)].GetComponent<PointCollect>();
+        if (randomCollectable.value <= 0f)
+        {
+            float random = UnityEngine.Random.Range(0, 100f);
+            if (random < 50f)
+            {
+                _moveCo = StartCoroutine(MoveCo(randomCollectable));
+                return;
+            }
+            Debug.Log("OTRO");
+            pointCollectables.Remove(randomCollectable.GetComponent<Collider>());
+            randomCollectable = pointCollectables[UnityEngine.Random.Range(0, pointCollectables.Count)].GetComponent<PointCollect>();
+        }
+        _moveCo = StartCoroutine(MoveCo(randomCollectable));
+    }
+    */
 
     private void MoveToRandomNearbyCollectable()
     {

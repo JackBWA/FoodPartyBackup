@@ -520,6 +520,7 @@ public class GameBoardManager : MonoBehaviour
     public event Action onRoundStart;
     public void RoundStart()
     {
+        Cursor.visible = false;
         TurnStart(boardPlayers[turnIndex]);
         onRoundStart?.Invoke();
     }

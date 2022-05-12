@@ -185,6 +185,7 @@ public class BoardEntity : MonoBehaviour
     public void LockTPC()
     {
         if (!thirdPersonCamera.enabled) return;
+        Cursor.visible = true;
         thirdPersonCamera.m_YAxis.m_MaxSpeed = 0f;
         thirdPersonCamera.m_XAxis.m_MaxSpeed = 0f;
     }
@@ -192,6 +193,7 @@ public class BoardEntity : MonoBehaviour
     public void UnlockTPC()
     {
         if (!thirdPersonCamera.enabled) return;
+        Cursor.visible = false;
         thirdPersonCamera.m_YAxis.m_MaxSpeed = cameraSpeedsCache.x;
         thirdPersonCamera.m_XAxis.m_MaxSpeed = cameraSpeedsCache.y;
     }
@@ -210,16 +212,16 @@ public class BoardEntity : MonoBehaviour
 
     public void ActivateTPC()
     {
-        if (InputsDisplayer.instance != null)
+        if (InputsDisplayer.singleton != null)
         {
-            InputsDisplayer.instance.ClearInputs();
-            InputsDisplayer.instance.AddInput(null, "Pausar");
-            InputsDisplayer.instance.AddInput(null, "Tirar dado");
-            InputsDisplayer.instance.AddInput(null, "Inventario");
-            InputsDisplayer.instance.AddInput(null, "Cámara superior");
-            InputsDisplayer.instance.AddInput(null, "Usar objeto");
-            InputsDisplayer.instance.AddInput(null, "Cancelar objeto");
-            InputsDisplayer.instance.AddInput(null, "Bloquear cámara");
+            InputsDisplayer.singleton.ClearInputs();
+            InputsDisplayer.singleton.AddInput(null, "Pausar");
+            InputsDisplayer.singleton.AddInput(null, "Tirar dado");
+            InputsDisplayer.singleton.AddInput(null, "Inventario");
+            InputsDisplayer.singleton.AddInput(null, "Cámara superior");
+            InputsDisplayer.singleton.AddInput(null, "Usar objeto");
+            InputsDisplayer.singleton.AddInput(null, "Cancelar objeto");
+            InputsDisplayer.singleton.AddInput(null, "Bloquear cámara");
         }
         //Debug.Log("Activate third person camera.");
         isViewingMap = false;
@@ -234,17 +236,17 @@ public class BoardEntity : MonoBehaviour
 
     public void ActivateTC()
     {
-        if (InputsDisplayer.instance != null)
+        if (InputsDisplayer.singleton != null)
         {
-            InputsDisplayer.instance.ClearInputs();
-            InputsDisplayer.instance.AddInput(null, "Pausar");
-            InputsDisplayer.instance.AddInput(null, "Mover cámara");
-            InputsDisplayer.instance.AddInput(null, "Aumentar velocidad cámara");
-            InputsDisplayer.instance.AddInput(null, "Tirar dado");
-            InputsDisplayer.instance.AddInput(null, "Inventario");
-            InputsDisplayer.instance.AddInput(null, "Cámara personaje");
-            InputsDisplayer.instance.AddInput(null, "Usar objeto");
-            InputsDisplayer.instance.AddInput(null, "Cancelar objeto");
+            InputsDisplayer.singleton.ClearInputs();
+            InputsDisplayer.singleton.AddInput(null, "Pausar");
+            InputsDisplayer.singleton.AddInput(null, "Mover cámara");
+            InputsDisplayer.singleton.AddInput(null, "Aumentar velocidad cámara");
+            InputsDisplayer.singleton.AddInput(null, "Tirar dado");
+            InputsDisplayer.singleton.AddInput(null, "Inventario");
+            InputsDisplayer.singleton.AddInput(null, "Cámara personaje");
+            InputsDisplayer.singleton.AddInput(null, "Usar objeto");
+            InputsDisplayer.singleton.AddInput(null, "Cancelar objeto");
         }
         //Debug.Log("Activate top camera.");
         isViewingMap = true;

@@ -297,6 +297,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Info",
+            "id": "b28f4c59-a7ab-4270-9af1-51800a94e33a",
+            "actions": [
+                {
+                    "name": "Toggle",
+                    "type": "Button",
+                    "id": "45d2e124-7497-4524-ac36-5442c0505041",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b88aadc1-a3b3-446c-a7e4-affd39db2679",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Toggle",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
