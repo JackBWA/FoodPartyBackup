@@ -15997,9 +15997,9 @@ MonoBehaviour:
   gameBoardCanvasInstance: {fileID: 0}
   rankingCanvas: {fileID: 0}
   minigameScenes:
-  - FoodCatcher
-  - FoodCatcher
-  - FoodCatcher
+  - KingOfTheHill
+  - KingOfTheHill
+  - KingOfTheHill
   systemsParent: {fileID: 1769978176}
   uiParent: {fileID: 856243757}
   navMeshParent: {fileID: 1955368614}

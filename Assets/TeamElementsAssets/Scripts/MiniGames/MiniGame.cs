@@ -48,7 +48,7 @@ public class MiniGame : MonoBehaviour
     }
 
     public event Action onMinigameEnter;
-    public void MinigameEnter()
+    public virtual void MinigameEnter()
     {
         onMinigameEnter?.Invoke();
         Cursor.visible = true;
@@ -60,7 +60,7 @@ public class MiniGame : MonoBehaviour
     }
 
     public event Action onMinigamePreStart;
-    public void MinigamePreStart()
+    public virtual void MinigamePreStart()
     {
         onMinigamePreStart?.Invoke();
         Cursor.visible = false;
@@ -84,7 +84,7 @@ public class MiniGame : MonoBehaviour
     }
 
     public event Action onMinigameFinish;
-    public void MinigameFinish()
+    public virtual void MinigameFinish()
     {
         onMinigameFinish?.Invoke();
         Cursor.visible = true;

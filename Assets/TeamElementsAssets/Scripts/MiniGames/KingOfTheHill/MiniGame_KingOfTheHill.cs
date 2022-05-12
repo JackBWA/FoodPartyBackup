@@ -25,6 +25,12 @@ public class MiniGame_KingOfTheHill : MiniGame
     }
     #endregion
 
+    public override void MinigameStart()
+    {
+        base.MinigameStart();
+        Cursor.visible = true;
+    }
+
     protected override void InitializePlayers()
     {
         base.InitializePlayers();
