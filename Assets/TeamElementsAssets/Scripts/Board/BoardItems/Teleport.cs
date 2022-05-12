@@ -13,6 +13,8 @@ public class Teleport : BoardItem_Base
 
     public BoardEntity target;
 
+    public GameObject teleportParticlesPrefab;
+
     protected override void Awake()
     {
         base.Awake();
@@ -55,14 +57,33 @@ public class Teleport : BoardItem_Base
         StartCoroutine(TeleportToPlayer());
     }
 
+    public override void Cancel()
+    {
+        target.DeactivateTPC();
+        owner.ActivateTPC();
+        base.Cancel();
+    }
+
     private IEnumerator TeleportToPlayer()
     {
-        Destroy(canvasInstance.gameObject);
+        canvasInstance.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
         owner.currentCoaster.playerLeave(owner);
         owner.currentCoaster = target.currentCoaster;
         Vector3 zone = owner.currentCoaster.GetAvailableWaitZones()[0];
+        ParticleSystem pS = Instantiate(teleportParticlesPrefab).GetComponentInChildren<ParticleSystem>();
+        pS.transform.position = owner.transform.position;
+        owner.playerCharacter._renderer.enabled = false;
+        yield return new WaitForSeconds(1f);
         owner.TeleportTo(zone);
+        owner.currentCoaster.SetWaitZoneState(zone, owner);
+        yield return new WaitForSeconds(1f);
+        pS = Instantiate(teleportParticlesPrefab).GetComponentInChildren<ParticleSystem>();
+        pS.transform.position = owner.transform.position;
+        yield return new WaitForSeconds(.1f);
+        owner.playerCharacter._renderer.enabled = true;
         owner.GetDice().transform.position = owner.transform.position + Vector3.up * 5f;
+        Destroy(canvasInstance.gameObject);
         yield return new WaitForSeconds(2.5f);
         //owner.currentCoaster.playerEnter(owner, zone);
         EndUse();

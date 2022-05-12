@@ -64,6 +64,13 @@ public class BoardEntityInventory : MonoBehaviour
 
     public void ToggleItemsUI()
     {
+        if (visible)
+        {
+            owner.LockTPC();
+        } else
+        {
+            owner.UnlockTPC();
+        }
         itemsCanvasInstance.enabled = visible;
         itemsCanvasInstance.gameObject.SetActive(visible);
     }

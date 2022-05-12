@@ -36,6 +36,7 @@ public class CoasterTargetSelector : MonoBehaviour
 
         //result = coaster;
         // Notify.
+        interactor.UnlockTPC();
         interactor.StartCoroutine(interactor.Move(coaster));
         //StartCoroutine(interactor.Move(coaster, true));
         foreach(CoasterTarget cT in selectors)

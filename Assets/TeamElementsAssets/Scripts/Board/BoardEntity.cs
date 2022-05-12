@@ -163,7 +163,7 @@ public class BoardEntity : MonoBehaviour
 
     protected virtual void Start()
     {
-
+        cameraSpeedsCache = new Vector2(thirdPersonCamera.m_YAxis.m_MaxSpeed, thirdPersonCamera.m_XAxis.m_MaxSpeed);
     }
 
     private void Update()
@@ -185,7 +185,6 @@ public class BoardEntity : MonoBehaviour
     public void LockTPC()
     {
         if (!thirdPersonCamera.enabled) return;
-        cameraSpeedsCache = new Vector2(thirdPersonCamera.m_YAxis.m_MaxSpeed, thirdPersonCamera.m_XAxis.m_MaxSpeed);
         thirdPersonCamera.m_YAxis.m_MaxSpeed = 0f;
         thirdPersonCamera.m_XAxis.m_MaxSpeed = 0f;
     }
@@ -211,6 +210,17 @@ public class BoardEntity : MonoBehaviour
 
     public void ActivateTPC()
     {
+        if (InputsDisplayer.instance != null)
+        {
+            InputsDisplayer.instance.ClearInputs();
+            InputsDisplayer.instance.AddInput(null, "Pausar");
+            InputsDisplayer.instance.AddInput(null, "Tirar dado");
+            InputsDisplayer.instance.AddInput(null, "Inventario");
+            InputsDisplayer.instance.AddInput(null, "Cámara superior");
+            InputsDisplayer.instance.AddInput(null, "Usar objeto");
+            InputsDisplayer.instance.AddInput(null, "Cancelar objeto");
+            InputsDisplayer.instance.AddInput(null, "Bloquear cámara");
+        }
         //Debug.Log("Activate third person camera.");
         isViewingMap = false;
         thirdPersonCamera.enabled = true;
@@ -224,6 +234,18 @@ public class BoardEntity : MonoBehaviour
 
     public void ActivateTC()
     {
+        if (InputsDisplayer.instance != null)
+        {
+            InputsDisplayer.instance.ClearInputs();
+            InputsDisplayer.instance.AddInput(null, "Pausar");
+            InputsDisplayer.instance.AddInput(null, "Mover cámara");
+            InputsDisplayer.instance.AddInput(null, "Aumentar velocidad cámara");
+            InputsDisplayer.instance.AddInput(null, "Tirar dado");
+            InputsDisplayer.instance.AddInput(null, "Inventario");
+            InputsDisplayer.instance.AddInput(null, "Cámara personaje");
+            InputsDisplayer.instance.AddInput(null, "Usar objeto");
+            InputsDisplayer.instance.AddInput(null, "Cancelar objeto");
+        }
         //Debug.Log("Activate top camera.");
         isViewingMap = true;
         topCamera.enabled = true;
@@ -348,6 +370,8 @@ public class BoardEntity : MonoBehaviour
         Debug.Log(declineText);
         */
 
+        LockTPC();
+
         RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("UI/RequestCanvas"));
         requestManager.title = title;
         requestManager.message = message;
@@ -358,6 +382,8 @@ public class BoardEntity : MonoBehaviour
         {
             yield return null;
         }
+
+        UnlockTPC();
 
         bool result = requestManager.requestResult;
         Destroy(requestManager.gameObject);
@@ -399,6 +425,7 @@ public class BoardEntity : MonoBehaviour
                     CoasterTargetSelector selector = Instantiate(Resources.Load<CoasterTargetSelector>("CoasterTargetSelector"));
                     selector.interactor = this;
                     selector.CreateSelectors();
+                    LockTPC();
                     break;
             }
 

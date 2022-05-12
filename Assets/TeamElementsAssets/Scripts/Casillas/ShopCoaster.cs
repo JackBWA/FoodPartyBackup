@@ -22,6 +22,7 @@ public class ShopCoaster : Coaster
 
     public override void Interact(BoardEntity interactor)
     {
+        interactor.LockTPC();
         PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
         if (pC != null && pC.characterType == PlayerCharacter.CharacterType.Player && !PlayerPrefs.HasKey(GetType().ToString()))
         {
@@ -110,6 +111,7 @@ public class ShopCoaster : Coaster
 
     public override void EndInteract(BoardEntity interactor)
     {
+        interactor.UnlockTPC();
         base.EndInteract(interactor);
         Debug.Log("Shop end interact!");
         Destroy(shopInstance.gameObject);

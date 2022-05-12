@@ -32,7 +32,7 @@ public class BoardItem_Base : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Cancel()
+    public virtual void Cancel()
     {
         if (inUse) return;
         owner.inventory.CancelUsingItem(this);

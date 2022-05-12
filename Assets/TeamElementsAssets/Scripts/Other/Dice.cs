@@ -65,7 +65,7 @@ public class Dice : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
         }
 
-        int result = CheckResult();
+        int result = CheckResult() + 15;
         //Debug.Log(result);
         if (result > 0)
         {

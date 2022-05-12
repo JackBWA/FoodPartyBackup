@@ -50,3 +50,4 @@ MonoBehaviour:
   inUse: 0
   canvasPrefab: {fileID: 6861034760081591522, guid: 3351f94234acf0f40b06df84348ff755, type: 3}
   target: {fileID: 0}
+  teleportParticlesPrefab: {fileID: 5354661233409336789, guid: 93d696ea5d37ab948be72cc22520414c, type: 3}
