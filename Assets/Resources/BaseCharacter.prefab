@@ -153,8 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb9f6e66b4d74104d83c6ab49eb6a429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _renderer: {fileID: 0}
+  avatar: {fileID: 0}
   characterType: 1
   trackPoint: {fileID: 8260275319955778114}
+  animManager: {fileID: 0}
   aiDifficulty: 0
 --- !u!136 &3569344964566908812
 CapsuleCollider:
@@ -351,8 +354,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Name
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
-  m_sharedMaterial: {fileID: -8934247187459278848, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
