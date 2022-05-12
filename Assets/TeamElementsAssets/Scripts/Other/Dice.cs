@@ -84,7 +84,7 @@ public class Dice : MonoBehaviour
     private IEnumerator ShowResult(int number)
     {
         TextDisplayer textDisplayer = Instantiate(Resources.Load<TextDisplayer>("Other/TextDisplayer"));
-        textDisplayer.transform.position = transform.position + Vector3.up;
+        textDisplayer.transform.position = transform.position + Vector3.up * 2.5f;
         textDisplayer.text = $"{number}";
         yield return new WaitForSeconds(displayTime);
         owner.SetMoves(number);
