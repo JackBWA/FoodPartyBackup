@@ -45,10 +45,4 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadSceneAsync("MainMenu");
         PauseManager.singleton.canToggle = false;
     }
-
-    private void OnApplicationQuit()
-    {
-        // TEMPORAL XDDDDD
-        PlayerPrefs.DeleteAll();
-    }
 }

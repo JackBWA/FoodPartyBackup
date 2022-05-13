@@ -15,8 +15,10 @@ public class OptionsMenu : MonoBehaviour
     public TMP_Dropdown qualityDropDown;
     List<TMP_Dropdown.OptionData> qualityOptions = new List<TMP_Dropdown.OptionData>();
 
+    /*
     public TMP_Dropdown shadowDropDown;
     List<TMP_Dropdown.OptionData> shadowOptions = new List<TMP_Dropdown.OptionData>();
+    */
 
     //public Toggle windowedToggle;
 
@@ -42,11 +44,13 @@ public class OptionsMenu : MonoBehaviour
         #endregion
 
         #region Shadows
+        /*
         shadowOptions = new List<TMP_Dropdown.OptionData>();
         foreach(string s in Enum.GetNames(typeof(ShadowResolution))){
             shadowOptions.Add(new TMP_Dropdown.OptionData(s));
         }
         shadowDropDown.AddOptions(shadowOptions);
+        */
         #endregion
 
         #region Set Selected Values
@@ -78,11 +82,27 @@ public class OptionsMenu : MonoBehaviour
         QualitySettings.SetQualityLevel(qualityDropDown.value);
     }
 
+    public void ClearPlayerPrefs(Toggle toggle)
+    {
+        StartCoroutine(ClearPlayerPrefsCo(toggle));
+    }
+
+    private IEnumerator ClearPlayerPrefsCo(Toggle toggle)
+    {
+        toggle.interactable = false;
+        PlayerPrefs.DeleteAll();
+        yield return new WaitForSeconds(.5f);
+        toggle.SetIsOnWithoutNotify(!toggle.isOn);
+        toggle.interactable = true;
+    }
+
+    /*
     public void SetShadowResolution()
     {
         Debug.Log((ShadowResolution)shadowDropDown.value);
         QualitySettings.shadowResolution = (ShadowResolution) shadowDropDown.value;
     }
+    */
 
     /*
     public void ToggleWindowed()
