@@ -66,7 +66,7 @@ public class Stove : MonoBehaviour
 
         #region Area Overlap
         
-        foreach (Collider c in Physics.OverlapBox(transform.position + centerOffset, areaSize))
+        foreach (Collider c in Physics.OverlapBox(transform.position + centerOffset, areaSize/2))
         {
             DontGetBurntController controller;
             if(c.gameObject.TryGetComponent(out controller))

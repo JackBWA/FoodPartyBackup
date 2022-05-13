@@ -199,7 +199,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        //Time.timeScale = 10f;
+        Time.timeScale = 10f;
         GameStart();
     }
 

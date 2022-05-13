@@ -135,7 +135,17 @@ public class MiniGame_DontGetBurnt : MiniGame
     {
         Stove stove = stoves[UnityEngine.Random.Range(0, stoves.Count)];
         stove.PreTrigger();
-        yield return new WaitForSeconds(2.5f);
+
+        foreach(PlayerCharacter pC in playersLeft)
+        {
+            DontGetBurntAIController ai;
+            if(TryGetComponent(out ai) && ai.controller.destination == stove.transform.position)
+            {
+                ai.SwapStove();
+            }
+        }
+
+        yield return new WaitForSeconds(.75f);
 
         onTriggerStove?.Invoke();
         stove.Trigger();
