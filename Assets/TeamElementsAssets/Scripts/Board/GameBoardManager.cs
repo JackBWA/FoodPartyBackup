@@ -50,8 +50,6 @@ public class GameBoardManager : MonoBehaviour
     [HideInInspector]
     public Canvas gameBoardCanvasInstance;
 
-    public GameBoardRankingResults rankingCanvas;
-
     public List<string> minigameScenes = new List<string>();
 
     #region Parents
