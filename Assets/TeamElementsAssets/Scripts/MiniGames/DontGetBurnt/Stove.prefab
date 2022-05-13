@@ -46,6 +46,7 @@ MonoBehaviour:
   centerOffset: {x: 0, y: 0.5, z: 0}
   areaSize: {x: 8.5, y: 2, z: 8.5}
   debug: 1
+  smokePrefab: {fileID: 1779499231321323473, guid: 3f6903745cb4a7646b9790ff85262955, type: 3}
   particlePrefab: {fileID: 1779499231321323473, guid: 273115880b148c746bc037f5f0f9aa4f, type: 3}
   particlePositions:
   - position: {x: 1.25, y: -0.25, z: 0}

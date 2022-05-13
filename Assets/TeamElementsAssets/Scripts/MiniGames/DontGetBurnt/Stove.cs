@@ -10,8 +10,10 @@ public class Stove : MonoBehaviour
 
     public bool debug = true;
 
+    public ParticleSystem smokePrefab;
     public ParticleSystem particlePrefab;
     public List<PositionRotation> particlePositions = new List<PositionRotation>();
+    private List<ParticleSystem> smokeParticles = new List<ParticleSystem>();
     private List<ParticleSystem> particles = new List<ParticleSystem>();
 
     private void Awake()
@@ -24,6 +26,12 @@ public class Stove : MonoBehaviour
             pS.transform.position = transform.position + pR.position;
             pS.transform.rotation = Quaternion.Euler(pR.rotation);
             particles.Add(pS);
+            pS = Instantiate(smokePrefab);
+            pS.Stop();
+            pS.transform.SetParent(transform);
+            pS.transform.position = transform.position + pR.position;
+            pS.transform.rotation = Quaternion.Euler(pR.rotation);
+            smokeParticles.Add(pS);
         }
     }
 
@@ -36,6 +44,14 @@ public class Stove : MonoBehaviour
         foreach(PositionRotation pR in particlePositions)
         {
             Gizmos.DrawIcon(transform.position + pR.position, "BuildSettings.Metro.Small");
+        }
+    }
+
+    public void PreTrigger()
+    {
+        foreach (ParticleSystem pS in smokeParticles)
+        {
+            pS.Play();
         }
     }
 

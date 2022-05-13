@@ -124,18 +124,20 @@ public class MiniGame_DontGetBurnt : MiniGame
             if(timer >= stoveTriggerDelay)
             {
                 timer = 0f;
-                TriggerStove();
+                StartCoroutine(TriggerStove());
             }
             yield return new WaitForEndOfFrame();
         }
     }
 
     public event Action onTriggerStove;
-    public void TriggerStove()
+    public IEnumerator TriggerStove()
     {
-        onTriggerStove?.Invoke();
-
         Stove stove = stoves[UnityEngine.Random.Range(0, stoves.Count)];
+        stove.PreTrigger();
+        yield return new WaitForSeconds(2.5f);
+
+        onTriggerStove?.Invoke();
         stove.Trigger();
 
         foreach (PlayerCharacter pC in playersLeft)
@@ -150,7 +152,6 @@ public class MiniGame_DontGetBurnt : MiniGame
         {
             StopCoroutine(timerCo);
             MinigameFinish();
-            return;
         }
         #endregion
     }
