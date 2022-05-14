@@ -44,12 +44,13 @@ public class InputsDisplayer : MonoBehaviour
         singleton = this;
 
         visible = false;
-        AddInput(null, "Tirar dado");
-        AddInput(null, "Inventario");
-        AddInput(null, "Vista cámara");
-        AddInput(null, "Usar objeto");
-        AddInput(null, "Cancelar objeto");
-        AddInput(null, "Bloquear cámara");
+        AddInput(Resources.Load<Sprite>("Icons/PIcon"), "Pausar");
+        AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
+        AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+        AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara superior");
+        AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
+        AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");
+        AddInput(Resources.Load<Sprite>("Icons/LeftAltIcon"), "Bloquear cámara");
     }
 
     public void ToggleVisibility()

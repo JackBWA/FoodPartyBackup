@@ -215,13 +215,13 @@ public class BoardEntity : MonoBehaviour
         if (InputsDisplayer.singleton != null)
         {
             InputsDisplayer.singleton.ClearInputs();
-            InputsDisplayer.singleton.AddInput(null, "Pausar");
-            InputsDisplayer.singleton.AddInput(null, "Tirar dado");
-            InputsDisplayer.singleton.AddInput(null, "Inventario");
-            InputsDisplayer.singleton.AddInput(null, "Cámara superior");
-            InputsDisplayer.singleton.AddInput(null, "Usar objeto");
-            InputsDisplayer.singleton.AddInput(null, "Cancelar objeto");
-            InputsDisplayer.singleton.AddInput(null, "Bloquear cámara");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/PIcon"), "Pausar");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara superior");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/LeftAltIcon"), "Bloquear cámara");
         }
         //Debug.Log("Activate third person camera.");
         isViewingMap = false;
@@ -239,14 +239,14 @@ public class BoardEntity : MonoBehaviour
         if (InputsDisplayer.singleton != null)
         {
             InputsDisplayer.singleton.ClearInputs();
-            InputsDisplayer.singleton.AddInput(null, "Pausar");
-            InputsDisplayer.singleton.AddInput(null, "Mover cámara");
-            InputsDisplayer.singleton.AddInput(null, "Aumentar velocidad cámara");
-            InputsDisplayer.singleton.AddInput(null, "Tirar dado");
-            InputsDisplayer.singleton.AddInput(null, "Inventario");
-            InputsDisplayer.singleton.AddInput(null, "Cámara personaje");
-            InputsDisplayer.singleton.AddInput(null, "Usar objeto");
-            InputsDisplayer.singleton.AddInput(null, "Cancelar objeto");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/PIcon"), "Pausar");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/WASDIcon"), "Mover cámara");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/LeftShiftIcon"), "Aumentar velocidad cámara");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara personaje");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");
         }
         //Debug.Log("Activate top camera.");
         isViewingMap = true;

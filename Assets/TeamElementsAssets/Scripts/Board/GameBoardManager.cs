@@ -197,7 +197,7 @@ public class GameBoardManager : MonoBehaviour
 
     private void Start()
     {
-        Time.timeScale = 10f;
+        //Time.timeScale = 10f;
         GameStart();
     }
 
@@ -290,6 +290,7 @@ public class GameBoardManager : MonoBehaviour
             Recipe recipeCopy = ScriptableObject.CreateInstance<Recipe>();
             recipeCopy.CopyFrom(recipe);
             recipeCopy.owner = player;
+            recipeCopy.Complete();
 
             /*
             // TEST
