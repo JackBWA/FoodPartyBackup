@@ -290,7 +290,7 @@ public class GameBoardManager : MonoBehaviour
             Recipe recipeCopy = ScriptableObject.CreateInstance<Recipe>();
             recipeCopy.CopyFrom(recipe);
             recipeCopy.owner = player;
-            recipeCopy.Complete();
+            //recipeCopy.Complete();
 
             /*
             // TEST
