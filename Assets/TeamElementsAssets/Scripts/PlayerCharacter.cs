@@ -52,16 +52,12 @@ public class PlayerCharacter : MonoBehaviour
         "Notlaw",
         "delus3r",
         "Nowy",
-        "Sans",
-        "Feniix",
-        "Itzi",
-        "Pika",
-        "Sea",
-        "Beevan",
-        "Buckfro",
-        "Milasus",
-        "Artemisa",
-        "Peppy"
+        "Kuroe",
+        "Shaggy",
+        "Meri",
+        "Uri",
+        "Fran",
+        "Monica"
     };
 
     private void LoadDifficulty(AIDifficulty difficulty)

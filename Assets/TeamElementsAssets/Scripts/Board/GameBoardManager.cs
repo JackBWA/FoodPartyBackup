@@ -7,6 +7,7 @@ using SplineMesh;
 using System.Collections;
 using UnityEngine.UI;
 using System.Linq;
+using Cinemachine;
 
 public class GameBoardManager : MonoBehaviour
 {
@@ -194,9 +195,21 @@ public class GameBoardManager : MonoBehaviour
         InitializeGame();
     }
 
-    private void Start()
+    public Animation mapIntro;
+
+    private IEnumerator Start()
     {
         //Time.timeScale = 10f;
+        CinemachineVirtualCamera introCamera = mapIntro.GetComponent<CinemachineVirtualCamera>();
+        introCamera.enabled = true;
+        mapIntro.Play();
+        yield return new WaitForSeconds(mapIntro.clip.length + .5f);
+        Coaster.flavorCoaster.cam.enabled = true;
+        yield return new WaitForSeconds(.75f);
+        Coaster.flavorCoaster.flavorChest.Play("bandejacofrespawn");
+        yield return new WaitForSeconds(Coaster.flavorCoaster.flavorChest.GetClip("bandejacofrespawn").length + .5f);
+        introCamera.enabled = false;
+        Coaster.flavorCoaster.cam.enabled = false;
         GameStart();
     }
 
@@ -257,9 +270,11 @@ public class GameBoardManager : MonoBehaviour
         #endregion
     }
 
-    public void SpawnFlavorOnRandomNormalCoaster()
+    public NormalCoaster SpawnFlavorOnRandomNormalCoaster()
     {
+        NormalCoaster result;
         int random = UnityEngine.Random.Range(0, coastersWhereFlavorCanBe.Count);
+        result = coastersWhereFlavorCanBe[random];
         for(int i = 0; i < coastersWhereFlavorCanBe.Count; i++)
         {
             if(i == random)
@@ -270,6 +285,7 @@ public class GameBoardManager : MonoBehaviour
                 coastersWhereFlavorCanBe[i].hasFlavor = false;
             }
         }
+        return result;
     }
 
     private void InitializeGameCanvas()

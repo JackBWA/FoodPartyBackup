@@ -163,7 +163,9 @@ public class CharacterManager : MonoBehaviour
             auxNamesAI.Add(name);
         }
 
-        for(int i = 0; i < playableCharacters.Count; i++)
+        if (auxNamesAI.Contains(nickInput.text)) auxNamesAI.Remove(nickInput.text);
+
+        for (int i = 0; i < playableCharacters.Count; i++)
         {
             if(i != index)
             {

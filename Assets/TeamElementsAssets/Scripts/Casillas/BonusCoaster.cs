@@ -13,12 +13,20 @@ public class BonusCoaster : Coaster
 
     public static List<BoardItem_Base> obtainableItems = new List<BoardItem_Base>();
 
+    public GameObject healthGainParticlePrefab;
+
+    public GameObject coinsGainParticlePrefab;
+
+    public GameObject ingredientGainParticlePrefab;
+
+    public GameObject itemGainParticlePrefab;
+
     public enum BonusType
     {
-        HealthBonus,
-        CoinsBonus,
-        ItemBonus,
-        IngredientBonus
+        HealthGain,
+        CoinsGain,
+        IngredientGain,
+        ItemGain
     }
 
     protected override void Awake()
@@ -50,15 +58,15 @@ public class BonusCoaster : Coaster
             BonusType bonusType = (BonusType)UnityEngine.Random.Range(0, Enum.GetValues(typeof(BonusType)).Length);
             switch (bonusType)
             {
-                case BonusType.HealthBonus:
+                case BonusType.HealthGain:
                     interactor.health = Mathf.Clamp(interactor.health + healthAmount, 0, interactor.baseHealth);
                     break;
 
-                case BonusType.CoinsBonus:
+                case BonusType.CoinsGain:
                     interactor.coins = Mathf.Clamp(interactor.coins + coinsAmount, 0, int.MaxValue);
                     break;
 
-                case BonusType.ItemBonus:
+                case BonusType.ItemGain:
                     BoardItem_Base randomItem;
                     BoardItem_Base[] itemList = Resources.LoadAll<BoardItem_Base>("BoardItems/Items");
                     randomItem = itemList[UnityEngine.Random.Range(0, itemList.Length)];
@@ -70,7 +78,7 @@ public class BonusCoaster : Coaster
                     interactor.inventory.AddItem(randomItem);
                     break;
 
-                case BonusType.IngredientBonus:
+                case BonusType.IngredientGain:
                     List<Ingredient> obtainableIngredients = new List<Ingredient>();
                     foreach (Ingredient i in GameBoardManager.singleton.recipeStates[interactor].requiredElements.Keys.Where((e) => e.GetType() == typeof(Ingredient)).ToList())
                     {
@@ -85,8 +93,31 @@ public class BonusCoaster : Coaster
                     break;
             }
 
-            EndInteract(interactor);
+            StartCoroutine(ShowFeedback(bonusType, interactor));
         }
+    }
+    private IEnumerator ShowFeedback(BonusType trapType, BoardEntity interactor)
+    {
+        switch (trapType)
+        {
+            case BonusType.HealthGain:
+                Instantiate(healthGainParticlePrefab).transform.position = interactor.transform.position;
+                break;
+
+            case BonusType.CoinsGain:
+                Instantiate(coinsGainParticlePrefab).transform.position = interactor.transform.position;
+                break;
+
+            case BonusType.IngredientGain:
+                Instantiate(ingredientGainParticlePrefab).transform.position = interactor.transform.position;
+                break;
+
+            case BonusType.ItemGain:
+                Instantiate(itemGainParticlePrefab).transform.position = interactor.transform.position;
+                break;
+        }
+        yield return new WaitForSeconds(1f);
+        EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

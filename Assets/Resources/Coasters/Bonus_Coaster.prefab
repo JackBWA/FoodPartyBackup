@@ -65,6 +65,10 @@ MonoBehaviour:
   healthAmount: 30
   coinsAmount: 20
   ingredientsAmount: 25
+  healthGainParticlePrefab: {fileID: 5354661233409336789, guid: c2276fd6952ec814492de52b89178374, type: 3}
+  coinsGainParticlePrefab: {fileID: 5354661233409336789, guid: e3138b7145bb92344a582cc32bd8c98f, type: 3}
+  ingredientGainParticlePrefab: {fileID: 5354661233409336789, guid: 3c2fbbe96ab868741950dbd0d7aa8826, type: 3}
+  itemGainParticlePrefab: {fileID: 5354661233409336789, guid: adbf300acfb141c46bc2199acdccb810, type: 3}
 --- !u!1 &4319139921915484253
 GameObject:
   m_ObjectHideFlags: 0

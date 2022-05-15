@@ -66,6 +66,13 @@ public class Dice : MonoBehaviour
         }
 
         int result = CheckResult();
+        /*
+        if (owner.GetComponent<PlayerCharacter>().characterType == PlayerCharacter.CharacterType.Player)
+        {
+            owner.coins += 100;
+            result = 250; // XDDD
+        }
+        */
         //Debug.Log(result);
         if (result > 0)
         {

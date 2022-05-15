@@ -333,11 +333,11 @@ public class BoardEntity : MonoBehaviour
 
     public void ForceStop(bool forcedInteract)
     {
-        if (!forcedInteract)
+        if (!forcedInteract) // Forced stop
         {
             moves = 0;
             ContinueMoving();
-        } else
+        } else // Forced interact
         {
             currentCoaster.Interact(this);
         }

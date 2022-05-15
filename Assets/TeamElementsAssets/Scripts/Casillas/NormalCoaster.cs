@@ -2,9 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Cinemachine;
 
 public class NormalCoaster : Coaster
 {
+
+    public CinemachineVirtualCamera cam;
 
     public bool hasFlavor
     {
@@ -19,13 +22,16 @@ public class NormalCoaster : Coaster
             {
                 if (hasFlavor)
                 {
+                    flavorCoaster = this;
                     canForceInteract = true;
                     flavorParticle.Play();
+                    flavorChest.gameObject.SetActive(true);
                 }
                 else
                 {
                     canForceInteract = false;
                     flavorParticle?.Stop();
+                    flavorChest.gameObject.SetActive(false);
                 }
             }
         }
@@ -35,6 +41,8 @@ public class NormalCoaster : Coaster
     public int interactionCost = 50;
 
     public ParticleSystem flavorParticle;
+
+    public Animation flavorChest;
 
     private Flavor GetRandomFlavor(BoardEntity interactor)
     {
@@ -75,6 +83,14 @@ public class NormalCoaster : Coaster
         base.Start();
     }
 
+    private void OnEnable()
+    {
+        if (hasFlavor)
+        {
+            flavorParticle.Play();
+        }
+    }
+
     public override void Interact(BoardEntity interactor)
     {
         PlayerCharacter pC = interactor.GetComponent<PlayerCharacter>();
@@ -96,9 +112,10 @@ public class NormalCoaster : Coaster
                     case BoardAI ai:
                         if (interactor.coins >= interactionCost)
                         {
-                            Flavor flavor = GetRandomFlavor(interactor);
-                            GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
-                            GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+                            StartCoroutine(RetrieveFlavor(interactor));
+                        }
+                        else
+                        {
                             EndInteract(interactor);
                         }
                         break;
@@ -113,12 +130,31 @@ public class NormalCoaster : Coaster
         }
     }
 
+    public IEnumerator RetrieveFlavor(BoardEntity interactor)
+    {
+        Flavor flavor = GetRandomFlavor(interactor);
+        interactor.coins -= interactionCost;
+        GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
+        flavorChest.Play("bandejacofreopen");
+        yield return new WaitForSeconds(flavorChest.GetClip("bandejacofreopen").length);
+        NormalCoaster next = GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+        yield return new WaitForSeconds(.25f);
+        next.cam.enabled = true;
+        yield return new WaitForSeconds(1.25f);
+        next.flavorChest.Play("bandejacofrespawn");
+        yield return new WaitForSeconds(next.flavorChest.GetClip("bandejacofrespawn").length + .5f);
+        next.cam.enabled = false;
+        yield return new WaitForSeconds(1.5f);
+        EndInteract(interactor);
+    }
+
     private IEnumerator RequestCo(BoardEntity interactor)
     {
-        RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("RequestCanvas"));
-        requestManager.title = "You've reached the flavor coaster!";
-        requestManager.message = "Would you like to obtain this flavor?";
-        requestManager.acceptButtonText = "Yes";
+        interactor.LockTPC();
+        RequestManager requestManager = Instantiate(Resources.Load<RequestManager>("UI/RequestCanvas"));
+        requestManager.title = "Has encontrado el condimento!";
+        requestManager.message = $"Te gustaria obtenerlo por {interactionCost} monedas?";
+        requestManager.acceptButtonText = "Si";
         requestManager.declineButtonText = "No";
 
         while (!requestManager.hasSubmittedRequest)
@@ -131,11 +167,21 @@ public class NormalCoaster : Coaster
 
         if (result)
         {
+            if (interactor.coins >= interactionCost)
+            {
+                StartCoroutine(RetrieveFlavor(interactor));
+            } else
+            {
+                EndInteract(interactor);
+            }
+            /*
             Flavor flavor = GetRandomFlavor(interactor);
             GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
             GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
+            */
         }
-        EndInteract(interactor);
+        interactor.UnlockTPC();
+        //EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

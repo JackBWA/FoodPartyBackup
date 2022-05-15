@@ -77,7 +77,7 @@ public class CameraBoardManager : MonoBehaviour
             CustomBlend tempCB = new CustomBlend();
             tempCB.m_From = "**ANY CAMERA**";
             tempCB.m_To = "**ANY CAMERA**";
-            CinemachineBlendDefinition blendTypeAux = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, .5f);
+            CinemachineBlendDefinition blendTypeAux = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 1.5f);
             tempCB.m_Blend = blendTypeAux;
             aux.Add(tempCB);
             cbs.m_CustomBlends = aux.ToArray();

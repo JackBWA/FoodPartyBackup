@@ -10,6 +10,7 @@ public class Coaster : MonoBehaviour
     public List<BoardEntity> players = new List<BoardEntity>();
 
     public static Coaster initialCoaster;
+    public static NormalCoaster flavorCoaster;
 
     public List<Vector3> waitZones = new List<Vector3>();
     private Dictionary<Vector3, BoardEntity> waitZonesState = new Dictionary<Vector3, BoardEntity>();

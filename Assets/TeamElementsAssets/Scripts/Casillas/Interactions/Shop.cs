@@ -24,6 +24,8 @@ public class Shop : MonoBehaviour
 
     public List<ShopElementUI> shopItems = new List<ShopElementUI>();
 
+    List<Selectable> autobuyDisabled = new List<Selectable>();
+
     private void OnEnable()
     {
         inputActions.Enable();
@@ -114,7 +116,7 @@ public class Shop : MonoBehaviour
         */
     }
 
-    public void OpenShop(BoardEntity entity)
+    public void OpenShop(BoardEntity entity, bool visible = true)
     {
         //Debug.Log("Open shop!");
         shopInteractor = entity;
@@ -122,6 +124,7 @@ public class Shop : MonoBehaviour
         shopItems[0].GetComponent<Button>().Select();
         shopItems[0].SelectItem();
         gameObject.SetActive(true);
+        if (!visible) gameObject.GetComponent<Canvas>().enabled = false;
     }
 
     public void CloseShop()
@@ -129,6 +132,39 @@ public class Shop : MonoBehaviour
         //shopInteractor.currentCoaster.EndInteract(); // Moved to coroutine
         isOpen = false;
         //gameObject.SetActive(false);
+    }
+
+    public void AutoBuy()
+    {
+        StartCoroutine(AutoBuyCo());
+    }
+
+    public IEnumerator AutoBuyCo()
+    {
+
+        //Debug.Log("Auto buying.");
+        Recipe recipe = GameBoardManager.singleton.recipeStates[shopInteractor];
+
+        //Debug.Log("Recipe at start:\n" + recipe.ToString());
+
+        foreach (ShopElementUI sE in shopItems)
+        {
+            if (recipe.requiredElements.ContainsKey(sE.recipeElement))
+            {
+                int requiredAmount = recipe.requiredElements[sE.recipeElement] - recipe.currentElements[sE.recipeElement];
+                if (requiredAmount > 0)
+                {
+                    int amountBought = Mathf.Clamp(shopInteractor.coins / sE.recipeElement.buyCost, 0, requiredAmount);
+                    shopInteractor.coins -= amountBought * sE.recipeElement.buyCost;
+                    recipe.SetCurrentElement(sE.recipeElement, recipe.currentElements[sE.recipeElement] + amountBought);
+                    yield return new WaitForSeconds(.25f);
+                }
+                yield return new WaitForSeconds(.15f);
+            }
+        }
+        yield return new WaitForSeconds(1f);
+        shopInteractor.currentCoaster.EndInteract(shopInteractor);
+        yield return null;
     }
 
     public void BuyItem()

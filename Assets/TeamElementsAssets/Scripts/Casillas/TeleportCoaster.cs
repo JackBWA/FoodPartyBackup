@@ -50,14 +50,15 @@ public class TeleportCoaster : Coaster
         yield return new WaitForSeconds(1f);
         interactor.TeleportTo(zone);
         interactor.currentCoaster = teleportTarget;
-        interactor.currentCoaster.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
+        //interactor.currentCoaster.SetWaitZoneState(teleportTarget.GetAvailableWaitZones()[0], interactor);
         yield return new WaitForSeconds(1f);
         pS = Instantiate(onTeleportParticlePrefab).GetComponentInChildren<ParticleSystem>();
         pS.transform.position = interactor.transform.position;
         yield return new WaitForSeconds(.1f);
         interactor.playerCharacter._renderer.enabled = true;
         yield return new WaitForSeconds(1f);
-        EndInteract(interactor);
+        interactor.currentCoaster.playerEnter(interactor, zone);
+        //EndInteract(interactor); // PlayerEnter instead???
     }
 
     public override void EndInteract(BoardEntity interactor)

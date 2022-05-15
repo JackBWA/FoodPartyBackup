@@ -66,21 +66,6 @@ public class KingOfTheHillController : MonoBehaviour
     }
     private bool _isStunned;
 
-    /*
-    protected bool canMove
-    {
-        get
-        {
-            return _canMove;
-        }
-        set
-        {
-            _canMove = value;
-        }
-    }
-    private bool _canMove;
-    */
-
     #region Awake/Start/Update
     protected virtual void Awake()
     {

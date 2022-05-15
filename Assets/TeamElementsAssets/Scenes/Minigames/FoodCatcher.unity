@@ -3140,7 +3140,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1342a300eca58304fa1cb4001c0733af, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -3204,7 +3204,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &282369120
@@ -4761,7 +4761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minigameName: FOOD CATCHER
   minigameDescription: "Atrapa tantos ingredientes como puedas! Qui\xE9n acabe con
-    mayor puntuaci\xF3n gana. Pero cuidado, los cuchillos te quitar\xE1n puntuaci\xF3n.\n\n\nCONTROLES:\nAD
+    mayor puntuaci\xF3n gana. Pero cuidado, los cuchillos te quitar\xE1n puntuaci\xF3n.\n\nManzanas:
+    10 puntos\nTomates: 15/25 puntos\nUvas: 25 puntos\nCuchillos: -50/-25 puntos\n\nCONTROLES:\nAD
     - Movimiento\nEspacio - Saltar"
   hasTimeLimit: 1
   timeLimit: 40
@@ -9199,7 +9200,7 @@ MonoBehaviour:
   images: []
   _title: {fileID: 1478388311}
   _description: {fileID: 1275594675}
-  imagesHolder: {fileID: 1889963477}
+  imagesHolder: {fileID: 0}
   maxImageDuration: 5
 --- !u!114 &950698729
 MonoBehaviour:
@@ -11831,7 +11832,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Atrapa tantos ingredientes como puedas! Qui\xE9n acabe con mayor puntuaci\xF3n
-    gana. Pero cuidado, los cuchillos te quitar\xE1n puntuaci\xF3n.\n\n\nCONTROLES:\nAD
+    gana. Pero cuidado, los cuchillos te quitar\xE1n puntuaci\xF3n.\n\nManzanas:
+    10 puntos\nTomates: 15/25 puntos\nUvas: 25 puntos\nCuchillos: -50/-25 puntos\n\nCONTROLES:\nAD
     - Movimiento\nEspacio - Saltar"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f2c0891de916aca4fa807285f4fe46cf, type: 2}
@@ -11859,7 +11861,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 52
+  m_fontSize: 50.45
   m_fontSizeBase: 32
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14538,7 +14540,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 960, y: -1026.6667}
-  m_SizeDelta: {x: 507.77, y: 50}
+  m_SizeDelta: {x: 478.13, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1550717572
 MonoBehaviour:
@@ -14576,8 +14578,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Leaving in {seconds} seconds...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -14686,8 +14688,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: 1017.45, y: 111.72}
+  m_AnchoredPosition: {x: 0, y: 135}
+  m_SizeDelta: {x: 1042.43, y: 120.01}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1567332868
 MonoBehaviour:
@@ -14725,8 +14727,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '{Player} es el ganador!'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
+  m_sharedMaterial: {fileID: -8934247187459278848, guid: 4edf72cd2aacf004aa2ca967b84bc8cd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -17754,6 +17756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889963476}
   - component: {fileID: 1889963478}
+  - component: {fileID: 1889963479}
   - component: {fileID: 1889963477}
   m_Layer: 0
   m_Name: MinigameImages
@@ -17778,10 +17781,51 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -100, y: 150}
-  m_SizeDelta: {x: 614.4, y: 345.6}
+  m_AnchoredPosition: {x: -121, y: 150}
+  m_SizeDelta: {x: 640, y: 360}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1889963477
+--- !u!328 &1889963477
+VideoPlayer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889963475}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: b9982def7cce7294780441d02a9c565e, type: 3}
+  m_TargetCameraAlpha: 1
+  m_TargetCamera3DLayout: 0
+  m_TargetCamera: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 570ed580e3d604a4a9f84ddddb73c092, type: 2}
+  m_TimeReference: 0
+  m_TargetMaterialRenderer: {fileID: 0}
+  m_TargetMaterialProperty: _MainTex
+  m_RenderMode: 2
+  m_AspectRatio: 2
+  m_DataSource: 0
+  m_PlaybackSpeed: 1
+  m_AudioOutputMode: 2
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
+  m_Url: 
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
+  m_PlayOnAwake: 1
+  m_SkipOnDrop: 1
+  m_Looping: 1
+  m_WaitForFirstFrame: 1
+  m_FrameReadyEventEnabled: 0
+  m_VideoShaders: []
+--- !u!222 &1889963478
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1889963475}
+  m_CullTransparentMesh: 1
+--- !u!114 &1889963479
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -17790,7 +17834,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1889963475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -17801,24 +17845,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1889963478
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1889963475}
-  m_CullTransparentMesh: 1
+  m_Texture: {fileID: 8400000, guid: 570ed580e3d604a4a9f84ddddb73c092, type: 2}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1892243425
 GameObject:
   m_ObjectHideFlags: 0

@@ -40,74 +40,97 @@ public class ShopCoaster : Coaster
                     break;
 
                 case PlayerCharacter.CharacterType.AI:
-                    shopInstance.shopInteractor = interactor;
-                    StartCoroutine(AutoBuy(shopInstance));
+                    shopInstance.OpenShop(interactor, false);
+                    shopInstance.AutoBuy();
                     break;
             }
         }
     }
 
-    public IEnumerator AutoBuy(Shop shop)
+    /*
+    public IEnumerator AutoBuy()
     {
         //Debug.Log("Auto buying.");
-        Recipe recipe = GameBoardManager.singleton.recipeStates[shop.shopInteractor];
+        Recipe recipe = GameBoardManager.singleton.recipeStates[shopInstance.shopInteractor];
 
         //Debug.Log("Recipe at start:\n" + recipe.ToString());
 
-        for (int i = 0; i < recipe.requiredElements.Count; i++)
+        foreach(ShopElementUI sE in shopInstance.shopItems)
         {
-            //Debug.Log($"Loop {i}. Required element: {recipe.requiredElements.ElementAt(i).Key.name}");
-            int j = 0;
-            ShopElementUI sEui = null;
-            while(j < shop.shopItems.Count)
+            if (recipe.requiredElements.ContainsKey(sE.recipeElement))
             {
-                //Debug.Log($"Checking if (j){shop.shopItems[j].recipeElement.name} == (i){recipe.requiredElements.ElementAt(i).Key.name}");
-                if (recipe.requiredElements.ElementAt(i).Key == shop.shopItems[j].recipeElement)
+                int requiredAmount = recipe.requiredElements[sE.recipeElement] - recipe.currentElements[sE.recipeElement];
+                if(requiredAmount > 0)
                 {
-                    //Debug.Log("Result was true.");
-                    sEui = shop.shopItems[j];
-                    j = shop.shopItems.Count;
+                    int amountBought = Mathf.Clamp(shopInstance.shopInteractor.coins / sE.recipeElement.buyCost, 0, requiredAmount);
+                    shopInstance.shopInteractor.coins -= amountBought * sE.recipeElement.buyCost;
+                    recipe.SetCurrentElement(sE.recipeElement, recipe.currentElements[sE.recipeElement] + amountBought);
+                    yield return new WaitForSeconds(.25f);
                 }
-                else
-                {
-                    //Debug.Log("Result was false.");
-                    j++;
-                }
+                yield return new WaitForSeconds(.15f);
             }
-
-            //Debug.Log($"Was it found? {sEui != null}.");
-            if (sEui == null) continue;
-            //Debug.Log("Should print this if it wasn't null. (Output == true)");
-
-            int buyableAmount = Mathf.Clamp(shop.shopInteractor.coins / (sEui.amount * sEui.recipeElement.buyCost), 0, sEui.amount);
-            int requiredAmount = Mathf.Clamp(recipe.requiredElements[sEui.recipeElement] - recipe.currentElements[sEui.recipeElement], 0, recipe.requiredElements[sEui.recipeElement]);
-
-            int resultAmount = buyableAmount - (buyableAmount - requiredAmount); ;
-            if(requiredAmount >= buyableAmount)
-            {
-                resultAmount = buyableAmount;
-            }
-
-            //Debug.Log($"Buyable amount equals to: {buyableAmount}. Required amount equals to: {requiredAmount}. Result amount equals to: {resultAmount}.");
-
-            //Debug.Log($"Buying {resultAmount} {sEui.recipeElement.name}(s) for {resultAmount * sEui.recipeElement.buyCost}$.");
-
-            recipe.SetCurrentElement(sEui.recipeElement, recipe.currentElements[sEui.recipeElement] + resultAmount);
-            shop.shopInteractor.coins -= resultAmount * sEui.recipeElement.buyCost;
-
-            // RecipeManagerUI.singleton.UpdateDisplay(shop.shopInteractor); // Ya no ???
-
-            //Debug.Log("=====Checking next required=====");
-            yield return new WaitForSeconds(.25f);
         }
-        //Debug.Log("!!!Checked all!!!");
-
-        //Debug.Log("Recipe at end:\n" + recipe.ToString());
-
-        yield return new WaitForSeconds(2f);
-        EndInteract(shop.shopInteractor);
+        yield return new WaitForSeconds(1f);
+        EndInteract(shopInstance.shopInteractor);
         yield return null;
+
+        #region Old Code
+        //for (int i = 0; i < recipe.requiredElements.Count; i++)
+        //{
+        //    //Debug.Log($"Loop {i}. Required element: {recipe.requiredElements.ElementAt(i).Key.name}");
+        //    int j = 0;
+        //    ShopElementUI sEui = null;
+        //    while(j < shopInstance.shopItems.Count)
+        //    {
+        //        //Debug.Log($"Checking if (j){shop.shopItems[j].recipeElement.name} == (i){recipe.requiredElements.ElementAt(i).Key.name}");
+        //        if (recipe.requiredElements.ElementAt(i).Key == shopInstance.shopItems[j].recipeElement)
+        //        {
+        //            //Debug.Log("Result was true.");
+        //            sEui = shopInstance.shopItems[j];
+        //            j = shopInstance.shopItems.Count;
+        //        }
+        //        else
+        //        {
+        //            //Debug.Log("Result was false.");
+        //            j++;
+        //        }
+        //    }
+
+        //    //Debug.Log($"Was it found? {sEui != null}.");
+        //    if (sEui == null) continue;
+        //    //Debug.Log("Should print this if it wasn't null. (Output == true)");
+
+        //    int buyableAmount = Mathf.Clamp(shopInstance.shopInteractor.coins / (sEui.amount * sEui.recipeElement.buyCost), 0, sEui.amount);
+        //    int requiredAmount = Mathf.Clamp(recipe.requiredElements[sEui.recipeElement] - recipe.currentElements[sEui.recipeElement], 0, recipe.requiredElements[sEui.recipeElement]);
+
+        //    int resultAmount = buyableAmount - (buyableAmount - requiredAmount); ;
+        //    if(requiredAmount >= buyableAmount)
+        //    {
+        //        resultAmount = buyableAmount;
+        //    }
+
+        //    //Debug.Log($"Buyable amount equals to: {buyableAmount}. Required amount equals to: {requiredAmount}. Result amount equals to: {resultAmount}.");
+
+        //    //Debug.Log($"Buying {resultAmount} {sEui.recipeElement.name}(s) for {resultAmount * sEui.recipeElement.buyCost}$.");
+
+        //    recipe.SetCurrentElement(sEui.recipeElement, recipe.currentElements[sEui.recipeElement] + resultAmount);
+        //    shopInstance.shopInteractor.coins -= resultAmount * sEui.recipeElement.buyCost;
+
+        //    // RecipeManagerUI.singleton.UpdateDisplay(shop.shopInteractor); // Ya no ???
+
+        //    //Debug.Log("=====Checking next required=====");
+        //    yield return new WaitForSeconds(.25f);
+        //}
+        ////Debug.Log("!!!Checked all!!!");
+
+        ////Debug.Log("Recipe at end:\n" + recipe.ToString());
+
+        //yield return new WaitForSeconds(2f);
+        //EndInteract(shopInstance.shopInteractor);
+        //yield return null;
+        #endregion
     }
+    */
 
     public override void EndInteract(BoardEntity interactor)
     {

@@ -7,10 +7,24 @@ public class MiniGame_KingOfTheHill : MiniGame
 
     public Collider stayArea;
 
+    public KingOfTheHillDeathBox deathBox;
+
+    public Vector3 deathBoxPosition;
+    public Vector3 deathBoxScale;
+
     #region Awake/Start/Update
     protected override void Awake()
     {
         base.Awake();
+        KingOfTheHillDeathBox dBox = Instantiate(deathBox);
+        dBox.transform.position = deathBoxPosition;
+        foreach(PlayerCharacter pC in players)
+        {
+            dBox.startPositions.Add(pC, pC.transform.position);
+        }
+        BoxCollider bC = dBox.gameObject.AddComponent<BoxCollider>();
+        bC.size = deathBoxScale;
+        bC.isTrigger = true;
     }
 
     protected override void Start()
@@ -24,6 +38,12 @@ public class MiniGame_KingOfTheHill : MiniGame
 
     }
     #endregion
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube(deathBoxPosition, deathBoxScale);
+    }
 
     public override void MinigameEnter()
     {
