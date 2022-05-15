@@ -35,6 +35,12 @@ public class MiniGame_DontGetBurnt : MiniGame
     }
     #endregion
 
+    public override void MinigameEnter()
+    {
+        base.MinigameEnter();
+        SoundManager.singleton.PlayWithFade("DontGetBurntMusic");
+    }
+
     protected override void InitializePlayers()
     {
         base.InitializePlayers();

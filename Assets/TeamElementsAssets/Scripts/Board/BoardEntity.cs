@@ -143,7 +143,7 @@ public class BoardEntity : MonoBehaviour
     public event Action<BoardEntity> onDie;
     public void Die(BoardEntity entity)
     {
-        Debug.Log("He muerto coño");
+        //Debug.Log("He muerto coño");
         onDie?.Invoke(entity);
     }
 
@@ -438,7 +438,6 @@ public class BoardEntity : MonoBehaviour
         else
         {
             //TurnEnd();
-            Debug.Log("awa");
             currentCoaster.playerStop(this);
         }
     }

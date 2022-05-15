@@ -31,7 +31,7 @@ public class ShopCoaster : Coaster
         } else
         {
             base.Interact(interactor);
-            Debug.Log("Shop interact!");
+            //Debug.Log("Shop interact!");
             shopInstance = Instantiate(shopPrefab);
             switch (interactor.GetComponent<PlayerCharacter>().characterType)
             {
@@ -113,7 +113,7 @@ public class ShopCoaster : Coaster
     {
         interactor.UnlockTPC();
         base.EndInteract(interactor);
-        Debug.Log("Shop end interact!");
+        //Debug.Log("Shop end interact!");
         Destroy(shopInstance.gameObject);
     }
 

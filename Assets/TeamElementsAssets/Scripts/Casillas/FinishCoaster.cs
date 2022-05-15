@@ -30,7 +30,7 @@ public class FinishCoaster : Coaster
         } else
         {
             base.Interact(interactor);
-            Debug.Log("Finish interact!");
+            //Debug.Log("Finish interact!");
 
             //Debug.Log("Recipe completed? " + GameBoardManager.singleton.recipeStates[interactor].isCompleted);
             if (GameBoardManager.singleton.recipeStates[interactor].isCompleted)

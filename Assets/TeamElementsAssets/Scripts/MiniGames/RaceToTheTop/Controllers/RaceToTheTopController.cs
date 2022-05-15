@@ -54,7 +54,7 @@ public class RaceToTheTopController : MonoBehaviour
         Debug.DrawRay(transform.position, -transform.up, Color.black, Time.deltaTime);
         if(Physics.Raycast(transform.position, -transform.up, out hit, 1f, 1 << LayerMask.NameToLayer("MapStatic")))
         {
-            Debug.Log("Rotate player towards ground WIP.");
+            //Debug.Log("Rotate player towards ground WIP.");
         }
     }
 

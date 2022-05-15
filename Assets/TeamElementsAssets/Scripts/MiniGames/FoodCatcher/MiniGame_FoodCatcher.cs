@@ -38,6 +38,12 @@ public class MiniGame_FoodCatcher : MiniGame
     }
     #endregion
 
+    public override void MinigameEnter()
+    {
+        base.MinigameEnter();
+        SoundManager.singleton.PlayWithFade("FoodCatcherMusic");
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(255f/255f, 127f/255f, 1f/255f, 255f/255f);

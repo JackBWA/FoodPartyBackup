@@ -460,7 +460,7 @@ public class GameBoardManager : MonoBehaviour
     public void GameEnd()
     {
         // Do stuff when game ends.
-        Debug.Log("Game ended!");
+        //Debug.Log("Game ended!");
         onGameEnd?.Invoke();
 
         if (persistentBoardObjects == null)
@@ -541,7 +541,8 @@ public class GameBoardManager : MonoBehaviour
 
     public void EventEnd()
     {
-        Debug.Log("Event Ended.");
+        SoundManager.singleton.PlayWithFade("MainMusic");
+        //Debug.Log("Event Ended.");
         StartCoroutine(LoadGameState());
     }
     #endregion

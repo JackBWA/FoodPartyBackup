@@ -87,7 +87,7 @@ public class MainMenuEventSystem : MonoBehaviour
 
     private void ShowMultiplayerMenu()
     {
-        Debug.Log("Coming soon...");
+        //Debug.Log("Coming soon...");
     }
 
     private void ShowOptionsMenu()

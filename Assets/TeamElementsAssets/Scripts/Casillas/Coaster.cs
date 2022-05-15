@@ -185,7 +185,7 @@ public class Coaster : MonoBehaviour
     {
         if (canRequestInteract)
         {
-            Debug.Log("Requesting interact.");
+            //Debug.Log("Requesting interact.");
             RequestInteract(entity);
         }
         else
@@ -198,7 +198,7 @@ public class Coaster : MonoBehaviour
 
     protected virtual void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")
     {
-        Debug.Log("Coaster request interact!");
+        //Debug.Log("Coaster request interact!");
 
         if (string.IsNullOrEmpty(title)) title = "Request";
         if (string.IsNullOrEmpty(message)) message = "Would you like to interact?";

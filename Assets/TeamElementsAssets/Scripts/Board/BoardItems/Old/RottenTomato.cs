@@ -65,7 +65,7 @@ public class RottenTomato : BoardItem_Base
 
         while(isCharging && i < maxHoldTime)
         {
-            Debug.Log($"Charging... {i}");
+            //Debug.Log($"Charging... {i}");
             Simulate(currentForce);
             currentForce += forceIncreaseRate;
             currentForce = Mathf.Clamp(currentForce, minForce, maxForce);

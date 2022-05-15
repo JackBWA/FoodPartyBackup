@@ -25,6 +25,12 @@ public class MiniGame_KingOfTheHill : MiniGame
     }
     #endregion
 
+    public override void MinigameEnter()
+    {
+        base.MinigameEnter();
+        SoundManager.singleton.PlayWithFade("KingOfTheHillMusic");
+    }
+
     public override void MinigameStart()
     {
         base.MinigameStart();
