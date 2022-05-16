@@ -179,9 +179,11 @@ public class NormalCoaster : Coaster
             GameBoardManager.singleton.recipeStates[interactor].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[interactor].currentElements[flavor] + 1);
             GameBoardManager.singleton.SpawnFlavorOnRandomNormalCoaster();
             */
+        } else
+        {
+            EndInteract(interactor);
         }
         interactor.UnlockTPC();
-        //EndInteract(interactor);
     }
 
     public override void EndInteract(BoardEntity interactor)

@@ -36056,9 +36056,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
-  canForceInteract: 0
+  type: 4
+  random: 0
+  canForceInteract: 1
   next:
   - {fileID: 670418937512292045}
   coaster: {fileID: 0}
@@ -46657,7 +46657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  random: 1
+  random: 0
   canForceInteract: 1
   next:
   - {fileID: 670418937994912165}
@@ -48949,7 +48949,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
-  random: 1
+  random: 0
   canForceInteract: 0
   next:
   - {fileID: 670418938370512081}
