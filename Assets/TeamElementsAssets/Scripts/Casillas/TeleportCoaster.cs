@@ -21,9 +21,9 @@ public class TeleportCoaster : Coaster
         next.Remove(teleportTarget);
     }
 
-    protected override void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")
+    protected override void RequestInteract(BoardEntity interactor, string title = "Petición", string message = "Mensaje", string acceptText = "Si", string declineText = "No")
     {
-        base.RequestInteract(interactor, "Teleport request", "Would you like to teleport?", acceptText, declineText);
+        base.RequestInteract(interactor, "Teletransportador", "Te gustaria teletransportarte?", acceptText, declineText);
     }
 
     public override void Interact(BoardEntity interactor)

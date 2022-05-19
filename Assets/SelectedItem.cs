@@ -56,7 +56,7 @@ public class SelectedItem : MonoBehaviour
         set
         {
             _interactorAmount = value;
-            _interactorAmountTxt.text = $"Your amount: {value}";
+            _interactorAmountTxt.text = $"Tienes: {value}";
         }
     }
 

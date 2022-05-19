@@ -15,9 +15,9 @@ public class FinishCoaster : Coaster
         base.Start();
     }
 
-    protected override void RequestInteract(BoardEntity interactor, string title = "Request", string message = "Message", string acceptText = "Accept", string declineText = "Decline")
+    protected override void RequestInteract(BoardEntity interactor, string title = "Petición", string message = "Mensaje", string acceptText = "Si", string declineText = "No")
     {
-        base.RequestInteract(interactor, "End Goal", "Would you like to stop here?", acceptText, declineText);
+        base.RequestInteract(interactor, "Casilla de meta", "Te gustaria detenerte aquí?", acceptText, declineText);
     }
 
     public override void Interact(BoardEntity interactor)

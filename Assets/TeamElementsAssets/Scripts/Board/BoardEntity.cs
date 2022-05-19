@@ -363,7 +363,7 @@ public class BoardEntity : MonoBehaviour
         ContinueMoving();
     }
 
-    public IEnumerator RequestInteract(string title = "Request", string message = "Would you like to interact?", string acceptText = "Accept", string declineText = "Decline")
+    public IEnumerator RequestInteract(string title = "Petición", string message = "Te gustaría interactuar?", string acceptText = "Si", string declineText = "No")
     {
         /*
         Debug.Log(title);
