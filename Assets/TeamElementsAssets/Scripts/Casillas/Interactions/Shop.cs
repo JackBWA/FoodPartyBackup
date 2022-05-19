@@ -194,7 +194,7 @@ public class Shop : MonoBehaviour
 
     public void SellItem()
     {
-        if (GameBoardManager.singleton.recipeStates[shopInteractor].currentElements.ContainsKey(selectedItemPanel.selected.recipeElement) && selectedItemPanel.itemAmount > GameBoardManager.singleton.recipeStates[shopInteractor].currentElements[selectedItemPanel.selected.recipeElement])
+        if (!GameBoardManager.singleton.recipeStates[shopInteractor].currentElements.ContainsKey(selectedItemPanel.selected.recipeElement) || selectedItemPanel.itemAmount > GameBoardManager.singleton.recipeStates[shopInteractor].currentElements[selectedItemPanel.selected.recipeElement])
         {
             Debug.LogWarning("Couldn't proceed with the sale because interactor doesn't have enough elements.");
             return;

@@ -37,6 +37,7 @@ public class GreddyPot : BoardItem_Base
 
     public override void Use()
     {
+        if (inUse) return;
         base.Use();
         StartCoroutine(GiveRecipeElements());
     }
@@ -61,7 +62,7 @@ public class GreddyPot : BoardItem_Base
         GameBoardManager.singleton.recipeStates[owner].SetCurrentElement(flavor, GameBoardManager.singleton.recipeStates[owner].currentElements[flavor] + 1);
         foreach(KeyValuePair<Ingredient, int> iA in ingredients)
         {
-            GameBoardManager.singleton.recipeStates[owner].SetCurrentElement(iA.Key, iA.Value);
+            GameBoardManager.singleton.recipeStates[owner].SetCurrentElement(iA.Key, GameBoardManager.singleton.recipeStates[owner].currentElements[iA.Key] + iA.Value);
         }
 
         GreedyPotCanvas canvasInstance = Instantiate(canvasPrefab);
