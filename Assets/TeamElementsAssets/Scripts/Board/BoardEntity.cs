@@ -217,7 +217,7 @@ public class BoardEntity : MonoBehaviour
             InputsDisplayer.singleton.ClearInputs();
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/PIcon"), "Pausar");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
-            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/EIcon"), "Inventario");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara superior");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");
@@ -243,7 +243,7 @@ public class BoardEntity : MonoBehaviour
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/WASDIcon"), "Mover cámara");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/LeftShiftIcon"), "Aumentar velocidad cámara");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
-            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+            InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/EIcon"), "Inventario");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara personaje");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
             InputsDisplayer.singleton.AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");

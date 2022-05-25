@@ -14,6 +14,7 @@ public class RecipeElementUI : MonoBehaviour
     public void SetImage(Sprite sprite)
     {
         icon.sprite = sprite;
+        icon.preserveAspect = true;
     }
 
     public void SetAmount(int current, int required)

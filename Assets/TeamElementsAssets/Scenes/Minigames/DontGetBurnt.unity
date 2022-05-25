@@ -666,7 +666,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4279959296
-  m_fontColor: {r: 0, g: 1, b: 0.10293555, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1205,7 +1205,7 @@ MonoBehaviour:
   minigameName: DON'T GET BURNT
   minigameDescription: "Desaf\xEDa tu suerte evitando las quemaduras/llamaradas de
     los fogones y s\xE9 el \xFAltimo en mantenerte en pie.\n\nCONTROLES:\nWASD -
-    Movimiento\nEspacio - Saltar"
+    Movimiento"
   hasTimeLimit: 1
   timeLimit: 45
   hasScoreLimit: 0

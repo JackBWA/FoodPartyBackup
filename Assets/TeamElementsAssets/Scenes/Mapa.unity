@@ -45944,7 +45944,7 @@ MonoBehaviour:
   canForceInteract: 0
   next:
   - {fileID: 1788460796772924942}
-  - {fileID: 2075392981291848112}
+  - {fileID: 2075392980599175332}
   coaster: {fileID: 0}
 --- !u!23 &2075392981201556194
 MeshRenderer:
@@ -48344,9 +48344,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64bf591e41efa5f4ba85aeaf5bf052d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  random: 1
-  canForceInteract: 0
+  type: 5
+  random: 0
+  canForceInteract: 1
   next:
   - {fileID: 2075392981190433104}
   coaster: {fileID: 0}

@@ -31,6 +31,7 @@ public class SelectedItem : MonoBehaviour
         set
         {
             _itemSprite.sprite = value;
+            _itemSprite.preserveAspect = true;
         }
     }
     public int itemAmount

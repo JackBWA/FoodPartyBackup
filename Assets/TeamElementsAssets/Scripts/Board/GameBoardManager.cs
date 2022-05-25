@@ -539,6 +539,8 @@ public class GameBoardManager : MonoBehaviour
         onRoundStart?.Invoke();
     }
 
+    private int minigameIndex = 0;
+
     public event Action onRoundEnd;
     public void RoundEnd()
     {
@@ -546,7 +548,10 @@ public class GameBoardManager : MonoBehaviour
         roundIndex++;
         SaveGameState();
         // Start random event. (Minigame, general boost, etc.)
-        string nextMinigame = GetRandomMinigame();
+        // string nextMinigame = GetRandomMinigame();
+        string nextMinigame = minigameScenes[minigameIndex];
+        minigameIndex++;
+        if (minigameIndex >= minigameScenes.Count) minigameIndex = 0;
         onRoundEnd?.Invoke();
         if (nextMinigame != null)
         {

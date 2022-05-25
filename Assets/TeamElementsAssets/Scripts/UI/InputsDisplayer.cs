@@ -46,7 +46,7 @@ public class InputsDisplayer : MonoBehaviour
         visible = false;
         AddInput(Resources.Load<Sprite>("Icons/PIcon"), "Pausar");
         AddInput(Resources.Load<Sprite>("Icons/SpacebarIcon"), "Tirar dado");
-        AddInput(Resources.Load<Sprite>("Icons/IIcon"), "Inventario");
+        AddInput(Resources.Load<Sprite>("Icons/EIcon"), "Inventario");
         AddInput(Resources.Load<Sprite>("Icons/MIcon"), "Cámara superior");
         AddInput(Resources.Load<Sprite>("Icons/XIcon"), "Usar objeto");
         AddInput(Resources.Load<Sprite>("Icons/QIcon"), "Cancelar objeto");
